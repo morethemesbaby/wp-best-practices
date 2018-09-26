@@ -1,3 +1,26 @@
+# WordPress core
+# - from https://brudtkuhl.com/wordpress-gitignore/
+
+# Ignore everything in the root except the "wp-content" directory.
+/*
+!.gitignore
+!README.md
+!wp-content/
+
+# Ignore everything in the "wp-content" directory, except the "plugins"
+# and "themes" directories.
+wp-content/*
+!wp-content/plugins/
+!wp-content/themes/
+
+wp-content/plugins/hide-admin-bar/
+wp-content/plugins/wordpress-importer/
+wp-content/themes/twentyseventeen
+
+
+# WordPress defaults
+# - from https://github.com/github/gitignore/blob/master/WordPress.gitignore
+
 *.log
 wp-config.php
 wp-content/advanced-cache.php
@@ -16,4 +39,3 @@ wp-content/plugins/hello.php
 /readme.html
 /sitemap.xml
 /sitemap.xml.gz
-
