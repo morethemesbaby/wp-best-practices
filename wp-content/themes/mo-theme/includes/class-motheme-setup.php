@@ -1,6 +1,6 @@
 <?php
 /**
- * The Mo Theme setup class
+ * The theme setup class
  *
  * @package MoTheme
  * @since 1.0.0
@@ -8,18 +8,22 @@
 
 if ( ! class_exists( 'MoTheme' ) ) {
 	/**
-	 * The main Mo Theme class
+	 * The main theme class
 	 *
 	 * @package MoTheme
 	 * @since 1.0.0
 	 */
 	class MoTheme {
 
-		public $name          = '';
-		public $version       = '';
-		public $text_domain   = '';
-		public $assets_folder = '';
-		public $theme_path    = '';
+		// Theme variables
+		public $name              = '';
+		public $version           = '';
+		public $text_domain       = '';
+		public $assets_folder     = '';
+		public $theme_path        = '';
+		public $include_path      = '';
+		public $functionality_set = '';
+		public $customization_set = '';
 
 		/**
 		 * Sets up the class
@@ -28,19 +32,21 @@ if ( ! class_exists( 'MoTheme' ) ) {
 		 * @since 1.0.0
 		 */
 		public function __construct() {
-			add_action( 'after_setup_theme', array( $this, 'setup' ) );
+			add_action( 'after_setup_theme', array( $this, 'variables' ) );
+			add_action( 'after_setup_theme', array( $this, 'functionalities' ) );
+			add_action( 'after_setup_theme', array( $this, 'customizations' ) );
 			add_action( 'wp_enqueue_scripts', array( $this, 'styles' ) );
 			add_action( 'wp_enqueue_scripts', array( $this, 'scripts' ) );
 		}
 
 		/**
-		 * Sets up theme details
+		 * Sets up theme variables
 		 *
 		 * @package MoTheme
 		 * @since 1.0.0
 		 * @return void
 		 */
-		public function setup() {
+		public function variables() {
 			$theme = wp_get_theme();
 
 			$this->name          = $theme->get( 'Name' );
@@ -48,6 +54,44 @@ if ( ! class_exists( 'MoTheme' ) ) {
 			$this->text_domain   = $theme->get( 'TextDomain' );
 			$this->assets_folder = 'assets/';
 			$this->theme_path    = get_template_directory() . '/';
+			$this->include_path  = $this->theme_path . 'includes/';
+
+			$this->functionality_set = 'wporg';
+			$this->customization_set = 'wporg';
+		}
+
+		/**
+		 * Sets up theme functionalities
+		 *
+		 * @package MoTheme
+		 * @since 1.0.0
+		 * @return void
+		 */
+		public function functionalities() {
+			require $this->include_path . 'functionalities/class-motheme-functionalities.php';
+
+			$functionalities = new MoThemeFunctionalities(
+				array(
+					'set' => $this->functionality_set,
+				)
+			);
+		}
+
+		/**
+		 * Sets up theme customizations
+		 *
+		 * @package MoTheme
+		 * @since 1.0.0
+		 * @return void
+		 */
+		public function customizations() {
+			require $this->include_path . 'customizations/class-motheme-customizations.php';
+
+			$customizations = new MoThemeCustomizations(
+				array(
+					'set' => $this->customization_set,
+				)
+			);
 		}
 
 		/**
