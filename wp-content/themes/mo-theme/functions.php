@@ -8,8 +8,18 @@
  * @since 1.0.0
  */
 
+// Useful global constants
+define( 'INCLUDE_FOLDER', 'includes/' );
+
 // Include main function
-require_once get_template_directory() . '/includes/class-motheme-setup.php';
+require_once get_template_directory() . '/' . INCLUDE_FOLDER . '/class-motheme-setup.php';
 
 // Run the setup.
-$mo_theme = new MoTheme();
+$mo_theme = new MoTheme(
+	array(
+		'include_folder'    => INCLUDE_FOLDER,
+		'assets_folder'     => 'assets/',
+		'functionality_set' => 'wporg',
+		'customization_set' => 'wporg',
+	)
+);

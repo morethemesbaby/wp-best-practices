@@ -15,6 +15,14 @@ if ( ! class_exists( 'MoTheme' ) ) {
 	 */
 	class MoTheme {
 
+		// Theme arguments
+		public $arguments = array(
+			'include_folder'    => 'includes/',
+			'assets_folder'     => 'assets/',
+			'functionality_set' => 'wporg',
+			'customization_set' => 'wporg',
+		);
+
 		// Theme variables
 		public $name              = '';
 		public $version           = '';
@@ -28,10 +36,15 @@ if ( ! class_exists( 'MoTheme' ) ) {
 		/**
 		 * Sets up the class
 		 *
+		 * @param $arguments An array of arguments.
+		 * @return void
+		 *
 		 * @package MoTheme
 		 * @since 1.0.0
 		 */
-		public function __construct() {
+		public function __construct( $arguments ) {
+			$this->arguments = array_merge( $this->arguments, $arguments );
+
 			add_action( 'after_setup_theme', array( $this, 'variables' ) );
 			add_action( 'after_setup_theme', array( $this, 'functionalities' ) );
 			add_action( 'after_setup_theme', array( $this, 'customizations' ) );
@@ -42,9 +55,10 @@ if ( ! class_exists( 'MoTheme' ) ) {
 		/**
 		 * Sets up theme variables
 		 *
+		 * @return void
+		 *
 		 * @package MoTheme
 		 * @since 1.0.0
-		 * @return void
 		 */
 		public function variables() {
 			$theme = wp_get_theme();
@@ -52,20 +66,21 @@ if ( ! class_exists( 'MoTheme' ) ) {
 			$this->name          = $theme->get( 'Name' );
 			$this->version       = $theme->get( 'Version' );
 			$this->text_domain   = $theme->get( 'TextDomain' );
-			$this->assets_folder = 'assets/';
+			$this->assets_folder = $this->arguments['assets_folder'];
 			$this->theme_path    = get_template_directory() . '/';
-			$this->include_path  = $this->theme_path . 'includes/';
+			$this->include_path  = $this->theme_path . $this->arguments['include_folder'];
 
-			$this->functionality_set = 'wporg';
-			$this->customization_set = 'wporg';
+			$this->functionality_set = $this->arguments['functionality_set'];
+			$this->customization_set = $this->arguments['customization_set'];
 		}
 
 		/**
 		 * Sets up theme functionalities
 		 *
+		 * @return void
+		 *
 		 * @package MoTheme
 		 * @since 1.0.0
-		 * @return void
 		 */
 		public function functionalities() {
 			require $this->include_path . 'functionalities/class-motheme-functionalities.php';
@@ -80,9 +95,10 @@ if ( ! class_exists( 'MoTheme' ) ) {
 		/**
 		 * Sets up theme customizations
 		 *
+		 * @return void
+		 *
 		 * @package MoTheme
 		 * @since 1.0.0
-		 * @return void
 		 */
 		public function customizations() {
 			require $this->include_path . 'customizations/class-motheme-customizations.php';
@@ -97,9 +113,10 @@ if ( ! class_exists( 'MoTheme' ) ) {
 		/**
 		 * Includes theme scripts
 		 *
+		 * @return void
+		 *
 		 * @package MoTheme
 		 * @since 1.0.0
-		 * @return void
 		 */
 		public function scripts() {
 			$file_name     = 'js/' . $this->text_domain . '.js';
@@ -117,9 +134,10 @@ if ( ! class_exists( 'MoTheme' ) ) {
 		/**
 		 * Includes theme styles
 		 *
+		 * @return void
+		 *
 		 * @package MoTheme
 		 * @since 1.0.0
-		 * @return void
 		 */
 		public function styles() {
 			$timestamp = filemtime( $this->theme_path . '/style.css' );

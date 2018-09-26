@@ -20,7 +20,7 @@ if ( ! class_exists( 'MoThemeCustomizations' ) ) {
 		 * @param $arguments An array of arguments
 		 * @return void
 		 */
-		function __construct($arguments) {
+		function __construct( $arguments ) {
 			print_r($arguments);
 		}
 	}
