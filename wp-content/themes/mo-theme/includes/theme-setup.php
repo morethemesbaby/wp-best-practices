@@ -3,11 +3,11 @@
  * Sets up the theme core features and functions.
  *
  * @package MoTheme
- * @subpackage Core
+ * @subpackage Setup
  * @since 1.0.0
  */
 
-namespace MoTheme\Core;
+namespace MoTheme\Setup;
 
 /**
  * Sets up theme defaults and registers supported WordPress features.

@@ -21,8 +21,8 @@ define( 'MO_THEME_INCLUDES', MO_THEME_PATH . 'includes/' );
 define( 'MO_THEME_ASSETS', 'assets/' );
 
 // Include main functions
-require_once MO_THEME_INCLUDES . 'core.php';
+require_once MO_THEME_INCLUDES . 'theme-setup.php';
 require_once MO_THEME_INCLUDES . 'template-tags.php';
 
 // Run the setup functions.
-MoTheme\Core\setup();
+MoTheme\Setup\setup();
