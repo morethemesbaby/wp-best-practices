@@ -8,10 +8,10 @@
  * @since 1.0.0
  */
 
-// Useful global constants
+// Useful global constants.
 define( 'INCLUDE_FOLDER', 'includes/' );
 
-// Include main function
+// Include main functions.
 require_once get_template_directory() . '/' . INCLUDE_FOLDER . '/class-motheme-setup.php';
 
 // Run the setup.

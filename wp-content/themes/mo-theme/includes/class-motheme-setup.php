@@ -127,7 +127,7 @@ if ( ! class_exists( 'MoTheme' ) ) {
 				$this->text_domain . '-script',
 				$file_location . $file_name,
 				array(),
-				$this->version . '-' . $timestamp
+				$this->version . '-' . $timestamp // TODO Move this into a function. Not DRY.
 			);
 		}
 
