@@ -60,7 +60,12 @@ Instead `js/`, `.js` and `/` all should be moved into variables.
 
 * [Node & NPM](https://www.npmjs.com/get-npm) - Used as the framework to build the theme style.
 * [Gulp](https://gulpjs.com/) - Used as the task runner, to build CSS from SCSS.
-* [Composer](https://getcomposer.org/) - Used to autoload PHP classes
+* [Composer](https://getcomposer.org/) - Used to autoload PHP classes.
+
+## Tools
+
+* [PHPDoc](https://phpdoc.org/) - Used to generate documentation for the PHP code.
+* [WPCS](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards) - Used to make sure the code quality is up to WordPress standards
 
 ## Commands
 
@@ -77,6 +82,17 @@ gulp scss
 After any new class added run:
 ```
 composer dump-autoload
+```
+
+### Generating documentation
+```
+rm -Rf /tmp/phpdoc-twig-cache/ && phpdoc -d . -t doc -i vendor/
+```
+
+### Checking code quality
+```
+phpcs --standard=WordPress-Docs,WordPress-VIP,WordPress,Wordpress-Core,WordPres
+s-Extra <filename or foldername>
 ```
 
 ## Inspiration
