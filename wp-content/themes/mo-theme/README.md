@@ -2,30 +2,6 @@
 
 A WordPress.org compatible boilerplate theme based on best practices.
 
-## Dependencies
-
-* [Node & NPM](https://www.npmjs.com/get-npm) - Used as the framework to build the theme style.
-* [Gulp](https://gulpjs.com/) - Used as the task runner, to build CSS from SCSS.
-* [Composer](https://getcomposer.org/) - Used to autoload PHP classes
-
-## Commands
-
-### SCSS to CSS
-
-After any modifications to SCSS files run:
-
-```
-gulp scss
-```
-
-### Autoloading PHP classes
-
-After any new class added run:
-```
-composer dump-autoload
-```
-
-
 ## Features
 
 * Full support for WordPress.org default [functionalities](https://developer.wordpress.org/themes/functionality/) and [customizations](https://developer.wordpress.org/themes/customize-api/)
@@ -50,6 +26,30 @@ Instead `js/`, `.js` and `/` all should be moved into variables.
 Make sure everything has a single origin.
 
 For example `wp_get_theme()` gives us the theme version number. Instead of `define( 'THEME_VERSION', '0.1.0' );` use `wp_get_theme()->get('version')`.
+
+
+## Dependencies
+
+* [Node & NPM](https://www.npmjs.com/get-npm) - Used as the framework to build the theme style.
+* [Gulp](https://gulpjs.com/) - Used as the task runner, to build CSS from SCSS.
+* [Composer](https://getcomposer.org/) - Used to autoload PHP classes
+
+## Commands
+
+### SCSS to CSS
+
+After any modifications to SCSS files run:
+
+```
+gulp scss
+```
+
+### Autoloading PHP classes
+
+After any new class added run:
+```
+composer dump-autoload
+```
 
 ## Inspiration
 
