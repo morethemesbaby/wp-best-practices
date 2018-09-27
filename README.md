@@ -14,3 +14,4 @@ Boilerplate code for WordPress plugins and themes based on best practices.
 * The WordPress Theme and Plugin Handbook: https://developer.wordpress.org/
 * 10up Engineering Best Practices: https://10up.github.io/Engineering-Best-Practices/
 * A List Apart's Coding With Clarity: https://alistapart.com/article/coding-with-clarity
+* Codular on PHP Classes: http://codular.com/introducing-php-classes
