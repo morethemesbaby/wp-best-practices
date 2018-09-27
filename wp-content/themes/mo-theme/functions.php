@@ -20,10 +20,12 @@ if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 
 // Run the setup.
 $mo_theme = new MoTheme(
-	array(
-		'include_folder'    => 'includes/',
-		'assets_folder'     => 'assets/',
-		'functionality_set' => FUNCTIONALITY_SET_WPORG,
-		'customization_set' => CUSTOMIZATION_SET_WPORG,
+	apply_filters( 'mo_theme_setup_array',
+		array(
+			'include_folder'    => 'includes/',
+			'assets_folder'     => 'assets/',
+			'functionality_set' => FUNCTIONALITY_SET_WPORG,
+			'customization_set' => CUSTOMIZATION_SET_WPORG,
+		)
 	)
 );
