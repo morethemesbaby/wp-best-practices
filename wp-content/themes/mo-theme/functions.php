@@ -8,6 +8,11 @@
  * @since 1.0.0
  */
 
+// Useful constants.
+define( 'FUNCTIONALITY_SET_WPORG', 'wporg' );
+define( 'CUSTOMIZATION_SET_WPORG', 'wporg' );
+
+
 // Require Composer autoloader if it exists.
 if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 	require_once 'vendor/autoload.php';
@@ -18,7 +23,10 @@ $mo_theme = new MoTheme(
 	array(
 		'include_folder'    => 'includes/',
 		'assets_folder'     => 'assets/',
-		'functionality_set' => 'wporg',
-		'customization_set' => 'wporg',
+		'functionality_set' => FUNCTIONALITY_SET_WPORG,
+		'customization_set' => CUSTOMIZATION_SET_WPORG,
 	)
 );
+
+global $GLOBALS;
+echo 'xxx:' . $GLOBALS['content_width'];

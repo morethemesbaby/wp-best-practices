@@ -1,0 +1,37 @@
+<?php
+/**
+ * The WordPress post formats functionality.
+ *
+ * @package MoTheme
+ * @since 1.0.0
+ */
+
+if ( ! class_exists( 'MoThemeFunctionalitiesPostFormats' ) ) {
+	/**
+	 * The post format functionality class
+	 */
+	class MoThemeFunctionalitiesPostFormats {
+		/**
+		 * Sets up the class.
+		 *
+		 * @package MoTheme
+		 * @since 1.0.0
+		 */
+		public function __construct() {
+			add_theme_support(
+				'post-formats',
+				array(
+					'aside',
+					'image',
+					'video',
+					'quote',
+					'link',
+					'gallery',
+					'status',
+					'audio',
+					'chat',
+				)
+			);
+		}
+	}
+}
