@@ -20,16 +20,18 @@ if ( ! class_exists( 'MoThemeFunctionalitiesPostFormats' ) ) {
 		public function __construct() {
 			add_theme_support(
 				'post-formats',
-				array(
-					'aside',
-					'image',
-					'video',
-					'quote',
-					'link',
-					'gallery',
-					'status',
-					'audio',
-					'chat',
+				apply_filters( 'mo_theme_supported_post_formats',
+					array(
+						'aside',
+						'image',
+						'video',
+						'quote',
+						'link',
+						'gallery',
+						'status',
+						'audio',
+						'chat',
+					)
 				)
 			);
 		}

@@ -9,6 +9,10 @@ A WordPress.org compatible boilerplate theme based on best practices.
 
 ## Principles
 
+### Extendable
+
+Every time when we assign a value we use a filter.
+
 ### Loose coupling
 
 Passing arguments between functions, classes, template tags - you name it - is done using arrays.
@@ -21,18 +25,13 @@ Also class variables are dynamically set and get through overloading.
 
 Every function either executes a *command* or performs a *query*. No functions do both.
 
-The role of the function is described by a prefix:
-*
+The role of the function is described by a prefix. Either is a `get_` for a query or another verb for a command like `set_`, `add_`, `create_` and so on.
 
 ### Single responsibility principle
 
 Every folder, file, class, function, mixin - you name it - is meant to do one thing and do it well.
 
-### Don't repeat yourself / High cohesion
-
-#### Classes instead standalone functions
-
-#### Single source of truth
+### Single source of truth
 
 Make sure everything has a single origin.
 
@@ -47,8 +46,6 @@ $file_location = get_theme_file_uri( '/' . $this->assets_folder );
 ```
 
 Instead `js/`, `.js` and `/` all should be moved into variables.
-
-
 
 ## Dependencies
 

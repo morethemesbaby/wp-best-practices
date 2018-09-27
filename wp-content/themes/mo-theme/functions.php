@@ -27,6 +27,3 @@ $mo_theme = new MoTheme(
 		'customization_set' => CUSTOMIZATION_SET_WPORG,
 	)
 );
-
-global $GLOBALS;
-echo 'xxx:' . $GLOBALS['content_width'];

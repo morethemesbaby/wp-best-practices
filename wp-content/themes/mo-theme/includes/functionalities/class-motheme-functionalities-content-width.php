@@ -19,7 +19,6 @@ if ( ! class_exists( 'MoThemeFunctionalitiesContentWidth' ) ) {
 		 */
 		public function __construct() {
 			$GLOBALS['content_width'] = apply_filters( 'mo_theme_content_width', 640 );
-			echo 'zzz:' . $GLOBALS['content_width'];
 		}
 	}
 }

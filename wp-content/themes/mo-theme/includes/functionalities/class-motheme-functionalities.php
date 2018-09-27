@@ -34,19 +34,19 @@ if ( ! class_exists( 'MoThemeFunctionalities' ) ) {
 
 			switch ( $this->arguments['set'] ) {
 				case FUNCTIONALITY_SET_WPORG:
-					$this->wporg();
+					$this->setup_wporg();
 					break;
 			}
 		}
 
 		/**
-		 * WordPress.org specific functionalities
+		 * Sets up WordPress.org specific functionalities
 		 *
 		 * @return void
 		 */
-		public function wporg() {
+		public function setup_wporg() {
 			$content_width = new MoThemeFunctionalitiesContentWidth();
-			$post_formats = new MoThemeFunctionalitiesPostFormats();
+			$post_formats  = new MoThemeFunctionalitiesPostFormats();
 		}
 	}
 }

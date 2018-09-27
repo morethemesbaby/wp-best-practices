@@ -83,11 +83,11 @@ if ( ! class_exists( 'MoTheme' ) ) {
 		public function __construct( $arguments ) {
 			$this->arguments = array_merge( $this->arguments, $arguments );
 
-			add_action( 'after_setup_theme', array( $this, 'variables' ) );
-			add_action( 'after_setup_theme', array( $this, 'functionalities' ) );
-			add_action( 'after_setup_theme', array( $this, 'customizations' ) );
-			add_action( 'wp_enqueue_scripts', array( $this, 'styles' ) );
-			add_action( 'wp_enqueue_scripts', array( $this, 'scripts' ) );
+			add_action( 'after_setup_theme', array( $this, 'setup_variables' ) );
+			add_action( 'after_setup_theme', array( $this, 'setup_functionalities' ) );
+			add_action( 'after_setup_theme', array( $this, 'setup_customizations' ) );
+			add_action( 'wp_enqueue_scripts', array( $this, 'add_styles' ) );
+			add_action( 'wp_enqueue_scripts', array( $this, 'add_scripts' ) );
 		}
 
 		/**
@@ -98,7 +98,7 @@ if ( ! class_exists( 'MoTheme' ) ) {
 		 * @package MoTheme
 		 * @since 1.0.0
 		 */
-		public function variables() {
+		public function setup_variables() {
 			$theme = wp_get_theme();
 
 			$this->name        = $theme->get( 'Name' );
@@ -134,7 +134,7 @@ if ( ! class_exists( 'MoTheme' ) ) {
 		 * @package MoTheme
 		 * @since 1.0.0
 		 */
-		public function functionalities() {
+		public function setup_functionalities() {
 			$functionalities = new MoThemeFunctionalities(
 				array(
 					'set' => $this->functionality_set,
@@ -150,7 +150,7 @@ if ( ! class_exists( 'MoTheme' ) ) {
 		 * @package MoTheme
 		 * @since 1.0.0
 		 */
-		public function customizations() {
+		public function setup_customizations() {
 			//
 		}
 
@@ -162,7 +162,7 @@ if ( ! class_exists( 'MoTheme' ) ) {
 		 * @package MoTheme
 		 * @since 1.0.0
 		 */
-		public function scripts() {
+		public function add_scripts() {
 			wp_enqueue_script(
 				$this->javascript_file_handle,
 				$this->javascript_src,
@@ -180,7 +180,7 @@ if ( ! class_exists( 'MoTheme' ) ) {
 		 * @package MoTheme
 		 * @since 1.0.0
 		 */
-		public function styles() {
+		public function add_styles() {
 			wp_enqueue_style(
 				$this->css_file_handle,
 				$this->css_src,
