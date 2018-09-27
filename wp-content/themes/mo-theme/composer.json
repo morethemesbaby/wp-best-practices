@@ -1,0 +1,13 @@
+{
+  "name": "morethemesbaby/wp-best-practices",
+  "type": "wordpress-theme",
+  "authors": [
+    {
+      "name": "More Themes Baby",
+      "email": "hello@morethemes.baby"
+    }
+  ],
+  "autoload": {
+	  "psr-4": { "": "src/" }
+  }
+}

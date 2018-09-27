@@ -1,3 +1,9 @@
+# Composer
+
+wp-content/themes/mo-theme/composer.phar
+wp-content/themes/mo-theme/vendor/
+
+
 # Node
 
 wp-content/themes/mo-theme/node_modules/

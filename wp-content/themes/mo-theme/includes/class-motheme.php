@@ -135,7 +135,7 @@ if ( ! class_exists( 'MoTheme' ) ) {
 		 * @since 1.0.0
 		 */
 		public function functionalities() {
-			require $this->include_path . 'functionalities/class-motheme-functionalities.php';
+			//
 		}
 
 		/**
@@ -147,7 +147,7 @@ if ( ! class_exists( 'MoTheme' ) ) {
 		 * @since 1.0.0
 		 */
 		public function customizations() {
-			require $this->include_path . 'customizations/class-motheme-customizations.php';
+			//
 		}
 
 		/**

@@ -8,16 +8,15 @@
  * @since 1.0.0
  */
 
-// Useful global constants.
-define( 'INCLUDE_FOLDER', 'includes/' );
-
-// Include main functions.
-require get_template_directory() . '/' . INCLUDE_FOLDER . '/class-motheme.php';
+// Require Composer autoloader if it exists.
+if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
+	require_once 'vendor/autoload.php';
+}
 
 // Run the setup.
 $mo_theme = new MoTheme(
 	array(
-		'include_folder'    => INCLUDE_FOLDER,
+		'include_folder'    => 'includes/',
 		'assets_folder'     => 'assets/',
 		'functionality_set' => 'wporg',
 		'customization_set' => 'wporg',
