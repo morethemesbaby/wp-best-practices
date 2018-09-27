@@ -4,8 +4,27 @@ A WordPress.org compatible boilerplate theme based on best practices.
 
 ## Dependencies
 
-* [Node & NPM](https://www.npmjs.com/get-npm) - Build packages and 3rd party dependencies are managed through NPM, so you will need that installed globally
-* [Gulp](https://gulpjs.com/) - Gulp is used as the main task runner, it runs PostCSS, SASS, Autoprefixer, and more.
+* [Node & NPM](https://www.npmjs.com/get-npm) - Used as the framework to build the theme style.
+* [Gulp](https://gulpjs.com/) - Used as the task runner, to build CSS from SCSS.
+* [Composer](https://getcomposer.org/) - Used to autoload PHP classes
+
+## Commands
+
+### SCSS to CSS
+
+After any modifications to SCSS files run:
+
+```
+gulp scss
+```
+
+### Autoloading PHP classes
+
+After any new class added run:
+```
+composer dump-autoload
+```
+
 
 ## Features
 
