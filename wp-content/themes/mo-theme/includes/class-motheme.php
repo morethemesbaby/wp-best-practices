@@ -155,11 +155,13 @@ if ( ! class_exists( 'MoTheme' ) ) {
 		public function customizations() {
 			require $this->include_path . 'customizations/class-motheme-customizations.php';
 
+			/*
 			$customizations = new MoThemeCustomizations(
 				array(
 					'set' => $this->customization_set,
 				)
 			);
+			*/
 		}
 
 		/**

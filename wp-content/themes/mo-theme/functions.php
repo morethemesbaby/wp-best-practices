@@ -12,7 +12,7 @@
 define( 'INCLUDE_FOLDER', 'includes/' );
 
 // Include main functions.
-require_once get_template_directory() . '/' . INCLUDE_FOLDER . '/class-motheme.php';
+require get_template_directory() . '/' . INCLUDE_FOLDER . '/class-motheme.php';
 
 // Run the setup.
 $mo_theme = new MoTheme(
