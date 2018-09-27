@@ -9,6 +9,14 @@ A WordPress.org compatible boilerplate theme based on best practices.
 
 ## Principles
 
+### The open / close principle
+
+The code should be open for extension but closed for modification.
+
+This means:
+* We need a stable API for both PHP, HTML, CSS and JS components
+* Use callback functions whenever necessary: https://alistapart.com/article/coding-with-clarity-part-ii#section3
+
 ### Extendable
 
 Every time when we assign a value we use a filter.
