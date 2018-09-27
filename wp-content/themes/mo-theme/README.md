@@ -19,7 +19,7 @@ $file_name     = 'js/' . $this->text_domain . '.js';
 $file_location = get_theme_file_uri( '/' . $this->assets_folder );
 ```
 
-Instead `js/`, `.js` and `/` all should be moved into variables defined at the top of the function / class.
+Instead `js/`, `.js` and `/` all should be moved into variables.
 
 ### Single source of truth
 
