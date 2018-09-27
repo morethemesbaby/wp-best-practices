@@ -136,12 +136,6 @@ if ( ! class_exists( 'MoTheme' ) ) {
 		 */
 		public function functionalities() {
 			require $this->include_path . 'functionalities/class-motheme-functionalities.php';
-
-			$functionalities = new MoThemeFunctionalities(
-				array(
-					'set' => $this->functionality_set,
-				)
-			);
 		}
 
 		/**
@@ -154,14 +148,6 @@ if ( ! class_exists( 'MoTheme' ) ) {
 		 */
 		public function customizations() {
 			require $this->include_path . 'customizations/class-motheme-customizations.php';
-
-			/*
-			$customizations = new MoThemeCustomizations(
-				array(
-					'set' => $this->customization_set,
-				)
-			);
-			*/
 		}
 
 		/**

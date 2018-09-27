@@ -2,6 +2,11 @@
 
 A WordPress.org compatible boilerplate theme based on best practices.
 
+## Dependencies
+
+* [Node & NPM](https://www.npmjs.com/get-npm) - Build packages and 3rd party dependencies are managed through NPM, so you will need that installed globally
+* [Gulp](https://gulpjs.com/) - Gulp is used as the main task runner, it runs PostCSS, SASS, Autoprefixer, and more.
+
 ## Features
 
 * Full support for WordPress.org default [functionalities](https://developer.wordpress.org/themes/functionality/) and [customizations](https://developer.wordpress.org/themes/customize-api/)
