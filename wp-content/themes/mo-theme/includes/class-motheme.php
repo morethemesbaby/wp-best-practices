@@ -135,7 +135,11 @@ if ( ! class_exists( 'MoTheme' ) ) {
 		 * @since 1.0.0
 		 */
 		public function functionalities() {
-			//
+			$functionalities = new MoThemeFunctionalities(
+				array(
+					'set' => $this->functionality_set,
+				)
+			);
 		}
 
 		/**

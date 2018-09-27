@@ -18,10 +18,9 @@ if ( ! class_exists( 'MoThemeFunctionalities' ) ) {
 		 * Sets up the class
 		 *
 		 * @param array $arguments An array of arguments.
-		 * @return void
 		 */
 		public function __construct( $arguments ) {
-			print_r( $arguments );
+			//
 		}
 	}
 }
