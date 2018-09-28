@@ -8,12 +8,25 @@
  * @since 1.0.0
  */
 
-// Useful constants.
+/**
+ * Defines which functionality set to be included.
+ *
+ * @since 1.0.0
+ * @var string
+ */
 define( 'FUNCTIONALITY_SET_WPORG', 'wporg' );
+
+/**
+ * Defines which customization set to be included.
+ *
+ * @since 1.0.0
+ * @var string
+ */
 define( 'CUSTOMIZATION_SET_WPORG', 'wporg' );
 
-
-// Require Composer autoloader if it exists.
+/**
+ * Use Composer's autoload.
+ */
 if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 	require_once 'vendor/autoload.php';
 }

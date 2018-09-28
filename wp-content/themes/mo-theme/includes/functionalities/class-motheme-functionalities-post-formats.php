@@ -8,7 +8,7 @@
 
 if ( ! class_exists( 'MoThemeFunctionalitiesPostFormats' ) ) {
 	/**
-	 * The post format functionality class
+	 * The WordPress Post Format functionality class
 	 */
 	class MoThemeFunctionalitiesPostFormats {
 		/**

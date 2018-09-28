@@ -8,7 +8,7 @@
 
 if ( ! class_exists( 'MoThemeFunctionalitiesContentWidth' ) ) {
 	/**
-	 * The content width functionality class
+	 * The WordPress Content Width functionality class
 	 *
 	 * @since 1.0.0
 	 */
