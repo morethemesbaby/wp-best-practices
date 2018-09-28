@@ -8,6 +8,10 @@
     }
   ],
   "autoload": {
-	  "classmap": ["includes/", "includes/functionalities/", "includes/customizations/"]
+	  "classmap": [
+		  "includes/",
+		  "includes/theme-functionalities/",
+		  "includes/theme-customizations/"
+	  ]
   }
 }
