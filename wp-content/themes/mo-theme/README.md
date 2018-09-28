@@ -49,7 +49,7 @@ rm -Rf /tmp/phpdoc-twig-cache/ && phpdoc -d . -t doc/api -i vendor/
 
 For the WordPres template tags and functions documentation run:
 ```
-rm -Rf /tmp/phpdoc-twig-cache/ && phpdoc -d . -t doc/api -i vendor/ --template=phpdocumentor-wordpress-theme
+rm -Rf /tmp/phpdoc-twig-cache/ && phpdoc -d . -t doc/template -i vendor/ --template=phpdocumentor-wordpress-theme
 ```
 Make sure the [PHPDocumentor WordPress Theme](https://github.com/morethemesbaby/phpdocumentor-wordpress-theme) is installed first.
 
