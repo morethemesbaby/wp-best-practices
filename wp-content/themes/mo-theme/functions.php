@@ -1,6 +1,6 @@
 <?php
 /**
- * Sets up the theme
+ * Sets up the global variables and the theme
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
@@ -9,7 +9,7 @@
  */
 
 /**
- * Defines which functionality set to be included.
+ * Defines the WordPress.org functionality set.
  *
  * @since 1.0.0
  * @var string
@@ -17,7 +17,7 @@
 define( 'FUNCTIONALITY_SET_WPORG', 'wporg' );
 
 /**
- * Defines which customization set to be included.
+ * Defines the WordPress.org customization set.
  *
  * @since 1.0.0
  * @var string
@@ -31,7 +31,12 @@ if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 	require_once 'vendor/autoload.php';
 }
 
-// Run the setup.
+/**
+ * Sets up the theme.
+ *
+ * @since 1.0.0
+ * @var object $mo_theme The main theme object.
+ */
 $mo_theme = new MoTheme(
 	apply_filters( 'mo_theme_setup_array',
 		array(

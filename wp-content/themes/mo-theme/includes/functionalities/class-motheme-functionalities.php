@@ -19,7 +19,7 @@ if ( ! class_exists( 'MoThemeFunctionalities' ) ) {
 		 *
 		 * @since 1.0.0
 		 *
-		 * @var array
+		 * @var array $arguments An array of arguments
 		 */
 		public $arguments = array(
 			'set' => '',

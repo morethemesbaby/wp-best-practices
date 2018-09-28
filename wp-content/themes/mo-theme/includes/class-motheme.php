@@ -19,7 +19,7 @@ if ( ! class_exists( 'MoTheme' ) ) {
 		 *
 		 * @since 1.0.0
 		 *
-		 * @var $arguments An Array of arguments.
+		 * @var array $arguments An Array of arguments.
 		 */
 		public $arguments = array(
 			'include_folder'         => 'includes/',
@@ -42,7 +42,7 @@ if ( ! class_exists( 'MoTheme' ) ) {
 		 * @since 1.0.0
 		 *
 		 * @link http://codular.com/introducing-php-classes
-		 * @var $data An array of variables.
+		 * @var array $data An array of variables.
 		 */
 		private $data = array();
 
