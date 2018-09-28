@@ -1,4 +1,4 @@
-# Principles
+# PHP Principles
 
 ## The open / close principle
 

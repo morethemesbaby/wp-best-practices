@@ -21,5 +21,7 @@
 </head>
 
 <body <?php body_class(); ?>>
+	<?php get_template_part( 'template-parts/header/header', '' ); ?>
+
 	<?php // Will be closed in the footer. ?>
 	<div class="content">

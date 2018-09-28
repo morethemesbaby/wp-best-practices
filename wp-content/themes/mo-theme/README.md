@@ -10,7 +10,9 @@ A WordPress.org compatible boilerplate theme based on best practices.
 
 ## Principles
 
-See [PRINCIPLES.md](PRINCIPLES.md)
+* [PHP](PHP.md)
+* [HTML](HTML.md)
+* [CSS](CSS.md)
 
 ## Dependencies
 
