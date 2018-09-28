@@ -1,6 +1,6 @@
 <?php
 /**
- * The main template file.
+ * The main template file
  *
  * It is required by WordPress. Currently is empty.
  *

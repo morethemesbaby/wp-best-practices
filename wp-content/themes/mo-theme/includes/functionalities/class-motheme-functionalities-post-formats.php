@@ -1,6 +1,6 @@
 <?php
 /**
- * The WordPress post formats functionality.
+ * The WordPress post formats functionality
  *
  * @package MoTheme
  * @since 1.0.0
@@ -14,8 +14,9 @@ if ( ! class_exists( 'MoThemeFunctionalitiesPostFormats' ) ) {
 		/**
 		 * Sets up the class.
 		 *
-		 * @package MoTheme
 		 * @since 1.0.0
+		 *
+		 * @return void
 		 */
 		public function __construct() {
 			add_theme_support(

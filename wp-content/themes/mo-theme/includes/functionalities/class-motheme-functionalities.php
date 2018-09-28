@@ -8,15 +8,16 @@
 
 if ( ! class_exists( 'MoThemeFunctionalities' ) ) {
 	/**
-	 * The main functionalities class
+	 * The main functionalities class.
 	 *
-	 * @package MoTheme
 	 * @since 1.0.0
 	 */
 	class MoThemeFunctionalities {
 
 		/**
-		 * The class arguments
+		 * The class arguments.
+		 *
+		 * @since 1.0.0
 		 *
 		 * @var array
 		 */
@@ -25,9 +26,12 @@ if ( ! class_exists( 'MoThemeFunctionalities' ) ) {
 		);
 
 		/**
-		 * Sets up the class
+		 * Sets up the class.
+		 *
+		 * @since 1.0.0
 		 *
 		 * @param array $arguments An array of arguments.
+		 * @return void
 		 */
 		public function __construct( $arguments ) {
 			$this->arguments = array_merge( $this->arguments, $arguments );
@@ -40,7 +44,9 @@ if ( ! class_exists( 'MoThemeFunctionalities' ) ) {
 		}
 
 		/**
-		 * Sets up WordPress.org specific functionalities
+		 * Sets up WordPress.org specific functionalities.
+		 *
+		 * @since 1.0.0
 		 *
 		 * @return void
 		 */

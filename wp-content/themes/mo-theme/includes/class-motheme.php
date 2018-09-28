@@ -8,15 +8,16 @@
 
 if ( ! class_exists( 'MoTheme' ) ) {
 	/**
-	 * The main theme class
+	 * The main theme class.
 	 *
-	 * @package MoTheme
 	 * @since 1.0.0
 	 */
 	class MoTheme {
 
 		/**
 		 * Theme arguments.
+		 *
+		 * @since 1.0.0
 		 *
 		 * @var $arguments An Array of arguments.
 		 */
@@ -34,9 +35,11 @@ if ( ! class_exists( 'MoTheme' ) ) {
 
 
 		/**
-		 * Theme variables
+		 * Theme variables.
 		 *
 		 * They are dynamically set and get (overloaded).
+		 *
+		 * @since 1.0.0
 		 *
 		 * @link http://codular.com/introducing-php-classes
 		 * @var $data An array of variables.
@@ -46,6 +49,8 @@ if ( ! class_exists( 'MoTheme' ) ) {
 
 		/**
 		 * Dynamically sets a variable.
+		 *
+		 * @since 1.0.0
 		 *
 		 * @param string $variable The variable name.
 		 * @param mixed  $value    The variable value.
@@ -58,6 +63,8 @@ if ( ! class_exists( 'MoTheme' ) ) {
 
 		/**
 		 * Dynamically gets a variable.
+		 *
+		 * @since 1.0.0
 		 *
 		 * @param string $variable The variable name.
 		 * @return mixed           The variable value.
@@ -72,13 +79,12 @@ if ( ! class_exists( 'MoTheme' ) ) {
 
 
 		/**
-		 * Sets up the class
+		 * Sets up the class.
+		 *
+		 * @since 1.0.0
 		 *
 		 * @param array $arguments An array of arguments.
 		 * @return void
-		 *
-		 * @package MoTheme
-		 * @since 1.0.0
 		 */
 		public function __construct( $arguments ) {
 			$this->arguments = array_merge( $this->arguments, $arguments );
@@ -91,12 +97,11 @@ if ( ! class_exists( 'MoTheme' ) ) {
 		}
 
 		/**
-		 * Sets up theme variables
+		 * Sets up theme variables.
+		 *
+		 * @since 1.0.0
 		 *
 		 * @return void
-		 *
-		 * @package MoTheme
-		 * @since 1.0.0
 		 */
 		public function setup_variables() {
 			$theme = wp_get_theme();
@@ -127,12 +132,11 @@ if ( ! class_exists( 'MoTheme' ) ) {
 		}
 
 		/**
-		 * Sets up theme functionalities
+		 * Sets up theme functionalities.
+		 *
+		 * @since 1.0.0
 		 *
 		 * @return void
-		 *
-		 * @package MoTheme
-		 * @since 1.0.0
 		 */
 		public function setup_functionalities() {
 			$functionalities = new MoThemeFunctionalities(
@@ -143,24 +147,22 @@ if ( ! class_exists( 'MoTheme' ) ) {
 		}
 
 		/**
-		 * Sets up theme customizations
+		 * Sets up theme customizations.
+		 *
+		 * @since 1.0.0
 		 *
 		 * @return void
-		 *
-		 * @package MoTheme
-		 * @since 1.0.0
 		 */
 		public function setup_customizations() {
 			//
 		}
 
 		/**
-		 * Includes theme scripts
+		 * Includes theme scripts.
+		 *
+		 * @since 1.0.0
 		 *
 		 * @return void
-		 *
-		 * @package MoTheme
-		 * @since 1.0.0
 		 */
 		public function add_scripts() {
 			wp_enqueue_script(
@@ -173,12 +175,11 @@ if ( ! class_exists( 'MoTheme' ) ) {
 		}
 
 		/**
-		 * Includes theme styles
+		 * Includes theme styles.
+		 *
+		 * @since 1.0.0
 		 *
 		 * @return void
-		 *
-		 * @package MoTheme
-		 * @since 1.0.0
 		 */
 		public function add_styles() {
 			wp_enqueue_style(

@@ -1,6 +1,6 @@
 <?php
 /**
- * Displays the site footer.
+ * Displays the site footer
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials Wordpress documentation
  *

@@ -1,6 +1,6 @@
 <?php
 /**
- * Sets up the theme.
+ * Sets up the theme
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
