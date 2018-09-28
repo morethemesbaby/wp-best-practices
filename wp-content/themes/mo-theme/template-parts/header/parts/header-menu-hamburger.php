@@ -4,13 +4,33 @@
  *
  * It is only displayed if there is a custom function to provide content for the header menu
  *
- * @package LogLollaTheme
+ * @package MoTheme
  * @since 1.0.0
  */
 
-if ( function_exists( 'log_lolla_theme_display_header_menu_contents' ) ) {
+$element = new MoThemeHTMLElement();
+$nav     = array(
+	'name'          => 'header-menu-hamburger',
+	'modifier'      => 'closed',
+	'display_class' => false,
+	'display_id'    => true,
+);
+$icon1   = array(
+	'name'          => 'header-menu-hamburger-icon',
+	'modifier'      => 'closed',
+	'display_class' => true,
+	'display_id'    => false,
+);
+$icon2   = array(
+	'name'          => 'header-menu-hamburger-icon',
+	'modifier'      => 'opened',
+	'display_class' => true,
+	'display_id'    => false,
+);
+
+if ( true ) {
 	?>
-	<nav class="header-menu-hamburger header-menu-hamburger--closed">
+	<nav <?php $element->display_attributes( $nav ); ?>>
 		<?php
 			$component_title_query_vars = array(
 				'text' => 'Header menu hamburger',
@@ -20,11 +40,11 @@ if ( function_exists( 'log_lolla_theme_display_header_menu_contents' ) ) {
 			get_template_part( 'template-parts/framework/structure/component/parts/component-title', '' );
 		?>
 
-		<div class="header-menu-hamburger-icon header-menu-hamburger-icon--closed">
+		<div <?php $element->display_attributes( $icon1 ); ?>>
 			<span class="icon">&#x2630;</span>
 		</div>
 
-		<div class="header-menu-hamburger-icon header-menu-hamburger-icon--opened">
+		<div <?php $element->display_attributes( $icon2 ); ?>>
 			<span class="icon">&times;</span>
 		</div>
 	</nav>

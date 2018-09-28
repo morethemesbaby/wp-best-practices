@@ -4,13 +4,15 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package LogLollaTheme
+ * @package MoTheme
  * @since 1.0.0
  */
 
+$element = new MoThemeHTMLElement();
+
 if ( has_custom_logo() ) {
 	?>
-	<aside class="header-logo">
+	<aside <?php $element->display_attributes( array( 'name' => 'header-logo' ) ); ?>>
 		<?php
 			$component_title_query_vars = array(
 				'text' => 'Header logo',
@@ -20,7 +22,7 @@ if ( has_custom_logo() ) {
 			get_template_part( 'template-parts/framework/structure/component/parts/component-title', '' );
 		?>
 
-		<figure class="logo">
+		<figure <?php $element->display_attributes( array( 'name' => 'logo' ) ); ?>>
 			<?php
 			if ( function_exists( 'the_custom_logo' ) ) {
 				the_custom_logo();

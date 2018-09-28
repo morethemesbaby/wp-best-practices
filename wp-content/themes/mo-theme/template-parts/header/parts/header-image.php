@@ -12,7 +12,7 @@ $element = new MoThemeHTMLElement();
 
 if ( get_header_image() ) {
 	?>
-	<aside <?php echo esc_attr( $element->display_attributes( array( 'name' => 'header-image' ) ) ); ?>>
+	<aside <?php $element->display_attributes( array( 'name' => 'header-image' ) ); ?>>
 		<?php
 			$component_title_query_vars = array(
 				'text' => 'Header image',
@@ -22,7 +22,7 @@ if ( get_header_image() ) {
 			get_template_part( 'template-parts/framework/structure/component/parts/component-title', '' );
 		?>
 
-		<figure <?php echo esc_attr( $element->display_attributes( array( 'name' => 'image' ) ) ); ?>>
+		<figure <?php $element->display_attributes( array( 'name' => 'image' ) ); ?>>
 			<?php the_header_image_tag(); ?>
 		</figure>
 	</aside>

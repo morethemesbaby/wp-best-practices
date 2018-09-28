@@ -18,7 +18,7 @@
 $element = new MoThemeHTMLElement();
 ?>
 
-<header <?php echo esc_attr( $element->display_attributes( array( 'name' => 'header' ) ) ); ?>>
+<header <?php $element->display_attributes( array( 'name' => 'header' ) ); ?>>
 	<?php get_template_part( 'template-parts/header/parts/header', 'image' ); ?>
 	<?php get_template_part( 'template-parts/header/parts/header', 'logo' ); ?>
 	<?php get_template_part( 'template-parts/header/parts/header', 'title' ); ?>
