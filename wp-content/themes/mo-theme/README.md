@@ -37,7 +37,7 @@ gulp scss
 
 ### Autoloading PHP classes
 
-After any new class added run:
+After any modifications to class code or structure run:
 ```
 composer dump-autoload
 ```
