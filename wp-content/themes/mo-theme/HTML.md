@@ -24,6 +24,24 @@ This is better:
 </section>
 ```
 
+As a corollary when a HTML code chunk is often used and reused to move it into PHP code is highly recommended.
+
+This is not recommended:
+```
+<a class="link" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo bloginfo( 'name' ); ?>">
+	<span class="text">
+		<?php bloginfo( 'name' ); ?>
+	</span>
+</a>
+```
+
+This is better:
+```
+<?php $components->link->display( array( 'url' => ..., 'title' => ...) ); ?>
+```
+
+Refactor often used HTML code into PHP otherwise keep as much HTML code as possible.
+
 ## Semantic and outlined
 
 The HTML source and outline is validated with the [W3C validator](https://validator.w3.org/nu/)
