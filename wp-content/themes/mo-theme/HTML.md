@@ -4,7 +4,11 @@
 
 WordPress has [a clear indication](https://developer.wordpress.org/themes/basics/organizing-theme-files/) how to organize templates, template parts and template tags.
 
-To keep the theme developer friendly this structure is used.
+To keep the theme developer friendly this structure is used instead of reinventing the wheel.
+
+## Semantic and outlined
+
+The HTML source and outline is validated with the [W3C validator](https://validator.w3.org/nu/)
 
 ## Stable API
 
