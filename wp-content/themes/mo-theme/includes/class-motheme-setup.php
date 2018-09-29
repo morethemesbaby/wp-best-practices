@@ -6,13 +6,13 @@
  * @since 1.0.0
  */
 
-if ( ! class_exists( 'MoTheme' ) ) {
+if ( ! class_exists( 'MoThemeSetup' ) ) {
 	/**
 	 * The main theme class.
 	 *
 	 * @since 1.0.0
 	 */
-	class MoTheme extends MoThemeBase {
+	class MoThemeSetup extends MoThemeBase {
 
 		/**
 		 * Theme arguments.

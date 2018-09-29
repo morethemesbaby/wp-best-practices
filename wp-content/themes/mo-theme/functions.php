@@ -37,7 +37,7 @@ if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
  * @since 1.0.0
  * @var object $mo_theme The main theme object.
  */
-$mo_theme = new MoTheme(
+$mo_theme = new MoThemeSetup(
 	apply_filters( 'mo_theme_setup_array',
 		array(
 			'include_folder'    => 'includes/',
