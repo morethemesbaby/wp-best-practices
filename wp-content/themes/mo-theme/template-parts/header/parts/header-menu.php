@@ -8,9 +8,10 @@
  * @since 1.0.0
  */
 
-$element = new MoThemeHTMLElement();
-$nav     = array(
-	'name'          => 'header-menu',
+$component = new MoThemeHTMLComponent();
+$nav       = array(
+	'block'         => 'header',
+	'element'       => 'menu',
 	'modifier'      => 'closed',
 	'display_class' => true,
 	'display_id'    => false,
@@ -18,7 +19,7 @@ $nav     = array(
 
 if ( function_exists( 'log_lolla_theme_display_header_menu_contents' ) ) {
 	?>
-	<nav <?php $element->display_attributes( $nav ); ?>>
+	<nav <?php $component->attributes->display( $nav ); ?>>
 		<?php
 			$component_title_query_vars = array(
 				'text' => 'Header menu',

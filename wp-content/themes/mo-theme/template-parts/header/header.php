@@ -18,7 +18,7 @@
 $component = new MoThemeHTMLComponent();
 ?>
 
-<header <?php $component->attributes->display( array( 'name' => 'header' ) ); ?>>
+<header <?php $component->attributes->display( array( 'block' => 'header' ) ); ?>>
 	<?php get_template_part( 'template-parts/header/parts/header', 'image' ); ?>
 	<?php get_template_part( 'template-parts/header/parts/header', 'logo' ); ?>
 	<?php get_template_part( 'template-parts/header/parts/header', 'title' ); ?>

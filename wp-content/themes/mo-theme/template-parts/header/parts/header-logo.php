@@ -8,11 +8,21 @@
  * @since 1.0.0
  */
 
-$element = new MoThemeHTMLElement();
+$component = new MoThemeHTMLComponent();
+
+$aside_attributes = array(
+	'block'   => 'header',
+	'element' => 'logo',
+);
+
+$figure_attributes = array(
+	'block'   => 'image',
+	'element' => '',
+);
 
 if ( has_custom_logo() ) {
 	?>
-	<aside <?php $element->display_attributes( array( 'name' => 'header-logo' ) ); ?>>
+	<aside <?php $component->attributes->display( $aside_attributes ); ?>>
 		<?php
 			$component_title_query_vars = array(
 				'text' => 'Header logo',
@@ -22,7 +32,7 @@ if ( has_custom_logo() ) {
 			get_template_part( 'template-parts/framework/structure/component/parts/component-title', '' );
 		?>
 
-		<figure <?php $element->display_attributes( array( 'name' => 'logo' ) ); ?>>
+		<figure <?php $component->attributes->display( $figure_attributes ); ?>>
 			<?php
 			if ( function_exists( 'the_custom_logo' ) ) {
 				the_custom_logo();

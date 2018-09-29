@@ -8,29 +8,28 @@
  * @since 1.0.0
  */
 
-$element = new MoThemeHTMLElement();
-$nav     = array(
-	'name'          => 'header-menu-hamburger',
+$component = new MoThemeHTMLComponent();
+
+$nav_attributes   = array(
+	'block'         => 'header-menu-hamburger',
+	'element'       => '',
 	'modifier'      => 'closed',
 	'display_class' => false,
 	'display_id'    => true,
 );
-$icon1   = array(
-	'name'          => 'header-menu-hamburger-icon',
+$icon1_attributes = array(
+	'element'       => 'icon',
 	'modifier'      => 'closed',
 	'display_class' => true,
 	'display_id'    => false,
 );
-$icon2   = array(
-	'name'          => 'header-menu-hamburger-icon',
-	'modifier'      => 'opened',
-	'display_class' => true,
-	'display_id'    => false,
+$icon2_attributes = array(
+	'modifier' => 'opened',
 );
 
-if ( true ) {
+if ( function_exists( 'log_lolla_theme_display_header_menu_contents' ) ) {
 	?>
-	<nav <?php $element->display_attributes( $nav ); ?>>
+	<nav <?php $component->attributes->display( $nav_attributes ); ?>>
 		<?php
 			$component_title_query_vars = array(
 				'text' => 'Header menu hamburger',
@@ -40,11 +39,11 @@ if ( true ) {
 			get_template_part( 'template-parts/framework/structure/component/parts/component-title', '' );
 		?>
 
-		<div <?php $element->display_attributes( $icon1 ); ?>>
+		<div <?php $component->attributes->display( $icon1_attributes ); ?>>
 			<span class="icon">&#x2630;</span>
 		</div>
 
-		<div <?php $element->display_attributes( $icon2 ); ?>>
+		<div <?php $component->attributes->display( $icon2_attributes ); ?>>
 			<span class="icon">&times;</span>
 		</div>
 	</nav>

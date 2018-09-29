@@ -8,11 +8,21 @@
  * @since 1.0.0
  */
 
-$element = new MoThemeHTMLElement();
+$component = new MoThemeHTMLComponent();
+
+$aside_attributes = array(
+	'block'   => 'header',
+	'element' => 'image',
+);
+
+$figure_attributes = array(
+	'block'   => 'image',
+	'element' => '',
+);
 
 if ( get_header_image() ) {
 	?>
-	<aside <?php $element->display_attributes( array( 'name' => 'header-image' ) ); ?>>
+	<aside <?php $component->attributes->display( $aside_attributes ); ?>>
 		<?php
 			$component_title_query_vars = array(
 				'text' => 'Header image',
@@ -22,7 +32,7 @@ if ( get_header_image() ) {
 			get_template_part( 'template-parts/framework/structure/component/parts/component-title', '' );
 		?>
 
-		<figure <?php $element->display_attributes( array( 'name' => 'image' ) ); ?>>
+		<figure <?php $component->attributes->display( $figure_attributes ); ?>>
 			<?php the_header_image_tag(); ?>
 		</figure>
 	</aside>

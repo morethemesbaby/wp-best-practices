@@ -22,13 +22,15 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 		 * @var array $arguments An Array of arguments.
 		 */
 		public $arguments = array(
-			'name'                    => '',
+			'block'                   => '',
+			'element'                 => '',
 			'modifier'                => '',
 			'display_class'           => true,
 			'display_id'              => false,
 			'display_data_attributes' => false,
 			'class_tag'               => 'class',
 			'id_tag'                  => 'id',
+			'element_prefix'          => '-',
 			'modifier_prefix'         => '--',
 		);
 
@@ -55,6 +57,10 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 		public function display( $arguments = array() ) {
 			$this->arguments = array_merge( $this->arguments, $arguments );
 			$this->classname = $this->create_classname();
+
+			if ( '' === $this->classname ) {
+				return;
+			}
 
 			if ( $this->arguments['display_class'] ) {
 				$this->display_tag_with_attributes( 'class_tag' );
@@ -88,14 +94,28 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 		 * @return string [description]
 		 */
 		public function create_classname() {
-			$classname = $this->convert_string_to_classname( $this->arguments['name'] );
-			$modifier  = $this->arguments['modifier'];
+			$block    = $this->arguments['block'];
+			$element  = $this->arguments['element'];
+			$modifier = $this->arguments['modifier'];
 
-			$ret   = [];
+			if ( '' === $block ) {
+				return '';
+			}
+
+			$classname = $this->convert_string_to_classname( $block );
+			$ret       = [];
+
+			if ( '' !== $element ) {
+				$classname .= $this->arguments['element_prefix'];
+				$classname .= $this->convert_string_to_classname( $element );
+			}
+
 			$ret[] = $classname;
 
-			if ( ! empty( $modifier ) ) {
-				$ret[] = $classname . $this->arguments['modifier_prefix'] . $modifier;
+			if ( '' !== $modifier ) {
+				$classname .= $this->arguments['modifier_prefix'];
+				$classname .= $this->convert_string_to_classname( $modifier );
+				$ret[]      = $classname;
 			}
 
 			return implode( ' ', $ret );
