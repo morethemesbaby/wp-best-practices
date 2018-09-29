@@ -30,14 +30,7 @@ $icon2_attributes = array(
 if ( function_exists( 'log_lolla_theme_display_header_menu_contents' ) ) {
 	?>
 	<nav <?php $component->attributes->display( $nav_attributes ); ?>>
-		<?php
-			$component_title_query_vars = array(
-				'text' => 'Header menu hamburger',
-			);
-
-			set_query_var( 'component-title-query-vars', $component_title_query_vars );
-			get_template_part( 'template-parts/framework/structure/component/parts/component-title', '' );
-		?>
+		<?php $component->title->display( array( 'title' => 'Header menu hamburger' ) ); ?>
 
 		<div <?php $component->attributes->display( $icon1_attributes ); ?>>
 			<span class="icon">&#x2630;</span>

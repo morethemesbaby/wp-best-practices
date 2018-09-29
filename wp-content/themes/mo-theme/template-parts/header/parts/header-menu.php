@@ -10,24 +10,15 @@
 
 $component = new MoThemeHTMLComponent();
 $nav       = array(
-	'block'         => 'header',
-	'element'       => 'menu',
-	'modifier'      => 'closed',
-	'display_class' => true,
-	'display_id'    => false,
+	'block'    => 'header',
+	'element'  => 'menu',
+	'modifier' => 'closed',
 );
 
 if ( function_exists( 'log_lolla_theme_display_header_menu_contents' ) ) {
 	?>
 	<nav <?php $component->attributes->display( $nav ); ?>>
-		<?php
-			$component_title_query_vars = array(
-				'text' => 'Header menu',
-			);
-
-			set_query_var( 'component-title-query-vars', $component_title_query_vars );
-			get_template_part( 'template-parts/framework/structure/component/parts/component-title', '' );
-		?>
+		<?php $component->title->display( array( 'title' => 'Header menu' ) ); ?>
 
 		<?php log_lolla_theme_display_header_menu_contents(); ?>
 	</nav>

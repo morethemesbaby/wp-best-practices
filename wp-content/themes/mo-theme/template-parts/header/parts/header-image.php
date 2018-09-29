@@ -20,7 +20,7 @@ $figure_attributes = array(
 	'element' => '',
 );
 
-if ( true ) {
+if ( get_header_image() ) {
 	?>
 	<aside <?php $component->attributes->display( $aside_attributes ); ?>>
 		<?php $component->title->display( array( 'title' => 'Header image' ) ); ?>

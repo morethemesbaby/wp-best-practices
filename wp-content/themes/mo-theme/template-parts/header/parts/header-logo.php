@@ -23,14 +23,7 @@ $figure_attributes = array(
 if ( has_custom_logo() ) {
 	?>
 	<aside <?php $component->attributes->display( $aside_attributes ); ?>>
-		<?php
-			$component_title_query_vars = array(
-				'text' => 'Header logo',
-			);
-
-			set_query_var( 'component-title-query-vars', $component_title_query_vars );
-			get_template_part( 'template-parts/framework/structure/component/parts/component-title', '' );
-		?>
+		<?php $component->title->display( array( 'title' => 'Header logo' ) ); ?>
 
 		<figure <?php $component->attributes->display( $figure_attributes ); ?>>
 			<?php
