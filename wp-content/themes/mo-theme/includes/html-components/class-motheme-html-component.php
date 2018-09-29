@@ -23,7 +23,7 @@ if ( ! class_exists( 'MoThemeHTMLComponent' ) ) {
 		 */
 		public $arguments = array(
 			'attributes' => array(),
-			'header'     => array(),
+			'title'      => array(),
 		);
 
 		/**
@@ -38,6 +38,7 @@ if ( ! class_exists( 'MoThemeHTMLComponent' ) ) {
 			$this->arguments = array_merge( $this->arguments, $arguments );
 
 			$this->attributes = new MoThemeHTMLComponentAttributes( $this->arguments['attributes'] );
+			$this->title      = new MoThemeHTMLComponentTitle( $this->arguments['title'] );
 		}
 	}
 }

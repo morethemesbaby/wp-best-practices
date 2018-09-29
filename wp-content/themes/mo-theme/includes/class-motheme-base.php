@@ -14,7 +14,7 @@ if ( ! class_exists( 'MoThemeBase' ) ) {
 	 */
 	class MoThemeBase {
 		/**
-		 * Theme variables.
+		 * Class variables.
 		 *
 		 * They are dynamically set and get (overloaded).
 		 *
@@ -54,6 +54,49 @@ if ( ! class_exists( 'MoThemeBase' ) ) {
 			} else {
 				die( 'Unknown variable: ' . esc_attr( $variable ) );
 			}
+		}
+
+		/**
+		 * Arguments for the get_template_part method.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @var array
+		 */
+		public $get_template_part_arguments = array(
+			'query_var_name'     => '',
+			'query_var_value'    => null,
+			'template_part_slug' => '',
+			'template_part_name' => '',
+		);
+
+		/**
+		 * Gets a template part.
+		 *
+		 * Uses the `ob_start()` and `ob_get_clean()` output buffer.
+		 *
+		 * @param  array $arguments An array of arguments.
+		 * @return string            HTML
+		 */
+		public function get_template_part( $arguments ) {
+			$this->get_template_part_arguments = array_merge(
+				$this->get_template_part_arguments,
+				$arguments
+			);
+
+			ob_start();
+
+			set_query_var(
+				$this->get_template_part_arguments['query_var_name'],
+				$this->get_template_part_arguments['query_var_value']
+			);
+
+			get_template_part(
+				$this->get_template_part_arguments['template_part_slug'],
+				$this->get_template_part_arguments['template_part_name']
+			);
+
+			return ob_get_clean();
 		}
 	}
 }

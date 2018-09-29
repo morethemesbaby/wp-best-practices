@@ -20,17 +20,10 @@ $figure_attributes = array(
 	'element' => '',
 );
 
-if ( get_header_image() ) {
+if ( true ) {
 	?>
 	<aside <?php $component->attributes->display( $aside_attributes ); ?>>
-		<?php
-			$component_title_query_vars = array(
-				'text' => 'Header image',
-			);
-
-			set_query_var( 'component-title-query-vars', $component_title_query_vars );
-			get_template_part( 'template-parts/framework/structure/component/parts/component-title', '' );
-		?>
+		<?php $component->title->display( array( 'title' => 'Header image' ) ); ?>
 
 		<figure <?php $component->attributes->display( $figure_attributes ); ?>>
 			<?php the_header_image_tag(); ?>
