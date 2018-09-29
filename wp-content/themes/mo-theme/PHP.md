@@ -1,5 +1,17 @@
 # PHP Principles
 
+## Class based namespacing
+
+WordPress supports three techniques to avoid naming collisions - prefixing, OOP classes, PHP namespaces - of which WordPress.org / PHP < 5.2 supports only the first two.
+
+According to [best practices](https://developer.wordpress.org/plugins/the-basics/best-practices/#oop) OOP classes are the easier way to tackle this problem.
+
+## No HTML in PHP code
+
+HTML code belongs to templates and template tags.
+
+When a PHP function needs to return a HTML chunk the [output buffering](https://secure.php.net/manual/en/function.ob-start.php) method with a `get_template_part` call is used. 
+
 ## The open / close principle
 
 The code should be open for extension but closed for modification.

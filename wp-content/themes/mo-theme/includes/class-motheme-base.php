@@ -73,7 +73,7 @@ if ( ! class_exists( 'MoThemeBase' ) ) {
 		/**
 		 * Gets a template part.
 		 *
-		 * Uses the `ob_start()` and `ob_get_clean()` output buffer.
+		 * Uses the `ob_start()` and `ob_get_clean()` output buffer method.
 		 *
 		 * @param  array $arguments An array of arguments.
 		 * @return string            HTML
