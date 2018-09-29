@@ -1,18 +1,18 @@
 <?php
 /**
- * The HTML elements class
+ * The HTML component attributes class
  *
  * @package MoTheme
  * @since 1.0.0
  */
 
-if ( ! class_exists( 'MoThemeHTMLElement' ) ) {
+if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 	/**
-	 * The HTML elements class.
+	 * The HTML component attributes class.
 	 *
 	 * @since 1.0.0
 	 */
-	class MoThemeHTMLElement extends MoThemeBase {
+	class MoThemeHTMLComponentAttributes extends MoThemeHTMLComponent {
 
 		/**
 		 * Class arguments.
@@ -22,25 +22,14 @@ if ( ! class_exists( 'MoThemeHTMLElement' ) ) {
 		 * @var array $arguments An Array of arguments.
 		 */
 		public $arguments = array(
-			'class_tag'       => 'class',
-			'id_tag'          => 'id',
-			'modifier_prefix' => '--',
-		);
-
-
-		/**
-		 * The attributes of an HTML element
-		 *
-		 * @since 1.0.0
-		 *
-		 * @var array
-		 */
-		public $element_attributes = array(
 			'name'                    => '',
 			'modifier'                => '',
 			'display_class'           => true,
 			'display_id'              => false,
 			'display_data_attributes' => false,
+			'class_tag'               => 'class',
+			'id_tag'                  => 'id',
+			'modifier_prefix'         => '--',
 		);
 
 		/**
@@ -60,19 +49,18 @@ if ( ! class_exists( 'MoThemeHTMLElement' ) ) {
 		 *
 		 * @since 1.0.0
 		 *
-		 * @param array $element_attributes The element attributes descriptor.
+		 * @param array $arguments The class setup arguments array.
 		 * @return void
 		 */
-		public function display_attributes( $element_attributes ) {
-			$this->element_attributes = array_merge( $this->element_attributes, $element_attributes );
-
+		public function display( $arguments = array() ) {
+			$this->arguments = array_merge( $this->arguments, $arguments );
 			$this->classname = $this->create_classname();
 
-			if ( $this->element_attributes['display_class'] ) {
+			if ( $this->arguments['display_class'] ) {
 				$this->display_tag_with_attributes( 'class_tag' );
 			}
 
-			if ( $this->element_attributes['display_id'] ) {
+			if ( $this->arguments['display_id'] ) {
 				$this->display_tag_with_attributes( 'id_tag' );
 			}
 		}
@@ -100,8 +88,8 @@ if ( ! class_exists( 'MoThemeHTMLElement' ) ) {
 		 * @return string [description]
 		 */
 		public function create_classname() {
-			$classname = $this->convert_string_to_classname( $this->element_attributes['name'] );
-			$modifier  = $this->element_attributes['modifier'];
+			$classname = $this->convert_string_to_classname( $this->arguments['name'] );
+			$modifier  = $this->arguments['modifier'];
 
 			$ret   = [];
 			$ret[] = $classname;

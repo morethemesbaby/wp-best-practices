@@ -15,10 +15,10 @@
  * @since 1.0.0
  */
 
-$element = new MoThemeHTMLElement();
+$component = new MoThemeHTMLComponent();
 ?>
 
-<header <?php $element->display_attributes( array( 'name' => 'header' ) ); ?>>
+<header <?php $component->attributes->display( array( 'name' => 'header' ) ); ?>>
 	<?php get_template_part( 'template-parts/header/parts/header', 'image' ); ?>
 	<?php get_template_part( 'template-parts/header/parts/header', 'logo' ); ?>
 	<?php get_template_part( 'template-parts/header/parts/header', 'title' ); ?>
