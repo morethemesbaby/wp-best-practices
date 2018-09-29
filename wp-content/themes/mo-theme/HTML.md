@@ -6,6 +6,24 @@ WordPress has [a clear indication](https://developer.wordpress.org/themes/basics
 
 To keep the theme developer friendly this structure is used instead of reinventing the wheel.
 
+## Keep as much HTML code as possible
+
+There is a tendency to get rid of HTML code in template parts. And use more PHP code instead.
+
+This is wrong:
+```
+Hybrid\View\display( 'index' );
+```
+
+This is better:
+```
+<section class="home">
+	<h3 class="hidden">Homepage</h3>
+
+	<?php get_template_part( 'template-parts/post-list/post-list', 'with-comments' ); ?>
+</section>
+```
+
 ## Semantic and outlined
 
 The HTML source and outline is validated with the [W3C validator](https://validator.w3.org/nu/)
