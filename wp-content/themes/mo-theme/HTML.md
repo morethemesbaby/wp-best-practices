@@ -75,7 +75,7 @@ The format follows the [BEM standard](http://getbem.com/introduction/) with a sm
 
 This can be re-configured if your project is huge. For usual WorPress projects this change enhances readability. 
 
-There will be more folders and they will be more visible.
+There will be less nesting, more folders and transparency.
 
 Instead of:
 ```
