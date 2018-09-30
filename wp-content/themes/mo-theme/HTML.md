@@ -6,6 +6,19 @@ WordPress has [a clear indication](https://developer.wordpress.org/themes/basics
 
 To keep the theme developer friendly this structure is used instead of reinventing the wheel.
 
+## Extendable
+
+Use `apply_filters()` and `get_template_part()` extensively. They both can be overwritten in child themes.
+
+Example:
+```
+<header <?php apply_filters( 'mo_theme_header_attributes', $component->attributes->display( ... ) ); ?>>
+	<?php get_template_part( 'template-parts/header/parts/header', 'image' ); ?>
+	<?php get_template_part( 'template-parts/header/parts/header', 'logo' ); ?>
+	<?php get_template_part( 'template-parts/header/parts/header', 'title' ); ?>
+</header>
+```
+
 ## Keep as much HTML code as possible
 
 There is a tendency to get rid of HTML code in template parts. And use more PHP code instead.
@@ -24,7 +37,7 @@ This is better:
 </section>
 ```
 
-As a corollary when a HTML code chunk is often used and reused to move it into PHP code is highly recommended.
+As a corollary, when a HTML code chunk is often used and reused, refactoring it into PHP code is highly recommended.
 
 This is not recommended:
 ```
