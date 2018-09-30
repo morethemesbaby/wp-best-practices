@@ -25,6 +25,8 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 			'block'                   => '',
 			'element'                 => '',
 			'modifier'                => '',
+			'custom_class'            => '',
+			'custom_id'               => '',
 			'display_class'           => true,
 			'display_id'              => false,
 			'display_data_attributes' => false,
@@ -56,19 +58,52 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 		 */
 		public function display( $arguments = array() ) {
 			$this->arguments = array_merge( $this->arguments, $arguments );
-			$this->classname = $this->create_classname();
 
-			if ( '' === $this->classname ) {
-				return;
-			}
+			$this->bem_selector = $this->create_bem_selector();
 
 			if ( $this->arguments['display_class'] ) {
-				$this->display_tag_with_attributes( 'class_tag' );
+				$this->display_attribute(
+					array(
+						'custom_attribute' => $this->arguments['custom_class'],
+						'attribute_tag'    => $this->arguments['class_tag'],
+					)
+				);
 			}
 
 			if ( $this->arguments['display_id'] ) {
-				$this->display_tag_with_attributes( 'id_tag' );
+				$this->display_attribute(
+					array(
+						'custom_attribute' => $this->arguments['custom_id'],
+						'attribute_tag'    => $this->arguments['id_tag'],
+					)
+				);
 			}
+		}
+
+		public function display_attribute( $arguments = array() ) {
+			$default_arguments = array(
+				'custom_attribute' => '',
+				'attribute_tag'    => '',
+			);
+			
+			$arguments = array_merge( $default_arguments, $arguments );
+
+			$attributes = implode(
+				' ',
+				array_filter(
+					array(
+						$this->bem_selector,
+						$arguments['custom_attribute'],
+					)
+				)
+			);
+
+			$this->display_tag_with_attributes(
+				array(
+					'tag'        => $arguments['attribute_tag'],
+					'attributes' => $attributes,
+				)
+			);
 		}
 
 		/**
@@ -76,24 +111,33 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 		 *
 		 * @since 1.0.0
 		 *
-		 * @param  string $tag The ID of the tag.
+		 * @param array $arguments The arguments array..
 		 * @return void
 		 */
-		public function display_tag_with_attributes( $tag ) {
-			echo esc_attr( $this->arguments[ $tag ] );
-			echo '="';
-			echo esc_attr( $this->classname );
-			echo '"';
+		public function display_tag_with_attributes( $arguments = array() ) {
+			$default_arguments = array(
+				'tag'        => '',
+				'attributes' => '',
+			);
+
+			$arguments = array_merge( $default_arguments, $arguments );
+
+			if ( ( '' !== $arguments['tag'] ) && ( '' !== $arguments['attributes'] ) ) {
+				echo esc_attr( $arguments['tag'] );
+				echo '="';
+				echo esc_attr( $arguments['attributes'] );
+				echo '"';
+			}
 		}
 
 		/**
-		 * Creates a classname for an element.
+		 * Creates a BEM selector.
 		 *
 		 * @since 1.0.0
 		 *
 		 * @return string [description]
 		 */
-		public function create_classname() {
+		public function create_bem_selector() {
 			$block    = $this->arguments['block'];
 			$element  = $this->arguments['element'];
 			$modifier = $this->arguments['modifier'];
