@@ -71,11 +71,11 @@ For the `header.php` template there is a `template-parts/header/header.php`, an 
 
 Every class name, element identifier, data attribute is generated instead of being added manually. Manual work is a bug. [Always be automating](https://morethemes.baby/2018/04/05/manual-work-is-a-bug-always-be-automating-a-b-a/).
 
-The format follows the [BEM standard](http://getbem.com/introduction/) with a small cosmetic modification.
+The format follows the [BEM standard](http://getbem.com/introduction/) with a small modification: instead of `block__element--modifier` we use `block-element--modifier`.
 
-Instead of `block__element--modifier` we use `block-element--modifier` for the sake of readability. (However this can be configured)
+This can be re-configured if your project is huge. For usual WorPress projects this change enhances readability. 
 
-This also makes the SCSS folder structure more straightforward.
+There will be more folders and they will be more visible.
 
 Instead of:
 ```
