@@ -59,12 +59,38 @@ Refactor often used HTML code into PHP otherwise keep as much HTML code as possi
 
 The HTML source and outline is validated with the [W3C validator](https://validator.w3.org/nu/)
 
-## Stable API
+## Consistent naming
 
-HTML class names and identifiers, template part names, and template tags are stable and consistent to ease future updates.
+HTML class names and identifiers, template part names, and template tags are stable and consistent. 
+
+One can easily find all related code to a component.
+
+For the `header.php` template there is a `template-parts/header/header.php`, an `includes/template-tags/class-header.php` and an `assets/scss/parts/header.scss` file or folder.
 
 ### HTML element attributes are generated
 
 Every class name, element identifier, data attribute is generated instead of being added manually.
 
 Manual work is a bug. [Always be automating](https://morethemes.baby/2018/04/05/manual-work-is-a-bug-always-be-automating-a-b-a/).
+
+The format follows the [BEM standard](http://getbem.com/introduction/) with a small cosmetic modification.
+
+Instead of `block__element--modifier` we use `block-element--modifier` for the sake of readability.
+
+This also makes the SCSS folder structure more straightforward.
+
+Instead of:
+```
+block
+|. __element
+|.. --modifier-for-element
+|. --modifier-for-block
+```
+
+We have:
+```
+block
+|. --modifier-for-block
+block-element
+|. --modifier-for-element
+```
