@@ -6,6 +6,11 @@ WordPress has [a clear indication](https://developer.wordpress.org/themes/basics
 
 To keep the theme developer friendly this structure is used instead of reinventing the wheel.
 
+## Semantic and outlined
+
+The HTML source and outline is validated with the [W3C validator](https://validator.w3.org/nu/)
+
+
 ## Extendable
 
 Use `apply_filters()` and `get_template_part()` extensively. They both can be overwritten in child themes.
@@ -39,7 +44,12 @@ This is better:
 
 As a corollary, when a HTML code chunk is often used and reused, refactoring it into PHP code is highly recommended.
 
-This is not recommended:
+This is better:
+```
+<?php $components->link->display( array( 'url' => ..., 'title' => ...) ); ?>
+```
+
+Than this:
 ```
 <a class="link" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo bloginfo( 'name' ); ?>">
 	<span class="text">
@@ -47,17 +57,6 @@ This is not recommended:
 	</span>
 </a>
 ```
-
-This is better:
-```
-<?php $components->link->display( array( 'url' => ..., 'title' => ...) ); ?>
-```
-
-Refactor often used HTML code into PHP otherwise keep as much HTML code as possible.
-
-## Semantic and outlined
-
-The HTML source and outline is validated with the [W3C validator](https://validator.w3.org/nu/)
 
 ## Consistent naming
 
@@ -67,9 +66,7 @@ One can easily find all related code to a component.
 
 For the `header.php` template there is a `template-parts/header/header.php`, an `includes/template-tags/class-header.php` and an `assets/scss/parts/header.scss` file or folder.
 
-### HTML element attributes are generated
-
-Class names, element identifiers of a component are generated instead of being added manually. Manual work is a bug. [Always be automating](https://morethemes.baby/2018/04/05/manual-work-is-a-bug-always-be-automating-a-b-a/).
+To achieve this consistency class names, element identifiers of a component are generated instead of being added manually. Manual work is a bug. [Always be automating](https://morethemes.baby/2018/04/05/manual-work-is-a-bug-always-be-automating-a-b-a/).
 
 The format follows the [BEM standard](http://getbem.com/introduction/) with a small modification: instead of `block__element--modifier` we use `block-element--modifier`.
 
