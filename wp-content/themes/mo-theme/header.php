@@ -28,4 +28,4 @@
 		// .. which will be closed in the footer.
 		$component = new MoThemeHTMLComponent();
 	?>
-	<div <?php $component->attributes->display( array( 'block' => 'content' ) ); ?>>
+	<div <?php apply_filters( 'mo_theme_content_div_attributes', $component->attributes->display( array( 'block' => 'content' ) ) ); ?>>

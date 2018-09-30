@@ -29,14 +29,14 @@ $icon2_attributes = array(
 
 if ( function_exists( 'log_lolla_theme_display_header_menu_contents' ) ) {
 	?>
-	<nav <?php $component->attributes->display( $nav_attributes ); ?>>
-		<?php $component->title->display( array( 'title' => 'Header menu hamburger' ) ); ?>
+	<nav <?php apply_filters( 'mo_theme_header_menu_hamburger_nav_attributes', $component->attributes->display( $nav_attributes ) ); ?>>
+		<?php apply_filters( 'mo_theme_header_menu_hamburger_nav_title', $component->title->display( array( 'title' => 'Header menu hamburger' ) ) ); ?>
 
-		<div <?php $component->attributes->display( $icon1_attributes ); ?>>
+		<div <?php apply_filters( 'mo_theme_header_menu_icon1_attributes', $component->attributes->display( $icon1_attributes ) ); ?>>
 			<span class="icon">&#x2630;</span>
 		</div>
 
-		<div <?php $component->attributes->display( $icon2_attributes ); ?>>
+		<div <?php apply_filters( 'mo_theme_header_menu_icon2_attributes', $component->attributes->display( $icon2_attributes ) ); ?>>
 			<span class="icon">&times;</span>
 		</div>
 	</nav>

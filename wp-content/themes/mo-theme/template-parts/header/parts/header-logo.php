@@ -22,10 +22,10 @@ $figure_attributes = array(
 
 if ( has_custom_logo() ) {
 	?>
-	<aside <?php $component->attributes->display( $aside_attributes ); ?>>
-		<?php $component->title->display( array( 'title' => 'Header logo' ) ); ?>
+	<aside <?php apply_filter( 'mo_theme_header_logo_attributes', $component->attributes->display( $aside_attributes ) ); ?>>
+		<?php apply_filters( 'mo_theme_header_logo_title', $component->title->display( array( 'title' => 'Header logo' ) ) ); ?>
 
-		<figure <?php $component->attributes->display( $figure_attributes ); ?>>
+		<figure <?php apply_filters( 'mo_theme_header_logo_figure_attributes', $component->attributes->display( $figure_attributes ) ); ?>>
 			<?php
 				if ( function_exists( 'the_custom_logo' ) ) {
 					the_custom_logo();

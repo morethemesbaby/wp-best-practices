@@ -17,8 +17,8 @@ $nav       = array(
 
 if ( function_exists( 'log_lolla_theme_display_header_menu_contents' ) ) {
 	?>
-	<nav <?php $component->attributes->display( $nav ); ?>>
-		<?php $component->title->display( array( 'title' => 'Header menu' ) ); ?>
+	<nav <?php apply_filters( 'mo_theme_header_menu_attributes', $component->attributes->display( $nav ) ); ?>>
+		<?php apply_filters( 'mo_theme_header_menu_title', $component->title->display( array( 'title' => 'Header menu' ) ) ); ?>
 
 		<?php log_lolla_theme_display_header_menu_contents(); ?>
 	</nav>

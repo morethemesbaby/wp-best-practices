@@ -16,9 +16,14 @@
  */
 
 $component = new MoThemeHTMLComponent();
+$header    = new MoThemeHeader();
+$klass     = array(
+	'block'        => 'header',
+	'custom_class' => $header->get_class(),
+);
 ?>
 
-<header <?php $component->attributes->display( array( 'block' => 'header' ) ); ?>>
+<header <?php apply_filters( 'mo_theme_header_attributes', $component->attributes->display( $klass ) ); ?>>
 	<?php get_template_part( 'template-parts/header/parts/header', 'image' ); ?>
 	<?php get_template_part( 'template-parts/header/parts/header', 'logo' ); ?>
 	<?php get_template_part( 'template-parts/header/parts/header', 'title' ); ?>

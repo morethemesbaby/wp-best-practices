@@ -19,7 +19,7 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 		 *
 		 * @since 1.0.0
 		 *
-		 * @var array $arguments An Array of arguments.
+		 * @var array An array of arguments.
 		 */
 		public $arguments = array(
 			'block'                   => '',
@@ -35,6 +35,33 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 			'element_prefix'          => '-',
 			'modifier_prefix'         => '--',
 		);
+
+		/**
+		 * The arguments of an attribute.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @var array An array of arguments
+		 */
+		public $attribute_arguments = array(
+			'custom_attribute' => '',
+			'attribute_tag'    => '',
+		);
+
+
+		/**
+		 * The arguments of a tag with attribute.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @var array An array of arguments.
+		 */
+		public $tag_with_attributes_arguments = array(
+			'tag'        => '',
+			'attributes' => '',
+		);
+
+
 
 		/**
 		 * Sets up the class.
@@ -57,8 +84,7 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 		 * @return void
 		 */
 		public function display( $arguments = array() ) {
-			$this->arguments = array_merge( $this->arguments, $arguments );
-
+			$this->arguments    = array_merge( $this->arguments, $arguments );
 			$this->bem_selector = $this->create_bem_selector();
 
 			if ( $this->arguments['display_class'] ) {
@@ -80,14 +106,16 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 			}
 		}
 
+		/**
+		 * Display a single attribute.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param array $arguments The arguments array.
+		 * @return void
+		 */
 		public function display_attribute( $arguments = array() ) {
-			$default_arguments = array(
-				'custom_attribute' => '',
-				'attribute_tag'    => '',
-			);
-			
-			$arguments = array_merge( $default_arguments, $arguments );
-
+			$arguments  = array_merge( $this->attribute_arguments, $arguments );
 			$attributes = implode(
 				' ',
 				array_filter(
@@ -115,12 +143,7 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 		 * @return void
 		 */
 		public function display_tag_with_attributes( $arguments = array() ) {
-			$default_arguments = array(
-				'tag'        => '',
-				'attributes' => '',
-			);
-
-			$arguments = array_merge( $default_arguments, $arguments );
+			$arguments = array_merge( $this->tag_with_attributes_arguments, $arguments );
 
 			if ( ( '' !== $arguments['tag'] ) && ( '' !== $arguments['attributes'] ) ) {
 				echo esc_attr( $arguments['tag'] );

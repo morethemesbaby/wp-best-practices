@@ -22,10 +22,10 @@ $figure_attributes = array(
 
 if ( get_header_image() ) {
 	?>
-	<aside <?php $component->attributes->display( $aside_attributes ); ?>>
-		<?php $component->title->display( array( 'title' => 'Header image' ) ); ?>
+	<aside <?php apply_filters( 'mo_theme_header_image_attributes', $component->attributes->display( $aside_attributes ) ); ?>>
+		<?php apply_filters( 'mo_theme_header_image_title', $component->title->display( array( 'title' => 'Header image' ) ) ); ?>
 
-		<figure <?php $component->attributes->display( $figure_attributes ); ?>>
+		<figure <?php apply_filters( 'mo_theme_header_image_figure_attributes', $component->attributes->display( $figure_attributes ) ); ?>>
 			<?php the_header_image_tag(); ?>
 		</figure>
 	</aside>
