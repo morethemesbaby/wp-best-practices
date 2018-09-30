@@ -10,7 +10,7 @@
 
 ?>
 
-<?php // The `content` div, opened in the header. ?>
+<?php // Closing the `content` div opened in the header. ?>
 </div>
 
 <?php wp_footer(); ?>
