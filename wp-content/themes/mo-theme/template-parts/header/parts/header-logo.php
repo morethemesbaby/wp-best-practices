@@ -15,17 +15,12 @@ $aside_attributes = array(
 	'element' => 'logo',
 );
 
-$figure_attributes = array(
-	'block'   => 'image',
-	'element' => '',
-);
-
 if ( has_custom_logo() ) {
 	?>
 	<aside <?php apply_filter( 'mo_theme_header_logo_attributes', $component->attributes->display( $aside_attributes ) ); ?>>
 		<?php apply_filters( 'mo_theme_header_logo_title', $component->title->display( array( 'title' => 'Header logo' ) ) ); ?>
 
-		<figure <?php apply_filters( 'mo_theme_header_logo_figure_attributes', $component->attributes->display( $figure_attributes ) ); ?>>
+		<figure class="logo">
 			<?php
 				if ( function_exists( 'the_custom_logo' ) ) {
 					the_custom_logo();

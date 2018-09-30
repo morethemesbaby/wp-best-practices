@@ -69,13 +69,11 @@ For the `header.php` template there is a `template-parts/header/header.php`, an 
 
 ### HTML element attributes are generated
 
-Every class name, element identifier, data attribute is generated instead of being added manually. Manual work is a bug. [Always be automating](https://morethemes.baby/2018/04/05/manual-work-is-a-bug-always-be-automating-a-b-a/).
+Class names, element identifiers of a component are generated instead of being added manually. Manual work is a bug. [Always be automating](https://morethemes.baby/2018/04/05/manual-work-is-a-bug-always-be-automating-a-b-a/).
 
 The format follows the [BEM standard](http://getbem.com/introduction/) with a small modification: instead of `block__element--modifier` we use `block-element--modifier`.
 
-This can be re-configured if your project is huge. For usual WorPress projects this change enhances readability. 
-
-There will be less nesting, more folders and transparency.
+This can be re-configured if your project is huge. For usual WorPress projects this change enhances readability. There will be less nesting, more folders and better transparency.
 
 Instead of:
 ```
