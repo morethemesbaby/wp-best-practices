@@ -75,10 +75,29 @@
 		</properties>
 	</rule>
 
+	<!-- by cs
+
+		to eneble classnames with hypens:
+		`class-motheme-setup` instead of `class-mothemesetup`
+	-->
 	<rule ref="WordPress.Files.FileName">
 		<properties>
 			<property name="strict_class_file_names" value="false" />
 		</properties>
+	</rule>
+
+	<!-- by cs
+
+		to enable this kind of identation:
+		<?php
+			if ( have_posts() ) {
+
+		instead of:
+		<?php
+		if ( have_posts() ) {
+	-->
+	<rule ref="Generic.WhiteSpace.ScopeIndent">
+	    <severity>0</severity>
 	</rule>
 
 </ruleset>
