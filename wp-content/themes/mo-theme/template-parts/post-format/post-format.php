@@ -11,7 +11,8 @@
  * @since 1.0.0
  */
 
-$post_klass = log_lolla_theme_get_post_class();
+$mop = new MoThemePost();
+echo $mop->get_class();
 
 $post_klass_array = array(
 	'post',
