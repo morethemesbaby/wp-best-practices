@@ -9,18 +9,19 @@
  */
 
 $component = new MoThemeHTMLComponent();
+$header    = new MoThemeHeader();
 $nav       = array(
 	'block'    => 'header',
 	'element'  => 'menu',
 	'modifier' => 'closed',
 );
 
-if ( function_exists( 'log_lolla_theme_display_header_menu_contents' ) ) {
+if ( apply_filters( 'mo_theme_header_has_header_menu', $header->has_header_menu() ) ) {
 	?>
 	<nav <?php apply_filters( 'mo_theme_header_menu_attributes', $component->attributes->display( $nav ) ); ?>>
 		<?php apply_filters( 'mo_theme_header_menu_title', $component->title->display( array( 'title' => 'Header menu' ) ) ); ?>
 
-		<?php log_lolla_theme_display_header_menu_contents(); ?>
+		<?php apply_filters( 'mo_theme_header_display_header_menu_contents', $header->display_heder_menu_contents() ); ?>
 	</nav>
 	<?php
 }
