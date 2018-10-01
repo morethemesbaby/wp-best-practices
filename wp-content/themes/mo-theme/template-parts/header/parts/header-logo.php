@@ -10,15 +10,23 @@
 
 $component = new MoThemeHTMLComponent();
 
-$aside_attributes = array(
-	'block'   => 'header',
-	'element' => 'logo',
+$attributes = apply_filters(
+	'mo_theme_header_logo_attributes',
+	array(
+		'block'   => 'header',
+		'element' => 'logo',
+	)
+);
+
+$title = apply_filters(
+	'mo_theme_header_logo_title',
+	array( 'title' => 'Header logo' )
 );
 
 if ( has_custom_logo() ) {
 	?>
-	<aside <?php apply_filter( 'mo_theme_header_logo_attributes', $component->attributes->display( $aside_attributes ) ); ?>>
-		<?php apply_filters( 'mo_theme_header_logo_title', $component->title->display( array( 'title' => 'Header logo' ) ) ); ?>
+	<aside <?php $component->attributes->display( $attributes ); ?>>
+		<?php $component->title->display( $title ); ?>
 
 		<figure class="logo">
 			<?php

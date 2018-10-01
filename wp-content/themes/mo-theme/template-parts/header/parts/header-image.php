@@ -10,15 +10,23 @@
 
 $component = new MoThemeHTMLComponent();
 
-$aside_attributes = array(
-	'block'   => 'header',
-	'element' => 'image',
+$attributes = apply_filters(
+	'mo_theme_header_image_attributes',
+	array(
+		'block'   => 'header',
+		'element' => 'image',
+	)
+);
+
+$title = apply_filters(
+	'mo_theme_header_image_title',
+	array( 'title' => 'Header image' )
 );
 
 if ( get_header_image() ) {
 	?>
-	<aside <?php apply_filters( 'mo_theme_header_image_attributes', $component->attributes->display( $aside_attributes ) ); ?>>
-		<?php apply_filters( 'mo_theme_header_image_title', $component->title->display( array( 'title' => 'Header image' ) ) ); ?>
+	<aside <?php $component->attributes->display( $attributes ); ?>>
+		<?php $component->title->display( $title ); ?>
 
 		<figure class="image">
 			<?php the_header_image_tag(); ?>

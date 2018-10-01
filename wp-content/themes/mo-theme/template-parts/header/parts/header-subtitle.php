@@ -9,14 +9,18 @@
  */
 
 $component = new MoThemeHTMLComponent();
-$h2        = array(
-	'block'   => 'header',
-	'element' => 'subtitle',
+
+$attributes = apply_filters(
+	'mo_theme_header_subtitle',
+	array(
+		'block'   => 'header',
+		'element' => 'subtitle',
+	)
 );
 
 if ( display_header_text() ) {
 	?>
-	<h2 <?php $component->attributes->display( $h2 ); ?>>
+	<h2 <?php $component->attributes->display( $attributes ); ?>>
 		<span class="text">
 			<?php bloginfo( 'description' ); ?>
 		</span>

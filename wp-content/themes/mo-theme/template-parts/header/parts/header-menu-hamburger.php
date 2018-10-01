@@ -11,33 +11,34 @@
 $component = new MoThemeHTMLComponent();
 $header    = new MoThemeHeader();
 
-$nav_attributes   = array(
-	'block'         => 'header-menu-hamburger',
-	'element'       => '',
-	'modifier'      => 'closed',
-	'display_class' => false,
-	'display_id'    => true,
-);
-$icon1_attributes = array(
-	'element'       => 'icon',
-	'modifier'      => 'closed',
-	'display_class' => true,
-	'display_id'    => false,
-);
-$icon2_attributes = array(
-	'modifier' => 'opened',
+$attributes = apply_filters(
+	'mo_theme_header_menu_hamburger_nav_attributes',
+	array(
+		'block'         => 'header-menu-hamburger',
+		'element'       => '',
+		'modifier'      => 'closed',
+		'display_class' => false,
+		'display_id'    => true,
+	)
 );
 
-if ( apply_filters( 'mo_theme_header_has_header_menu', $header->has_header_menu() ) ) {
+$title = apply_filters(
+	'mo_theme_header_menu_hamburger_nav_title',
+	array( 'title' => 'Header menu hamburger' )
+);
+
+$has_header_menu = apply_filters( 'mo_theme_header_has_header_menu', $header->has_header_menu() );
+
+if ( $has_header_menu ) {
 	?>
-	<nav <?php apply_filters( 'mo_theme_header_menu_hamburger_nav_attributes', $component->attributes->display( $nav_attributes ) ); ?>>
-		<?php apply_filters( 'mo_theme_header_menu_hamburger_nav_title', $component->title->display( array( 'title' => 'Header menu hamburger' ) ) ); ?>
+	<nav <?php $component->attributes->display( $attributes ); ?>>
+		<?php $component->title->display( $title ); ?>
 
-		<div <?php apply_filters( 'mo_theme_header_menu_icon1_attributes', $component->attributes->display( $icon1_attributes ) ); ?>>
+		<div class="icon--closed">
 			<span class="icon">&#x2630;</span>
 		</div>
 
-		<div <?php apply_filters( 'mo_theme_header_menu_icon2_attributes', $component->attributes->display( $icon2_attributes ) ); ?>>
+		<div class="icon--opened">
 			<span class="icon">&times;</span>
 		</div>
 	</nav>

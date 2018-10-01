@@ -10,18 +10,30 @@
 
 $component = new MoThemeHTMLComponent();
 $header    = new MoThemeHeader();
-$nav       = array(
-	'block'    => 'header',
-	'element'  => 'menu',
-	'modifier' => 'closed',
+
+$attributes = apply_filters(
+	'mo_theme_header_menu_attributes',
+	array(
+		'block'    => 'header',
+		'element'  => 'menu',
+		'modifier' => 'closed',
+	)
 );
 
-if ( apply_filters( 'mo_theme_header_has_header_menu', $header->has_header_menu() ) ) {
-	?>
-	<nav <?php apply_filters( 'mo_theme_header_menu_attributes', $component->attributes->display( $nav ) ); ?>>
-		<?php apply_filters( 'mo_theme_header_menu_title', $component->title->display( array( 'title' => 'Header menu' ) ) ); ?>
+$title = apply_filters(
+	'mo_theme_header_menu_title',
+	array( 'title' => 'Header menu' )
+);
 
-		<?php apply_filters( 'mo_theme_header_display_header_menu_contents', $header->display_heder_menu_contents() ); ?>
+$has_header_menu      = apply_filters( 'mo_theme_header_has_header_menu', $header->has_header_menu() );
+$header_menu_contents = apply_filters( 'mo_theme_header_display_header_menu_contents', $header->display_header_menu_contents() );
+
+if ( $has_header_menu ) {
+	?>
+	<nav <?php $component->attributes->display( $attributes ); ?>>
+		<?php $component->title->display( $title ); ?>
+
+		<?php $header_menu_contents; ?>
 	</nav>
 	<?php
 }

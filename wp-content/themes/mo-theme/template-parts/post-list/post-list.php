@@ -20,20 +20,26 @@ $query_vars = $mo->get_query_var(
 	)
 );
 
-$post_list_post_format = $query_vars['post-format'];
+$component  = new MoThemeHTMLComponent();
+$attributes = apply_filters(
+	'mo_theme_post_list_attributes',
+	array(
+		'block'        => 'post-list',
+		'custom_class' => $query_vars['klass'],
+	)
+);
+$title      = apply_filters(
+	'mo_theme_post_list_title',
+	array(
+		'title' => $query_vars['title'],
+	)
+);
 
-$component          = new MoThemeHTMLComponent();
-$section_attributes = array(
-	'block'        => 'post-list',
-	'custom_class' => $query_vars['klass'],
-);
-$section_title      = array(
-	'title' => $query_vars['title'],
-);
+$post_list_post_format = $query_vars['post-format'];
 ?>
 
-<section <?php apply_filters( 'mo_theme_post_list_attributes', $component->attributes->display( $section_attributes ) ); ?>>
-	<?php apply_filters( 'mo_theme_post_list_title', $component->title->display( $section_title ) ); ?>
+<section <?php $component->attributes->display( $attributes ); ?>>
+	<?php $component->title->display( $title ); ?>
 
 	<div class="list-items">
 		<?php
