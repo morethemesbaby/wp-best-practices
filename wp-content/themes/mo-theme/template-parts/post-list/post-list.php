@@ -8,30 +8,34 @@
  * @since 1.0.0
  */
 
-$post_list_query_vars_defaults = array(
-	'klass'       => '',
-	'title'       => 'Post list',
-	'posts'       => array(),
-	'post-format' => '',
+$mo         = new MoThemeBase();
+$query_vars = $mo->get_query_var(
+	array(
+		'name'     => 'post-list-query-vars',
+		'defaults' => array(
+			'klass'       => '',
+			'title'       => 'Post list',
+			'post-format' => '',
+		),
+	)
 );
 
-$post_list_query_vars = array_merge(
-	$post_list_query_vars_defaults,
-	get_query_var( 'post-list-query-vars' )
+$post_list_post_format = $query_vars['post-format'];
+
+$component          = new MoThemeHTMLComponent();
+$section_attributes = array(
+	'block'        => 'post-list',
+	'custom_class' => $query_vars['klass'],
 );
-
-$post_list_klass       = $post_list_query_vars['klass'];
-$post_list_title       = $post_list_query_vars['title'];
-$post_list_posts       = $post_list_query_vars['posts'];
-$post_list_post_format = $post_list_query_vars['post-format'];
-
-$component = new MoThemeHTMLComponent();
+$section_title      = array(
+	'title' => $query_vars['title'],
+);
 ?>
 
-<section <?php $component->attributes->display( array( 'block' => 'Post list' ) ); ?>>
-	<?php $component->title->display( array( 'title' => 'Post list' ) ); ?>
+<section <?php apply_filters( 'mo_theme_post_list_attributes', $component->attributes->display( $section_attributes ) ); ?>>
+	<?php apply_filters( 'mo_theme_post_list_title', $component->title->display( $section_title ) ); ?>
 
-	<div <?php $component->attributes->display( array( 'block' => 'List items' ) ); ?>>
+	<div class="list-items">
 		<?php
 			if ( have_posts() ) {
 				while ( have_posts() ) {

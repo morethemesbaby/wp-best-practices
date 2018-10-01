@@ -25,6 +25,32 @@ if ( ! class_exists( 'MoThemeBase' ) ) {
 		 */
 		protected $data = array();
 
+		/**
+		 * Arguments for the get_template_part method.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @var array
+		 */
+		public $get_template_part_arguments = array(
+			'query_var_name'     => '',
+			'query_var_value'    => null,
+			'template_part_slug' => '',
+			'template_part_name' => '',
+		);
+
+		/**
+		 * Arguments for the get_query_var method.
+		 * 
+		 * @since 1.0.0
+		 * 
+		 * @var array
+		 */
+		public $get_query_var_arguments = array(
+			'name'     => '',
+			'defaults' => array(),
+		);
+
 
 		/**
 		 * Dynamically sets a variable.
@@ -56,19 +82,29 @@ if ( ! class_exists( 'MoThemeBase' ) ) {
 			}
 		}
 
+
 		/**
-		 * Arguments for the get_template_part method.
-		 *
+		 * Gets a query var.
+		 * 
 		 * @since 1.0.0
-		 *
-		 * @var array
+		 * 
+		 * @param  array $arguments An array of arguments.
+		 * @return array
 		 */
-		public $get_template_part_arguments = array(
-			'query_var_name'     => '',
-			'query_var_value'    => null,
-			'template_part_slug' => '',
-			'template_part_name' => '',
-		);
+		public function get_query_var( $arguments ) {
+			$this->get_query_var_arguments = array_merge(
+				$this->get_query_var_arguments,
+				$arguments
+			);
+
+			$query_var  = get_query_var( $this->get_query_var_arguments['name'] );
+			$query_vars = ( '' === $query_var ) ? array() : $query_var;
+			
+			return array_merge(
+				$this->get_query_var_arguments['defaults'],
+				$query_vars
+			);
+		}
 
 		/**
 		 * Gets a template part.
