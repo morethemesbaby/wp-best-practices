@@ -104,6 +104,15 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 					)
 				);
 			}
+
+			if ( '' !== $this->arguments['custom_id'] ) {
+				$this->display_tag_with_attributes(
+					array(
+						'tag'        => $this->arguments['id_tag'],
+						'attributes' => $this->arguments['custom_id'],
+					)
+				);
+			}
 		}
 
 		/**

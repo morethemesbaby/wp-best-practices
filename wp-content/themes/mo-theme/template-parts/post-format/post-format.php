@@ -11,18 +11,26 @@
  * @since 1.0.0
  */
 
-$mop = new MoThemePost();
-echo $mop->get_class();
+$p         = new MoThemePost();
+$component = new MoThemeHTMLComponent();
 
 $post_klass_array = array(
-	'post',
 	'post-with-sidebar',
 	'post-format-standard',
-	$post_klass,
+	$p->get_class(),
+);
+
+$attributes = apply_filters(
+	'mo_theme_post_format_attributes',
+	array(
+		'block'        => 'post',
+		'custom_class' => implode( ' ', $post_klass_array ),
+		'custom_id'    => 'post-' . get_the_ID(),
+	)
 );
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class( $post_klass_array ); ?>>
+<article <?php $component->attributes->display( $attributes ); ?>>
 	<?php get_template_part( 'template-parts/post-sidebar/post-sidebar', 'left' ); ?>
 
 	<div class="post-content-between-sidebars">
