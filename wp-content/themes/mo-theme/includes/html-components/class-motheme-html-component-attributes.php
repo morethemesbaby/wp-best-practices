@@ -94,6 +94,15 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 						'attribute_tag'    => $this->arguments['class_tag'],
 					)
 				);
+			} else {
+				if ( '' !== $this->arguments['custom_class'] ) {
+					$this->display_tag_with_attributes(
+						array(
+							'tag'        => $this->arguments['class_tag'],
+							'attributes' => $this->arguments['custom_class'],
+						)
+					);
+				}
 			}
 
 			if ( $this->arguments['display_id'] ) {
@@ -103,15 +112,15 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 						'attribute_tag'    => $this->arguments['id_tag'],
 					)
 				);
-			}
-
-			if ( '' !== $this->arguments['custom_id'] ) {
-				$this->display_tag_with_attributes(
-					array(
-						'tag'        => $this->arguments['id_tag'],
-						'attributes' => $this->arguments['custom_id'],
-					)
-				);
+			} else {
+				if ( '' !== $this->arguments['custom_id'] ) {
+					$this->display_tag_with_attributes(
+						array(
+							'tag'        => $this->arguments['id_tag'],
+							'attributes' => $this->arguments['custom_id'],
+						)
+					);
+				}
 			}
 		}
 
