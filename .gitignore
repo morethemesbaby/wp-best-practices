@@ -1,11 +1,15 @@
 # PHPDoc
 
 wp-content/themes/mo-theme/doc
+wp-content/themes/mo-pro-theme/doc
 
 # Composer
 
 wp-content/themes/mo-theme/composer.phar
 wp-content/themes/mo-theme/vendor/
+
+wp-content/themes/mo-pro-theme/composer.phar
+wp-content/themes/mo-pro-theme/vendor/
 
 
 # Node

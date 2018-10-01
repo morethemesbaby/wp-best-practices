@@ -1,0 +1,34 @@
+/*!
+ Theme Name:   Mo Pro Theme
+ Theme URI:    https://morethemes.baby/
+ Description:  The Pro version of the Mo theme.
+ Author:       More Themes Baby
+ Author URI:   https://morethemes.baby
+ Template:     mo-theme
+ Version:      1.0.0
+ License:      GNU General Public License v2 or later
+ License URI:  http://www.gnu.org/licenses/gpl-2.0.html
+ Tags:         blog, full-width-template, post-formats
+ Text Domain:  mo-pro-theme
+*/
+
+// The parent theme mixins will be directly imported into this child theme.
+// - This way we will have a commonly shared code in the parent theme.
+// - Here only parent theme extensions and overwrites will be added.
+//
+// The assets/images, fonts must be also replicated here
+// - the stylesheet generated cannot get them from a parent folder
+
+
+//@import '../mo-theme/assets/scss/themes/white.scss';
+//@import 'assets/scss/themes/white.scss';
+//@import '../mo-theme/assets/scss/framework/behaviour/**/*.scss';
+//@import 'assets/scss/framework/behaviour/**/*.scss';
+//@import '../mo-theme/assets/scss/framework/design/**/*.scss';
+//@import 'assets/scss/framework/design/**/*.scss';
+//@import '../mo-theme/assets/scss/framework/structure/**/*.scss';
+//@import 'assets/scss/framework/structure/**/*.scss';
+//@import '../mo-theme/assets/scss/parts/**/*.scss';
+//@import 'assets/scss/parts/**/*.scss';
+//@import '../mo-theme/assets/scss/pages/**/*.scss';
+//@import 'assets/scss/pages/**/*.scss';
