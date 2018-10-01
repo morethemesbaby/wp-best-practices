@@ -12,14 +12,6 @@ HTML code belongs to templates and template tags.
 
 When a PHP function needs to return a HTML chunk the [output buffering](https://secure.php.net/manual/en/function.ob-start.php) method with a `get_template_part` call is used. 
 
-## The open / close principle
-
-The code should be open for extension but closed for modification.
-
-This means:
-* We need a stable API for both PHP, HTML, CSS and JS components
-* Use callback functions whenever necessary: https://alistapart.com/article/coding-with-clarity-part-ii#section3
-
 
 ## Loose coupling
 
@@ -55,3 +47,11 @@ $file_name     = 'js/' . $this->text_domain . '.js';
 $file_location = get_theme_file_uri( '/' . $this->assets_folder );
 ```
 Instead `js/`, `.js` and `/` all should be moved into variables.
+
+## The open / close principle
+
+The code should be open for extension but closed for modification.
+
+This means:
+* We need a stable API for both PHP, HTML, CSS and JS components
+* Use callback functions whenever necessary: https://alistapart.com/article/coding-with-clarity-part-ii#section3

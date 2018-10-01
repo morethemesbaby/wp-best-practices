@@ -15,6 +15,11 @@ The HTML source and outline is validated with the [W3C validator](https://valida
 
 Use `apply_filters()` and `get_template_part()` extensively. They both can be overwritten in child themes.
 
+Filters must be used when a piece of *data* has to be made extendable / customizable. When something is set up (class, variable) or a small content chunk is displayed (the classname of an element, for example.)
+Filters receive data, modify data, and return data.
+
+Template parts must be used when large monolithic HTML code is split into small components.
+
 Example:
 ```
 <header <?php apply_filters( 'mo_theme_header_attributes', $component->attributes->display( ... ) ); ?>>
@@ -23,6 +28,12 @@ Example:
 	<?php get_template_part( 'template-parts/header/parts/header', 'title' ); ?>
 </header>
 ```
+
+Actions are [more abstract].(https://blog.teamtreehouse.com/hooks-wordpress-actions-filters-examples)They deal with *code*. Use them to let others insert code into your own code.
+
+The problem with actions is that you don't known apriori where others would like to insert their code. 
+
+You can add a `before` and `after` action for every element on your webpage (logo, header, content, footer, post list, article title, ...) and still you can't make everybody happy.
 
 ## Keep as much HTML code as possible
 
