@@ -62,7 +62,10 @@ if ( ! class_exists( 'MoThemeHeader' ) ) {
 		 * @return boolean
 		 */
 		public function has_header_menu() {
-			return is_active_sidebar( $this->arguments['header_menu_sidebar_id'] );
+			return apply_filters(
+				'mo_theme_header_has_menu',
+				is_active_sidebar( $this->arguments['header_menu_sidebar_id'] )
+			);
 		}
 
 		/**

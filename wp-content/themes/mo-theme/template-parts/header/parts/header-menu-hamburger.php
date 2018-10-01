@@ -27,9 +27,7 @@ $title = apply_filters(
 	array( 'title' => 'Header menu hamburger' )
 );
 
-$has_header_menu = apply_filters( 'mo_theme_header_has_menu', $header->has_header_menu() );
-
-if ( $has_header_menu ) {
+if ( $header->has_header_menu() ) {
 	?>
 	<nav <?php $component->attributes->display( $attributes ); ?>>
 		<?php $component->title->display( $title ); ?>

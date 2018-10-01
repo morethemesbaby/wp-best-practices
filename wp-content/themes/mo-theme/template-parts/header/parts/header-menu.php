@@ -25,10 +25,9 @@ $title = apply_filters(
 	array( 'title' => 'Header menu' )
 );
 
-$has_header_menu      = apply_filters( 'mo_theme_header_has_menu', $header->has_header_menu() );
 $header_menu_contents = apply_filters( 'mo_theme_header_display_menu_contents', $header->display_header_menu_contents() );
 
-if ( $has_header_menu ) {
+if ( $header->has_header_menu() ) {
 	?>
 	<nav <?php $component->attributes->display( $attributes ); ?>>
 		<?php $component->title->display( $title ); ?>
