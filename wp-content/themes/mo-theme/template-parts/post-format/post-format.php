@@ -31,30 +31,31 @@ $attributes = apply_filters(
 ?>
 
 <article <?php $component->attributes->display( $attributes ); ?>>
-	<?php get_template_part( 'template-parts/post-sidebar/post-sidebar', 'left' ); ?>
+	<?php do_action( 'mo_theme_before_post_format' ); ?>
 
 	<div class="post-content-between-sidebars">
 		<?php get_template_part( 'template-parts/post/parts/post', 'sticky' ); ?>
 
 		<?php
-		if ( is_single() ) {
-			get_template_part( 'template-parts/post/parts/post', 'title-without-link' );
-		} else {
-			get_template_part( 'template-parts/post/parts/post', 'title' );
-		}
+			if ( is_single() ) {
+				get_template_part( 'template-parts/post/parts/post', 'title-without-link' );
+			} else {
+				get_template_part( 'template-parts/post/parts/post', 'title' );
+			}
 		?>
 
 		<?php get_template_part( 'template-parts/post/parts/post', 'featured-image' ); ?>
+		
 		<?php
-		if ( ! is_single() && has_excerpt() ) {
-			get_template_part( 'template-parts/post/parts/post', 'excerpt' );
-		} else {
-			get_template_part( 'template-parts/post/parts/post-content', 'standard' );
-			get_template_part( 'template-parts/post/parts/post', 'paginated-content' );
-		}
+			if ( ! is_single() && has_excerpt() ) {
+				get_template_part( 'template-parts/post/parts/post', 'excerpt' );
+			} else {
+				get_template_part( 'template-parts/post/parts/post-content', 'standard' );
+				get_template_part( 'template-parts/post/parts/post', 'paginated-content' );
+			}
 		?>
 		<?php get_template_part( 'template-parts/post/parts/post', 'permalink-if-no-title' ); ?>
 	</div>
 
-	<?php get_template_part( 'template-parts/post-sidebar/post-sidebar', 'right' ); ?>
+	<?php do_action( 'mo_theme_after_post_format' ); ?>
 </article><!-- #post-<?php the_ID(); ?> -->

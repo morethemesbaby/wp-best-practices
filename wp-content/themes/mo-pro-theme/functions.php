@@ -41,3 +41,10 @@ if ( ! function_exists( 'mo_theme_header_display_menu_contents_filter' ) ) {
 }
 add_filter( 'mo_theme_header_display_menu_contents', 'mo_theme_header_display_menu_contents_filter' );
 
+
+if ( ! function_exists( ' mo_theme_before_post_format_action ' ) ) {
+	function mo_theme_before_post_format_action() {
+		echo 'before';
+	}
+}
+add_action( 'mo_theme_before_post_format', 'mo_theme_before_post_format_action' );
