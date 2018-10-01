@@ -26,6 +26,10 @@
 	<?php
 		// Opening the content div.
 		// .. which will be closed in the footer.
-		$component = new MoThemeHTMLComponent();
+		$component  = new MoThemeHTMLComponent();
+		$attributes = apply_filters(
+			'mo_theme_content_div_attributes', 
+			array( 'block' => 'content' )
+		);
 	?>
-	<div <?php $component->attributes->display( apply_filters( 'mo_theme_content_div_attributes', array( 'block' => 'content' ) ) ); ?>>
+	<div <?php $component->attributes->display( $attributes ); ?>>
