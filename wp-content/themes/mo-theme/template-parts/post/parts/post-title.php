@@ -20,7 +20,7 @@ $attributes = apply_filters(
 the_title(
 	sprintf(
 		'<h3 %1$s><a class="link" href="%2$s" title="%3$s">',
-		$component->attributes->display( $attributes ),
+		$component->attributes->get( $attributes ),
 		esc_url( get_permalink() ),
 		the_title_attribute( 'echo=0' )
 	),

@@ -93,11 +93,11 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 		 * @return void
 		 */
 		public function display( $arguments = array() ) {
-			$this->arguments = array_merge( $this->arguments, $arguments );
+			$this->arguments            = array_merge( $this->arguments, $arguments );
+			$this->arguments['display'] = true;
 
-			$this->display_id();
-			$this->display_class();
-			$this->display_data_attributes();
+			$this->display_or_get( $this->create_id() );
+			$this->display_or_get( $this->create_class() );
 		}
 
 		/**
@@ -109,27 +109,92 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 		 * @return string
 		 */
 		public function get( $arguments = array() ) {
-			$this->arguments = array_merge( $this->arguments, $arguments );
+			$this->arguments            = array_merge( $this->arguments, $arguments );
+			$this->arguments['display'] = false;
 
 			return implode(
 				' ',
-				array(
-					$this->get_id(),
-					$this->get_class(),
-					$this->get_data_attributes(),
+				array_filter(
+					array(
+						$this->display_or_get( $this->create_id() ),
+						$this->display_or_get( $this->create_class()),
+					)
 				)
 			);
 		}
 
 		/**
-		 * Return the 'id' attribute-value pair of an element.
+		 * Displays or returns an attribute-value pair of an element.
 		 * 
 		 * @since 1.0.0
 		 * 
-		 * @return string
+		 * @param array $arguments An array of attribute and values pair.
+		 * @return void|string Void if displayed, otherwise the argument-value string.
 		 */
-		public function get_id() {
+		public function display_or_get( $arguments ) {
+			if ( true === $this->arguments['display'] ) {
+				$this->display_attribute_with_values( $arguments );
+			} else {
+				return $this->get_attribute_with_values( $arguments );
+			}
+		}
 
+		/**
+		 * Creates the `class` attribute-value pair of an element.
+		 * 
+		 * If the `custom_class` is set it will be added to the class list.
+		 * If the `display_class` is set true a classname will be generated from other arguments.
+		 * 
+		 * @since 1.0.0
+		 * 
+		 * @return array An array of attribute and values pair
+		 */
+		public function create_class() {
+			$values = [];
+
+			if ( true === $this->arguments['display_class'] ) {
+				$values[] = $this->create_bem_selector();
+			}
+
+			if ( '' !== $this->arguments['custom_class'] ) {
+				$values[] = $this->arguments['custom_class'];
+			}
+
+			return array(
+				'attribute' => $this->arguments['class_tag'],
+				'values'     => implode( ' ', array_filter( $values ) ),
+			);
+		}
+
+		/**
+		 * Creates the 'id' attribute-value pair of an element.
+		 * 
+		 * There can be a single value for the id attribute.
+		 * `id="post-1"` is correct while `id="post-1 article-1"` is incorrrect
+		 * 
+		 * If the `custom_id` argument is set it will be returned as the `id` value.
+		 * Otherwise an id value will be assembled based on the arguments given.
+		 * And it will be returned if the `display_id` argument is set true.
+		 * 
+		 * @since 1.0.0
+		 * 
+		 * @return array An array of attribute and values pair.
+		 */
+		public function create_id() {
+			$value = '';
+
+			if ( '' !== $this->arguments['custom_id'] ) {
+				$value = $this->arguments['custom_id'];
+			} else {
+				if ( true === $this->arguments['display_id'] ) {
+					$value = $this->create_bem_selector();
+				}
+			}
+
+			return array(
+				'attribute' => $this->arguments['id_tag'],
+				'values'     => $value,
+			);
 		}
 
 
@@ -184,7 +249,6 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 			echo '"';
 		}
 
-		
 		/**
 		 * Creates a BEM selector.
 		 *
