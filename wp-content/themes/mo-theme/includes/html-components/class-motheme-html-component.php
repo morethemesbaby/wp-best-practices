@@ -22,8 +22,9 @@ if ( ! class_exists( 'MoThemeHTMLComponent' ) ) {
 		 * @var array $arguments An Array of arguments.
 		 */
 		public $arguments = array(
-			'attributes' => array(),
-			'title'      => array(),
+			'attributes'   => array(),
+			'title'        => array(),
+			'text_wrapper' => array(),
 		);
 
 		/**
@@ -37,8 +38,9 @@ if ( ! class_exists( 'MoThemeHTMLComponent' ) ) {
 		public function __construct( $arguments = array() ) {
 			$this->arguments = array_merge( $this->arguments, $arguments );
 
-			$this->attributes = new MoThemeHTMLComponentAttributes( $this->arguments['attributes'] );
-			$this->title      = new MoThemeHTMLComponentTitle( $this->arguments['title'] );
+			$this->attributes   = new MoThemeHTMLComponentAttributes( $this->arguments['attributes'] );
+			$this->title        = new MoThemeHTMLComponentTitle( $this->arguments['title'] );
+			$this->text_wrapper = new MoThemeHTMLComponentTextWrapper( $this->arguments['text_wrapper'], $this );
 		}
 	}
 }

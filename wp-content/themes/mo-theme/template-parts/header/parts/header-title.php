@@ -17,14 +17,14 @@ $attributes = apply_filters(
 	)
 );
 
-if ( display_header_text() ) {
-	?>
-	<h1 <?php $component->attributes->display( $attributes ); ?>>
-		<a class="link" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo bloginfo( 'name' ); ?>">
-			<span class="text">
-				<?php bloginfo( 'name' ); ?>
-			</span>
-		</a>
-	</h1>
-	<?php
+
+
+if ( display_header_text()  ) {
+	echo sprintf(
+		'<h1 %1$s><a class="link" href="%2$s" title="%3$s"><span %4$s>%3$s</span></a></h1>',
+		$component->attributes->get( $attributes ),
+		esc_url( home_url( '/' ) ),
+		get_bloginfo( 'name' ),
+		$component->text_wrapper->get()
+	);
 }

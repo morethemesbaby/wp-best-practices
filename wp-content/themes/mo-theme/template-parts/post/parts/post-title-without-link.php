@@ -19,8 +19,9 @@ $attributes = apply_filters(
 
 the_title(
 	sprintf(
-		'<h3 %s><span class="text">',
-		$component->attributes->get( $attributes )
+		'<h3 %1$s><span %2$s>',
+		$component->attributes->get( $attributes ),
+		$component->text_wrapper->get()
 	),
 	'</span></h3>'
 );
