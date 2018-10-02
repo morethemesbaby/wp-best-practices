@@ -18,6 +18,7 @@
  * This won't break the flow:
  * ```
  * <h3 style="padding:1em"><span class="text" style="font-size:200%">Text</span></h3>
+ * ```
  *
  * @package MoTheme
  * @since 1.0.0

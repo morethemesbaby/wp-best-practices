@@ -11,13 +11,15 @@
  * @since 1.0.0
  */
 
-$p         = new MoThemePost();
+$mopost    = new MoThemePost();
 $component = new MoThemeHTMLComponent();
 
-$post_klass_array = array(
-	'post-with-sidebar',
-	'post-format-standard',
-	$p->get_class(),
+$post_klass_array = apply_filters(
+	'mo_theme_post_klass_attributes',
+	array(
+		'post-format-standard',
+		$mopost->get_class(),
+	)
 );
 
 $attributes = apply_filters(
@@ -33,29 +35,27 @@ $attributes = apply_filters(
 <article <?php $component->attributes->display( $attributes ); ?>>
 	<?php do_action( 'mo_theme_before_post_format' ); ?>
 
-	<div class="post-content-between-sidebars">
-		<?php get_template_part( 'template-parts/post/parts/post', 'sticky' ); ?>
+	<?php get_template_part( 'template-parts/post/parts/post', 'sticky' ); ?>
 
-		<?php
-			if ( is_single() ) {
-				get_template_part( 'template-parts/post/parts/post', 'title-without-link' );
-			} else {
-				get_template_part( 'template-parts/post/parts/post', 'title' );
-			}
-		?>
+	<?php
+		if ( is_single() ) {
+			get_template_part( 'template-parts/post/parts/post', 'title-without-link' );
+		} else {
+			get_template_part( 'template-parts/post/parts/post', 'title' );
+		}
+	?>
 
-		<?php get_template_part( 'template-parts/post/parts/post', 'featured-image' ); ?>
-		
-		<?php
-			if ( ! is_single() && has_excerpt() ) {
-				get_template_part( 'template-parts/post/parts/post', 'excerpt' );
-			} else {
-				get_template_part( 'template-parts/post/parts/post-content', 'standard' );
-				get_template_part( 'template-parts/post/parts/post', 'paginated-content' );
-			}
-		?>
-		<?php get_template_part( 'template-parts/post/parts/post', 'permalink-if-no-title' ); ?>
-	</div>
+	<?php get_template_part( 'template-parts/post/parts/post', 'featured-image' ); ?>
+
+	<?php
+		if ( ! is_single() && has_excerpt() ) {
+			get_template_part( 'template-parts/post/parts/post', 'excerpt' );
+		} else {
+			get_template_part( 'template-parts/post/parts/post-content', 'standard' );
+			get_template_part( 'template-parts/post/parts/post', 'paginated-content' );
+		}
+	?>
+	<?php get_template_part( 'template-parts/post/parts/post', 'permalink-if-no-title' ); ?>
 
 	<?php do_action( 'mo_theme_after_post_format' ); ?>
 </article><!-- #post-<?php the_ID(); ?> -->
