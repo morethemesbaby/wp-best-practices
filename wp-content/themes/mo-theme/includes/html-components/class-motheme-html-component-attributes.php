@@ -48,20 +48,17 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 			'attribute_tag'    => '',
 		);
 
-
 		/**
-		 * The arguments of a tag with attribute.
+		 * The arguments of an attribute with values.
 		 *
 		 * @since 1.0.0
 		 *
 		 * @var array An array of arguments.
 		 */
-		public $tag_with_attributes_arguments = array(
+		public $attribute_with_values_arguments = array(
 			'tag'        => '',
 			'attributes' => '',
 		);
-
-
 
 		/**
 		 * Sets up the class.
@@ -96,7 +93,7 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 				);
 			} else {
 				if ( '' !== $this->arguments['custom_class'] ) {
-					$this->display_tag_with_attributes(
+					$this->display_attribute_with_values(
 						array(
 							'tag'        => $this->arguments['class_tag'],
 							'attributes' => $this->arguments['custom_class'],
@@ -114,7 +111,7 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 				);
 			} else {
 				if ( '' !== $this->arguments['custom_id'] ) {
-					$this->display_tag_with_attributes(
+					$this->display_attribute_with_values(
 						array(
 							'tag'        => $this->arguments['id_tag'],
 							'attributes' => $this->arguments['custom_id'],
@@ -144,7 +141,7 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 				)
 			);
 
-			$this->display_tag_with_attributes(
+			$this->display_attribute_with_values(
 				array(
 					'tag'        => $arguments['attribute_tag'],
 					'attributes' => $attributes,
@@ -153,22 +150,27 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 		}
 
 		/**
-		 * Displays a tag with attributes.
+		 * Displays an attribute with values.
 		 *
 		 * @since 1.0.0
 		 *
 		 * @param array $arguments The arguments array..
 		 * @return void
 		 */
-		public function display_tag_with_attributes( $arguments = array() ) {
-			$arguments = array_merge( $this->tag_with_attributes_arguments, $arguments );
+		public function display_attribute_with_values( $arguments = array() ) {
+			$arguments = array_merge( $this->attributes_with_values_arguments, $arguments );
 
-			if ( ( '' !== $arguments['tag'] ) && ( '' !== $arguments['attributes'] ) ) {
-				echo esc_attr( $arguments['tag'] );
-				echo '="';
-				echo esc_attr( $arguments['attributes'] );
-				echo '"';
+			if ( ( '' === $arguments['tag'] ) || ( '' === $arguments['attributes'] ) ) {
+				return;
 			}
+
+			$ret = sprintf(
+				'%1$s="%2$s"',
+				esc_attr( $arguments['tag'] ),
+				esc_attr( $arguments['attributes'] )
+			);
+
+			echo $ret;
 		}
 
 		/**

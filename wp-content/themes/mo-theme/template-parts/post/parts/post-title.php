@@ -4,11 +4,26 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package Log_Lolla_Theme
+ * @package MoTheme
  * @since 1.0.0
  */
 
+$component  = new MoThemeHTMLComponent();
+$attributes = apply_filters(
+	'mo_theme_post_title_attributes',
+	array(
+		'block'   => 'post',
+		'element' => 'title',
+	)
+);
+
 the_title(
-	'<h3 class="post-title"><a class="link" href="' . esc_url( get_permalink() ) . '" title="' . the_title_attribute( 'echo=0' ) . '">',
+	sprintf(
+		'<h3 %1$s><a class="link" href="%2$s" title="%3$s">',
+		$component->attributes->display( $attributes ),
+		esc_url( get_permalink() ),
+		the_title_attribute( 'echo=0' )
+	),
 	'</a></h3>'
 );
+
