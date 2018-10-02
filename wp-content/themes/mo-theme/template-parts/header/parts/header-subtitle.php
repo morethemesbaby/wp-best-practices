@@ -8,8 +8,7 @@
  * @since 1.0.0
  */
 
-$component = new MoThemeHTMLComponent();
-
+$component  = new MoThemeHTMLComponent();
 $attributes = apply_filters(
 	'mo_theme_header_subtitle',
 	array(

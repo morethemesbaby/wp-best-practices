@@ -25,6 +25,6 @@ if ( display_header_text() ) {
 				<?php bloginfo( 'name' ); ?>
 			</span>
 		</a>
-	</h3>
+	</h1>
 	<?php
 }
