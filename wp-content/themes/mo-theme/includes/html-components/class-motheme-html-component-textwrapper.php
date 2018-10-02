@@ -1,6 +1,23 @@
 <?php
 /**
- * The HTML component text warpper class
+ * The HTML component text wrapper class
+ * 
+ * When styling text sometimes the font size, the line height etc. is changed.
+ * This breaks the vertical flow of the page. 
+ * 
+ * For example if we have `padding: 1em` and we increase `font-size: 200%`
+ * that padding will be increased too.
+ * 
+ * As a solution we wrap all text into a wrapper class and style the wrapper class text instead.
+ * 
+ * This breaks the flow:
+ * ```
+ * <h3 style="font-size:200%;padding:1em">Text</h3>
+ * ```
+ * 
+ * This won't break the flow:
+ * ```
+ * <h3 style="padding:1em"><span class="text" style="font-size:200%">Text</span></h3>
  *
  * @package MoTheme
  * @since 1.0.0
@@ -15,7 +32,7 @@ if ( ! class_exists( 'MoThemeHTMLComponentTextWrapper' ) ) {
 	class MoThemeHTMLComponentTextWrapper extends MoThemeBase {
 
 		/**
-		 * We need to use parent inside this class.
+		 * We need to use the parent inside this class.
 		 * 
 		 * @since 1.0.0
 		 * 
@@ -53,7 +70,7 @@ if ( ! class_exists( 'MoThemeHTMLComponentTextWrapper' ) ) {
 		}
 
 		/**
-		 * Displays the text warpper class.
+		 * Displays the text wrapper class.
 		 * 
 		 * @since 1.0.0
 		 * 
@@ -64,7 +81,7 @@ if ( ! class_exists( 'MoThemeHTMLComponentTextWrapper' ) ) {
 		}
 
 		/**
-		 * Returns the text warpper class.
+		 * Returns the text wrapper class.
 		 * 
 		 * @since 1.0.0
 		 * 

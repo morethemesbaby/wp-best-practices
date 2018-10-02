@@ -18,7 +18,6 @@ $attributes = apply_filters(
 );
 
 
-
 if ( display_header_text()  ) {
 	echo sprintf(
 		'<h1 %1$s><a class="link" href="%2$s" title="%3$s"><span %4$s>%3$s</span></a></h1>',
