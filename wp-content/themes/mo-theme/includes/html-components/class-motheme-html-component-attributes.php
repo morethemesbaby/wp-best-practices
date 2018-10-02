@@ -7,7 +7,6 @@
  * Or more precisely:
  *  <element id="post-1" class="block-element--modifier customclass" data-parent="post" data-index-number="1">
  * 
- * 
  * @link https://en.wikipedia.org/wiki/HTML_attribute
  *
  * @package MoTheme
@@ -49,18 +48,6 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 		);
 
 		/**
-		 * The arguments of an attribute.
-		 *
-		 * @since 1.0.0
-		 *
-		 * @var array An array of arguments
-		 */
-		public $attribute_arguments = array(
-			'custom_attribute' => '',
-			'attribute_tag'    => '',
-		);
-
-		/**
 		 * The arguments of an attribute with values.
 		 *
 		 * @since 1.0.0
@@ -86,6 +73,8 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 
 		/**
 		 * Displays all the attribute-value pairs of an element.
+		 * 
+		 * Usage: `<div <?php $component->attributes->display( ... ) ?>>
 		 *
 		 * @since 1.0.0
 		 *
@@ -103,6 +92,8 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 		/**
 		 * Returns all the attribute-value pairs of an element.
 		 * 
+		 * Usage: `sprintf( '<div %s>', $component->attributes->get( ... ) )`;
+		 * 
 		 * @since 1.0.0
 		 *
 		 * @param array $arguments The arguments array.
@@ -117,7 +108,7 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 				array_filter(
 					array(
 						$this->display_or_get( $this->create_id() ),
-						$this->display_or_get( $this->create_class()),
+						$this->display_or_get( $this->create_class() ),
 					)
 				)
 			);
@@ -162,7 +153,7 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 
 			return array(
 				'attribute' => $this->arguments['class_tag'],
-				'values'     => implode( ' ', array_filter( $values ) ),
+				'values'    => implode( ' ', array_filter( $values ) ),
 			);
 		}
 
@@ -193,7 +184,7 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 
 			return array(
 				'attribute' => $this->arguments['id_tag'],
-				'values'     => $value,
+				'values'    => $value,
 			);
 		}
 
@@ -202,6 +193,7 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 		 * Gets an attribute with values.
 		 * 
 		 * This function is almost identic to @see MoThemeHTMLAttributes::display_attribute_with_values()
+		 * See explanation there.
 		 *
 		 * @since 1.0.0
 		 *
@@ -228,7 +220,7 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 		 * 
 		 * This function is almost identic to @see MoThemeHTMLAttributes::get_attribute_with_values()
 		 * Because of `esc_attr()` we can't do `echo MoThemeHTMLAttributes::get_attribute_with_values()`
-		 * `esc_attr()` is needed for this usage scenario: `<div <?php $component->attributes->display( ... ) ?>>
+		 * `esc_attr()` is needed for this usage scenario: `<div <?php $component->attributes->display( ... ) ?>>`
 		 * No `sprintf` or `wp_kses` can be used here instead of `esc_attr`
 		 *
 		 * @since 1.0.0
