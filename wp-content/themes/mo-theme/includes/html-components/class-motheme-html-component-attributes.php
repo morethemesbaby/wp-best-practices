@@ -1,6 +1,14 @@
 <?php
 /**
  * The HTML component attributes class
+ * 
+ * Create attribute-value pairs for HTML elements.
+ * Example: <element attribute="value">
+ * Or more precisely:
+ *  <element id="post-1" class="block-element--modifier customclass" data-parent="post" data-index-number="1">
+ * 
+ * 
+ * @link https://en.wikipedia.org/wiki/HTML_attribute
  *
  * @package MoTheme
  * @since 1.0.0
@@ -16,6 +24,8 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 
 		/**
 		 * Class arguments.
+		 * 
+		 * Used to setup the class.
 		 *
 		 * @since 1.0.0
 		 *
@@ -32,6 +42,8 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 			'display_data_attributes' => false,
 			'class_tag'               => 'class',
 			'id_tag'                  => 'id',
+			'data_tag'                => 'data',
+			'data_prefix'             => '-',
 			'element_prefix'          => '-',
 			'modifier_prefix'         => '--',
 		);
@@ -56,8 +68,8 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 		 * @var array An array of arguments.
 		 */
 		public $attribute_with_values_arguments = array(
-			'tag'        => '',
-			'attributes' => '',
+			'attribute' => '',
+			'values'    => '',
 		);
 
 		/**
@@ -73,106 +85,106 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 		}
 
 		/**
-		 * Displays the attributes of an element.
-		 *
-		 * @since 1.0.0
-		 *
-		 * @param array $arguments The class setup arguments array.
-		 * @return void
-		 */
-		public function display( $arguments = array() ) {
-			$this->arguments    = array_merge( $this->arguments, $arguments );
-			$this->bem_selector = $this->create_bem_selector();
-
-			if ( $this->arguments['display_class'] ) {
-				$this->display_attribute(
-					array(
-						'custom_attribute' => $this->arguments['custom_class'],
-						'attribute_tag'    => $this->arguments['class_tag'],
-					)
-				);
-			} else {
-				if ( '' !== $this->arguments['custom_class'] ) {
-					$this->display_attribute_with_values(
-						array(
-							'tag'        => $this->arguments['class_tag'],
-							'attributes' => $this->arguments['custom_class'],
-						)
-					);
-				}
-			}
-
-			if ( $this->arguments['display_id'] ) {
-				$this->display_attribute(
-					array(
-						'custom_attribute' => $this->arguments['custom_id'],
-						'attribute_tag'    => $this->arguments['id_tag'],
-					)
-				);
-			} else {
-				if ( '' !== $this->arguments['custom_id'] ) {
-					$this->display_attribute_with_values(
-						array(
-							'tag'        => $this->arguments['id_tag'],
-							'attributes' => $this->arguments['custom_id'],
-						)
-					);
-				}
-			}
-		}
-
-		/**
-		 * Display a single attribute.
+		 * Displays all the attribute-value pairs of an element.
 		 *
 		 * @since 1.0.0
 		 *
 		 * @param array $arguments The arguments array.
 		 * @return void
 		 */
-		public function display_attribute( $arguments = array() ) {
-			$arguments  = array_merge( $this->attribute_arguments, $arguments );
-			$attributes = implode(
-				' ',
-				array_filter(
-					array(
-						$this->bem_selector,
-						$arguments['custom_attribute'],
-					)
-				)
-			);
+		public function display( $arguments = array() ) {
+			$this->arguments = array_merge( $this->arguments, $arguments );
 
-			$this->display_attribute_with_values(
+			$this->display_id();
+			$this->display_class();
+			$this->display_data_attributes();
+		}
+
+		/**
+		 * Returns all the attribute-value pairs of an element.
+		 * 
+		 * @since 1.0.0
+		 *
+		 * @param array $arguments The arguments array.
+		 * @return string
+		 */
+		public function get( $arguments = array() ) {
+			$this->arguments = array_merge( $this->arguments, $arguments );
+
+			return implode(
+				' ',
 				array(
-					'tag'        => $arguments['attribute_tag'],
-					'attributes' => $attributes,
+					$this->get_id(),
+					$this->get_class(),
+					$this->get_data_attributes(),
 				)
 			);
 		}
 
 		/**
-		 * Displays an attribute with values.
+		 * Return the 'id' attribute-value pair of an element.
+		 * 
+		 * @since 1.0.0
+		 * 
+		 * @return string
+		 */
+		public function get_id() {
+
+		}
+
+
+		/**
+		 * Gets an attribute with values.
+		 * 
+		 * This function is almost identic to @see MoThemeHTMLAttributes::display_attribute_with_values()
 		 *
 		 * @since 1.0.0
 		 *
-		 * @param array $arguments The arguments array..
-		 * @return void
+		 * @param array $arguments The arguments array.
+		 * @return string
 		 */
-		public function display_attribute_with_values( $arguments = array() ) {
-			$arguments = array_merge( $this->attributes_with_values_arguments, $arguments );
+		public function get_attribute_with_values( $arguments = array() ) {
+			$arguments = array_merge( $this->attribute_with_values_arguments, $arguments );
 
-			if ( ( '' === $arguments['tag'] ) || ( '' === $arguments['attributes'] ) ) {
+			if ( ( '' === $arguments['attribute'] ) || ( '' === $arguments['values'] ) ) {
 				return;
 			}
 
-			$ret = sprintf(
+			return sprintf(
 				'%1$s="%2$s"',
-				esc_attr( $arguments['tag'] ),
-				esc_attr( $arguments['attributes'] )
+				esc_attr( $arguments['attribute'] ),
+				esc_attr( $arguments['values'] )
 			);
-
-			echo $ret;
 		}
 
+
+		/**
+		 * Displays an attribute with values.
+		 * 
+		 * This function is almost identic to @see MoThemeHTMLAttributes::get_attribute_with_values()
+		 * Because of `esc_attr()` we can't do `echo MoThemeHTMLAttributes::get_attribute_with_values()`
+		 * `esc_attr()` is needed for this usage scenario: `<div <?php $component->attributes->display( ... ) ?>>
+		 * No `sprintf` or `wp_kses` can be used here instead of `esc_attr`
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param array $arguments The arguments array.
+		 * @return void
+		 */
+		public function display_attribute_with_values( $arguments = array() ) {
+			$arguments = array_merge( $this->attribute_with_values_arguments, $arguments );
+
+			if ( ( '' === $arguments['attribute'] ) || ( '' === $arguments['values'] ) ) {
+				return;
+			}
+
+			echo esc_attr( $arguments['attribute'] );
+			echo '="';
+			echo esc_attr( $arguments['values'] );
+			echo '"';
+		}
+
+		
 		/**
 		 * Creates a BEM selector.
 		 *
