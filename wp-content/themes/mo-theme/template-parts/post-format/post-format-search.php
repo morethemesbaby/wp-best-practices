@@ -10,22 +10,35 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package LogLollaTheme
+ * @package MoTheme
  * @since 1.0.0
  */
 
-$klass = 'post post-search';
+$mopost    = new MoThemePost();
+$component = new MoThemeHTMLComponent();
+
+$attributes = apply_filters(
+	'mo_theme_post_format_search_attributes',
+	array(
+		'block'        => 'post',
+		'element'      => 'format',
+		'custom_class' => 'post-search',
+		'custom_id'    => 'post-' . get_the_ID(),
+	)
+);
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class( $klass ); ?>>
+<article <?php $component->attributes->display( $attributes ); ?>>
+	<?php do_action( 'mo_theme_before_post_format_search' ); ?>
+
 	<?php get_template_part( 'template-parts/post/parts/post', 'sticky' ); ?>
 	<?php get_template_part( 'template-parts/post/parts/post', 'title' ); ?>
 	<?php
-		$has_title = the_title_attribute( 'echo=0' );
-
-	if ( ! $has_title ) {
-		get_template_part( 'template-parts/post/parts/post', 'permalink' );
-	}
+		if ( ! $mopost->has_title() ) {
+			get_template_part( 'template-parts/post/parts/post', 'permalink' );
+		}
 	?>
 	<?php get_template_part( 'template-parts/post/parts/post', 'date' ); ?>
+
+	<?php do_action( 'mo_theme_after_post_format_search' ); ?>
 </article><!-- #post-<?php the_ID(); ?> -->

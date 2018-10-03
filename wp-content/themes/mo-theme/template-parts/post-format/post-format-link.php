@@ -15,6 +15,17 @@
  * @since 1.0.0
  */
 
+$component = new MoThemeHTMLComponent();
+
+$attributes = apply_filters(
+	'mo_theme_post_format_aside_attributes',
+	array(
+		'block'        => 'post',
+		'custom_class' => 'post-format-aside',
+		'custom_id'    => 'post-' . get_the_ID(),
+	)
+);
+
 $url   = log_lolla_theme_get_post_link_from_content();
 $klass = log_lolla_theme_get_post_format_link_class( $url );
 $title = log_lolla_theme_get_post_format_link_title( $url );

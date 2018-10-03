@@ -7,26 +7,29 @@
  *
  * @link https://developer.wordpress.org/themes/functionality/post-formats/
  *
- * @package Log_Lolla_Theme
+ * @package MoTheme
  * @since 1.0.0
  */
 
-$post_klass_array = array(
-	'post',
-	'post-with-sidebar',
-	'post-format-gallery',
+$component = new MoThemeHTMLComponent();
+
+$attributes = apply_filters(
+	'mo_theme_post_format_gallery_attributes',
+	array(
+		'block'        => 'post',
+		'custom_class' => 'post-format-gallery',
+		'custom_id'    => 'post-' . get_the_ID(),
+	)
 );
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class( $post_klass_array ); ?>>
-	<?php get_template_part( 'template-parts/post-sidebar/post-sidebar', 'left' ); ?>
+<article <?php $component->attributes->display( $attributes ); ?>>
+	<?php do_action( 'mo_theme_before_post_format_gallery' ); ?>
 
-	<div class="post-content-between-sidebars">
-		<?php get_template_part( 'template-parts/post/parts/post', 'sticky' ); ?>
-		<?php get_template_part( 'template-parts/post/parts/post', 'title' ); ?>
-		<?php get_template_part( 'template-parts/post/parts/post', 'gallery' ); ?>
-		<?php get_template_part( 'template-parts/post/parts/post', 'permalink-if-no-title' ); ?>
-	</div>
+	<?php get_template_part( 'template-parts/post/parts/post', 'sticky' ); ?>
+	<?php get_template_part( 'template-parts/post/parts/post', 'title' ); ?>
+	<?php get_template_part( 'template-parts/post/parts/post', 'gallery' ); ?>
+	<?php get_template_part( 'template-parts/post/parts/post', 'permalink-if-no-title' ); ?>
 
-	<?php get_template_part( 'template-parts/post-sidebar/post-sidebar', 'right' ); ?>
+	<?php do_action( 'mo_theme_after_post_format_gallery' ); ?>
 </article><!-- #post-<?php the_ID(); ?> -->
