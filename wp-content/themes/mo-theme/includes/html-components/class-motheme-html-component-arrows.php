@@ -60,8 +60,35 @@ if ( ! class_exists( 'MoThemeHTMLComponentArrows' ) ) {
 		 * @return void
 		 */
 		public function display( $arguments = array() ) {
-			$this->arguments = array_merge( $this->arguments, $arguments );
+			$this->arguments            = array_merge( $this->arguments, $arguments );
+			$this->arguments['display'] = true;
 
+			$this->display_or_get();
+		}
+
+		/**
+		 * Returns the arrows.
+		 * 
+		 * @since 1.0.0
+		 *
+		 * @param array $arguments The class setup arguments array.
+		 * @return string
+		 */
+		public function get( $arguments = array() ) {
+			$this->arguments            = array_merge( $this->arguments, $arguments );
+			$this->arguments['display'] = false;
+
+			return $this->display_or_get();
+		}
+
+		/**
+		 * Displays or returns the arrows.
+		 * 
+		 * @since 1.0.0
+		 * 
+		 * @return void|string Void if the arrows are displayed, otherwise the arrows.
+		 */
+		public function display_or_get() {
 			$arguments = array(
 				'query_var_name'     => 'component-title-query-vars',
 				'query_var_value'    => $this->arguments,
@@ -69,12 +96,20 @@ if ( ! class_exists( 'MoThemeHTMLComponentArrows' ) ) {
 				'template_part_name' => '',
 			);
 
+			$ret = '';
+
 			for ( $i = 0;  $i < $this->arguments['number'];  $i++ ) {
-				echo wp_kses(
-					$this->get_template_part( $arguments ),
-					$this->wp_kses_for_arrow
-				);
+				if ( true === $this->arguments['display'] ) {
+					echo wp_kses(
+						$this->get_template_part( $arguments ),
+						$this->wp_kses_for_arrow
+					);
+				} else {
+					$ret .= $this->get_template_part( $arguments );
+				}
 			}
+
+			return $ret;
 		}
 	}
 }
