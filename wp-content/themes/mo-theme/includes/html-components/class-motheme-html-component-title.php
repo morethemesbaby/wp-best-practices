@@ -69,7 +69,7 @@ if ( ! class_exists( 'MoThemeHTMLComponentTitle' ) ) {
 			$arguments = array(
 				'query_var_name'     => 'component-title-query-vars',
 				'query_var_value'    => $this->arguments,
-				'template_part_slug' => 'template-parts/framework/structure/component/parts/component-title',
+				'template_part_slug' => 'template-parts/html-components/title/title',
 				'template_part_name' => '',
 			);
 

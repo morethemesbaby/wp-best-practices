@@ -8,6 +8,8 @@
  * @since 1.0.0
  */
 
-if ( ! log_lolla_theme_post_has_link() ) {
+$mopost = new MoThemePost();
+
+if ( ! $mopost->has_title() ) {
 	get_template_part( 'template-parts/post/parts/post', 'permalink' );
 }

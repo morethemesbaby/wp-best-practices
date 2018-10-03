@@ -8,28 +8,43 @@
  * @since 1.0.0
  */
 
+$component = new MoThemeHTMLComponent();
+
+$attributes = apply_filters(
+	'mo_theme_post_post_edit_link_attributes',
+	array(
+		'block'    => 'post',
+		'element'  => 'edit-link',
+	)
+);
+
+$title = apply_filters(
+	'mo_theme_post_edit_link_title',
+	array( 'title' => 'Post edit link' )
+);
+
 if ( is_user_logged_in() ) {
 	?>
-	<aside class="post-edit-link">
-		<h3 class="hidden">Post edit link</h3>
+	<aside <?php $component->attributes->display( $attributes ); ?>>
+		<?php $component->title->display( $title ); ?>
 
 		<?php
-		edit_post_link(
-			sprintf(
-				wp_kses(
-					/* translators: %s: Name of current post. Only visible to screen readers */
-					__( 'Edit <span class="screen-reader-text">%s</span>', 'log-lolla-theme' ),
-					array(
-						'span' => array(
-							'class' => array(),
-						),
-					)
+			edit_post_link(
+				sprintf(
+					wp_kses(
+						/* translators: %s: Name of current post. Only visible to screen readers */
+						__( 'Edit <span class="screen-reader-text">%s</span>', 'mo-theme' ),
+						array(
+							'span' => array(
+								'class' => array(),
+							),
+						)
+					),
+					get_the_title()
 				),
-				get_the_title()
-			),
-			'<span class="edit-link">',
-			'</span>'
-		);
+				'<span class="edit-link">',
+				'</span>'
+			);
 		?>
 	</aside>
 	<?php

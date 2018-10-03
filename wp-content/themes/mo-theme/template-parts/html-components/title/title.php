@@ -14,14 +14,16 @@
  * @since 1.0.0
  */
 
-$component_title_query_vars_default = array(
-	'klass' => 'hidden',
-	'title' => 'Component title',
-);
+$mo = new MoThemeBase();
 
-$component_title_query_vars = array_merge(
-	$component_title_query_vars_default,
-	get_query_var( 'component-title-query-vars' )
+$component_title_query_vars = $mo->get_query_var(
+	array(
+		'name'     => 'component-title-query-vars',
+		'defaults' => array(
+			'klass' => 'hidden',
+			'title' => 'Component title',
+		),
+	)
 );
 
 $component_title_klass = $component_title_query_vars['klass'];

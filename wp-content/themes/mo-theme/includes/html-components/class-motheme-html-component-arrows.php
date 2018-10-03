@@ -29,6 +29,17 @@ if ( ! class_exists( 'MoThemeHTMLComponentArrows' ) ) {
 		);
 
 		/**
+		 * HTML tags and attributes allowed for arrows.
+		 *
+		 * @var array
+		 */
+		public $wp_kses_for_arrow = array(
+			'span' => array(
+				'class' => array(),
+			),
+		);
+
+		/**
 		 * Sets up the class.
 		 *
 		 * @since 1.0.0
@@ -54,14 +65,16 @@ if ( ! class_exists( 'MoThemeHTMLComponentArrows' ) ) {
 			$arguments = array(
 				'query_var_name'     => 'component-title-query-vars',
 				'query_var_value'    => $this->arguments,
-				'template_part_slug' => 'template-parts/framework/structure/component/parts/component-title',
+				'template_part_slug' => 'template-parts/html-component/arrow-with-triangle/arrow-with-triangle',
 				'template_part_name' => '',
 			);
 
-			echo wp_kses(
-				$this->get_template_part( $arguments ),
-				$this->wp_kses_for_title
-			);
+			for ( $i = 0;  $i < $this->arguments['number'];  $i++ ) {
+				echo wp_kses(
+					$this->get_template_part( $arguments ),
+					$this->wp_kses_for_arrow
+				);
+			}
 		}
 	}
 }

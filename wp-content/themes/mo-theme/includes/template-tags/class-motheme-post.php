@@ -40,28 +40,14 @@ if ( ! class_exists( 'MoThemePost' ) ) {
 		}
 
 		/**
-		 * Returns the first image URL from a post.
-		 * 
-		 * If there is no URL found returns the URL of a 'not-found' image.
+		 * Checks if a post has title.
 		 * 
 		 * @since 1.0.0
 		 * 
-		 * @link https://css-tricks.com/snippets/wordpress/get-the-first-image-from-a-post/
-		 * @return string
+		 * @return boolean
 		 */
-		public function get_first_image_url() {
-			global $post;
-			
-			$first_img = '';
-
-			preg_match_all( '/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', do_shortcode( $post->post_content, 'gallery' ), $matches );
-			$first_img = isset( $matches[1][0] ) ? $matches[1][0] : null;
-
-			if ( empty( $first_img ) ) {
-				return get_template_directory_uri() . $this->arguments['image_not_found_url'];
-			}
-
-			return $first_img;
+		public function has_title() {
+			return ( ! empty( the_title_attribute( 'echo=0' ) ) );
 		}
 
 		/**
@@ -76,6 +62,36 @@ if ( ! class_exists( 'MoThemePost' ) ) {
 		 */
 		public function has_content() {
 			return ( '' !== get_the_content() );
+		}
+
+		/**
+		 * Checks if a link is external (outside of the current domain)
+		 * 
+		 * @since 1.0.0
+		 * 
+		 * @param string $link The link.
+		 * @return boolean
+		 */
+		public function link_is_external( $link ) {
+			$permalink = apply_filters( 'the_permalink', get_permalink() );
+
+			return ( $link === $permalink );
+		}
+
+		/**
+		 * Returns link from post content.
+		 * 
+		 * If there is no link in the content returns the post permalink.
+		 * 
+		 * @since 1.0.0
+		 * 
+		 * @return string
+		 */
+		public function get_link_from_content() {
+			$content = get_the_content();
+			$has_url = get_url_in_content( $content );
+
+			return ( $has_url ) ? $has_url : apply_filters( 'the_permalink', get_permalink() );
 		}
 
 		/**
@@ -122,6 +138,31 @@ if ( ! class_exists( 'MoThemePost' ) ) {
 			$word_count = str_word_count( wp_strip_all_tags( $arguments['text'] ) );
 
 			return ( $word_count < $this->arguments['max_word_count'] ) ? 'display-horizontal' : 'display-vertical';
+		}
+
+		/**
+		 * Returns the first image URL from a post.
+		 * 
+		 * If there is no URL found returns the URL of a 'not-found' image.
+		 * 
+		 * @since 1.0.0
+		 * 
+		 * @link https://css-tricks.com/snippets/wordpress/get-the-first-image-from-a-post/
+		 * @return string
+		 */
+		public function get_first_image_url() {
+			global $post;
+			
+			$first_img = '';
+
+			preg_match_all( '/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', do_shortcode( $post->post_content, 'gallery' ), $matches );
+			$first_img = isset( $matches[1][0] ) ? $matches[1][0] : null;
+
+			if ( empty( $first_img ) ) {
+				return get_template_directory_uri() . $this->arguments['image_not_found_url'];
+			}
+
+			return $first_img;
 		}
 	}
 }

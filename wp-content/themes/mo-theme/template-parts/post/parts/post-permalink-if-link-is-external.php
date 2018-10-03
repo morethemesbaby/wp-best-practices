@@ -8,8 +8,8 @@
  * @since 1.0.0
  */
 
-$url = log_lolla_theme_get_post_link_from_content();
+$mopost = new MoThemePost();
 
-if ( ! log_lolla_theme_post_link_is_external( $url ) ) {
+if ( ! $mopost->link_is_external( $mopost->get_link_from_content() ) ) {
 	get_template_part( 'template-parts/post/parts/post', 'permalink' );
 }
