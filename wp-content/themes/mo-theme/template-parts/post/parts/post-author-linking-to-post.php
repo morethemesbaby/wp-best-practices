@@ -8,6 +8,20 @@
  * @since 1.0.0
  */
 
+$component = new MoThemeHTMLComponent();
+
+$attributes = apply_filters(
+	'mo_theme_post_excerpt_attributes',
+	array(
+		'block'    => 'post',
+		'element'  => 'excerpt',
+	)
+);
+
+$title = apply_filters(
+	'mo_theme_post_excerpt_title',
+	array( 'title' => 'Post excerpt' )
+);
 ?>
 
 <aside class="post-author-linking-to-post">

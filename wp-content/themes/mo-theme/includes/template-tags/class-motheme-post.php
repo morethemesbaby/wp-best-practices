@@ -22,7 +22,8 @@ if ( ! class_exists( 'MoThemePost' ) ) {
 		 * @var array An array of arguments.
 		 */
 		public $arguments = array(
-			'max_word_count' => 40,
+			'max_word_count'      => 40,
+			'image_not_found_url' => '/assets/images/image-not-found.png',
 		);
 
 
@@ -38,6 +39,30 @@ if ( ! class_exists( 'MoThemePost' ) ) {
 			$this->arguments = array_merge( $this->arguments, $arguments );
 		}
 
+		/**
+		 * Returns the first image URL from a post.
+		 * 
+		 * If there is no URL found returns the URL of a 'not-found' image.
+		 * 
+		 * @since 1.0.0
+		 * 
+		 * @link https://css-tricks.com/snippets/wordpress/get-the-first-image-from-a-post/
+		 * @return string
+		 */
+		public function get_first_image_url() {
+			global $post;
+			
+			$first_img = '';
+
+			preg_match_all( '/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', do_shortcode( $post->post_content, 'gallery' ), $matches );
+			$first_img = isset( $matches[1][0] ) ? $matches[1][0] : null;
+
+			if ( empty( $first_img ) ) {
+				return get_template_directory_uri() . $this->arguments['image_not_found_url'];
+			}
+
+			return $first_img;
+		}
 
 		/**
 		 * Checks if a post has content.
@@ -94,7 +119,7 @@ if ( ! class_exists( 'MoThemePost' ) ) {
 				'text' => '',
 			);
 			$arguments  = array_merge( $defaults, $arguments );
-			$word_count = str_word_count( strip_tags( $arguments['text'] ) );
+			$word_count = str_word_count( wp_strip_all_tags( $arguments['text'] ) );
 
 			return ( $word_count < $this->arguments['max_word_count'] ) ? 'display-horizontal' : 'display-vertical';
 		}

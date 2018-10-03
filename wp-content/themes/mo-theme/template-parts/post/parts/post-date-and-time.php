@@ -8,7 +8,7 @@
  * @since 1.0.0
  */
 
- $component = new MoThemeHTMLComponent();
+$component = new MoThemeHTMLComponent();
 
 $attributes = apply_filters(
 	'mo_theme_post_date_and_time_attributes',

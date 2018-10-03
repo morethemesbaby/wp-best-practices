@@ -25,6 +25,7 @@ if ( ! class_exists( 'MoThemeHTMLComponent' ) ) {
 			'attributes'   => array(),
 			'title'        => array(),
 			'text_wrapper' => array(),
+			'arrows'       => array(),
 		);
 
 		/**
@@ -41,6 +42,7 @@ if ( ! class_exists( 'MoThemeHTMLComponent' ) ) {
 			$this->attributes   = new MoThemeHTMLComponentAttributes( $this->arguments['attributes'] );
 			$this->title        = new MoThemeHTMLComponentTitle( $this->arguments['title'] );
 			$this->text_wrapper = new MoThemeHTMLComponentTextWrapper( $this->arguments['text_wrapper'], $this );
+			$this->arrows       = new MoThemeHTMLComponentTitle( $this->arguments['arrows'] );
 		}
 	}
 }

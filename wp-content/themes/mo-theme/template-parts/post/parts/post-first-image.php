@@ -9,6 +9,7 @@
  */
 
 $component = new MoThemeHTMLComponent();
+$mopost    = new MoThemePost();
 
 $attributes = apply_filters(
 	'mo_theme_post_first_image_attributes',
@@ -33,7 +34,7 @@ $title = apply_filters(
 				'<a class="link" href="%1$s", title="%2$s"><img src="%3$s" alt="%2$s"></a>',
 				esc_url( get_permalink() ),
 				the_title_attribute( 'echo=0' ),
-				esc_url( log_lolla_theme_get_post_first_image_url() )
+				esc_url( $mopost->get_first_image_url() )
 			);
 		?>
 
