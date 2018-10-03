@@ -18,10 +18,12 @@ $attributes = apply_filters(
 );
 
 if ( display_header_text() ) {
-	echo sprintf(
-		'<h2 %1$s><span %2$s>%3$s</span></h2>',
-		$component->attributes->get( $attributes ),
-		$component->text_wrapper->get(),
-		get_bloginfo( 'description' )
+	echo wp_kses_post(
+		sprintf(
+			'<h2 %1$s><span %2$s>%3$s</span></h2>',
+			$component->attributes->get( $attributes ),
+			$component->text_wrapper->get(),
+			get_bloginfo( 'description' )
+		)
 	);
 }

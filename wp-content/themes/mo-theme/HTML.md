@@ -69,6 +69,28 @@ Than this:
 </a>
 ```
 
+## Use `sprintf` instead of nested `echo`
+
+This is ugly:
+```
+<a class="link" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo bloginfo( 'name' ); ?>">
+	<span class="text">
+		<?php bloginfo( 'name' ); ?>
+	</span>
+</a>
+```
+
+This is better:
+```
+echo wp_kses_post(
+	sprintf(
+		'<a class="link" href="%1$s" title="%2$s"><span class="text">%2$s</span></a>',
+		esc_url( home_url( '/' ) ),
+		get_bloginfo( 'name' )
+	)
+);
+```
+
 ## Consistent naming
 
 HTML class names and identifiers, template part names, and template tags are stable and consistent. 
