@@ -85,8 +85,8 @@ if ( ! class_exists( 'MoThemePostFormat' ) ) {
 		 * 
 		 * @since 1.0.0
 		 * 
-		 * @param string $link The link URL
-		 * @return string 
+		 * @param string $link The link URL.
+		 * @return string
 		 */
 		public function get_link_class( $link ) {
 			$mopost = new MoThemePost();
@@ -100,8 +100,8 @@ if ( ! class_exists( 'MoThemePostFormat' ) ) {
 		 * 
 		 * @since 1.0.0
 		 * 
-		 * @param string $link The link URL
-		 * @return string 
+		 * @param string $link The link URL.
+		 * @return string
 		 */
 		public function get_link_title( $link ) {
 			$has_title = the_title_attribute( 'echo=0' );
