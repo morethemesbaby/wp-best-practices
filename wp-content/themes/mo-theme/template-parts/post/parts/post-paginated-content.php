@@ -4,12 +4,28 @@
  *
  * @link https://codex.wordpress.org/Styling_Page-Links
  *
- * @package Log_Lolla_Theme
+ * @package MoTheme
  * @since 1.0.0
  */
 
+$component = new MoThemeHTMLComponent();
+
+$attributes = apply_filters(
+	'mo_theme_post_paginated_content_attributes',
+	array(
+		'block'    => 'post',
+		'element'  => 'paginated-content',
+	)
+);
+
+$title = apply_filters(
+	'mo_theme_post_paginated_content_title',
+	array( 'title' => 'Post paginated content' )
+);
+
+
 /* translators: The `Pages:` text for the post pagination. */
-$title = __( 'Pages:', 'log-lolla-theme' );
+$title = __( 'Pages:', 'mo-theme' );
 
 // Cannot be wrapped into an <ul>,<li> structure ....
 $wp_link_pages = wp_link_pages(
@@ -21,12 +37,13 @@ $wp_link_pages = wp_link_pages(
 	)
 );
 
+
 if ( ! empty( $wp_link_pages ) ) {
 	?>
-	<nav class="post-paginated-content">
-		<h3 class="hidden">Post paginated content navigation</h3>
+	<nav <?php $component->attributes->display( $attributes ); ?>>
+		<?php $component->title->display( $title ); ?>
 
-		<div class="text">
+		<div <?php $component->text_wrapper->display(); ?>>
 			<?php echo wp_kses_post( $wp_link_pages ); ?>
 		</div>
 	</nav>

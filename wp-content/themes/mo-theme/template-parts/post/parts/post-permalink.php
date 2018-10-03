@@ -8,15 +8,34 @@
  * @since 1.0.0
  */
 
+$component = new MoThemeHTMLComponent();
+
+$attributes = apply_filters(
+	'mo_theme_post_permalink_attributes',
+	array(
+		'block'    => 'post',
+		'element'  => 'permalink',
+	)
+);
+
+$title = apply_filters(
+	'mo_theme_post_permalink_title',
+	array( 'title' => 'Post permalink' )
+);
 ?>
 
-<aside class="post-permalink">
-	<h3 class="hidden">Post permalink</h3>
+<aside <?php $component->attributes->display( $attributes ); ?>>
+	<?php $component->title->display( $title ); ?>
 
 	<div class="permalink">
-		<a class="link" href="<?php echo esc_url( get_permalink() ); ?>" title="<?php echo the_title_attribute( 'echo=0' ); ?>">
-		<?php /* translators: %s: post permalink. */ ?>
-		<?php echo esc_html_x( '&infin;', 'post permalink', 'log-lolla-theme' ); ?>
-		</a>
+		<?php
+			echo sprintf(
+				'<a class="link" href="%1$s" title="%2$s">%3$s</a>',
+				esc_url( get_permalink() ),
+				the_title_attribute( 'echo=0' ),
+				/* Translators: %s: post permalink. */
+				esc_html( '&infin;', 'post permalink', 'mo-theme' )
+			);
+		?>
 	</div>
 </aside>

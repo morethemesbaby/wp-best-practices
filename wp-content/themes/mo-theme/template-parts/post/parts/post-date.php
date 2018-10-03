@@ -8,14 +8,32 @@
  * @since 1.0.0
  */
 
+$component = new MoThemeHTMLComponent();
+
+$attributes = apply_filters(
+	'mo_theme_post_date_attributes',
+	array(
+		'block'    => 'post',
+		'element'  => 'date',
+	)
+);
+
+$title = apply_filters(
+	'mo_theme_post_date_title',
+	array( 'title' => 'Post date' )
+);
 ?>
 
-<aside class="post-date">
-	<h3 class="hidden">Post date</h3>
+<aside <?php $component->attributes->display( $attributes ); ?>>
+	<?php $component->title->display( $title ); ?>
 
 	<div class="posted-on">
-		<time class="date published" datetime="<?php echo esc_attr( get_the_date( 'c' ) ); ?>">
-			<?php echo esc_html( get_the_date() ); ?>
-		</time>
+		<?php
+			echo sprintf(
+				'<time class="date published" datetime="%1$s">%2$s</time>',
+				esc_attr( get_the_date( 'c' ) ),
+				esc_html( get_the_date() )
+			);
+		?>
 	</div>
 </aside>

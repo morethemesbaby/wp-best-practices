@@ -8,24 +8,48 @@
  * @since 1.0.0
  */
 
-if ( has_post_thumbnail() ) { ?>
+$component = new MoThemeHTMLComponent();
 
-<aside class="post-featured-image">
-	<h3 class="hidden">Post featured image</h3>
+$attributes = apply_filters(
+	'mo_theme_post_featured_image_attributes',
+	array(
+		'block'    => 'post',
+		'element'  => 'featured-image',
+	)
+);
 
-	<figure class="figure">
-		<a class="link" href="<?php echo esc_url( get_permalink() ); ?>" title="<?php the_title_attribute(); ?>">
-			<?php the_post_thumbnail(); ?>
-		</a>
+$title = apply_filters(
+	'mo_theme_post_featured_image_title',
+	array( 'title' => 'Post featued-image' )
+);
 
-		<?php
-		the_title(
-			'<figcaption class="figcaption"><a class="link" href="' . esc_url( get_permalink() ) . '" title="' . the_title_attribute( 'echo=0' ) . '">',
-			'</a></figcaption>'
-		);
-		?>
-	</figure>
-</aside>
+if ( has_post_thumbnail() ) {
+	?>
+	<aside <?php $component->attributes->display( $attributes ); ?>>
+		<?php $component->title->display( $title ); ?>
 
-<?php }
+		<figure class="figure">
+			<?php
+				echo sprintf(
+					'<a class="link" href="%1$s" title="%2$s">%3$s</a>',
+					esc_url( get_permalink() ),
+					the_title_attribute( 'echo=0' ),
+					the_post_thumbnail()
+				);
+			?>
+
+			<?php
+				the_title(
+					sprintf(
+						'<figcaption class="figcaption"><a class="link" href="%1$s" title="%2$s">',
+						esc_url( get_permalink() ),
+						the_title_attribute( 'echo=0' )
+					),
+					'</a></figcaption>'
+				);
+			?>
+		</figure>
+	</aside>
+	<?php
+}
 ?>

@@ -8,21 +8,39 @@
  * @since 1.0.0
  */
 
+$component = new MoThemeHTMLComponent();
+
+$attributes = apply_filters(
+	'mo_theme_post_author_attributes',
+	array(
+		'block'    => 'post',
+		'element'  => 'author',
+	)
+);
+
+$title = apply_filters(
+	'mo_theme_post_author_title',
+	array( 'title' => 'Post author' )
+);
 ?>
 
-<aside class="post-author">
-	<h3 class="hidden">Post author</h3>
+<aside <?php $component->attributes->display( $attributes ); ?>>
+	<?php $component->title->display( $title ); ?>
 
 	<div class="posted-by">
 		<?php
 		/* translators: The `by` text before the post author. */
-		echo esc_html_x( 'by', 'post author', 'log-lolla-theme' );
+		echo esc_html_x( 'by', 'post author', 'mo-theme' );
 		?>
 
 		<span class="post-author-link">
-			<a class="link" href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>">
-				<?php echo esc_html( get_the_author() ); ?>
-			</a>
+			<?php
+				echo sprintf(
+					'<a class="link" href="%1$s" title="%2$s">%2$s</a>',
+					esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
+					esc_html( get_the_author() )
+				);
+			?>
 		</span>
 	</div>
 </aside>

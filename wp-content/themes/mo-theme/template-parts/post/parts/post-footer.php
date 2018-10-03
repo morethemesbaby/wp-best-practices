@@ -4,14 +4,29 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package Log_Lolla_Theme
+ * @package MoTheme
  * @since 1.0.0
  */
 
+$component = new MoThemeHTMLComponent();
+
+$attributes = apply_filters(
+	'mo_theme_post_footer_attributes',
+	array(
+		'block'    => 'post',
+		'element'  => 'footer',
+	)
+);
+
+$title = apply_filters(
+	'mo_theme_post_footer_title',
+	array( 'title' => 'Post footer' )
+);
+
 ?>
 
-<aside class="post-footer">
-	<h3 class="hidden">Post footer</h3>
+<aside <?php $component->attributes->display( $attributes ); ?>>
+	<?php $component->title->display( $title ); ?>
 
 	<div class="list">
 		<?php get_template_part( 'template-parts/post/parts/post', 'topics' ); ?>

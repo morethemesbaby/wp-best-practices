@@ -18,15 +18,14 @@ $attributes = apply_filters(
 );
 
 if ( is_sticky() ) {
-	?>
-	<div <?php $component->attributes->display( $attributes ); ?>>
-		<span class="text">
-			<?php
-				/* translators: The `Featured` text for the Sticky posts. */
-				echo esc_html_x( 'Featured', 'sticky post text', 'mo-theme' );
-			?>
-		</span>
-	</div>
-	<?php
+	echo wp_kses_post(
+		sprintf(
+			'<div %1$s><span %2$s>%3$s</span></div>',
+			$component->attributes->get( $attributes ),
+			$component->text_wrapper->get(),
+			/* translators: The `Featured` text for the Sticky posts. */
+			esc_html_x( 'Featured', 'sticky post text', 'mo-theme' )
+		)
+	);
 }
-?>
+

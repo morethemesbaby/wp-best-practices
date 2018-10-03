@@ -4,12 +4,39 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package Log_Lolla_Theme
+ * @package MoTheme
  * @since 1.0.0
  */
 
-$categories = get_the_term_list( $post->ID, 'category', '<div class="topic">', '</div><div class="topic">', '</div>' );
-$tags       = get_the_term_list( $post->ID, 'post_tag', '<div class="topic">', '</div><div class="topic">', '</div>' );
+$component = new MoThemeHTMLComponent();
+
+$attributes = apply_filters(
+	'mo_theme_post_topic_attributes',
+	array(
+		'block'    => 'topic',
+	)
+);
+
+$topic_container = sprintf(
+	'<div %s>',
+	$component->attributes->get ( $attributes )
+);
+
+$categories = get_the_term_list(
+	$post->ID,
+	'category',
+	$topic_container,
+	'</div>' . $topic_container,
+	'</div>'
+);
+
+$tags = get_the_term_list(
+	$post->ID,
+	'post_tag',
+	$topic_container,
+	'</div>' . $topic_container,
+	'</div>'
+);
 
 $all = $categories . $tags;
 echo wp_kses_post( $all );
