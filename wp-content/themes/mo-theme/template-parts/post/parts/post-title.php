@@ -8,7 +8,9 @@
  * @since 1.0.0
  */
 
+
 $component  = new MoThemeHTMLComponent();
+
 $attributes = apply_filters(
 	'mo_theme_post_title_attributes',
 	array(
@@ -17,12 +19,24 @@ $attributes = apply_filters(
 	)
 );
 
+$arguments = $component->get_query_var(
+	array(
+		'name'     => 'post-title-query-vars',
+		'defaults' => array(
+			'link_class' => 'link',
+			'link_url'   => get_permalink(),
+			'link_title' => the_title_attribute( 'echo=0' ),
+		),
+	)
+);
+
 the_title(
 	sprintf(
-		'<h3 %1$s><a class="link" href="%2$s" title="%3$s">',
+		'<h3 %1$s><a class="%2$s" href="%3$s" title="%4$s">',
 		$component->attributes->get( $attributes ),
-		esc_url( get_permalink() ),
-		the_title_attribute( 'echo=0' )
+		esc_attr( $arguments['link_class'] ),
+		esc_url( $arguments['link_url'] ),
+		esc_attr( $arguments['link_title'] )
 	),
 	'</a></h3>'
 );

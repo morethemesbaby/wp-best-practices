@@ -15,44 +15,50 @@
  * @since 1.0.0
  */
 
-$component = new MoThemeHTMLComponent();
+$component    = new MoThemeHTMLComponent();
+$mopost       = new MoThemePost();
+$mopostformat = new MoThemePostFormat();
+
+$arrow_attributes = apply_filters(
+	'mo_theme_post_format_link_arrows',
+	array(
+		'direction' => 'right',
+	)
+);
+
+$arrow = $component->arrows->get( $arrow_attributes );
+$url   = $mopost->get_link_from_content();
+$klass = $mopostformat->get_link_class( $url );
+$title = $mopostformat->get_link_title( $url );
 
 $attributes = apply_filters(
-	'mo_theme_post_format_aside_attributes',
+	'mo_theme_post_format_link_attributes',
 	array(
-		'block'        => 'post',
-		'custom_class' => 'post-format-aside',
+		'block'        => 'post-format-link',
+		'custom_class' => $klass,
 		'custom_id'    => 'post-' . get_the_ID(),
 	)
 );
 
-$url   = log_lolla_theme_get_post_link_from_content();
-$klass = log_lolla_theme_get_post_format_link_class( $url );
-$title = log_lolla_theme_get_post_format_link_title( $url );
-$arrow = log_lolla_theme_get_arrow_html( 'right' );
-
-$post_klass_array = array(
-	'post',
-	'post-with-sidebar',
-	'post-format-link',
-	$klass,
+$post_title_arguments = array(
+	'link_class' => "link ${klass}",
+	'link_url'   => $url,
+	'link_title' => $title,
 );
+
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class( $post_klass_array ); ?>>
-	<?php get_template_part( 'template-parts/post-sidebar/post-sidebar', 'left' ); ?>
+<article <?php $component->attributes->display( $attributes ); ?>>
+	<?php do_action( 'mo_theme_before_post_format_link' ); ?>
 
-	<div class="post-content-between-sidebars">
-		<?php get_template_part( 'template-parts/post/parts/post', 'sticky' ); ?>
+	<?php get_template_part( 'template-parts/post/parts/post', 'sticky' ); ?>
 
-		<h3 class="post-title">
-			<a class="link <?php echo esc_attr( $klass ); ?>" title="<?php echo esc_attr( $title ); ?>" href="<?php echo esc_url( $url ); ?>">
-				<?php echo wp_kses_post( $title . $arrow ); ?>
-			</a>
-		</h3>
+	<?php
+		set_query_var( 'post-title-query-vars', $post_title_arguments );
+		get_template_part( 'template-parts/post/parts/post', 'title' );
+	?>
 
-		<?php get_template_part( 'template-parts/post/parts/post', 'permalink-if-link-is-external' ); ?>
-	</div>
+	<?php get_template_part( 'template-parts/post/parts/post', 'permalink-if-link-is-external' ); ?>
 
-	<?php get_template_part( 'template-parts/post-sidebar/post-sidebar', 'right' ); ?>
+	<?php do_action( 'mo_theme_after_post_format_link' ); ?>
 </article><!-- #post-<?php the_ID(); ?> -->
