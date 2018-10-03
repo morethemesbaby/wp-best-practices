@@ -19,14 +19,6 @@ $component    = new MoThemeHTMLComponent();
 $mopost       = new MoThemePost();
 $mopostformat = new MoThemePostFormat();
 
-$arrow_attributes = apply_filters(
-	'mo_theme_post_format_link_arrows',
-	array(
-		'direction' => 'right',
-	)
-);
-
-$arrow = $component->arrows->get( $arrow_attributes );
 $url   = $mopost->get_link_from_content();
 $klass = $mopostformat->get_link_class( $url );
 $title = $mopostformat->get_link_title( $url );
@@ -45,6 +37,8 @@ $post_title_arguments = array(
 	'link_url'   => $url,
 	'link_title' => $title,
 );
+
+add_filter( 'the_title', $mopostformat->add_arrow_to_link_post_title(), 10, 2 );
 
 ?>
 

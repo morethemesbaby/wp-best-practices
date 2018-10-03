@@ -19,14 +19,17 @@ $attributes = apply_filters(
 	)
 );
 
-$arguments = $component->get_query_var(
-	array(
-		'name'     => 'post-title-query-vars',
-		'defaults' => array(
-			'link_class' => 'link',
-			'link_url'   => get_permalink(),
-			'link_title' => the_title_attribute( 'echo=0' ),
-		),
+$arguments = apply_filters(
+	'mo_theme_post_title_arguments',
+	$component->get_query_var(
+		array(
+			'name'     => 'post-title-query-vars',
+			'defaults' => array(
+				'link_class' => 'link',
+				'link_url'   => get_permalink(),
+				'link_title' => the_title_attribute( 'echo=0' ),
+			),
+		)
 	)
 );
 

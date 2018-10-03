@@ -40,7 +40,48 @@ if ( ! class_exists( 'MoThemePostFormat' ) ) {
 		}
 
 		/**
-		 * Returns link classname for the Link Post format.
+		 * Adds an arrow to the Link Post Format title.
+		 * 
+		 * This is a filter for `the_title()`.
+		 * 
+		 * @since 1.0.0
+		 * 
+		 * @link https://codex.wordpress.org/Plugin_API/Filter_Reference/the_title
+		 * 
+		 * @param string  $title The title of the post.
+		 * @param integer $id    The ID of the post.
+		 * @return string
+		 */
+		public function add_arrow_to_link_post_title( $title, $id = null ) {
+			if ( 'link' === get_post_format() ) {
+				return $title . $this->get_arrow_for_link_post_title();
+			} else {
+				return $title;
+			}
+		}
+
+		/**
+		 * Returns an arrow for the Link Post Format title.
+		 * 
+		 * @since  1.0.0
+		 * 
+		 * @return string
+		 */
+		public function get_arrow_for_link_post_type() {
+			$arrow_attributes = apply_filters(
+				'mo_theme_post_format_link_arrows',
+				array(
+					'direction' => 'right',
+				)
+			);
+			
+			$component = new MoThemeHTMLComponent();
+
+			return $component->arrows->get( $arrow_attributes );
+		}
+
+		/**
+		 * Returns classname for the Link Post Format link.
 		 * 
 		 * @since 1.0.0
 		 * 
@@ -53,7 +94,7 @@ if ( ! class_exists( 'MoThemePostFormat' ) ) {
 		}
 
 		/**
-		 * Returns link title for the Link Post format.
+		 * Returns title for the Link Post Format link.
 		 * 
 		 * Returns either the post title, or the URL where it points
 		 * 
