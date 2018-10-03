@@ -11,7 +11,7 @@
  *
  * @link https://developer.wordpress.org/themes/functionality/post-formats/
  *
- * @package Log_Lolla_Theme
+ * @package MoTheme
  * @since 1.0.0
  */
 
