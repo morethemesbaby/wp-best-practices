@@ -28,8 +28,10 @@
 		// .. which will be closed in the footer.
 		$component  = new MoThemeHTMLComponent();
 		$attributes = apply_filters(
-			'mo_theme_content_div_attributes', 
-			array( 'block' => 'content' )
+			'mo_theme_content_div_attributes',
+			array(
+				'block' => 'content',
+			)
 		);
 	?>
 	<div <?php $component->attributes->display( $attributes ); ?>>

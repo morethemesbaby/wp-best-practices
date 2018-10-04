@@ -13,14 +13,20 @@
 
 get_header();
 
-$component  = new MoThemeHTMLComponent();
+$component = new MoThemeHTMLComponent();
+
 $attributes = apply_filters(
 	'mo_theme_home_attributes',
-	array( 'block' => 'home' )
+	array(
+		'block' => 'home',
+	)
 );
-$title      = apply_filters(
+
+$title = apply_filters(
 	'mo_theme_home_title',
-	array( 'title' => 'Home' )
+	array(
+		'title' => 'Home',
+	)
 );
 ?>
 
