@@ -2,8 +2,8 @@
 
 * [Default WordPress theme files organization](#default-wordpress-theme-files-organization)
 * [Components](#components)
-	* [Generated classnames](#generated-classnames)
-	* [Naming conventions](#naming-conventions)
+	* [Auto-generated classnames](#auto-generated-classnames)
+	* [BEM naming conventions](#bem-naming-conventions)
 * [Extendable](#extendable)
 	* [Filters](#filters)
 	* [Template parts](#template-parts)
@@ -31,7 +31,7 @@ There should be a:
 * `includes/template-tags/class-site-header.php` template tag for PHP code, and
 * `assets/scss/parts/site-header.scss` for (S)CSS code.
 
-### Generated classnames
+### Auto-generated classnames
 
 To achieve this consistency component class names and element identifiers are generated instead of being added manually. [Manual work is a bug. Always be automating](https://morethemes.baby/2018/04/05/manual-work-is-a-bug-always-be-automating-a-b-a/).
 
@@ -42,19 +42,17 @@ Manually we can make mistakes:
 
 With an algorithm is harder:
 ```php
-$attributes = apply_filters(
-	array(
+$attributes = array(
 		'block'    => 'post',
 		'element'  => 'excerpt',
-	)
-);
+	);
 
 <aside <?php $component->attributes->display( $attributes ); ?>>
 ```
 
-Since classnames are defining code structure it is very important to use this automation. 
+Classnames are defining other code structures (PHP, SCSS) which makes the use of automation important. 
 
-### Naming conventions
+### BEM naming conventions
 
 Follow the [BEM standard](http://getbem.com/introduction/) with a small modification: instead of `block__element--modifier` use `block-element--modifier`.
 
@@ -79,22 +77,21 @@ block-element
 If this is not working the original BEM method can be switched on:
 ```php
 class MoThemeHTMLComponentAttributes extends MoThemeHTMLComponent {
-
-		/**
-		 * Class arguments.
-		 *
-		 * Used to setup the class.
-		 *
-		 * @since 1.0.0
-		 *
-		 * @var array An array of arguments.
-		 */
-		public $arguments = array(
-			...
-			'element_prefix'          => '-',
-			'modifier_prefix'         => '--',
-			...
-		);
+/**
+ * Class arguments.
+ *
+ * Used to setup the class.
+ *
+ * @since 1.0.0
+ *
+ * @var array An array of arguments.
+*/
+public $arguments = array(
+	...
+	'element_prefix'          => '-',
+	'modifier_prefix'         => '--',
+	...
+);
 ```
 
 ## Extendable
@@ -138,6 +135,7 @@ function mo_theme_post_excerpt_attributes_filter() {
 
 ### Template parts
 
+TBD.
 It fails silently: If the theme contains no {slug}.php file then no template will be included.
 
 ### Actions

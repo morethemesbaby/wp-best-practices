@@ -4,8 +4,8 @@ A WordPress.org compatible boilerplate theme based on best practices.
 
 ## Features
 
-* [Class based namespaces](https://10up.github.io/Engineering-Best-Practices/php/#design-patterns) for WordPress.org / PHP version <5.3 compatibility.
-* [Default](https://developer.wordpress.org/themes/basics/organizing-theme-files/) WordPress theme files organization.
+* Class based namespaces for WordPress.org / PHP version <5.3 compatibility.
+* Default WordPress theme files organization.
 * Reusable and extendable PHP/HTML/SCSS components.
 * Documentation for the PHP API, the templates and template parts, and for SCSS.
 
@@ -41,7 +41,7 @@ gulp scss
 
 ### Autoloading PHP classes
 
-After any modifications to class code or structure run:
+After any new class is added run:
 ```shell
 composer dump-autoload
 ```
