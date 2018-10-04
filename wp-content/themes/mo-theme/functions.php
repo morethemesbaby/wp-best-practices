@@ -27,7 +27,7 @@ define( 'CUSTOMIZATION_SET_WPORG', 'wporg' );
 /**
  * Use Composer's autoload.
  */
-if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
+if ( file_exists( get_template_directory() . '/vendor/autoload.php' ) ) {
 	require_once 'vendor/autoload.php';
 }
 
