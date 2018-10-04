@@ -1,5 +1,18 @@
 # HTML Principles
 
+* [Preserve WordPress theme files organization](#preserve-wordpress-theme-files-organization)
+* [Components](#components)
+	* [Generated classnames](#generated-classnames)
+	* [Naming conventions](#naming-conventions)
+* [Extendable](#extendable)
+	* [Filters](#filters)
+	* [Template parts](#template-parts)
+	* [Actions](#actions)
+* [Don't replace HTML code with PHP code](#dont-replace-html-code-with-php-code)
+* [Replace ugly HTML code with PHP code](#replace-ugly-html-code-with-php-code)
+* [Semantic and outlined](#semantic-and-outlined)
+
+
 ## Preserve WordPress theme files organization
 
 WordPress has [a clear indication](https://developer.wordpress.org/themes/basics/organizing-theme-files/) how to organize templates, template parts and template tags.
@@ -33,7 +46,7 @@ Follow the [BEM standard](http://getbem.com/introduction/) with a small modifica
 For usual WorPress projects this change enhances readability. There will be less nesting, more folders and better transparency.
 
 Instead of:
-```
+```shell
 block
 |. __element
 |.. --modifier-for-element
