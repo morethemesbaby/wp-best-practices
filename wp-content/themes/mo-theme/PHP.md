@@ -51,7 +51,7 @@ function theme_get_arrow_html( $query_vars ) {
 		'template_part_name' => '',
 	);
 
-	return get_template_part( $arguments );;
+	return get_template_part( $arguments );
 }
 ```
 
