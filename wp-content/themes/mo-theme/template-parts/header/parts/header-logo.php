@@ -20,7 +20,9 @@ $attributes = apply_filters(
 
 $title = apply_filters(
 	'mo_theme_header_logo_title',
-	array( 'title' => 'Header logo' )
+	array(
+		'title' => 'Header logo',
+	)
 );
 
 if ( has_custom_logo() ) {

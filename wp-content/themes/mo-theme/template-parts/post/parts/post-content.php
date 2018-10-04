@@ -21,7 +21,7 @@ $attributes = apply_filters(
 $title = apply_filters(
 	'mo_theme_post_content_title',
 	array(
-		'title' => 'Post content'
+		'title' => 'Post content',
 	)
 );
 ?>

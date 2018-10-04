@@ -21,7 +21,9 @@ $attributes = apply_filters(
 
 $title = apply_filters(
 	'mo_theme_page_title',
-	array( 'title' => 'Page' )
+	array(
+		'title' => 'Page',
+	)
 );
 ?>
 

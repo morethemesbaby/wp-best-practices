@@ -21,7 +21,7 @@ $attributes = apply_filters(
 $title = apply_filters(
 	'mo_theme_navigation_for_post_title',
 	array(
-		'title' => 'Navigation for post'
+		'title' => 'Navigation for post',
 	)
 );
 
