@@ -1,5 +1,8 @@
 # PHP Principles
 
+<!--ts-->
+<!--te-->
+
 ## Class based namespacing
 
 WordPress supports three techniques to avoid naming collisions:
@@ -22,17 +25,17 @@ This is wrong:
 ```
 function theme_get_arrow_html( $direction ) {
    return '<span class="arrow-with-triangle arrow-with-triangle--' . $direction . '">
- 					  	<span class="arrow-with-triangle__line"></span>
- 					  	<span class="triangle triangle-- arrow-with-triangle__triangle"></span>
- 						</span>';
+ 			<span class="arrow-with-triangle__line"></span>
+ 			<span class="triangle triangle-- arrow-with-triangle__triangle"></span>
+ 			</span>';
  }
 ```
 
 This is better:
 ```
-function theme_get_arrow_html() {
+function theme_get_arrow_html( $query_vars ) {
 	$arguments = array(
-		'query_var_name'     => 'component-title-query-vars',
+		'query_var_name'     => 'arrow-with-triangle-query-vars',
 		'query_var_value'    => $query_vars,
 		'template_part_slug' => 'template-parts/html-component/arrow-with-triangle/arrow-with-triangle',
 		'template_part_name' => '',
@@ -89,9 +92,7 @@ public $arguments = array(
 
 ### Function arguments
 
-Function arguments are passed as arrays instead of lists of arguments.
-
-This way they can stay open and extendable without the modifications breaking the other functions depending on them.
+Function arguments are passed as arrays instead of lists of arguments. This way they can stay open and extendable without the modifications breaking the other functions depending on them.
 
 This is not recommended:
 ```
@@ -134,7 +135,7 @@ Every function [either](https://alistapart.com/article/coding-with-clarity#secti
 
 The role of the function is described by a prefix. Either is a `get_` for a query or another verb for a command like `set_`, `add_`, `create_` and so on.
 
-There should be no functions which have no prefix, except when the prefix is a verb.
+There should be no functions which have no prefix, except when the function name is a verb, and the function is a member of a class.
 
 This is not recommended:
 ```
@@ -150,7 +151,7 @@ function set_content_width() { ... }
 Or for classes:
 ```
 $content = new ThemeContent();
-$width = $content->width->get();
+$width   = $content->width->get();
 ```
 
 ## Single responsibility principle
