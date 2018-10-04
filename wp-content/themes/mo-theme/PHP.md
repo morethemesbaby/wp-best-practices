@@ -2,7 +2,13 @@
 
 ## Class based namespacing
 
-WordPress supports three techniques to avoid naming collisions - prefixing, OOP classes, PHP namespaces - of which WordPress.org / PHP < 5.2 supports only the first two.
+WordPress supports three techniques to avoid naming collisions:
+
+* Prefixing
+* OOP classes
+* PHP namespaces
+
+WordPress.org / PHP < 5.2 supports only the first two.
 
 According to [best practices](https://developer.wordpress.org/plugins/the-basics/best-practices/#oop) OOP classes are the easier way to tackle this problem.
 
@@ -12,14 +18,115 @@ HTML code belongs to templates and template tags.
 
 When a PHP function needs to return a HTML chunk the [output buffering](https://secure.php.net/manual/en/function.ob-start.php) method with a `get_template_part` call is used. 
 
+This is wrong:
+```
+function theme_get_arrow_html( $direction ) {
+   return '<span class="arrow-with-triangle arrow-with-triangle--' . $direction . '">
+ 					  	<span class="arrow-with-triangle__line"></span>
+ 					  	<span class="triangle triangle-- arrow-with-triangle__triangle"></span>
+ 						</span>';
+ }
+```
+
+This is better:
+```
+function theme_get_arrow_html() {
+	$arguments = array(
+		'query_var_name'     => 'component-title-query-vars',
+		'query_var_value'    => $query_vars,
+		'template_part_slug' => 'template-parts/html-component/arrow-with-triangle/arrow-with-triangle',
+		'template_part_name' => '',
+	);
+
+	return get_template_part( $arguments );;
+}
+```
+
 
 ## Loose coupling
 
-Passing arguments between functions, classes, template tags - you name it - is done using arrays.
+[Loose coupling](https://alistapart.com/article/coding-with-clarity#section3) makes sure components are open, easily modifiable without breaking the code. 
 
-This way the interface stays open, easily modifiable without breaking the code.
+For different types of components different techniques are used.
 
-Also class variables are dynamically set and get through overloading.
+### Class variables
+
+Class variables are [dynamically set and get](http://codular.com/introducing-php-classes) through overloading / magic methods.
+
+This is not recommended:
+```
+/**
+* Class arguments.
+*
+* Used to setup the class.
+*
+* @since 1.0.0
+*
+*/
+public $block    = string;
+public $element  = string;
+public $modifier = string;
+```
+
+This is better:
+```
+/**
+* Class arguments.
+*
+* Used to setup the class.
+*
+* @since 1.0.0
+*
+* @var array An array of arguments.
+*/
+public $arguments = array(
+	'block'                   => '',
+	'element'                 => '',
+	'modifier'                => '',
+	....
+);
+```
+
+### Function arguments
+
+Function arguments are passed as arrays instead of lists of arguments.
+
+This way they can stay open and extendable without the modifications breaking the other functions depending on them.
+
+This is not recommended:
+```
+function display( $title, $description, $author ) { ... }
+```
+
+This is recommended:
+```
+function display( $arguments = array() ) { ... }
+```
+
+### Template variables
+
+Templates are communicating with each other through the `get_template_part` and `set_query_var` / `get_query_var`.
+
+Passing arguments between template parts is done with an array instead of a list of arguments.
+
+This is wrong:
+```
+set_query_var( 'post-list-title', theme_get_archive_label( 'Posts' ) );
+set_query_var( 'post-list-klass', 'for-archive' );
+set_query_var( 'post-list-content', theme_get_archive_content() );
+get_template_part( 'template-parts/post-list/post-list', '' );
+```
+
+This is recommended:
+```
+$post_list_query_vars = array(
+	'title'   => theme_get_archive_label( 'Posts' ),
+	'klass'   => 'for-archive',
+	'content' => theme_get_archive_content(),
+);
+set_query_var( 'post-list-query-vars', $post_list_query_vars );
+get_template_part( 'template-parts/post-list/post-list', '' );
+```
 
 ## Command-query separation
 
@@ -27,7 +134,7 @@ Every function either executes a *command* or performs a *query*. No functions d
 
 The role of the function is described by a prefix. Either is a `get_` for a query or another verb for a command like `set_`, `add_`, `create_` and so on.
 
-There should be no functions which have no prefix.
+There should be no functions which have no prefix, except when the prefix is a verb.
 
 ## Single responsibility principle
 

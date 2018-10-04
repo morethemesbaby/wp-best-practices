@@ -4,9 +4,9 @@ A WordPress.org compatible boilerplate theme based on best practices.
 
 ## Features
 
-* Full support for WordPress.org default [functionalities](https://developer.wordpress.org/themes/functionality/) and [customizations](https://developer.wordpress.org/themes/customize-api/)
-* [Class based namespaces](https://10up.github.io/Engineering-Best-Practices/php/#design-patterns) for WordPress.org / PHP version <5.3 compatibility
-* Separate documentations for the API, for the templates, and for the SCSS code
+* Full support for WordPress.org default [functionalities](https://developer.wordpress.org/themes/functionality/) and [customizations](https://developer.wordpress.org/themes/customize-api/).
+* [Class based namespaces](https://10up.github.io/Engineering-Best-Practices/php/#design-patterns) for WordPress.org / PHP version <5.3 compatibility.
+* Separate documentations for the API, for the templates, and for the SCSS code.
 
 ## Principles
 
@@ -46,16 +46,24 @@ composer dump-autoload
 
 ### Generating documentation
 
+#### Template tags
+
 For the PHP API documentation (classes) run:
 ```
 rm -Rf /tmp/phpdoc-twig-cache/ && phpdoc -d . -t doc/api -i vendor/
 ```
+
+#### Template parts
 
 For the WordPres template tags and functions documentation run:
 ```
 rm -Rf /tmp/phpdoc-twig-cache/ && phpdoc -d . -t doc/template -i vendor/ --template=phpdocumentor-wordpress-theme
 ```
 Make sure the [PHPDocumentor WordPress Theme](https://github.com/morethemesbaby/phpdocumentor-wordpress-theme) is installed first.
+
+#### SCSS
+
+Tbd.
 
 ### Checking code quality
 
