@@ -1,9 +1,11 @@
 <div style="width:100%;display:flex;justify-content:space-around;alig-items:center;">
+<span>
 :heartbeat:
 :heartbeat:
 :heartbeat:
+</span>
 <img src="https://morethemes.baby/wp-content/uploads/2018/02/morethemesbaby-logo-transparent.png" title="More Themes Logo" width="100" height="100">
-<img src="https://s.w.org/style/images/about/WordPress-logotype-simplified.png" title="WordPress logo" width="100" height="100">
+<img src="https://s.w.org/style/images/about/WordPress-logotype-simplified.png" title="WordPress logo" width="80" height="80">
 </div>
 
 # WordPress best practices
