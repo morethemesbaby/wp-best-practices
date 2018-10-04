@@ -11,18 +11,26 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package Log_Lolla_Theme
+ * @package MoTheme
  * @since 1.0.0
  */
 
-$post_klass       = log_lolla_theme_get_post_class();
-$post_klass_array = array(
-	'post-single',
-	$post_klass,
+$component = new MoThemeHTMLComponent();
+$mopost    = new MoThemePost();
+
+$attributes = apply_filters(
+	'mo_theme_post_single_attributes',
+	array(
+		'block'        => 'post',
+		'element'      => 'single',
+		'custom_class' => $mopost->get_class(),
+		'custom_id'    => 'post-' . get_the_ID(),
+	)
 );
+
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class( $post_klass_array ); ?>>
+<article <?php $component->attributes->display( $attributes ); ?>>
 	<?php get_template_part( 'template-parts/post/parts/post', 'sticky' ); ?>
 	<?php get_template_part( 'template-parts/post/parts/post', 'title-without-link' ); ?>
 	<?php get_template_part( 'template-parts/post/parts/post', 'featured-image' ); ?>
