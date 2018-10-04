@@ -121,7 +121,7 @@ Templates are communicating with each other through the `get_template_part` and 
 Passing arguments between template parts is done with an array instead of a list of arguments.
 
 This is wrong:
-```php
+```html+php
 set_query_var( 'post-list-title', theme_get_archive_label( 'Posts' ) );
 set_query_var( 'post-list-klass', 'for-archive' );
 set_query_var( 'post-list-content', theme_get_archive_content() );
@@ -129,7 +129,7 @@ get_template_part( 'template-parts/post-list/post-list', '' );
 ```
 
 This is recommended:
-```php
+```html+php
 $post_list_query_vars = array(
 	'title'   => theme_get_archive_label( 'Posts' ),
 	'klass'   => 'for-archive',
