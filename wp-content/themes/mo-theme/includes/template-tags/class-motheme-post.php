@@ -41,9 +41,9 @@ if ( ! class_exists( 'MoThemePost' ) ) {
 
 		/**
 		 * Checks if a post has title.
-		 * 
+		 *
 		 * @since 1.0.0
-		 * 
+		 *
 		 * @return boolean
 		 */
 		public function has_title() {
@@ -53,12 +53,12 @@ if ( ! class_exists( 'MoThemePost' ) ) {
 
 		/**
 		 * Checks if a post has content.
-		 * 
+		 *
 		 * WordPress has no `has_content()` function like `has_excerpt()`.
 		 * This is a quick fix of that.
-		 * 
+		 *
 		 * @since 1.0.0
-		 * 
+		 *
 		 * @return boolean
 		 */
 		public function has_content() {
@@ -67,9 +67,9 @@ if ( ! class_exists( 'MoThemePost' ) ) {
 
 		/**
 		 * Checks if a link is external (outside of the current domain)
-		 * 
+		 *
 		 * @since 1.0.0
-		 * 
+		 *
 		 * @param string $link The link.
 		 * @return boolean
 		 */
@@ -81,11 +81,11 @@ if ( ! class_exists( 'MoThemePost' ) ) {
 
 		/**
 		 * Returns link from post content.
-		 * 
+		 *
 		 * If there is no link in the content returns the post permalink.
-		 * 
+		 *
 		 * @since 1.0.0
-		 * 
+		 *
 		 * @return string
 		 */
 		public function get_link_from_content() {
@@ -97,9 +97,9 @@ if ( ! class_exists( 'MoThemePost' ) ) {
 
 		/**
 		 * Returns the class attribute for a post.
-		 * 
+		 *
 		 * @since 1.0.0
-		 * 
+		 *
 		 * @return string
 		 */
 		public function get_class() {
@@ -107,12 +107,20 @@ if ( ! class_exists( 'MoThemePost' ) ) {
 			$klass       = array();
 
 			if ( $this->has_content() ) {
-				$orientation = $this->get_class_orientation( array( 'text' => get_the_content() ) );
+				$orientation = $this->get_class_orientation(
+					array(
+						'text' => get_the_content(),
+					)
+				);
 				$klass[]     = 'has-content';
 			}
 
 			if ( has_excerpt() ) {
-				$orientation = $this->get_class_orientation( array( 'text' => get_the_excerpt() ) );
+				$orientation = $this->get_class_orientation(
+					array(
+						'text' => get_the_excerpt(),
+					)
+				);
 				$klass[]     = 'has-excerpt';
 			}
 
@@ -125,9 +133,9 @@ if ( ! class_exists( 'MoThemePost' ) ) {
 
 		/**
 		 * Returns a classname describing the post orientation.
-		 * 
+		 *
 		 * @since 1.0.0
-		 * 
+		 *
 		 * @param array $arguments The arguments array.
 		 * @return string
 		 */
@@ -143,17 +151,17 @@ if ( ! class_exists( 'MoThemePost' ) ) {
 
 		/**
 		 * Returns the first image URL from a post.
-		 * 
+		 *
 		 * If there is no URL found returns the URL of a 'not-found' image.
-		 * 
+		 *
 		 * @since 1.0.0
-		 * 
+		 *
 		 * @link https://css-tricks.com/snippets/wordpress/get-the-first-image-from-a-post/
 		 * @return string
 		 */
 		public function get_first_image_url() {
 			global $post;
-			
+
 			$first_img = '';
 
 			preg_match_all( '/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', do_shortcode( $post->post_content, 'gallery' ), $matches );
@@ -166,4 +174,4 @@ if ( ! class_exists( 'MoThemePost' ) ) {
 			return $first_img;
 		}
 	}
-}
+} // End if().

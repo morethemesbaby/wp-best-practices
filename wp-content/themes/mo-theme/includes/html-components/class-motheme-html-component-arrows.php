@@ -1,7 +1,7 @@
 <?php
 /**
  * The HTML component arrows class
- * 
+ *
  * Arrows are one of the design landmarks of the site.
  *
  * @package MoTheme
@@ -68,7 +68,7 @@ if ( ! class_exists( 'MoThemeHTMLComponentArrows' ) ) {
 
 		/**
 		 * Returns the arrows.
-		 * 
+		 *
 		 * @since 1.0.0
 		 *
 		 * @param array $arguments The class setup arguments array.
@@ -83,9 +83,9 @@ if ( ! class_exists( 'MoThemeHTMLComponentArrows' ) ) {
 
 		/**
 		 * Displays or returns the arrows.
-		 * 
+		 *
 		 * @since 1.0.0
-		 * 
+		 *
 		 * @return void|string Void if the arrows are displayed, otherwise the arrows.
 		 */
 		public function display_or_get() {
@@ -112,4 +112,4 @@ if ( ! class_exists( 'MoThemeHTMLComponentArrows' ) ) {
 			return $ret;
 		}
 	}
-}
+} // End if().

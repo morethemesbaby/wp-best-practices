@@ -45,4 +45,4 @@ if ( ! class_exists( 'MoThemeHTMLComponent' ) ) {
 			$this->arrows       = new MoThemeHTMLComponentArrows( $this->arguments['arrows'] );
 		}
 	}
-}
+} // End if().

@@ -41,9 +41,9 @@ if ( ! class_exists( 'MoThemeBase' ) ) {
 
 		/**
 		 * Arguments for the get_query_var method.
-		 * 
+		 *
 		 * @since 1.0.0
-		 * 
+		 *
 		 * @var array
 		 */
 		public $get_query_var_arguments = array(
@@ -85,9 +85,9 @@ if ( ! class_exists( 'MoThemeBase' ) ) {
 
 		/**
 		 * Gets a query var.
-		 * 
+		 *
 		 * @since 1.0.0
-		 * 
+		 *
 		 * @param  array $arguments An array of arguments.
 		 * @return array
 		 */
@@ -99,7 +99,7 @@ if ( ! class_exists( 'MoThemeBase' ) ) {
 
 			$query_var  = get_query_var( $this->get_query_var_arguments['name'] );
 			$query_vars = ( '' === $query_var ) ? array() : $query_var;
-			
+
 			return array_merge(
 				$this->get_query_var_arguments['defaults'],
 				$query_vars

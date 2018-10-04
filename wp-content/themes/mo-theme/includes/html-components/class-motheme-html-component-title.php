@@ -1,11 +1,11 @@
 <?php
 /**
  * The HTML component title class
- * 
+ *
  * To keep HTML semantic components like `<article>`, `<aside>` etc. need a title.
  * This title is often not displayed it just makes the HTML outlined well.
  * The W3C outliner algorithm has changed a few times. This class make it easily adapt to future changes.
- * For example if the outliner will need `<header><h3>Component title</h3></header>` instead of 
+ * For example if the outliner will need `<header><h3>Component title</h3></header>` instead of
  * `<h3>Component title</h3>` here we can make the changes which will ripple to the entire code.
  *
  * @package MoTheme
@@ -79,4 +79,4 @@ if ( ! class_exists( 'MoThemeHTMLComponentTitle' ) ) {
 			);
 		}
 	}
-}
+} // End if().

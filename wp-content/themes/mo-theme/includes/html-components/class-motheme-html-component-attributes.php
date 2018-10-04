@@ -1,12 +1,12 @@
 <?php
 /**
  * The HTML component attributes class
- * 
+ *
  * Create attribute-value pairs for HTML elements.
  * Example: <element attribute="value">
  * Or more precisely:
  *  <element id="post-1" class="block-element--modifier customclass" data-parent="post" data-index-number="1">
- * 
+ *
  * @link https://en.wikipedia.org/wiki/HTML_attribute
  *
  * @package MoTheme
@@ -23,7 +23,7 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 
 		/**
 		 * Class arguments.
-		 * 
+		 *
 		 * Used to setup the class.
 		 *
 		 * @since 1.0.0
@@ -73,7 +73,7 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 
 		/**
 		 * Displays all the attribute-value pairs of an element.
-		 * 
+		 *
 		 * Usage: `<div <?php $component->attributes->display( ... ) ?>>
 		 *
 		 * @since 1.0.0
@@ -91,9 +91,9 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 
 		/**
 		 * Returns all the attribute-value pairs of an element.
-		 * 
+		 *
 		 * Usage: `sprintf( '<div %s>', $component->attributes->get( ... ) )`;
-		 * 
+		 *
 		 * @since 1.0.0
 		 *
 		 * @param array $arguments The arguments array.
@@ -116,9 +116,9 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 
 		/**
 		 * Displays or returns an attribute-value pair of an element.
-		 * 
+		 *
 		 * @since 1.0.0
-		 * 
+		 *
 		 * @param array $arguments An array of attribute and values pair.
 		 * @return void|string Void if displayed, otherwise the argument-value string.
 		 */
@@ -132,12 +132,12 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 
 		/**
 		 * Creates the `class` attribute-value pair of an element.
-		 * 
+		 *
 		 * If the `custom_class` is set it will be added to the class list.
 		 * If the `display_class` is set true a classname will be generated from other arguments.
-		 * 
+		 *
 		 * @since 1.0.0
-		 * 
+		 *
 		 * @return array An array of attribute and values pair
 		 */
 		public function create_class() {
@@ -159,16 +159,16 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 
 		/**
 		 * Creates the 'id' attribute-value pair of an element.
-		 * 
+		 *
 		 * There can be a single value for the id attribute.
 		 * `id="post-1"` is correct while `id="post-1 article-1"` is incorrrect
-		 * 
+		 *
 		 * If the `custom_id` argument is set it will be returned as the `id` value.
 		 * Otherwise an id value will be assembled based on the arguments given.
 		 * And it will be returned if the `display_id` argument is set true.
-		 * 
+		 *
 		 * @since 1.0.0
-		 * 
+		 *
 		 * @return array An array of attribute and values pair.
 		 */
 		public function create_id() {
@@ -191,7 +191,7 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 
 		/**
 		 * Gets an attribute with values.
-		 * 
+		 *
 		 * This function is almost identic to @see MoThemeHTMLAttributes::display_attribute_with_values()
 		 * See explanation there.
 		 *
@@ -217,7 +217,7 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 
 		/**
 		 * Displays an attribute with values.
-		 * 
+		 *
 		 * This function is almost identic to @see MoThemeHTMLAttributes::get_attribute_with_values()
 		 * Because of `esc_attr()` we can't do `echo MoThemeHTMLAttributes::get_attribute_with_values()`
 		 * `esc_attr()` is needed for this usage scenario: `<div <?php $component->attributes->display( ... ) ?>>`
@@ -293,4 +293,4 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 			return $ret;
 		}
 	}
-}
+} // End if().

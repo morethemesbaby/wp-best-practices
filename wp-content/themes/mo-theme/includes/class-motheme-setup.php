@@ -145,4 +145,4 @@ if ( ! class_exists( 'MoThemeSetup' ) ) {
 			);
 		}
 	}
-}
+} // End if().

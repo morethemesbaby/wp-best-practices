@@ -40,9 +40,9 @@ if ( ! class_exists( 'MoThemeHeader' ) ) {
 
 		/**
 		 * Returns the class attribute for the header.
-		 * 
+		 *
 		 * @since 1.0.0
-		 * 
+		 *
 		 * @return string
 		 */
 		public function get_class() {
@@ -56,9 +56,9 @@ if ( ! class_exists( 'MoThemeHeader' ) ) {
 
 		/**
 		 * Checks if a header menu is available.
-		 * 
+		 *
 		 * @since 1.0.0
-		 * 
+		 *
 		 * @return boolean
 		 */
 		public function has_header_menu() {
@@ -70,15 +70,15 @@ if ( ! class_exists( 'MoThemeHeader' ) ) {
 
 		/**
 		 * Displays the header menu contents.
-		 * 
+		 *
 		 * @since 1.0.0
-		 * 
-		 * @return string
+		 *
+		 * @return void
 		 */
 		public function display_header_menu_contents() {
 			if ( $this->has_header_menu() ) {
 				dynamic_sidebar( $this->arguments['header_menu_sidebar_id'] );
 			}
 		}
-	}
+	} // End if().
 }
