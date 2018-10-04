@@ -8,7 +8,6 @@
  * @since 1.0.0
  */
 
-
 $component  = new MoThemeHTMLComponent();
 
 $attributes = apply_filters(
