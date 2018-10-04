@@ -1,7 +1,16 @@
 # PHP Principles
 
-<!--ts-->
-<!--te-->
+* [Class based namespacing](#class-based-namespacing)
+* [No HTML in PHP code](#no-html-in-php-code)
+* [Loose coupling](#loose-coupling)
+	* [Class variables](#class-variables)
+	* [Function arguments](#function-arguments)
+	* [Template variables](#template-variables)
+* [Command-query separation](#command-query-separation)
+* [Single responsibility principle](#single-responsibility-principle)
+	* [Single source of truth](#single-source-of-truth)
+	* [No hardwired data inside functions](#no-hardwired-data-inside-functions)
+
 
 ## Class based namespacing
 
