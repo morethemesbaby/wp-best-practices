@@ -13,13 +13,13 @@ $component = new MoThemeHTMLComponent();
 $attributes = apply_filters(
 	'mo_theme_post_topic_attributes',
 	array(
-		'block'    => 'topic',
+		'block' => 'topic',
 	)
 );
 
 $topic_container = sprintf(
 	'<div %s>',
-	$component->attributes->get ( $attributes )
+	$component->attributes->get( $attributes )
 );
 
 $categories = get_the_term_list(

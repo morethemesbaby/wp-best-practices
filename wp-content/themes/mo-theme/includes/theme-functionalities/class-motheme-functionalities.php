@@ -55,4 +55,4 @@ if ( ! class_exists( 'MoThemeFunctionalities' ) ) {
 			$post_formats  = new MoThemeFunctionalitiesPostFormats();
 		}
 	}
-}
+} // End if().

@@ -20,7 +20,9 @@ $attributes = apply_filters(
 
 $title = apply_filters(
 	'mo_theme_post_author_title',
-	array( 'title' => 'Post author' )
+	array(
+		'title' => 'Post author',
+	)
 );
 ?>
 

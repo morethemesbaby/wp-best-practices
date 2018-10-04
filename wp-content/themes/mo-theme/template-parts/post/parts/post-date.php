@@ -20,7 +20,9 @@ $attributes = apply_filters(
 
 $title = apply_filters(
 	'mo_theme_post_date_title',
-	array( 'title' => 'Post date' )
+	array(
+		'title' => 'Post date',
+	)
 );
 ?>
 

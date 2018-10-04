@@ -20,7 +20,9 @@ $attributes = apply_filters(
 
 $title = apply_filters(
 	'mo_theme_post_permalink_title',
-	array( 'title' => 'Post permalink' )
+	array(
+		'title' => 'Post permalink',
+	)
 );
 ?>
 

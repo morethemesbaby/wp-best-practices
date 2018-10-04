@@ -20,7 +20,9 @@ $attributes = apply_filters(
 
 $title = apply_filters(
 	'mo_theme_post_footer_title',
-	array( 'title' => 'Post footer' )
+	array(
+		'title' => 'Post footer',
+	)
 );
 
 ?>

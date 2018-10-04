@@ -20,7 +20,9 @@ $attributes = apply_filters(
 
 $title = apply_filters(
 	'mo_theme_navigation_for_post_title',
-	array( 'title' => 'Navigation for post' )
+	array(
+		'title' => 'Navigation for post'
+	)
 );
 
 $arrow_left_attributes = apply_filters(
@@ -42,8 +44,8 @@ $arrow_right_attributes = apply_filters(
 $arrow_left  = $component->arrows->get( $arrow_left_attributes );
 $arrow_right = $component->arrows->get( $arrow_right_attributes );
 
-$prev = get_previous_post_link("$arrow_left%link");
-$next = get_next_post_link("$arrow_right%link");
+$prev = get_previous_post_link( "$arrow_left%link" );
+$next = get_next_post_link( "$arrow_right%link" );
 
 if ( ! empty( $prev ) || ! empty( $next ) ) {
 	?>

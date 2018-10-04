@@ -20,7 +20,9 @@ $attributes = apply_filters(
 
 $title = apply_filters(
 	'mo_theme_post_edit_link_title',
-	array( 'title' => 'Post edit link' )
+	array(
+		'title' => 'Post edit link',
+	)
 );
 
 if ( is_user_logged_in() ) {

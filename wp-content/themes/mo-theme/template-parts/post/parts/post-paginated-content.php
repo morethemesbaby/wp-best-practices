@@ -20,7 +20,9 @@ $attributes = apply_filters(
 
 $title = apply_filters(
 	'mo_theme_post_paginated_content_title',
-	array( 'title' => 'Post paginated content' )
+	array(
+		'title' => 'Post paginated content',
+	)
 );
 
 

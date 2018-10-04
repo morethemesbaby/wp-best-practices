@@ -20,7 +20,9 @@ $attributes = apply_filters(
 
 $title = apply_filters(
 	'mo_theme_post_author_linking_to_post_title',
-	array( 'title' => 'Post author linking to post' )
+	array(
+		'title' => 'Post author linking to post',
+	)
 );
 
 $arrows_attributes = apply_filters(

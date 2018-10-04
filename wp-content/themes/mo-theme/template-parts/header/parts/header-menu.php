@@ -22,7 +22,9 @@ $attributes = apply_filters(
 
 $title = apply_filters(
 	'mo_theme_header_menu_title',
-	array( 'title' => 'Header menu' )
+	array(
+		'title' => 'Header menu',
+	)
 );
 
 $header_menu_contents = apply_filters( 'mo_theme_header_display_menu_contents', $header->display_header_menu_contents() );

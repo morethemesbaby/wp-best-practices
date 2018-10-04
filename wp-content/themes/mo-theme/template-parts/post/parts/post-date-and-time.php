@@ -20,7 +20,9 @@ $attributes = apply_filters(
 
 $title = apply_filters(
 	'mo_theme_post_date_and_time_title',
-	array( 'title' => 'Post date and time' )
+	array(
+		'title' => 'Post date and time',
+	)
 );
 ?>
 
@@ -28,7 +30,7 @@ $title = apply_filters(
 	<?php $component->title->display( $title ); ?>
 
 	<div class="posted-on">
-		<?php 
+		<?php
 			echo sprintf(
 				'<time class="date published" datetime="%1$s">%2$s</time>',
 				esc_attr( get_the_date( 'c' ) . ', ' . get_the_time( 'c' ) ),

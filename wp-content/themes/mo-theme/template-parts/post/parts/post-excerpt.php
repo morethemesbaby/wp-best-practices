@@ -22,7 +22,9 @@ $attributes = apply_filters(
 
 $title = apply_filters(
 	'mo_theme_post_excerpt_title',
-	array( 'title' => 'Post excerpt' )
+	array(
+		'title' => 'Post excerpt',
+	)
 );
 ?>
 

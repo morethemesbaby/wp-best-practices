@@ -83,7 +83,7 @@ $title = apply_filters(
 				</p>
 				<?php get_search_form(); ?>
 				<?php
-			}
+			} // End if().
 		?>
 	</div><!-- .page-content -->
 </section><!-- .no-results -->

@@ -21,7 +21,9 @@ $attributes = apply_filters(
 
 $title = apply_filters(
 	'mo_theme_post_first_image_title',
-	array( 'title' => 'Post first image' )
+	array(
+		'title' => 'Post first image',
+	)
 );
 ?>
 

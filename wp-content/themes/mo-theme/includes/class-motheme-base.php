@@ -135,4 +135,4 @@ if ( ! class_exists( 'MoThemeBase' ) ) {
 			return ob_get_clean();
 		}
 	}
-}
+} // End if().

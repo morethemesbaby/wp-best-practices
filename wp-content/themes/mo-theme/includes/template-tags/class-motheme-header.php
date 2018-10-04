@@ -80,5 +80,5 @@ if ( ! class_exists( 'MoThemeHeader' ) ) {
 				dynamic_sidebar( $this->arguments['header_menu_sidebar_id'] );
 			}
 		}
-	} // End if().
-}
+	}
+} // End if().

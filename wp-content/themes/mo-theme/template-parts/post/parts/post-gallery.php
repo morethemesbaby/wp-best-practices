@@ -20,7 +20,9 @@ $attributes = apply_filters(
 
 $title = apply_filters(
 	'mo_theme_post_gallery_title',
-	array( 'title' => 'Post gallery' )
+	array(
+		'title' => 'Post gallery',
+	)
 );
 ?>
 

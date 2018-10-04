@@ -20,7 +20,9 @@ $attributes = apply_filters(
 
 $title = apply_filters(
 	'mo_theme_header_image_title',
-	array( 'title' => 'Header image' )
+	array(
+		'title' => 'Header image',
+	)
 );
 
 if ( get_header_image() ) {

@@ -24,7 +24,9 @@ $attributes = apply_filters(
 
 $title = apply_filters(
 	'mo_theme_header_menu_hamburger_nav_title',
-	array( 'title' => 'Header menu hamburger' )
+	array(
+		'title' => 'Header menu hamburger',
+	)
 );
 
 if ( $header->has_header_menu() ) {
