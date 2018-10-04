@@ -27,10 +27,10 @@ $arrow_right_attributes = apply_filters(
 );
 
 /* Translators: The `Older` text for posts navigation. */
-$older = esc_html__( 'Older', 'older', 'mo-theme' );
+$older = esc_html_x( 'Older', 'older', 'mo-theme' );
 
 /* Translators: The `Newer` text for posts navigation. */
-$newer = esc_html__( 'Newer', 'newer', 'mo-theme' );
+$newer = esc_html_x( 'Newer', 'newer', 'mo-theme' );
 
 $args = array(
 	'prev_text' => $component->arrows->get( $arrow_left_attributes ) . $older,
