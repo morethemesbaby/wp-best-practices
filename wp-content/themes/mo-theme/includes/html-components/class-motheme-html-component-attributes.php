@@ -141,7 +141,7 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 		 * @return array An array of attribute and values pair
 		 */
 		public function create_class() {
-			$values = [];
+			$values = array();
 
 			if ( true === $this->arguments['display_class'] ) {
 				$values[] = $this->create_bem_selector();
@@ -258,7 +258,7 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 			}
 
 			$classname = $this->convert_string_to_classname( $block );
-			$ret       = [];
+			$ret       = array();
 
 			if ( '' !== $element ) {
 				$classname .= $this->arguments['element_prefix'];

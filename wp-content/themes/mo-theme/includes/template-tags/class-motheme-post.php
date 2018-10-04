@@ -47,7 +47,8 @@ if ( ! class_exists( 'MoThemePost' ) ) {
 		 * @return boolean
 		 */
 		public function has_title() {
-			return ( ! empty( the_title_attribute( 'echo=0' ) ) );
+			$title = the_title_attribute( 'echo=0' );
+			return ( ! empty( $title ) );
 		}
 
 		/**
@@ -103,7 +104,7 @@ if ( ! class_exists( 'MoThemePost' ) ) {
 		 */
 		public function get_class() {
 			$orientation = '';
-			$klass       = [];
+			$klass       = array();
 
 			if ( $this->has_content() ) {
 				$orientation = $this->get_class_orientation( array( 'text' => get_the_content() ) );
