@@ -33,10 +33,11 @@ When a PHP function needs to return a HTML chunk the [output buffering](https://
 This is wrong:
 ```
 function theme_get_arrow_html( $direction ) {
-   return '<span class="arrow-with-triangle arrow-with-triangle--' . $direction . '">
- 			<span class="arrow-with-triangle__line"></span>
- 			<span class="triangle triangle-- arrow-with-triangle__triangle"></span>
- 			</span>';
+	return 
+		'<span class="arrow-with-triangle arrow-with-triangle--' . $direction . '">
+ 		<span class="arrow-with-triangle__line"></span>
+ 		<span class="triangle triangle-- arrow-with-triangle__triangle"></span>
+ 		</span>';
  }
 ```
 
