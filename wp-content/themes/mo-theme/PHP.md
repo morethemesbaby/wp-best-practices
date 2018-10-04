@@ -130,35 +130,59 @@ get_template_part( 'template-parts/post-list/post-list', '' );
 
 ## Command-query separation
 
-Every function either executes a *command* or performs a *query*. No functions do both at the same time.
+Every function [either](https://alistapart.com/article/coding-with-clarity#section2) executes a *command* or performs a *query*. No functions do both at the same time.
 
 The role of the function is described by a prefix. Either is a `get_` for a query or another verb for a command like `set_`, `add_`, `create_` and so on.
 
 There should be no functions which have no prefix, except when the prefix is a verb.
 
+This is not recommended:
+```
+function content_width() { ... }
+```
+
+This is better:
+```
+function get_content_width() { ... }
+function set_content_width() { ... }
+```
+
+Or for classes:
+```
+$content = new ThemeContent();
+$width = $content->width->get();
+```
+
 ## Single responsibility principle
 
-Every folder, file, class, function, mixin - you name it - is meant to do one thing and do it well.
+Every folder, file, class, function, mixin - you name it - is meant to [do one thing and do it well](https://alistapart.com/article/coding-with-clarity#section1).
 
-## Single source of truth
+### Single source of truth
 
 Make sure everything has a single origin.
 
 For example `wp_get_theme()` gives us the theme version number. Instead of `define( 'THEME_VERSION', '0.1.0' );` use `wp_get_theme()->get('version')`.
 
-## No hardwired data inside functions
+### No hardwired data inside functions
 
 This is incorrect:
 ```
-$file_name     = 'js/' . $this->text_domain . '.js';
-$file_location = get_theme_file_uri( '/' . $this->assets_folder );
+$file_name = 'js/' . $text_domain . '.js';
 ```
-Instead `js/`, `.js` and `/` all should be moved into variables.
 
-## The open / close principle
+Instead `js/`, `.js` should be moved into variables.
+```
+/**
+* Theme arguments.
+*
+* @since 1.0.0
+*
+* @var array $arguments An Array of arguments.
+*/
+public $arguments = array(
+	'javascript_folder'      => 'js/',
+	'javascript_extension'   => '.js',
+);
 
-The code should be open for extension but closed for modification.
-
-This means:
-* We need a stable API for both PHP, HTML, CSS and JS components
-* Use callback functions whenever necessary: https://alistapart.com/article/coding-with-clarity-part-ii#section3
+$file_name = $arguments['javascript_folder'] . $text_domain . $arguments['javascript_extension']
+```
