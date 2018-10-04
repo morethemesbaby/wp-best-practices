@@ -24,6 +24,8 @@ A WordPress.org compatible boilerplate theme based on best practices.
 
 * [PHPDoc](https://phpdoc.org/) - Used to generate documentation for the PHP code.
 * [WPCS](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards) - Used to make sure the code quality is up to WordPress standards
+* [Theme Sniffer](https://github.com/WPTRT/theme-sniffer) - Used to run tests to verify WordPress coding standards
+* [Theme Check](https://github.com/Otto42/theme-check) - Used to run tests to verify all requirements are satisfied to make the theme to be accepted in the WordPress.org theme store. 
 
 ## Commands
 
@@ -56,10 +58,17 @@ rm -Rf /tmp/phpdoc-twig-cache/ && phpdoc -d . -t doc/template -i vendor/ --templ
 Make sure the [PHPDocumentor WordPress Theme](https://github.com/morethemesbaby/phpdocumentor-wordpress-theme) is installed first.
 
 ### Checking code quality
+
+#### Command line
 ```
 phpcs --standard=WordPress-Docs,WordPress-VIP,WordPress,Wordpress-Core,WordPres
 s-Extra <filename or foldername>
 ```
+
+#### WordPress dashboard
+
+* Run the NS Theme Checker (Theme Sniffer) plugin against all tests except `WordPress VIP`.
+* Run the Theme Check plugin. All `REQUIRED` and `RECOMMENDED` errors must be fixed.
 
 ## Inspiration
 
