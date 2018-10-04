@@ -31,7 +31,7 @@ HTML code belongs to templates and template tags.
 When a PHP function needs to return a HTML chunk the [output buffering](https://secure.php.net/manual/en/function.ob-start.php) method with a `get_template_part` call is used. 
 
 This is wrong:
-```
+```php
 function theme_get_arrow_html( $direction ) {
 	return 
 		'<span class="arrow-with-triangle arrow-with-triangle--' . $direction . '">
@@ -42,7 +42,7 @@ function theme_get_arrow_html( $direction ) {
 ```
 
 This is better:
-```
+```php
 function theme_get_arrow_html( $query_vars ) {
 	$arguments = array(
 		'query_var_name'     => 'arrow-with-triangle-query-vars',
@@ -67,7 +67,7 @@ For different types of components different techniques are used.
 Class variables are [dynamically set and get](http://codular.com/introducing-php-classes) through overloading / magic methods.
 
 This is not recommended:
-```
+```php
 /**
 * Class arguments.
 *
@@ -82,7 +82,7 @@ public $modifier = string;
 ```
 
 This is better:
-```
+```php
 /**
 * Class arguments.
 *
@@ -105,12 +105,12 @@ public $arguments = array(
 Function arguments are passed as arrays instead of lists of arguments. This way they can stay open and extendable without the modifications breaking the other functions depending on them.
 
 This is not recommended:
-```
+```php
 function display( $title, $description, $author ) { ... }
 ```
 
 This is recommended:
-```
+```php
 function display( $arguments = array() ) { ... }
 ```
 
@@ -121,7 +121,7 @@ Templates are communicating with each other through the `get_template_part` and 
 Passing arguments between template parts is done with an array instead of a list of arguments.
 
 This is wrong:
-```
+```php
 set_query_var( 'post-list-title', theme_get_archive_label( 'Posts' ) );
 set_query_var( 'post-list-klass', 'for-archive' );
 set_query_var( 'post-list-content', theme_get_archive_content() );
@@ -129,7 +129,7 @@ get_template_part( 'template-parts/post-list/post-list', '' );
 ```
 
 This is recommended:
-```
+```php
 $post_list_query_vars = array(
 	'title'   => theme_get_archive_label( 'Posts' ),
 	'klass'   => 'for-archive',
@@ -148,18 +148,18 @@ The role of the function is described by a prefix. Either is a `get_` for a quer
 There should be no functions which have no prefix, except when the function name is a verb, and the function is a member of a class.
 
 This is not recommended:
-```
+```php
 function content_width() { ... }
 ```
 
 This is better:
-```
+```php
 function get_content_width() { ... }
 function set_content_width() { ... }
 ```
 
 Or for classes:
-```
+```php
 $content = new ThemeContent();
 $width   = $content->width->get();
 ```
@@ -177,12 +177,12 @@ For example `wp_get_theme()` gives us the theme version number. Instead of `defi
 ### No hardwired data inside functions
 
 This is incorrect:
-```
+```php
 $file_name = 'js/' . $text_domain . '.js';
 ```
 
 Instead `js/`, `.js` should be moved into variables.
-```
+```php
 /**
 * Theme arguments.
 *

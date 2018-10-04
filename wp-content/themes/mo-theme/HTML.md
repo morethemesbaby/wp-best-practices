@@ -59,7 +59,7 @@ Filters receive data, modify data, and return data. They must be used when a pie
 Since it is easy to add a filter it is recommended to be used as often as possible.
 
 Example: (in theme)
-```
+```php
 $attributes = apply_filters(
 	'mo_theme_post_excerpt_attributes',
 	array(
@@ -76,7 +76,7 @@ $attributes = apply_filters(
 ```
 
 In child theme:
-```
+```php
 add_filter( 'mo_theme_post_excerpt_attributes', ''mo_theme_post_excerpt_attributes_filter' );
 
 function mo_theme_post_excerpt_attributes_filter() {
@@ -104,12 +104,12 @@ You can add a `before` and `after` action for every element on your webpage (log
 There is a tendency to get rid of HTML code in template parts. And use more PHP code instead.
 
 This is wrong:
-```
+```php
 Hybrid\View\display( 'index' );
 ```
 
 This is better:
-```
+```php
 <section class="home">
 	<h3 class="hidden">Homepage</h3>
 
@@ -120,7 +120,7 @@ This is better:
 ## Replace ugly HTML code with PHP code
 
 This is ugly:
-```
+```php
 <a class="link" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo bloginfo( 'name' ); ?>">
 	<span class="text">
 		<?php bloginfo( 'name' ); ?>
@@ -129,7 +129,7 @@ This is ugly:
 ```
 
 This is better:
-```
+```php
 echo wp_kses_post(
 	sprintf(
 		'<a class="link" href="%1$s" title="%2$s"><span class="text">%2$s</span></a>',

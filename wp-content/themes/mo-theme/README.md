@@ -33,14 +33,14 @@ A WordPress.org compatible boilerplate theme based on best practices.
 
 After any modifications to SCSS files run:
 
-```
+```shell
 gulp scss
 ```
 
 ### Autoloading PHP classes
 
 After any modifications to class code or structure run:
-```
+```shell
 composer dump-autoload
 ```
 
@@ -49,14 +49,14 @@ composer dump-autoload
 #### Template tags
 
 For the PHP API documentation (classes) run:
-```
+```shell
 rm -Rf /tmp/phpdoc-twig-cache/ && phpdoc -d . -t doc/api -i vendor/
 ```
 
 #### Template parts
 
 For the WordPres template tags and functions documentation run:
-```
+```shell
 rm -Rf /tmp/phpdoc-twig-cache/ && phpdoc -d . -t doc/template -i vendor/ --template=phpdocumentor-wordpress-theme
 ```
 Make sure the [PHPDocumentor WordPress Theme](https://github.com/morethemesbaby/phpdocumentor-wordpress-theme) is installed first.
@@ -68,7 +68,7 @@ Tbd.
 ### Checking code quality
 
 #### Command line
-```
+```shell
 phpcs --standard=WordPress-Docs,WordPress-VIP,WordPress,Wordpress-Core,WordPres
 s-Extra <filename or foldername>
 ```
