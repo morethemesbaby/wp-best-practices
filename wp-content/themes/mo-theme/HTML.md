@@ -1,6 +1,6 @@
 # HTML Principles
 
-* [Preserve WordPress theme files organization](#preserve-wordpress-theme-files-organization)
+* [Default WordPress theme files organization](#default-wordpress-theme-files-organization)
 * [Components](#components)
 	* [Generated classnames](#generated-classnames)
 	* [Naming conventions](#naming-conventions)
@@ -13,7 +13,7 @@
 * [Semantic and outlined](#semantic-and-outlined)
 
 
-## Preserve WordPress theme files organization
+## Default WordPress theme files organization
 
 WordPress has [a clear indication](https://developer.wordpress.org/themes/basics/organizing-theme-files/) how to organize templates, template parts and template tags.
 
@@ -33,11 +33,26 @@ There should be a:
 
 ### Generated classnames
 
-To achieve this consistency component class names and element identifiers are generated instead of being added manually. Manual work is a bug. [Always be automating](https://morethemes.baby/2018/04/05/manual-work-is-a-bug-always-be-automating-a-b-a/).
+To achieve this consistency component class names and element identifiers are generated instead of being added manually. [Manual work is a bug. Always be automating](https://morethemes.baby/2018/04/05/manual-work-is-a-bug-always-be-automating-a-b-a/).
 
 Manually we can make mistakes:
+```html
+<aside class="non-consistent-naming">
 ```
+
+With an algorithm is harder:
+```php
+$attributes = apply_filters(
+	array(
+		'block'    => 'post',
+		'element'  => 'excerpt',
+	)
+);
+
+<aside <?php $component->attributes->display( $attributes ); ?>>
 ```
+
+Since classnames are defining code structure it is very important to use this automation. 
 
 ### Naming conventions
 
@@ -54,11 +69,32 @@ block
 ```
 
 We have:
-```
+```shell
 block
 |. --modifier-for-block
 block-element
 |. --modifier-for-element
+```
+
+If this is not working the original BEM method can be switched on:
+```php
+class MoThemeHTMLComponentAttributes extends MoThemeHTMLComponent {
+
+		/**
+		 * Class arguments.
+		 *
+		 * Used to setup the class.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @var array An array of arguments.
+		 */
+		public $arguments = array(
+			...
+			'element_prefix'          => '-',
+			'modifier_prefix'         => '--',
+			...
+		);
 ```
 
 ## Extendable
@@ -72,7 +108,7 @@ Filters receive data, modify data, and return data. They must be used when a pie
 Since it is easy to add a filter it is recommended to be used as often as possible.
 
 Example: (in theme)
-```php
+```html
 $attributes = apply_filters(
 	'mo_theme_post_excerpt_attributes',
 	array(
@@ -90,7 +126,7 @@ $attributes = apply_filters(
 
 In child theme:
 ```php
-add_filter( 'mo_theme_post_excerpt_attributes', ''mo_theme_post_excerpt_attributes_filter' );
+add_filter( 'mo_theme_post_excerpt_attributes', 'mo_theme_post_excerpt_attributes_filter' );
 
 function mo_theme_post_excerpt_attributes_filter() {
 	return array(
@@ -122,7 +158,7 @@ Hybrid\View\display( 'index' );
 ```
 
 This is better:
-```php
+```html
 <section class="home">
 	<h3 class="hidden">Homepage</h3>
 
@@ -133,7 +169,7 @@ This is better:
 ## Replace ugly HTML code with PHP code
 
 This is ugly:
-```php
+```html
 <a class="link" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo bloginfo( 'name' ); ?>">
 	<span class="text">
 		<?php bloginfo( 'name' ); ?>
@@ -151,7 +187,6 @@ echo wp_kses_post(
 	)
 );
 ```
-
 
 ## Semantic and outlined
 

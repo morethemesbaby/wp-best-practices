@@ -4,15 +4,17 @@ A WordPress.org compatible boilerplate theme based on best practices.
 
 ## Features
 
-* Full support for WordPress.org default [functionalities](https://developer.wordpress.org/themes/functionality/) and [customizations](https://developer.wordpress.org/themes/customize-api/).
 * [Class based namespaces](https://10up.github.io/Engineering-Best-Practices/php/#design-patterns) for WordPress.org / PHP version <5.3 compatibility.
-* Separate documentations for the API, for the templates, and for the SCSS code.
+* [Default](https://developer.wordpress.org/themes/basics/organizing-theme-files/) WordPress theme files organization.
+* Reusable and extendable PHP/HTML/SCSS components.
+* Documentation for the PHP API, the templates and template parts, and for SCSS.
+
 
 ## Principles
 
 * [PHP](PHP.md)
 * [HTML](HTML.md)
-* [CSS](CSS.md)
+* [CSS](CSS.md) - work in progress.
 
 ## Dependencies
 
