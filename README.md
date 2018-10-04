@@ -11,7 +11,7 @@ Boilerplate code for WordPress plugins and themes based on best practices.
 
 1. A WordPress.org compatible theme: [Mo Theme](wp-content/themes/mo-theme)
 2. A WordPress.org compatible plugin: [Mo Plugin](wp-content/themes/mo-plugin) - work in progress.
-3. A `pro` version of the theme from 1. using the plugin from 2.: [Mo Pro Theme] (wp-content/themes/mo-pro-theme) - work in progress.
+3. A `pro` version of the theme from 1. using the plugin from 2.: [Mo Pro Theme](wp-content/themes/mo-pro-theme) - work in progress.
 
 
 ## Inspiration
