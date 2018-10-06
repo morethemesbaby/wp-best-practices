@@ -1,6 +1,6 @@
 <?php
 /**
- * The header class
+ * The Header class
  *
  * @package MoTheme
  * @since 1.0.0
