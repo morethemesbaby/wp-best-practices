@@ -1,0 +1,14 @@
+// Styles required by WordPress.org theme store
+
+.wp-caption,
+.wp-caption-text,
+.sticky,
+.screen-reader-text,
+.gallery-caption,
+.bypostauthor,
+.alignright,
+.alignleft,
+.aligncenter {
+    // We need to add some dummy property here to make the compiler add this to the generated CSS file.
+    text-decoration: none;
+}
