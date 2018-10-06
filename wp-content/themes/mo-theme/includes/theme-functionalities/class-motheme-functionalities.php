@@ -53,6 +53,7 @@ if ( ! class_exists( 'MoThemeFunctionalities' ) ) {
 		public function setup_wporg() {
 			$content_width = new MoThemeFunctionalitiesContentWidth();
 			$post_formats  = new MoThemeFunctionalitiesPostFormats();
+			$sidebars      = new MoThemeFunctionalitiesSidebars();
 		}
 	}
 } // End if().
