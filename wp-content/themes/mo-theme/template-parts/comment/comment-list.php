@@ -33,8 +33,7 @@ $component = new MoThemeHTMLComponent();
 $attributes = apply_filters(
 	'mo_theme_comment_list_attributes',
 	array(
-		'block'        => 'comment',
-		'element'      => 'list',
+		'block'        => 'comment-list',
 		'custom_class' => 'list',
 		'custom_id'    => 'comments-for-post-' . esc_attr( get_the_ID( $post ) ),
 	)
