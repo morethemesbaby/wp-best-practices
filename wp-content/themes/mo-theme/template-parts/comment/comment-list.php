@@ -14,11 +14,10 @@ if ( post_password_required() ) {
 	return;
 }
 
-$mocomment = new MoThemeComment();
-
-$comments = $mocomment->get_without_pingback_trackback(
+$comments = wp_list_comments(
 	array(
-		'post' => $post,
+		'type' => 'comment',
+		'echo' => false,
 	)
 );
 
