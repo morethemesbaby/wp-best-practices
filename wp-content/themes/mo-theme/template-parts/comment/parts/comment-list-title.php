@@ -24,12 +24,17 @@ $arrows_attributes = apply_filters(
 		'direction' => 'bottom',
 	)
 );
+
+$number_of_comments = $component->get_query_var(
+	array(
+		'name' => 'number-of-comments-query-vars',
+	)
+);
+$number_of_comments = empty( $number_of_comments ) ? 0 : reset( $number_of_comments );
 ?>
 
 <h3 <?php $component->attributes->display( $attributes ); ?>>
 	<?php
-		$number_of_comments = get_query_var( 'number_of_comments' );
-
 		if ( 1 === $number_of_comments ) {
 			/* translators: The Comment section title for a single comment. */
 			$text = esc_html_x( 'One update', 'one comment', 'mo-theme' );

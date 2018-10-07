@@ -14,9 +14,9 @@ if ( post_password_required() ) {
 	return;
 }
 
-$mocomments = new MoThemeComments();
+$mocomment = new MoThemeComment();
 
-$comments = $mocomments->get_without_pingback_trackback(
+$comments = $mocomment->get_without_pingback_trackback(
 	array(
 		'post' => $post,
 	)
@@ -42,8 +42,16 @@ $attributes = apply_filters(
 
 <section <?php $component->attributes->display( $attributes ); ?>>
 	<?php
-		set_query_var( 'number_of_comments', $number_of_comments );
-		get_template_part( 'template-parts/comment/parts/comment-list-title', '' );
+		$arguments = array(
+			'query_var_name'     => 'number-of-comments-query-vars',
+			'query_var_value'    => array(
+				'number_of_comments' => $number_of_comments,
+			),
+			'template_part_slug' => 'template-parts/comment/parts/comment-list-title',
+			'template_part_name' => '',
+		);
+
+		echo wp_kses_post( $component->get_template_part( $arguments ) );
 	?>
 
 	<div class="comment-list-items list-items">
