@@ -51,9 +51,14 @@ if ( ! class_exists( 'MoThemeFunctionalities' ) ) {
 		 * @return void
 		 */
 		public function setup_wporg() {
-			$content_width = new MoThemeFunctionalitiesContentWidth();
-			$post_formats  = new MoThemeFunctionalitiesPostFormats();
-			$sidebars      = new MoThemeFunctionalitiesSidebars();
+			$content_width     = new MoThemeFunctionalitiesContentWidth();
+			$post_formats      = new MoThemeFunctionalitiesPostFormats();
+			$sidebars          = new MoThemeFunctionalitiesSidebars();
+			$title_tag         = new MoThemeFunctionalitiesTitleTag();
+			$post_thumbnails   = new MoThemeFunctionalitiesPostThumbnails();
+			$custom_header     = new MoThemeFunctionalitiesCustomHeader();
+			$custom_background = new MoThemeFunctionalitiesCustomBackground();
+			$editor_style      = new MoThemeFunctionalitiesEditorStyle();
 		}
 	}
 } // End if().
