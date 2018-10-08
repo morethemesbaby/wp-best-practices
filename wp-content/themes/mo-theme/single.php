@@ -42,7 +42,14 @@ $title = apply_filters(
 			the_post();
 			get_template_part( 'template-parts/post/post', 'single' );
 			get_template_part( 'template-parts/post/parts/post', 'footer' );
-			get_template_part( 'template-parts/comment/comment', 'list' );
+
+			// This is required by WordPress.org theme compatibility.
+			// Alternatively you can use:
+			// get_template_part( 'template-parts/comment/comment', 'list' );.
+			if ( comments_open() || get_comments_number() ) :
+				comments_template();
+			endif;
+
 			get_template_part( 'template-parts/navigation/navigation', 'for-post' );
 		}
 	?>
