@@ -14,10 +14,10 @@ if ( post_password_required() ) {
 	return;
 }
 
-$comments = wp_list_comments(
+$mocomment = new MoThemeComment();
+$comments  = $mocomment->get_without_pingback_trackback(
 	array(
-		'type' => 'comment',
-		'echo' => false,
+		'post' => $post,
 	)
 );
 
@@ -60,4 +60,16 @@ $attributes = apply_filters(
 			}
 		?>
 	</div>
+
+	<?php
+		// These all all required for WordPress.org compatibility.
+		// We don't really use them in this theme.
+		the_comments_navigation();
+
+		if ( ! comments_open() ) {
+			esc_html_e( 'Comments are closed.', 'mo-theme' );
+		} else {
+			comment_form();
+		}
+	?>
 </section>

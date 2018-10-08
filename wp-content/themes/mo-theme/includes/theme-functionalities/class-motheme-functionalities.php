@@ -59,6 +59,7 @@ if ( ! class_exists( 'MoThemeFunctionalities' ) ) {
 			$custom_header     = new MoThemeFunctionalitiesCustomHeader();
 			$custom_background = new MoThemeFunctionalitiesCustomBackground();
 			$editor_style      = new MoThemeFunctionalitiesEditorStyle();
+			$comment_scripts   = new MoThemeFunctionalitiesCommentScripts();
 		}
 	}
 } // End if().
