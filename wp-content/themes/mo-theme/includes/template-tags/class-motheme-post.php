@@ -98,13 +98,15 @@ if ( ! class_exists( 'MoThemePost' ) ) {
 		/**
 		 * Returns the class attribute for a post.
 		 *
+		 * Includes also a `post_class` call required by WordPress.org themes.
+		 *
 		 * @since 1.0.0
 		 *
 		 * @return string
 		 */
 		public function get_class() {
 			$orientation = '';
-			$klass       = array();
+			$klass       = get_post_class();
 
 			if ( $this->has_content() ) {
 				$orientation = $this->get_class_orientation(
