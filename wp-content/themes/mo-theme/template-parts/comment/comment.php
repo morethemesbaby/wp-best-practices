@@ -2,6 +2,9 @@
 /**
  * Displays a comment inside a post.
  *
+ * There is an alternative way for displaying comments, the WordPress.org way.
+ * @see comments.php
+ *
  * It contains:
  * * A Date and time comment template part.
  * * A Content comment template part.

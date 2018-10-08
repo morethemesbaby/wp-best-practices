@@ -2,6 +2,9 @@
 /**
  * Displays a list of comments.
  *
+ * There is an alternative way for displaying comments, the WordPress.org way.
+ * @see comments.php
+ *
  * It contains:
  * * A List title Comment template part
  * * A series of Single comments template parts
@@ -60,16 +63,4 @@ $attributes = apply_filters(
 			}
 		?>
 	</div>
-
-	<?php
-		// These all all required for WordPress.org compatibility.
-		// We don't really use them in this theme.
-		the_comments_navigation();
-
-		if ( ! comments_open() ) {
-			esc_html_e( 'Comments are closed.', 'mo-theme' );
-		} else {
-			comment_form();
-		}
-	?>
 </section>
