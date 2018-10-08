@@ -60,6 +60,10 @@ if ( ! class_exists( 'MoThemeFunctionalities' ) ) {
 			$custom_background = new MoThemeFunctionalitiesCustomBackground();
 			$editor_style      = new MoThemeFunctionalitiesEditorStyle();
 			$comment_scripts   = new MoThemeFunctionalitiesCommentScripts();
+			$custom_logo       = new MoThemeFunctionalitiesCustomLogo();
+			$html5_support     = new MoThemeFunctionalitiesHTML5Support();
+			$navigation_menus  = new MoThemeFunctionalitiesNavigationMenus();
+			$refresh_widgets   = new MoThemeFunctionalitiesRefreshWidgets();
 		}
 	}
 } // End if().
