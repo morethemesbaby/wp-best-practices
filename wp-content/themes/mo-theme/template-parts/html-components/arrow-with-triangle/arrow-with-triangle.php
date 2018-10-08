@@ -7,7 +7,7 @@
  *
  * @param string $arrow_direction The direction of the arrow.
  *
- * @package Log_Lolla_Theme
+ * @package MoTheme
  * @since 1.0.0
  */
 

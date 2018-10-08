@@ -9,7 +9,7 @@
  * * A List title Comment template part
  * * A series of Single comments template parts
  *
- * @package Log_Lolla_Pro_Theme
+ * @package MoTheme
  * @since 1.0.0
  */
 

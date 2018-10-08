@@ -13,8 +13,8 @@ $component = new MoThemeHTMLComponent();
 $attributes = apply_filters(
 	'mo_theme_post_paginated_content_attributes',
 	array(
-		'block'    => 'post',
-		'element'  => 'paginated-content',
+		'block'   => 'post',
+		'element' => 'paginated-content',
 	)
 );
 

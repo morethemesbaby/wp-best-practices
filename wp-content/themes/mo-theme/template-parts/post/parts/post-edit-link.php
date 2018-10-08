@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package Log_Lolla_Theme
+ * @package MoTheme
  * @since 1.0.0
  */
 
@@ -13,8 +13,8 @@ $component = new MoThemeHTMLComponent();
 $attributes = apply_filters(
 	'mo_theme_post_post_edit_link_attributes',
 	array(
-		'block'    => 'post',
-		'element'  => 'edit-link',
+		'block'   => 'post',
+		'element' => 'edit-link',
 	)
 );
 

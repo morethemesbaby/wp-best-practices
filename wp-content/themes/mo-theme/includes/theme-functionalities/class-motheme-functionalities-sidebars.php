@@ -84,38 +84,19 @@ if ( ! class_exists( 'MoThemeFunctionalitiesSidebars' ) ) {
 		public function register_sidebar( $arguments ) {
 			$arguments = array_merge( $this->sidebar_arguments, $arguments );
 
-			$arguments['name'] = $this->get_translation_string(
-				array(
-					'name'  => 'name',
-					'value' => $arguments['name'],
-				)
+			$arguments['name'] = esc_html_x(
+				"{$arguments['name']}",
+				"The name of the {$arguments['name']} widget area",
+				'mo-theme'
 			);
 
-			$arguments['description'] = $this->get_translation_string(
-				array(
-					'name'  => 'description',
-					'value' => $arguments['description'],
-				)
+			$arguments['description'] = esc_html_x(
+				"{$arguments['name']} widget area",
+				"The description of the {$arguments['name']} widget area",
+				'mo-theme'
 			);
 
 			register_sidebar( $arguments );
-		}
-
-		/**
-		 * Returns a translation string.
-		 *
-		 * @since 1.0.0
-		 *
-		 * @param array $arguments The arguments array.
-		 *
-		 * @return string
-		 */
-		public function get_translation_string( $arguments ) {
-			return esc_html_x(
-				"{$arguments['value']}",
-				"The {$arguments['value']} of the {$arguments['name']} widget area",
-				'mo-theme'
-			);
 		}
 	}
 }

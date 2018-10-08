@@ -10,7 +10,7 @@
  *
  * @param array component_title Argument list.
  *
- * @package LogLollaTheme
+ * @package MoTheme
  * @since 1.0.0
  */
 
