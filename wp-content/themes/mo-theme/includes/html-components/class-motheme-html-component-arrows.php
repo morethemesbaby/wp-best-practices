@@ -90,9 +90,9 @@ if ( ! class_exists( 'MoThemeHTMLComponentArrows' ) ) {
 		 */
 		public function display_or_get() {
 			$arguments = array(
-				'query_var_name'     => 'component-title-query-vars',
+				'query_var_name'     => 'arrow_with_triangle_query_vars',
 				'query_var_value'    => $this->arguments,
-				'template_part_slug' => 'template-parts/html-component/arrow-with-triangle/arrow-with-triangle',
+				'template_part_slug' => 'template-parts/html-components/arrow-with-triangle/arrow-with-triangle',
 				'template_part_name' => '',
 			);
 

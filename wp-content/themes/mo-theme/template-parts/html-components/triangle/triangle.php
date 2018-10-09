@@ -14,8 +14,11 @@ $component = new MoThemeHTMLComponent();
 
 $triangle_query_vars = $mo->get_query_var(
 	array(
-		'direction' => 'top',
-		'klass'     => '',
+		'name'     => 'triangle_query_vars',
+		'defaults' => array(
+			'direction' => 'top',
+			'klass'     => '',
+		),
 	)
 );
 

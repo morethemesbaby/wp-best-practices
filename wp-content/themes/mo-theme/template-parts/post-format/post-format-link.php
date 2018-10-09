@@ -38,8 +38,7 @@ $post_title_arguments = array(
 	'link_title' => $title,
 );
 
-add_filter( 'the_title', $mopostformat->add_arrow_to_link_post_title(), 10, 2 );
-
+add_filter( 'the_title', array( $mopostformat, 'add_arrow_to_link_post_title' ), 10, 2 );
 ?>
 
 <article <?php $component->attributes->display( $attributes ); ?>>

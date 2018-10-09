@@ -16,7 +16,7 @@ $component = new MoThemeHTMLComponent();
 
 $arrow_direction_query_vars = $mo->get_query_var(
 	array(
-		'name'     => 'arrow_direction',
+		'name'     => 'arrow_with_triangle_query_vars',
 		'defaults' => array(
 			'direction' => 'top',
 		),
@@ -38,13 +38,15 @@ $attributes = apply_filters(
 	<span class="arrow-with-triangle__line"></span>
 
 	<?php
-		set_query_var(
-			'triangle',
-			array(
+		$arguments = array(
+			'query_var_name'     => 'triangle_query_vars',
+			'query_var_value'    => array(
 				'direction' => $arrow_direction,
 				'klass'     => 'arrow-with-triangle__triangle',
-			)
+			),
+			'template_part_slug' => 'template-parts/html-components/triangle/triangle',
+			'template_part_name' => '',
 		);
-		get_template_part( 'template-parts/html-components/triangle/triangle', '' );
+		$mo->get_template_part( $arguments );
 	?>
 </span>
