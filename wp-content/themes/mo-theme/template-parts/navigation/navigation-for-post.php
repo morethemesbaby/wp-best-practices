@@ -13,8 +13,8 @@ $component = new MoThemeHTMLComponent();
 $attributes = apply_filters(
 	'mo_theme_navigation_for_post_attributes',
 	array(
-		'block'         => 'navigation',
-		'custom_class'  => 'navigation-for-post',
+		'block'        => 'navigation',
+		'custom_class' => 'navigation-for-post',
 	)
 );
 

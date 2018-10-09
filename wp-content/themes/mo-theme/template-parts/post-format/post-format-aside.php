@@ -26,6 +26,7 @@ $attributes = apply_filters(
 	<?php do_action( 'mo_theme_before_post_format_aside' ); ?>
 
 	<?php get_template_part( 'template-parts/post/parts/post', 'sticky' ); ?>
+	<?php get_template_part( 'template-parts/post/parts/post', 'title' ); ?>
 	<?php get_template_part( 'template-parts/post/parts/post', 'content' ); ?>
 	<?php get_template_part( 'template-parts/post/parts/post', 'permalink' ); ?>
 

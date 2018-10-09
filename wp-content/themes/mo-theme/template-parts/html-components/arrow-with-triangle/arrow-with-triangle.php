@@ -34,7 +34,7 @@ $attributes = apply_filters(
 );
 ?>
 
-<span <?php $component->attributes->display( $attributes ); ?>">
+<span <?php $component->attributes->display( $attributes ); ?>>
 	<span class="arrow-with-triangle__line"></span>
 
 	<?php

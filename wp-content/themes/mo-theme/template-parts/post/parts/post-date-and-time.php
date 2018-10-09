@@ -33,7 +33,7 @@ $title = apply_filters(
 		<?php
 			echo sprintf(
 				'<time class="date published" datetime="%1$s">%2$s</time>',
-				esc_attr( get_the_date( 'c' ) . ', ' . get_the_time( 'c' ) ),
+				esc_attr( get_the_time( 'c' ) ),
 				esc_html( get_the_date() . ', ' . get_the_time() )
 			);
 		?>
