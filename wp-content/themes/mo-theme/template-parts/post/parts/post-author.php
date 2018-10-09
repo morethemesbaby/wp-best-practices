@@ -37,7 +37,7 @@ $title = apply_filters(
 
 		<span class="post-author-link">
 			<?php
-				echo sprintf(
+				printf(
 					'<a class="link" href="%1$s" title="%2$s">%2$s</a>',
 					esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
 					esc_html( get_the_author() )

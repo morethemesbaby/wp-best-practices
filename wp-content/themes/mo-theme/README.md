@@ -4,8 +4,8 @@ A [WordPress.org compatible](https://make.wordpress.org/themes/handbook/review/r
 
 ## Features
 
-* Class based namespaces for WordPress.org / PHP version <5.3 compatibility.
 * Default WordPress theme files organization.
+* Class based namespaces for WordPress.org / PHP version <5.3 compatibility.
 * Reusable and extendable PHP/HTML/SCSS components.
 * Documentation for the PHP API, the templates and template parts, and for SCSS.
 

@@ -32,7 +32,7 @@ $title = apply_filters(
 
 	<figure class="figure">
 		<?php
-			echo sprintf(
+			printf(
 				'<a class="link" href="%1$s" title="%2$s"><img src="%3$s" alt="%2$s"></a>',
 				esc_url( get_permalink() ),
 				the_title_attribute( 'echo=0' ),

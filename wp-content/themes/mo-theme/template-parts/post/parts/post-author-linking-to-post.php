@@ -41,7 +41,7 @@ $arrows_attributes = apply_filters(
 
 	<div class="post-author-link">
 		<?php
-			echo sprintf(
+			printf(
 				'<a class="link" href="%1$s" title="%2$s">%3$s%4$s</a>',
 				esc_url( get_permalink() ),
 				the_title_attribute( 'echo=0' ),

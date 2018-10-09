@@ -32,7 +32,7 @@ if ( has_post_thumbnail() ) {
 
 		<figure class="figure">
 			<?php
-				echo sprintf(
+				printf(
 					'<a class="link" href="%1$s" title="%2$s">%3$s</a>',
 					esc_url( get_permalink() ),
 					the_title_attribute( 'echo=0' ),

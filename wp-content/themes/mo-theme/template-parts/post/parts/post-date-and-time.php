@@ -31,7 +31,7 @@ $title = apply_filters(
 
 	<div class="posted-on">
 		<?php
-			echo sprintf(
+			printf(
 				'<time class="date published" datetime="%1$s">%2$s</time>',
 				esc_attr( get_the_time( 'c' ) ),
 				esc_html( get_the_date() . ', ' . get_the_time() )
