@@ -48,15 +48,21 @@ if ( ! class_exists( 'MoThemePostFormat' ) ) {
 		 *
 		 * @link https://codex.wordpress.org/Plugin_API/Filter_Reference/the_title
 		 *
-		 * @param string  $title The title of the post.
-		 * @param integer $id    The ID of the post.
+		 * @param array $arguments The arguments array.
 		 * @return string
 		 */
-		public function add_arrow_to_link_post_title( $title, $id = null ) {
+		public function add_arrow_to_link_post_title( $arguments = array() ) {
+			$arguments = array_merge(
+				array(
+					'title' => '',
+				),
+				$arguments
+			);
+
 			if ( 'link' === get_post_format() ) {
-				return $title . $this->get_arrow_for_link_post_title();
+				return $arguments['title'] . $this->get_arrow_for_link_post_type();
 			} else {
-				return $title;
+				return $arguments['title'];
 			}
 		}
 
