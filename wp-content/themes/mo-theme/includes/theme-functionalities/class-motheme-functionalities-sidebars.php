@@ -12,7 +12,7 @@ if ( ! class_exists( 'MoThemeFunctionalitiesSidebars' ) ) {
 	 *
 	 * @since 1.0.0
 	 */
-	class MoThemeFunctionalitiesSidebars {
+	class MoThemeFunctionalitiesSidebars extends MoThemeBase {
 		/**
 		 * Sidebars
 		 *
@@ -82,7 +82,7 @@ if ( ! class_exists( 'MoThemeFunctionalitiesSidebars' ) ) {
 		 * @return void
 		 */
 		public function register_sidebar( $arguments ) {
-			$arguments = array_merge( $this->sidebar_arguments, $arguments );
+			$arguments = $this->array_merge( $this->sidebar_arguments, $arguments );
 
 			// This will yield a PHPCS error: `The $text arg must not contain interpolated variables. Found "$arguments".`
 			// This cannot be fixed (yet).

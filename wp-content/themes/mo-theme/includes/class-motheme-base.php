@@ -82,6 +82,22 @@ if ( ! class_exists( 'MoThemeBase' ) ) {
 			}
 		}
 
+		/**
+		 * Merges two arrays.
+		 *
+		 * The PHP `array_merge()` gives a warning when the second argument is not an array.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param array $array1 The first array.
+		 * @param array $array2 The second array.
+		 *
+		 * @return array
+		 */
+		public function array_merge( $array1 = array(), $array2 = array() ) {
+			return array_merge( (array) $array1, (array) $array2 );
+		}
+
 
 		/**
 		 * Gets a query var.
@@ -92,7 +108,7 @@ if ( ! class_exists( 'MoThemeBase' ) ) {
 		 * @return array
 		 */
 		public function get_query_var( $arguments ) {
-			$this->get_query_var_arguments = array_merge(
+			$this->get_query_var_arguments = $this->array_merge(
 				$this->get_query_var_arguments,
 				$arguments
 			);
@@ -100,7 +116,7 @@ if ( ! class_exists( 'MoThemeBase' ) ) {
 			$query_var  = get_query_var( $this->get_query_var_arguments['name'] );
 			$query_vars = ( '' === $query_var ) ? array() : $query_var;
 
-			return array_merge(
+			return $this->array_merge(
 				$this->get_query_var_arguments['defaults'],
 				$query_vars
 			);
@@ -115,7 +131,7 @@ if ( ! class_exists( 'MoThemeBase' ) ) {
 		 * @return string            HTML
 		 */
 		public function get_template_part( $arguments ) {
-			$this->get_template_part_arguments = array_merge(
+			$this->get_template_part_arguments = $this->array_merge(
 				$this->get_template_part_arguments,
 				$arguments
 			);

@@ -64,7 +64,7 @@ if ( ! class_exists( 'MoThemeHTMLComponentTextWrapper' ) ) {
 		 * @return void
 		 */
 		public function __construct( $arguments = array(), MoThemeHTMLComponent $parent ) {
-			$this->arguments            = array_merge( $this->arguments, $arguments );
+			$this->arguments            = $this->array_merge( $this->arguments, $arguments );
 			$this->parent               = $parent;
 			$this->arguments_for_parent = array(
 				'block'   => $this->arguments['value'],

@@ -12,7 +12,7 @@ if ( ! class_exists( 'MoThemeFunctionalities' ) ) {
 	 *
 	 * @since 1.0.0
 	 */
-	class MoThemeFunctionalities {
+	class MoThemeFunctionalities extends MoThemeBase {
 
 		/**
 		 * The class arguments.
@@ -34,7 +34,7 @@ if ( ! class_exists( 'MoThemeFunctionalities' ) ) {
 		 * @return void
 		 */
 		public function __construct( $arguments ) {
-			$this->arguments = array_merge( $this->arguments, $arguments );
+			$this->arguments = $this->array_merge( $this->arguments, $arguments );
 
 			switch ( $this->arguments['set'] ) {
 				case FUNCTIONALITY_SET_WPORG:

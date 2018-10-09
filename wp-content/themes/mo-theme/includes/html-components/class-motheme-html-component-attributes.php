@@ -68,7 +68,7 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 		 * @return void
 		 */
 		public function __construct( $arguments = array() ) {
-			$this->arguments = array_merge( $this->arguments, $arguments );
+			$this->arguments = $this->array_merge( $this->arguments, $arguments );
 		}
 
 		/**
@@ -82,7 +82,7 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 		 * @return void
 		 */
 		public function display( $arguments = array() ) {
-			$this->arguments            = array_merge( $this->arguments, $arguments );
+			$this->arguments            = $this->array_merge( $this->arguments, $arguments );
 			$this->arguments['display'] = true;
 
 			$this->display_or_get( $this->create_id() );
@@ -101,7 +101,7 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 		 * @return string
 		 */
 		public function get( $arguments = array() ) {
-			$this->arguments            = array_merge( $this->arguments, $arguments );
+			$this->arguments            = $this->array_merge( $this->arguments, $arguments );
 			$this->arguments['display'] = false;
 
 			return implode(
@@ -202,7 +202,7 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 		 * @return string
 		 */
 		public function get_attribute_with_values( $arguments = array() ) {
-			$arguments = array_merge( $this->attribute_with_values_arguments, $arguments );
+			$arguments = $this->array_merge( $this->attribute_with_values_arguments, $arguments );
 
 			if ( ( '' === $arguments['attribute'] ) || ( '' === $arguments['values'] ) ) {
 				return;
@@ -230,7 +230,7 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 		 * @return void
 		 */
 		public function display_attribute_with_values( $arguments = array() ) {
-			$arguments = array_merge( $this->attribute_with_values_arguments, $arguments );
+			$arguments = $this->array_merge( $this->attribute_with_values_arguments, $arguments );
 
 			if ( ( '' === $arguments['attribute'] ) || ( '' === $arguments['values'] ) ) {
 				return;

@@ -36,7 +36,7 @@ if ( ! class_exists( 'MoThemePost' ) ) {
 		 * @return void
 		 */
 		public function __construct( $arguments = array() ) {
-			$this->arguments = array_merge( $this->arguments, $arguments );
+			$this->arguments = $this->array_merge( $this->arguments, $arguments );
 		}
 
 		/**
@@ -130,7 +130,7 @@ if ( ! class_exists( 'MoThemePost' ) ) {
 				$klass[] = 'has-thumbnail';
 			}
 
-			return implode( ' ', array_merge( (array) $orientation, $klass ) );
+			return implode( ' ', $this->array_merge( $orientation, $klass ) );
 		}
 
 		/**
@@ -145,7 +145,7 @@ if ( ! class_exists( 'MoThemePost' ) ) {
 			$defaults   = array(
 				'text' => '',
 			);
-			$arguments  = array_merge( $defaults, $arguments );
+			$arguments  = $this->array_merge( $defaults, $arguments );
 			$word_count = str_word_count( wp_strip_all_tags( $arguments['text'] ) );
 
 			return ( $word_count < $this->arguments['max_word_count'] ) ? 'display-horizontal' : 'display-vertical';

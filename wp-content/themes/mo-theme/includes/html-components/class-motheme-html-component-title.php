@@ -52,7 +52,7 @@ if ( ! class_exists( 'MoThemeHTMLComponentTitle' ) ) {
 		 * @return void
 		 */
 		public function __construct( $arguments = array() ) {
-			$this->arguments = array_merge( $this->arguments, $arguments );
+			$this->arguments = $this->array_merge( $this->arguments, $arguments );
 		}
 
 		/**
@@ -64,7 +64,7 @@ if ( ! class_exists( 'MoThemeHTMLComponentTitle' ) ) {
 		 * @return void
 		 */
 		public function display( $arguments = array() ) {
-			$this->arguments = array_merge( $this->arguments, $arguments );
+			$this->arguments = $this->array_merge( $this->arguments, $arguments );
 
 			$arguments = array(
 				'query_var_name'     => 'component-title-query-vars',

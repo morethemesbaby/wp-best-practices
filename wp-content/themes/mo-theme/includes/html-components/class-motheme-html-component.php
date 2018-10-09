@@ -37,7 +37,7 @@ if ( ! class_exists( 'MoThemeHTMLComponent' ) ) {
 		 * @return void
 		 */
 		public function __construct( $arguments = array() ) {
-			$this->arguments = array_merge( $this->arguments, $arguments );
+			$this->arguments = $this->array_merge( $this->arguments, $arguments );
 
 			$this->attributes   = new MoThemeHTMLComponentAttributes( $this->arguments['attributes'] );
 			$this->title        = new MoThemeHTMLComponentTitle( $this->arguments['title'] );

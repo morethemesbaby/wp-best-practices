@@ -48,7 +48,7 @@ if ( ! class_exists( 'MoThemeHTMLComponentArrows' ) ) {
 		 * @return void
 		 */
 		public function __construct( $arguments = array() ) {
-			$this->arguments = array_merge( $this->arguments, $arguments );
+			$this->arguments = $this->array_merge( $this->arguments, $arguments );
 		}
 
 		/**
@@ -60,7 +60,7 @@ if ( ! class_exists( 'MoThemeHTMLComponentArrows' ) ) {
 		 * @return void
 		 */
 		public function display( $arguments = array() ) {
-			$this->arguments            = array_merge( $this->arguments, $arguments );
+			$this->arguments            = $this->array_merge( $this->arguments, $arguments );
 			$this->arguments['display'] = true;
 
 			$this->display_or_get();
@@ -75,7 +75,7 @@ if ( ! class_exists( 'MoThemeHTMLComponentArrows' ) ) {
 		 * @return string
 		 */
 		public function get( $arguments = array() ) {
-			$this->arguments            = array_merge( $this->arguments, $arguments );
+			$this->arguments            = $this->array_merge( $this->arguments, $arguments );
 			$this->arguments['display'] = false;
 
 			return $this->display_or_get();

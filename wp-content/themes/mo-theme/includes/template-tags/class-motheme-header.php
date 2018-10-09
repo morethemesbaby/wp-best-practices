@@ -35,7 +35,7 @@ if ( ! class_exists( 'MoThemeHeader' ) ) {
 		 * @return void
 		 */
 		public function __construct( $arguments = array() ) {
-			$this->arguments = array_merge( $this->arguments, $arguments );
+			$this->arguments = $this->array_merge( $this->arguments, $arguments );
 		}
 
 		/**
