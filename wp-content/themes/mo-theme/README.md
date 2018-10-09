@@ -13,7 +13,7 @@ A [WordPress.org compatible](https://make.wordpress.org/themes/handbook/review/r
 
 * [PHP](PHP.md)
 * [HTML](HTML.md)
-* [CSS](CSS.md) - work in progress.
+* [CSS](CSS.md)
 
 ## Dependencies
 
