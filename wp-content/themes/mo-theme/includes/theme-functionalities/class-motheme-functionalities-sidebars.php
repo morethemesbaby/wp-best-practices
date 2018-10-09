@@ -84,6 +84,10 @@ if ( ! class_exists( 'MoThemeFunctionalitiesSidebars' ) ) {
 		public function register_sidebar( $arguments ) {
 			$arguments = array_merge( $this->sidebar_arguments, $arguments );
 
+			// This will yield a PHPCS error: `The $text arg must not contain interpolated variables. Found "$arguments".`
+			// This cannot be fixed (yet).
+			// You can move this `esc_html_x` declaration without interpolation into a class variable and will yield another error.
+			// The only thing you can do is to not embed in code, like here.
 			$arguments['name'] = esc_html_x(
 				"{$arguments['name']}",
 				"The name of the {$arguments['name']} widget area",
@@ -98,5 +102,5 @@ if ( ! class_exists( 'MoThemeFunctionalitiesSidebars' ) ) {
 
 			register_sidebar( $arguments );
 		}
-	}
+	} // End if().
 }

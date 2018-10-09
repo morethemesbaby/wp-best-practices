@@ -79,4 +79,4 @@ if ( ! class_exists( 'MoThemeFunctionalitiesCustomHeader' ) ) {
 			<?php
 		}
 	}
-}
+} // End if().

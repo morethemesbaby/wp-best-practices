@@ -44,8 +44,7 @@ $title = apply_filters(
 			get_template_part( 'template-parts/post/parts/post', 'footer' );
 
 			// This is required by WordPress.org theme compatibility.
-			// Alternatively you can use:
-			// get_template_part( 'template-parts/comment/comment', 'list' );.
+			// Alternatively you can use: get_template_part( 'template-parts/comment/comment', 'list' );.
 			if ( comments_open() || get_comments_number() ) :
 				comments_template();
 			endif;

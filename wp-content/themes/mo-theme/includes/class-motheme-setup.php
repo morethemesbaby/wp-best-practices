@@ -46,7 +46,6 @@ if ( ! class_exists( 'MoThemeSetup' ) ) {
 
 			add_action( 'after_setup_theme', array( $this, 'setup_variables' ) );
 			add_action( 'after_setup_theme', array( $this, 'setup_functionalities' ) );
-			add_action( 'after_setup_theme', array( $this, 'setup_customizations' ) );
 			add_action( 'wp_enqueue_scripts', array( $this, 'add_styles' ) );
 			add_action( 'wp_enqueue_scripts', array( $this, 'add_scripts' ) );
 		}
@@ -101,16 +100,6 @@ if ( ! class_exists( 'MoThemeSetup' ) ) {
 			);
 		}
 
-		/**
-		 * Sets up theme customizations.
-		 *
-		 * @since 1.0.0
-		 *
-		 * @return void
-		 */
-		public function setup_customizations() {
-			//
-		}
 
 		/**
 		 * Includes theme scripts.
