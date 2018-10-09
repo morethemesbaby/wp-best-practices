@@ -1,6 +1,6 @@
 # Mo Theme
 
-A WordPress.org compatible boilerplate theme based on best practices.
+A [WordPress.org compatible](https://make.wordpress.org/themes/handbook/review/required/) boilerplate theme based on best practices.
 
 ## Features
 
