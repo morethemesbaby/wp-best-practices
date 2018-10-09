@@ -25,15 +25,14 @@ if ( ! class_exists( 'MoThemeFunctionalitiesCustomBackground' ) ) {
 		 * @return void
 		 */
 		public function __construct() {
-			add_theme_support(
-				'custom-background',
-				apply_filters( 'mo_theme_custom_background_args',
-					array(
-						'default-color' => 'ffffff',
-						'default-image' => '',
-					)
+			$args = apply_filters( 'mo_theme_custom_background_args',
+				array(
+					'default-color' => 'ffffff',
+					'default-image' => '',
 				)
 			);
+
+			add_theme_support( 'custom-background', $args );
 		}
 	}
 }
