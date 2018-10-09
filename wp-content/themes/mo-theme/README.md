@@ -9,7 +9,6 @@ A [WordPress.org compatible](https://make.wordpress.org/themes/handbook/review/r
 * Reusable and extendable PHP/HTML/SCSS components.
 * Documentation for the PHP API, the templates and template parts, and for SCSS.
 
-
 ## Principles
 
 * [PHP](PHP.md)
@@ -28,6 +27,14 @@ A [WordPress.org compatible](https://make.wordpress.org/themes/handbook/review/r
 * [WPCS](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards) - Used to make sure the code quality is up to WordPress standards
 * [Theme Sniffer](https://github.com/WPTRT/theme-sniffer) - Used to run tests to verify WordPress coding standards
 * [Theme Check](https://github.com/Otto42/theme-check) - Used to run tests to verify all requirements are satisfied to make the theme to be accepted in the WordPress.org theme store. 
+
+## Tests
+
+The following tests were all completed manually:
+
+* Theme Sniffer
+* Theme Check
+* W3C Validator and Outliner
 
 ## Commands
 

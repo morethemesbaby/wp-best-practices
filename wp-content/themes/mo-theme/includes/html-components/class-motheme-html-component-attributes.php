@@ -86,6 +86,7 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 			$this->arguments['display'] = true;
 
 			$this->display_or_get( $this->create_id() );
+			echo ' ';
 			$this->display_or_get( $this->create_class() );
 		}
 
