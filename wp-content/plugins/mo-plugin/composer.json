@@ -1,0 +1,15 @@
+{
+  "name": "morethemesbaby/wp-best-practices",
+  "type": "wordpress-plugin",
+  "authors": [
+    {
+      "name": "More Themes Baby",
+      "email": "hello@morethemes.baby"
+    }
+  ],
+  "autoload": {
+	  "classmap": [
+		  "includes/"
+	  ]
+  }
+}

@@ -8,6 +8,9 @@ wp-content/themes/mo-pro-theme/doc
 wp-content/themes/mo-theme/composer.phar
 wp-content/themes/mo-theme/vendor/
 
+wp-content/plugins/mo-plugin/composer.phar
+wp-content/plugins/mo-plugin/vendor/
+
 wp-content/themes/mo-pro-theme/composer.phar
 wp-content/themes/mo-pro-theme/vendor/
 
@@ -16,11 +19,13 @@ wp-content/themes/mo-pro-theme/vendor/
 
 wp-content/themes/mo-theme/node_modules/
 wp-content/themes/mo-pro-theme/node_modules/
+wp-content/plugins/mo-plugin/node_modules
 
 # SASS
 
 wp-content/themes/mo-theme/*.map
 wp-content/themes/mo-pro-theme/*.map
+wp-content/plugins/mo-plugin/*.map
 
 
 # WordPress core
