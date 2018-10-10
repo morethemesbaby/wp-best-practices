@@ -207,7 +207,7 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 		}
 
 		/**
-		 * Sets up a specific functionality.
+		 * Sets up a specific asset.
 		 *
 		 * @since 1.0.0
 		 *
@@ -278,7 +278,7 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 
 
 		/**
-		 * Includes a script.
+		 * Enqueues a script.
 		 *
 		 * @since 1.0.0
 		 *
@@ -300,7 +300,7 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 		}
 
 		/**
-		 * Includes a style.
+		 * Enqueues a style.
 		 *
 		 * @since 1.0.0
 		 *
@@ -325,7 +325,7 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 		 *
 		 * On the admin scripts cannot be loaded in the footer.
 		 * On public they can be loaded anywhere.
-		 * 
+		 *
 		 * @since 1.0.0
 		 *
 		 * @param array $arguments The arguments array.
