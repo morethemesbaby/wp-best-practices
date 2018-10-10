@@ -82,3 +82,12 @@ add_action( 'init', array( $mo_cpt, 'register' ) );
 
 register_activation_hook( __FILE__, array( $mo_plugin, 'activate_plugin' ) );
 register_deactivation_hook( __FILE__, array( $mo_plugin, 'deactivate_plugin' ) );
+
+/**
+ * Uninstall theme
+ *
+ * @since 1.0.0
+ *
+ * @link https://developer.wordpress.org/plugins/the-basics/uninstall-methods/
+ */
+register_uninstall_hook( __FILE__, array( $mo_plugin, 'uninstall_plugin' ) );

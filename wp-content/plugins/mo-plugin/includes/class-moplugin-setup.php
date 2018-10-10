@@ -99,6 +99,8 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 		/**
 		 * Activates the plugin.
 		 *
+		 * Called in the plugin main file with the `register_activation_hook`.
+		 *
 		 * @since 1.0.0
 		 *
 		 * @link https://developer.wordpress.org/plugins/the-basics/activation-deactivation-hooks/
@@ -112,7 +114,9 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 		}
 
 		/**
-		 * Dectivates the plugin.
+		 * Deactivates the plugin.
+		 *
+		 * Called in the plugin main file with the `register_deactivation_hook`.
 		 *
 		 * @since 1.0.0
 		 *
@@ -124,6 +128,20 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 			$mo_cpt->deregister();
 
 			flush_rewrite_rules();
+		}
+
+		/**
+		 * Uninstalls the plugin.
+		 *
+		 * Called in the plugin main file with the `register_uninstall_hook`.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @link https://developer.wordpress.org/plugins/the-basics/uninstall-methods/
+		 * @return void
+		 */
+		public function uninstall_plugin() {
+			// Do nothing for now.
 		}
 
 		/**
