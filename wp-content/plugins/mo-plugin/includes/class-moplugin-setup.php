@@ -175,7 +175,7 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 					'file_handle'  => $this->javascript_file_handle,
 					'subfolder'    => $this->javascript_folder,
 					'dependencies' => $this->javascript_dependencies,
-					'in_footer'    => $this->javascript_in_footer,
+					'in_footer'    => $this->in_footer( $arguments ),
 				)
 			);
 
@@ -191,7 +191,7 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 
 			add_action(
 				$arguments['action'],
-				function() use ( $scripts ) {
+				function() use ( $script ) {
 					$this->add_script( $script );
 				}
 			);
@@ -268,6 +268,32 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 					$arguments['dependencies'],
 					$arguments['timestamp']
 				);
+			}
+		}
+
+		/**
+		 * Decides if a script can be / must be loaded in the footer.
+		 *
+		 * On the admin scripts cannot be loaded in the footer.
+		 * On public they can be loaded anywhere.
+		 * 
+		 * @since 1.0.0
+		 *
+		 * @param array $arguments The arguments array.
+		 * @return boolean
+		 */
+		public function in_footer( $arguments = array() ) {
+			$arguments = $this->array_merge(
+				array(
+					'folder' => '',
+				),
+				$arguments
+			);
+
+			if ( $arguments['folder'] === $this->admin_assets_folder ) {
+				return false;
+			} else {
+				return $this->javascript_in_footer;
 			}
 		}
 	}

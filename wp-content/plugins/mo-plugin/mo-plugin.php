@@ -64,7 +64,7 @@ if ( file_exists( PLUGIN_DIR_PATH . '/vendor/autoload.php' ) ) {
 $mo_plugin = new MoPluginSetup(
 	apply_filters( 'mo_plugin_setup_array',
 		array(
-			'has_admin_interface'  => true,
+			'has_admin_interface'  => false,
 			'has_public_interface' => true,
 		)
 	)
