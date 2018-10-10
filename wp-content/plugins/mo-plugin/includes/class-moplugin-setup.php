@@ -110,6 +110,8 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 			$mo_cpt = new MoPluginCustomPostTypes();
 			$mo_cpt->register();
 
+			add_shortcode( 'motag', array( 'MoPluginCustomShortcode', 'motag' ) );
+
 			flush_rewrite_rules();
 		}
 
@@ -126,6 +128,8 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 		public function deactivate_plugin() {
 			$mo_cpt = new MoPluginCustomPostTypes();
 			$mo_cpt->deregister();
+
+			remove_shortcode( 'motag' );
 
 			flush_rewrite_rules();
 		}
