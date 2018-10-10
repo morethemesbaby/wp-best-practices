@@ -39,6 +39,34 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 		);
 
 		/**
+		 * Arguments for a theme functionality.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @var array
+		 */
+		public $functionality_arguments = array(
+			'folder' => '',
+			'action' => '',
+		);
+
+		/**
+		 * Arguments to enqueue a script or style.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @var array
+		 */
+		public $enqueue_arguments = array(
+			'folder'       => '',
+			'extension'    => '',
+			'file_handle'  => '',
+			'subfolder'    => '',
+			'dependencies' => array(),
+			'in_footer'    => false,
+		);
+
+		/**
 		 * Sets up the class.
 		 *
 		 * @since 1.0.0
@@ -98,118 +126,127 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 		 */
 		public function setup_functionalities() {
 			if ( true === $this->has_admin_interface ) {
-				$this->setup_admin_functionalities();
+				$this->setup_functionality(
+					array(
+						'folder' => $this->admin_assets_folder,
+						'action' => 'admin_enqueue_scripts',
+					)
+				);
 			}
 
 			if ( true === $this->has_public_interface ) {
-				$this->setup_public_functionalities();
+				$this->setup_functionality(
+					array(
+						'folder' => $this->public_assets_folder,
+						'action' => 'wp_enqueue_scripts',
+					)
+				);
 			}
 		}
 
 		/**
-		 * Sets up admin functionalities.
-		 *
-		 * @since 1.0.0
-		 *
-		 * @return void
-		 */
-		public function setup_admin_functionalities() {
-			$args = array(
-				'folder' => $this->admin_assets_folder,
-			);
-
-			$scripts = $this->setup_scripts( $args );
-			$styles  = $this->setup_styles( $args );
-
-			add_action(
-				'admin_enqueue_scripts',
-				function() use ( $scripts ) {
-					$this->add_scripts( $scripts );
-				}
-			);
-
-			add_action(
-				'admin_enqueue_scripts',
-				function() use ( $styles ) {
-					$this->add_styles( $styles );
-				}
-			);
-		}
-
-		/**
-		 * Sets up arguments for 'wp_enqueue_style`
-		 *
-		 * @since 1.0.0
-		 *
-		 * @param array $arguments The arguments array.
-		 * @return array
-		 */
-		public function setup_styles( $arguments = array() ) {
-			$folder        = $arguments['folder'];
-			$css_file_name = "{$this->text_domain}-{$folder}.{$this->css_extension}";
-
-			return array(
-				'css_file_handle'  => "{$this->text_domain}-{$this->css_file_handle}",
-				'css_src'          => PLUGIN_DIR_URL . "{$folder}/{$this->css_folder}/{$css_file_name}",
-				'css_dependencies' => $this->css_dependencies,
-				'css_timestamp'    => $this->version,
-			);
-		}
-
-		/**
-		 * Sets up arguments for 'wp_enqueue_script`
-		 *
-		 * @since 1.0.0
-		 *
-		 * @param array $arguments The arguments array.
-		 * @return array
-		 */
-		public function setup_scripts( $arguments = array() ) {
-			$folder               = $arguments['folder'];
-			$javascript_file_name = "{$this->text_domain}-{$folder}.{$this->javascript_extension}";
-
-			return array(
-				'javascript_file_handle'  => "{$this->text_domain}-{$this->javascript_file_handle}",
-				'javascript_src'          => PLUGIN_DIR_URL . "{$folder}/{$this->javascript_folder}/{$javascript_file_name}",
-				'javascript_dependencies' => $this->javascript_dependencies,
-				'javascript_in_footer'    => $this->javascript_in_footer,
-				'javascript_timestamp'    => $this->version,
-			);
-		}
-
-
-		/**
-		 * Includes plugin scripts.
+		 * Sets up a specific functionality.
 		 *
 		 * @since 1.0.0
 		 *
 		 * @param array $arguments The arguments array.
 		 * @return void
 		 */
-		public function add_scripts( $arguments = array() ) {
+		public function setup_functionality( $arguments ) {
+			$arguments = $this->array_merge( $this->functionality_arguments, $arguments );
+
+			$script = $this->setup_enqueue(
+				array(
+					'folder'       => $arguments['folder'],
+					'extension'    => $this->javascript_extension,
+					'file_handle'  => $this->javascript_file_handle,
+					'subfolder'    => $this->javascript_folder,
+					'dependencies' => $this->javascript_dependencies,
+					'in_footer'    => $this->javascript_in_footer,
+				)
+			);
+
+			$style = $this->setup_enqueue(
+				array(
+					'folder'       => $arguments['folder'],
+					'extension'    => $this->css_extension,
+					'file_handle'  => $this->css_file_handle,
+					'subfolder'    => $this->css_folder,
+					'dependencies' => $this->css_dependencies,
+				)
+			);
+
+			add_action(
+				$arguments['action'],
+				function() use ( $scripts) {
+					$this->add_script( $script );
+				}
+			);
+
+			add_action(
+				$sarguments['action'],
+				function() use ( $style ) {
+					$this->add_style( $style );
+				}
+			);
+		}
+
+		/**
+		 * Sets up arguments for enqueue scripts or styles.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param array $arguments The arguments array.
+		 * @return array
+		 */
+		public function setup_enqueue( $arguments ) {
+			$arguments = $this->array_merge( $this->enqueue_arguments, $arguments );
+
+			$folder    = $arguments['folder'];
+			$file_name = "{$this->text_domain}-{$folder}.{$arguments['extension']}";
+
+			return array(
+				'file_handle'  => "{$this->text_domain}-{$arguments['file_handle']}",
+				'src'          => PLUGIN_DIR_URL . "{$folder}/{$arguments['subfolder']}/{$file_name}",
+				'dependencies' => $arguments['dependencies'],
+				'timestamp'    => $this->version,
+				'in_footer'    => $arguments['in_footer'],
+			);
+		}
+
+
+		/**
+		 * Includes a script.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param array $arguments The arguments array.
+		 * @return void
+		 */
+		public function add_script( $arguments = array() ) {
 			wp_enqueue_script(
-				$arguments['javascript_file_handle'],
-				$arguments['javascript_src'],
-				$arguments['javascript_deps'],
-				$arguments['javascript_timestamp'],
-				$arguments['javascript_in_footer']
+				$arguments['file_handle'],
+				$arguments['src'],
+				$arguments['dependencies'],
+				$arguments['timestamp'],
+				$arguments['in_footer']
 			);
 		}
 
 		/**
-		 * Includes plugin styles.
+		 * Includes a style.
 		 *
 		 * @since 1.0.0
 		 *
 		 * @param array $arguments The arguments array.
 		 * @return void
 		 */
-		public function add_styles( $arguments = array() ) {
+		public function add_style( $arguments = array() ) {
 			wp_enqueue_style(
-				$arguments['css_file_handle'],
-				$arguments['css_src'],
-				$arguments['css_dependencies'],
-				$arguments['css_timestamp']
+				$arguments['file_handle'],
+				$arguments['src'],
+				$arguments['dependencies'],
+				$arguments['timestamp']
 			);
 		}
 	}

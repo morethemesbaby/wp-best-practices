@@ -8,7 +8,7 @@
  * Author URI:   https://morethemes.baby
  * License:      GNU General Public License v2 or later
  * License URI:  http://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:  mo-pro-plugin
+ * Text Domain:  mo-plugin
  * Domain Path:  /languages
  *
  * @package MoPlugin
@@ -64,7 +64,8 @@ if ( file_exists( PLUGIN_DIR_PATH . '/vendor/autoload.php' ) ) {
 $mo_plugin = new MoPluginSetup(
 	apply_filters( 'mo_plugin_setup_array',
 		array(
-			'has_admin_interface' => true,
+			'has_admin_interface'  => true,
+			'has_public_interface' => true,
 		)
 	)
 );
