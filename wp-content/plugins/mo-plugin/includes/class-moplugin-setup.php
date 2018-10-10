@@ -45,7 +45,7 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 		 *
 		 * @var array
 		 */
-		public $functionality_arguments = array(
+		public $asset_arguments = array(
 			'folder' => '',
 			'action' => '',
 		);
@@ -94,6 +94,7 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 
 			add_action( 'plugins_loaded', array( $this, 'setup_variables' ) );
 			add_action( 'plugins_loaded', array( $this, 'setup_functionalities' ) );
+			add_action( 'plugins_loaded', array( $this, 'setup_assets' ) );
 		}
 
 		/**
@@ -138,8 +139,19 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 		 * @return void
 		 */
 		public function setup_functionalities() {
+			//
+		}
+
+		/**
+		 * Sets up plugin assets.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @return void
+		 */
+		public function setup_assets() {
 			if ( true === $this->has_admin_interface ) {
-				$this->setup_functionality(
+				$this->setup_asset(
 					array(
 						'folder' => $this->admin_assets_folder,
 						'action' => 'admin_enqueue_scripts',
@@ -148,7 +160,7 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 			}
 
 			if ( true === $this->has_public_interface ) {
-				$this->setup_functionality(
+				$this->setup_asset(
 					array(
 						'folder' => $this->public_assets_folder,
 						'action' => 'wp_enqueue_scripts',
@@ -165,8 +177,8 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 		 * @param array $arguments The arguments array.
 		 * @return void
 		 */
-		public function setup_functionality( $arguments ) {
-			$arguments = $this->array_merge( $this->functionality_arguments, $arguments );
+		public function setup_asset( $arguments ) {
+			$arguments = $this->array_merge( $this->asset_arguments, $arguments );
 
 			$script = $this->setup_enqueue(
 				array(
