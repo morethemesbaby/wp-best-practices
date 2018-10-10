@@ -34,6 +34,8 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 			'javascript_extension'    => 'js',
 			'javascript_dependencies' => array(),
 			'javascript_in_footer'    => true,
+			'css_extension'           => 'css',
+			'css_dependencies'        => array(),
 		);
 
 		/**
@@ -83,6 +85,8 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 			$this->javascript_extension    = $this->arguments['javascript_extension'];
 			$this->javascript_dependencies = $this->arguments['javascript_dependencies'];
 			$this->javascript_in_footer    = $this->arguments['javascript_in_footer'];
+			$this->css_extension           = $this->arguments['css_extension'];
+			$this->css_dependencies        = $this->arguments['css_dependencies'];
 		}
 
 		/**
@@ -110,17 +114,45 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 		 * @return void
 		 */
 		public function setup_admin_functionalities() {
-			$scripts = $this->setup_scripts(
-				array(
-					'folder' => $this->admin_assets_folder,
-				)
+			$args = array(
+				'folder' => $this->admin_assets_folder,
 			);
+
+			$scripts = $this->setup_scripts( $args );
+			$styles  = $this->setup_styles( $args );
 
 			add_action(
 				'admin_enqueue_scripts',
 				function() use ( $scripts ) {
 					$this->add_scripts( $scripts );
 				}
+			);
+
+			add_action(
+				'admin_enqueue_scripts',
+				function() use ( $styles ) {
+					$this->add_styles( $styles );
+				}
+			);
+		}
+
+		/**
+		 * Sets up arguments for 'wp_enqueue_style`
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param array $arguments The arguments array.
+		 * @return array
+		 */
+		public function setup_styles( $arguments = array() ) {
+			$folder        = $arguments['folder'];
+			$css_file_name = "{$this->text_domain}-{$folder}.{$this->css_extension}";
+
+			return array(
+				'css_file_handle'  => "{$this->text_domain}-{$this->css_file_handle}",
+				'css_src'          => PLUGIN_DIR_URL . "{$folder}/{$this->css_folder}/{$css_file_name}",
+				'css_dependencies' => $this->css_dependencies,
+				'css_timestamp'    => $this->version,
 			);
 		}
 
@@ -169,14 +201,15 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 		 *
 		 * @since 1.0.0
 		 *
+		 * @param array $arguments The arguments array.
 		 * @return void
 		 */
-		public function add_styles() {
+		public function add_styles( $arguments = array() ) {
 			wp_enqueue_style(
-				$this->css_file_handle,
-				$this->css_src,
-				$this->css_deps,
-				$this->css_timestamp
+				$arguments['css_file_handle'],
+				$arguments['css_src'],
+				$arguments['css_dependencies'],
+				$arguments['css_timestamp']
 			);
 		}
 	}
