@@ -84,8 +84,6 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 		/**
 		 * Sets up the class.
 		 *
-		 * Custom post types are managed at plugin activation / deactivation.
-		 *
 		 * @since 1.0.0
 		 *
 		 * @param array $arguments An array of arguments.
@@ -107,8 +105,10 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 		 * @return void
 		 */
 		public function activate_plugin() {
-			//MoPluginCustomPostTypes::register();
-			//flush_rewrite_rules();
+			$mo_cpt = new MoPluginCustomPostTypes();
+			$mo_cpt->register();
+
+			flush_rewrite_rules();
 		}
 
 		/**
@@ -120,8 +120,10 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 		 * @return void
 		 */
 		public function deactivate_plugin() {
-			//MoPluginCustomPostTypes::deregister();
-			//flush_rewrite_rules();
+			$mo_cpt = new MoPluginCustomPostTypes();
+			$mo_cpt->deregister();
+
+			flush_rewrite_rules();
 		}
 
 		/**
