@@ -65,13 +65,11 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 			if ( ! function_exists( 'get_plugin_data' ) ) {
 				require_once ABSPATH . 'wp-admin/includes/plugin.php';
 			}
-			$plugin = get_plugin_data( PLUGIN_DIR_PATH );
+			$plugin = get_plugin_data( PLUGIN_FILE_PATH );
 
-			print_r($plugin);
-
-			$this->name        = $plugin->get( 'Name' );
-			$this->version     = $plugin->get( 'Version' );
-			$this->text_domain = $plugin->get( 'TextDomain' );
+			$this->name        = $plugin['Name'];
+			$this->version     = $plugin['Version'];
+			$this->text_domain = $plugin['TextDomain'];
 
 			$this->has_admin_interface     = $this->arguments['has_admin_interface'];
 			$this->has_public_interface    = $this->arguments['has_public_interface'];
@@ -118,7 +116,12 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 				)
 			);
 
-			add_action( 'admin_enqueue_scripts', array( $this, 'add_scripts', $scripts ) );
+			add_action(
+				'admin_enqueue_scripts',
+				function() use ( $scripts ) {
+					$this->add_scripts( $scripts );
+				}
+			);
 		}
 
 		/**
@@ -131,11 +134,11 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 		 */
 		public function setup_scripts( $arguments = array() ) {
 			$folder               = $arguments['folder'];
-			$javascript_file_name = "{$this->text_domain}-{$this->folder}.{$this->javascript_extension}";
+			$javascript_file_name = "{$this->text_domain}-{$folder}.{$this->javascript_extension}";
 
 			return array(
 				'javascript_file_handle'  => "{$this->text_domain}-{$this->javascript_file_handle}",
-				'javascript_src'          => plugin_dir_url( __FILE__ ) . "/{$this->javascript_file_name}",
+				'javascript_src'          => PLUGIN_DIR_URL . "{$folder}/{$this->javascript_folder}/{$javascript_file_name}",
 				'javascript_dependencies' => $this->javascript_dependencies,
 				'javascript_in_footer'    => $this->javascript_in_footer,
 				'javascript_timestamp'    => $this->version,

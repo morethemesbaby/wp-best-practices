@@ -38,6 +38,16 @@ define( 'PLUGIN_DIR_URL', plugin_dir_url( __FILE__ ) );
  */
 define( 'PLUGIN_DIR_PATH', plugin_dir_path( __FILE__ ) );
 
+
+/**
+ * The plugin file path.
+ *
+ * @since 1.0.0
+ * @var string
+ */
+define( 'PLUGIN_FILE_PATH', plugin_dir_path( __FILE__ ) . '/mo-plugin.php' );
+
+
 /**
  * Use Composer's autoload.
  */
@@ -53,6 +63,8 @@ if ( file_exists( PLUGIN_DIR_PATH . '/vendor/autoload.php' ) ) {
  */
 $mo_plugin = new MoPluginSetup(
 	apply_filters( 'mo_plugin_setup_array',
-		array()
+		array(
+			'has_admin_interface' => true,
+		)
 	)
 );
