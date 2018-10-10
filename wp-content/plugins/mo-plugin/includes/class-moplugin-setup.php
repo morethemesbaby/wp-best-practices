@@ -109,10 +109,16 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 		public function activate_plugin() {
 			$mo_cpt = new MoPluginCustomPostTypes();
 			$mo_cpt->register();
+			flush_rewrite_rules();
 
 			add_shortcode( 'motag', array( 'MoPluginCustomShortcode', 'motag' ) );
 
-			flush_rewrite_rules();
+			add_action(
+				'widgets_init',
+				function() {
+					register_widget( 'MoPluginCustomWidget' );
+				}
+			);
 		}
 
 		/**
@@ -128,10 +134,16 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 		public function deactivate_plugin() {
 			$mo_cpt = new MoPluginCustomPostTypes();
 			$mo_cpt->deregister();
+			flush_rewrite_rules();
 
 			remove_shortcode( 'motag' );
 
-			flush_rewrite_rules();
+			add_action(
+				'widgets_init',
+				function() {
+					unregister_widget( 'MoPluginCustomWidget' );
+				}
+			);
 		}
 
 		/**
