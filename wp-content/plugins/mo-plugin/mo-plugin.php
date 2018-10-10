@@ -23,9 +23,25 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 /**
+ * The plugin directory URL.
+ *
+ * @since 1.0.0
+ * @var string
+ */
+define( 'PLUGIN_DIR_URL', plugin_dir_url( __FILE__ ) );
+
+/**
+ * The plugin directory path.
+ *
+ * @since 1.0.0
+ * @var string
+ */
+define( 'PLUGIN_DIR_PATH', plugin_dir_path( __FILE__ ) );
+
+/**
  * Use Composer's autoload.
  */
-if ( file_exists( get_template_directory() . '/vendor/autoload.php' ) ) {
+if ( file_exists( PLUGIN_DIR_PATH . '/vendor/autoload.php' ) ) {
 	require_once 'vendor/autoload.php';
 }
 
@@ -33,7 +49,7 @@ if ( file_exists( get_template_directory() . '/vendor/autoload.php' ) ) {
  * Sets up the theme.
  *
  * @since 1.0.0
- * @var object $mo_plugin The main plugin object.
+ * @var object
  */
 $mo_plugin = new MoPluginSetup(
 	apply_filters( 'mo_plugin_setup_array',

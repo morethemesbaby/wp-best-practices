@@ -22,17 +22,18 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 		 * @var array $arguments An Array of arguments.
 		 */
 		public $arguments = array(
-			'has_admin_interface'    => false,
-			'has_public_interface'   => false,
-			'admin_assets_folder'    => 'admin',
-			'public_assets_folder'   => 'public',
-			'js_folder'              => 'js',
-			'css_folder'             => 'css',
-			'images_folder'          => 'images',
-			'javascript_file_handle' => 'script',
-			'css_file_handle'        => 'style',
-			'javascript_extension'   => 'js',
-			'plugin_dir_url'         => plugin_dir_url( __FILE__ )
+			'has_admin_interface'     => false,
+			'has_public_interface'    => false,
+			'admin_assets_folder'     => 'admin',
+			'public_assets_folder'    => 'public',
+			'javascript_folder'       => 'js',
+			'css_folder'              => 'css',
+			'images_folder'           => 'images',
+			'javascript_file_handle'  => 'script',
+			'css_file_handle'         => 'style',
+			'javascript_extension'    => 'js',
+			'javascript_dependencies' => array(),
+			'javascript_in_footer'    => true,
 		);
 
 		/**
@@ -60,19 +61,30 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 		 * @return void
 		 */
 		public function setup_variables() {
-			$plugin = wp_get_data();
+			// From https://wordpress.stackexchange.com/questions/17948/call-to-undefined-function-get-plugin-data
+			if ( ! function_exists( 'get_plugin_data' ) ) {
+				require_once ABSPATH . 'wp-admin/includes/plugin.php';
+			}
+			$plugin = get_plugin_data( PLUGIN_DIR_PATH );
+
+			print_r($plugin);
 
 			$this->name        = $plugin->get( 'Name' );
 			$this->version     = $plugin->get( 'Version' );
 			$this->text_domain = $plugin->get( 'TextDomain' );
 
-			$this->has_admin_interface  = $this->arguments['has_admin_interface'];
-			$this->has_public_interface = $this->arguments['has_public_interface'];
-			$this->admin_assets_folder  = $this->arguments['admin_assets_folder'];
-			$this->public_assets_folder = $this->arguments['public_assets_folder'];
-			$this->js_folder            = $this->arguments['js_folder'];
-			$this->css_folder           = $this->arguments['css_folder'];
-			$this->images_folder        = $this->arguments['images_folder'];
+			$this->has_admin_interface     = $this->arguments['has_admin_interface'];
+			$this->has_public_interface    = $this->arguments['has_public_interface'];
+			$this->admin_assets_folder     = $this->arguments['admin_assets_folder'];
+			$this->public_assets_folder    = $this->arguments['public_assets_folder'];
+			$this->javascript_folder       = $this->arguments['javascript_folder'];
+			$this->css_folder              = $this->arguments['css_folder'];
+			$this->images_folder           = $this->arguments['images_folder'];
+			$this->javascript_file_handle  = $this->arguments['javascript_file_handle'];
+			$this->css_file_handle         = $this->arguments['css_file_handle'];
+			$this->javascript_extension    = $this->arguments['javascript_extension'];
+			$this->javascript_dependencies = $this->arguments['javascript_dependencies'];
+			$this->javascript_in_footer    = $this->arguments['javascript_in_footer'];
 		}
 
 		/**
@@ -100,28 +112,34 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 		 * @return void
 		 */
 		public function setup_admin_functionalities() {
-			$this->setup_scripts(array(
-				'folder' => $this->admin_assets_folder,
-			));
+			$scripts = $this->setup_scripts(
+				array(
+					'folder' => $this->admin_assets_folder,
+				)
+			);
+
+			add_action( 'admin_enqueue_scripts', array( $this, 'add_scripts', $scripts ) );
 		}
 
 		/**
-		 * Sets up arguments for 'wp_enqueue_style`
+		 * Sets up arguments for 'wp_enqueue_script`
 		 *
 		 * @since 1.0.0
 		 *
 		 * @param array $arguments The arguments array.
-		 * @return void
+		 * @return array
 		 */
 		public function setup_scripts( $arguments = array() ) {
-			$folder = $arguments['folder'];
+			$folder               = $arguments['folder'];
+			$javascript_file_name = "{$this->text_domain}-{$this->folder}.{$this->javascript_extension}";
 
-			$javascript_file_name    = "{$this->text_domain}-{$this->folder}.{$this->javascript_extension}";
-			$javascript_file_handle  = "{$this->text_domain}-{$this->javascript_file_handle}";
-			$javascript_src          = "{$this->plugin_dir_url}/{$this->javascript_file_name}";
-			$javascript_dependencies = $this->javascript_dependencies;
-			$javascript_in_footer    = $this->javascript_in_footer;
-			$javascript_timestamp    = $this->version;
+			return array(
+				'javascript_file_handle'  => "{$this->text_domain}-{$this->javascript_file_handle}",
+				'javascript_src'          => plugin_dir_url( __FILE__ ) . "/{$this->javascript_file_name}",
+				'javascript_dependencies' => $this->javascript_dependencies,
+				'javascript_in_footer'    => $this->javascript_in_footer,
+				'javascript_timestamp'    => $this->version,
+			);
 		}
 
 
@@ -130,15 +148,16 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 		 *
 		 * @since 1.0.0
 		 *
+		 * @param array $arguments The arguments array.
 		 * @return void
 		 */
-		public function add_scripts() {
+		public function add_scripts( $arguments = array() ) {
 			wp_enqueue_script(
-				$this->javascript_file_handle,
-				$this->javascript_src,
-				$this->javascript_deps,
-				$this->javascript_timestamp,
-				$this->javascript_in_footer
+				$arguments['javascript_file_handle'],
+				$arguments['javascript_src'],
+				$arguments['javascript_deps'],
+				$arguments['javascript_timestamp'],
+				$arguments['javascript_in_footer']
 			);
 		}
 

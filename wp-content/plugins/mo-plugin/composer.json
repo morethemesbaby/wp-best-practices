@@ -1,5 +1,5 @@
 {
-  "name": "morethemesbaby/wp-best-practices",
+  "name": "morethemesbaby/wp-best-practices/mo-plugin",
   "type": "wordpress-plugin",
   "authors": [
     {
@@ -8,8 +8,8 @@
     }
   ],
   "autoload": {
-	  "classmap": [
-		  "includes/"
-	  ]
+    "classmap": [
+      "includes/"
+    ]
   }
 }
