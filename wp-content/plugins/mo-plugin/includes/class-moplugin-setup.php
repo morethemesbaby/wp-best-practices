@@ -67,6 +67,21 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 		);
 
 		/**
+		 * Arguments to enqueue a script.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @var array
+		 */
+		public $enqueue_script_arguments = array(
+			'file_handle'  => '',
+			'src'          => '',
+			'dependencies' => array(),
+			'timestamp'    => '',
+			'in_footer'    => false,
+		);
+
+		/**
 		 * Sets up the class.
 		 *
 		 * @since 1.0.0
@@ -178,15 +193,15 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 
 			add_action(
 				$arguments['action'],
-				function() use ( $scripts) {
-					$this->add_script( $script );
+				function() use ( $scripts ) {
+					$this->add_scripts( $script );
 				}
 			);
 
 			add_action(
-				$sarguments['action'],
+				$arguments['action'],
 				function() use ( $style ) {
-					$this->add_style( $style );
+					$this->add_styles( $style );
 				}
 			);
 		}
@@ -223,14 +238,18 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 		 * @param array $arguments The arguments array.
 		 * @return void
 		 */
-		public function add_script( $arguments = array() ) {
-			wp_enqueue_script(
-				$arguments['file_handle'],
-				$arguments['src'],
-				$arguments['dependencies'],
-				$arguments['timestamp'],
-				$arguments['in_footer']
-			);
+		public function add_scripts( $arguments = array() ) {
+			$arguments = $this->array_merge( $this->enqueue_script_arguments, $arguments );
+
+			if ( '' !== $arguments['src'] ) {
+				wp_enqueue_script(
+					$arguments['file_handle'],
+					$arguments['src'],
+					$arguments['dependencies'],
+					$arguments['timestamp'],
+					$arguments['in_footer']
+				);
+			}
 		}
 
 		/**
@@ -241,13 +260,17 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 		 * @param array $arguments The arguments array.
 		 * @return void
 		 */
-		public function add_style( $arguments = array() ) {
-			wp_enqueue_style(
-				$arguments['file_handle'],
-				$arguments['src'],
-				$arguments['dependencies'],
-				$arguments['timestamp']
-			);
+		public function add_styles( $arguments = array() ) {
+			$arguments = $this->array_merge( $this->enqueue_script_arguments, $arguments );
+
+			if ( '' !== $arguments['src'] ) {
+				wp_enqueue_style(
+					$arguments['file_handle'],
+					$arguments['src'],
+					$arguments['dependencies'],
+					$arguments['timestamp']
+				);
+			}
 		}
 	}
 } // End if().
