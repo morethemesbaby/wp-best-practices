@@ -84,6 +84,8 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 		/**
 		 * Sets up the class.
 		 *
+		 * Custom post types are managed at plugin activation / deactivation.
+		 *
 		 * @since 1.0.0
 		 *
 		 * @param array $arguments An array of arguments.
@@ -93,8 +95,33 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 			$this->arguments = $this->array_merge( $this->arguments, $arguments );
 
 			add_action( 'plugins_loaded', array( $this, 'setup_variables' ) );
-			add_action( 'plugins_loaded', array( $this, 'setup_functionalities' ) );
 			add_action( 'plugins_loaded', array( $this, 'setup_assets' ) );
+		}
+
+		/**
+		 * Activates the plugin.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @link https://developer.wordpress.org/plugins/the-basics/activation-deactivation-hooks/
+		 * @return void
+		 */
+		public function activate_plugin() {
+			//MoPluginCustomPostTypes::register();
+			//flush_rewrite_rules();
+		}
+
+		/**
+		 * Dectivates the plugin.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @link https://developer.wordpress.org/plugins/the-basics/activation-deactivation-hooks/
+		 * @return void
+		 */
+		public function deactivate_plugin() {
+			//MoPluginCustomPostTypes::deregister();
+			//flush_rewrite_rules();
 		}
 
 		/**
@@ -131,16 +158,6 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 			$this->css_dependencies        = $this->arguments['css_dependencies'];
 		}
 
-		/**
-		 * Sets up plugin functionalities.
-		 *
-		 * @since 1.0.0
-		 *
-		 * @return void
-		 */
-		public function setup_functionalities() {
-			//
-		}
 
 		/**
 		 * Sets up plugin assets.
