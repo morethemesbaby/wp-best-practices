@@ -51,7 +51,7 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 		);
 
 		/**
-		 * Arguments to enqueue a script or style.
+		 * Arguments to set up enqueue for a script or style.
 		 *
 		 * @since 1.0.0
 		 *
@@ -94,8 +94,6 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 
 			add_action( 'plugins_loaded', array( $this, 'setup_variables' ) );
 			add_action( 'plugins_loaded', array( $this, 'setup_functionalities' ) );
-			add_action( 'wp_enqueue_scripts', array( $this, 'add_styles' ) );
-			add_action( 'wp_enqueue_scripts', array( $this, 'add_scripts' ) );
 		}
 
 		/**
@@ -194,14 +192,14 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 			add_action(
 				$arguments['action'],
 				function() use ( $scripts ) {
-					$this->add_scripts( $script );
+					$this->add_script( $script );
 				}
 			);
 
 			add_action(
 				$arguments['action'],
 				function() use ( $style ) {
-					$this->add_styles( $style );
+					$this->add_style( $style );
 				}
 			);
 		}
@@ -238,7 +236,7 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 		 * @param array $arguments The arguments array.
 		 * @return void
 		 */
-		public function add_scripts( $arguments = array() ) {
+		public function add_script( $arguments = array() ) {
 			$arguments = $this->array_merge( $this->enqueue_script_arguments, $arguments );
 
 			if ( '' !== $arguments['src'] ) {
@@ -260,7 +258,7 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 		 * @param array $arguments The arguments array.
 		 * @return void
 		 */
-		public function add_styles( $arguments = array() ) {
+		public function add_style( $arguments = array() ) {
 			$arguments = $this->array_merge( $this->enqueue_script_arguments, $arguments );
 
 			if ( '' !== $arguments['src'] ) {
