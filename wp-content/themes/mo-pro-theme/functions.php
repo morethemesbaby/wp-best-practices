@@ -42,9 +42,19 @@ if ( ! function_exists( 'mo_theme_header_display_menu_contents_filter' ) ) {
 add_filter( 'mo_theme_header_display_menu_contents', 'mo_theme_header_display_menu_contents_filter' );
 
 
-if ( ! function_exists( ' mo_theme_before_post_format_action ' ) ) {
+if ( ! function_exists( 'mo_theme_before_post_format_action' ) ) {
 	function mo_theme_before_post_format_action() {
 		echo 'before';
 	}
 }
 add_action( 'mo_theme_before_post_format', 'mo_theme_before_post_format_action' );
+
+
+function mo_pro_theme_define_theme_support() {
+	echo 'defining theme support';
+	define( FEATURE_BOOK_CUSTOM_POST_TYPE, 'FEATURE_BOOK_CUSTOM_POST_TYPE' );
+	add_theme_support( 'book' );
+}
+add_action( 'after_setup_theme', 'mo_pro_theme_define_theme_support' );
+
+
