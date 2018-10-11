@@ -70,8 +70,10 @@ $mo_plugin = new MoPluginSetup(
 	)
 );
 
+define( FEATURE_BOOK_CUSTOM_POST_TYPE, 'FEATURE_BOOK_CUSTOM_POST_TYPE' );
+
 function mo_plugin_check_theme_support() {
-	if ( current_theme_supports( 'book' ) ) {
+	if ( current_theme_supports( FEATURE_BOOK_CUSTOM_POST_TYPE ) ) {
 		echo "plugin ::: supports;;";
 	} else {
 		echo "plugin ::: No support;;";
