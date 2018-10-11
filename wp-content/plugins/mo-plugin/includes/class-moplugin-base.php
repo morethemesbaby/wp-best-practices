@@ -56,9 +56,12 @@ if ( ! class_exists( 'MoPluginBase' ) ) {
 		}
 
 		/**
-		 * Dynamically checks is a variable exists.
-		 * 
-		 * @since 1.0.0 
+		 * Dynamically checks if a variable exists.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param string $variable The variable name.
+		 * @return bool
 		 */
 		public function __isset( $variable ) {
 			return array_key_exists( $variable, $this->data );
