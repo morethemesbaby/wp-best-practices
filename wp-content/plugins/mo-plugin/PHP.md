@@ -6,13 +6,13 @@
 
 > from 10up Engineering Best Practices
 
-In practice this works like:
+### How it works?
 
-1. Every feature the theme needs from the plugin is requested via an `add_theme_support( 'custom-feature' );`. 
-2. The plugin checks for a feature via `if ( current_theme_supports( 'custom-feature' ) ) {}`.
-3. If the feature is requested the plugin enables it.
+1. Features the theme needs from the plugin can be declared via an `add_theme_support( 'custom-features' );` call. 
+2. The plugin checks for these features via `if ( current_theme_supports( 'custom-features' ) ) {}`.
+3. If features are requested the plugin enables and implements it.
 
-The above checks must be wrapped into an `after_setup_theme` hook where the priority in theme is less than the priority in plugin:
+The above checks must be wrapped into an `after_setup_theme` hook where the execution priority in the plugin must be higher than in the theme. 
 
 Theme:
 ```php
@@ -24,26 +24,16 @@ Plugin:
 add_action( 'after_setup_theme', 'check_theme_support', 11, 0 );
 ```
 
-This implies the entire plugin setup code must be put inside the `after_setup_hook`:
-```php
-function check_theme_support() {
-	if ( current_theme_supports( 'custom-feature' ) ) {
-		$cpt = new PluginCustomPostType();
-		add_action( 'init', array( $cpt, 'register' ) );
-		register_activation_hook( __FILE__, array( $plugin, 'activate_plugin' ) );
-	} 
-}
-add_action( 'after_setup_theme', 'check_theme_support', 11, 0 );
-```
+### The naming convention
 
-The `custom-feature` variable / constant must be shared between the theme and the plugin. For that we have the default `global $_wp_theme_features` array. This makes it easy to add custom features into this array in the theme, query them in the plugin.
+The `custom-features` variable must be shared between the theme and the plugin. For that we have the default `global $_wp_theme_features` array. This makes it easy to add custom features into this array in the theme, then query them in the plugin.
 
 To mimic the [WordPress default `post-formats` feature](https://developer.wordpress.org/themes/functionality/post-formats/) we pass the custom features as an array:
 
 Theme:
 ```php
 add_theme_support(
-	'theme-features',
+	'custom-features',
 	array(
 		'feature-1',
 		'feature-2'
@@ -54,10 +44,17 @@ add_theme_support(
 
 Plugin:
 ```php
-if ( current_theme_supports( 'theme-features' ) ) {
-	$features = get_theme_support( 'theme-features' );
+if ( current_theme_supports( 'custom-features' ) ) {
+	$features = get_theme_support( 'custom-features' );
 	if ( $features['feature-1'] ) {
 		....
 	}
 }
 ```
+
+### The activation hook workaround
+
+Every plugin has a `register_activation_hook` where the plugin features are set up.
+This hook is executed before any theme code is executed making the `custom-features` coming from the theme unavaialble at the moment of the plugin activation.
+
+A workaround is to re-call the plugin activation code after the theme sets up and pass the `custom-features` variable to the plugin.
