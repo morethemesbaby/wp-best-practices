@@ -38,7 +38,6 @@ define( 'PLUGIN_DIR_URL', plugin_dir_url( __FILE__ ) );
  */
 define( 'PLUGIN_DIR_PATH', plugin_dir_path( __FILE__ ) );
 
-
 /**
  * The plugin file path.
  *
@@ -46,7 +45,6 @@ define( 'PLUGIN_DIR_PATH', plugin_dir_path( __FILE__ ) );
  * @var string
  */
 define( 'PLUGIN_FILE_PATH', plugin_dir_path( __FILE__ ) . '/mo-plugin.php' );
-
 
 /**
  * Use Composer's autoload.
@@ -56,7 +54,7 @@ if ( file_exists( PLUGIN_DIR_PATH . '/vendor/autoload.php' ) ) {
 }
 
 /**
- * Sets up the theme.
+ * Sets up the plugin.
  *
  * @since 1.0.0
  * @var object
@@ -66,42 +64,29 @@ $mo_plugin = new MoPluginSetup(
 		array(
 			'has_admin_interface'  => false,
 			'has_public_interface' => true,
+			'theme_feature_set'    => 'MO_PRO_THEME_FEATURE_SET',
 		)
 	)
 );
 
-define( FEATURE_BOOK_CUSTOM_POST_TYPE, 'FEATURE_BOOK_CUSTOM_POST_TYPE' );
-
-function mo_plugin_check_theme_support() {
-	if ( current_theme_supports( FEATURE_BOOK_CUSTOM_POST_TYPE ) ) {
-		echo "plugin ::: supports;;";
-		$mo_cpt = new MoPluginCustomPostType();
-add_action( 'init', array( $mo_cpt, 'register' ) );
-register_activation_hook( __FILE__, array( $mo_plugin, 'activate_plugin' ) );
-
-	} else {
-		echo "plugin ::: No support;;";
-	}
-}
-add_action( 'after_setup_theme', 'mo_plugin_check_theme_support', 11, 0 );
 
 /**
- * Activate / deactivate the theme
+ * Registers the activation hook.
+ *
+ * Activation hooks are executed first. They cannot be added inside any other hooks.
+ *
+ * @link https://developer.wordpress.org/reference/functions/register_activation_hook/
  *
  * @since 1.0.0
+ */
+
+register_activation_hook( __FILE__, array( $mo_plugin, 'activate_plugin' ) );
+
+/**
+ * Registers the deactivation hook.
  *
- * @link https://developer.wordpress.org/plugins/the-basics/activation-deactivation-hooks/
-*/
-//$mo_cpt = new MoPluginCustomPostType();
-//add_action( 'init', array( $mo_cpt, 'register' ) );
-
-if ( current_theme_supports( FEATURE_BOOK_CUSTOM_POST_TYPE ) ) {
-	echo "plugin outside hook ::: supports;;";
-} else {
-	echo "plugin outside hook ::: No support;;";
-}
-
-//register_activation_hook( __FILE__, array( $mo_plugin, 'activate_plugin' ) );
+ * @since 1.0.0
+ */
 register_deactivation_hook( __FILE__, array( $mo_plugin, 'deactivate_plugin' ) );
 
 /**
@@ -112,3 +97,4 @@ register_deactivation_hook( __FILE__, array( $mo_plugin, 'deactivate_plugin' ) )
  * @link https://developer.wordpress.org/plugins/the-basics/uninstall-methods/
  */
 register_uninstall_hook( __FILE__, array( $mo_plugin, 'uninstall_plugin' ) );
+

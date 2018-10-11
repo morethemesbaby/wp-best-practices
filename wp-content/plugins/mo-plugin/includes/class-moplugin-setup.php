@@ -36,10 +36,12 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 			'javascript_in_footer'    => true,
 			'css_extension'           => 'css',
 			'css_dependencies'        => array(),
+			'theme_feature_set'       => '',
+			'theme_features'          => array(),
 		);
 
 		/**
-		 * Arguments for a theme functionality.
+		 * Arguments for a theme asset.
 		 *
 		 * @since 1.0.0
 		 *
@@ -94,12 +96,55 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 
 			add_action( 'plugins_loaded', array( $this, 'setup_variables' ) );
 			add_action( 'plugins_loaded', array( $this, 'setup_assets' ) );
+
+			/**
+			 * This must be called after `add_theme_support`.
+			 * Which is wrapped into this call: `add_action( 'after_setup_theme', 'mo_pro_theme_define_theme_support', 10, 0 );`.
+			 * We attach the call into the same hook but with a higher priority.
+			 */
+			add_action( 'after_setup_theme', array( $this, 'get_theme_features' ), 11, 0 );
+
+			/**
+			 * This must be re-called after the theme features are set up for this plugin.
+			 * We attach the call into the same hook but with a higher priority.
+			 */
+			add_action( 'after_setup_theme', array( $this, 'activate_plugin' ), 12, 0 );
+		}
+
+
+		/**
+		 * Gets theme features.
+		 *
+		 * And saves into `this->theme_features`.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @return void.
+		 */
+		public function get_theme_features() {
+			error_log( 'get_theme_features * ' );
+
+			if ( '' === $this->theme_feature_set ) {
+				return;
+			}
+
+			$features = get_theme_support( $this->theme_feature_set );
+
+			if ( empty( $features ) || empty( $features[0] ) ) {
+				return;
+			}
+
+			$this->theme_features = $features[0];
 		}
 
 		/**
 		 * Activates the plugin.
 		 *
-		 * Called in the plugin main file with the `register_activation_hook`.
+		 * First is called in the plugin main file with the `register_activation_hook`.
+		 * Since the theme features are not yet set up it will probably do nothing.
+		 *
+		 * Second is called after the theme features are set up.
+		 * Now the theme features are set up, so it can enable them.
 		 *
 		 * @since 1.0.0
 		 *
@@ -107,11 +152,125 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 		 * @return void
 		 */
 		public function activate_plugin() {
+			error_log( 'activate plugin * ' );
+
+			if ( ! isset( $this->theme_features) ) {
+				return;
+			}
+
+			if ( array() === $this->theme_features ) {
+				return;
+			}
+
+			if ( $this->theme_features['custom-post-type'] ) {
+				$this->activate_custom_post_type();
+			}
+
+			if ( $this->theme_features['shortcode'] ) {
+				$this->activate_shortcode();
+			}
+
+			if ( $this->theme_features['widget'] ) {
+				$this->activate_widget();
+			}
+		}
+
+		/**
+		 * Deactivates the plugin.
+		 *
+		 * Called in the plugin main file with the `register_deactivation_hook`.
+		 * The theme features are all set up since it is executed at the end of the hook chain.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @link https://developer.wordpress.org/plugins/the-basics/activation-deactivation-hooks/
+		 * @return void
+		 */
+		public function deactivate_plugin() {
+			error_log( 'deactivate plugin * ' );
+
+			if ( ! isset( $this->theme_features) ) {
+				return;
+			}
+
+			if ( empty( $this->theme_features ) ) {
+				return;
+			}
+
+			if ( $this->theme_features['custom-post-type'] ) {
+				$this->deactivate_custom_post_type();
+			}
+
+			if ( $this->theme_features['shortcode'] ) {
+				$this->deactivate_shortcode();
+			}
+
+			if ( $this->theme_features['widget'] ) {
+				$this->deactivate_widget();
+			}
+		}
+
+
+		/**
+		 * Activates the custom post type feature.
+		 *
+		 * @since 1.0.0
+		 * @return void
+		 */
+		public function activate_custom_post_type() {
+			error_log( 'activate cpt * ' );
+
 			$mo_cpt = new MoPluginCustomPostType();
 			$mo_cpt->register();
 			flush_rewrite_rules();
+		}
+
+		/**
+		 * Dectivates the custom post type feature.
+		 *
+		 * @since 1.0.0
+		 * @return void
+		 */
+		public function deactivate_custom_post_type() {
+			error_log( 'deactivate cpt * ' );
+
+			$mo_cpt = new MoPluginCustomPostType();
+			$mo_cpt->deregister();
+			flush_rewrite_rules();
+		}
+
+		/**
+		 * Activates the shortcode feature.
+		 *
+		 * @since 1.0.0
+		 * @return void
+		 */
+		public function activate_shortcode() {
+			error_log( 'activate shortcode * ' );
 
 			add_shortcode( 'motag', array( 'MoPluginCustomShortcode', 'motag' ) );
+		}
+
+		/**
+		 * Deactivates the shortcode feature.
+		 *
+		 * @since 1.0.0
+		 * @return void
+		 */
+		public function deactivate_shortcode() {
+			error_log( 'deactivate shortcode * ' );
+
+			remove_shortcode( 'motag' );
+		}
+
+		/**
+		 * Activates the widget feature.
+		 *
+		 * @since 1.0.0
+		 * @return void
+		 */
+		public function activate_widget() {
+			error_log( 'activate widget * ' );
 
 			add_action(
 				'widgets_init',
@@ -122,21 +281,13 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 		}
 
 		/**
-		 * Deactivates the plugin.
-		 *
-		 * Called in the plugin main file with the `register_deactivation_hook`.
+		 * Dectivates the widget feature.
 		 *
 		 * @since 1.0.0
-		 *
-		 * @link https://developer.wordpress.org/plugins/the-basics/activation-deactivation-hooks/
 		 * @return void
 		 */
-		public function deactivate_plugin() {
-			$mo_cpt = new MoPluginCustomPostType();
-			$mo_cpt->deregister();
-			flush_rewrite_rules();
-
-			remove_shortcode( 'motag' );
+		public function deactivate_widget() {
+			error_log( 'deactivate widget * ' );
 
 			add_action(
 				'widgets_init',
@@ -168,6 +319,8 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 		 * @return void
 		 */
 		public function setup_variables() {
+			error_log( 'setup variables * ' );
+
 			// From https://wordpress.stackexchange.com/questions/17948/call-to-undefined-function-get-plugin-data
 			if ( ! function_exists( 'get_plugin_data' ) ) {
 				require_once ABSPATH . 'wp-admin/includes/plugin.php';
@@ -192,6 +345,9 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 			$this->javascript_in_footer    = $this->arguments['javascript_in_footer'];
 			$this->css_extension           = $this->arguments['css_extension'];
 			$this->css_dependencies        = $this->arguments['css_dependencies'];
+
+			$this->theme_feature_set = $this->arguments['theme_feature_set'];
+			$this->theme_features    = $this->arguments['theme_features'];
 		}
 
 
