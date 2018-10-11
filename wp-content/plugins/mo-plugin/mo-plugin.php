@@ -77,7 +77,7 @@ $mo_plugin = new MoPluginSetup(
  *
  * @link https://developer.wordpress.org/plugins/the-basics/activation-deactivation-hooks/
 */
-$mo_cpt = new MoPluginCustomPostTypes();
+$mo_cpt = new MoPluginCustomPostType();
 add_action( 'init', array( $mo_cpt, 'register' ) );
 
 register_activation_hook( __FILE__, array( $mo_plugin, 'activate_plugin' ) );

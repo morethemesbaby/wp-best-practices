@@ -107,7 +107,7 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 		 * @return void
 		 */
 		public function activate_plugin() {
-			$mo_cpt = new MoPluginCustomPostTypes();
+			$mo_cpt = new MoPluginCustomPostType();
 			$mo_cpt->register();
 			flush_rewrite_rules();
 
@@ -132,7 +132,7 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 		 * @return void
 		 */
 		public function deactivate_plugin() {
-			$mo_cpt = new MoPluginCustomPostTypes();
+			$mo_cpt = new MoPluginCustomPostType();
 			$mo_cpt->deregister();
 			flush_rewrite_rules();
 

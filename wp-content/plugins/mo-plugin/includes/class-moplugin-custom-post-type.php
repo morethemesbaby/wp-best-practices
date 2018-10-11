@@ -1,18 +1,18 @@
 <?php
 /**
- * The Custom Post Types class
+ * The Custom Post Type class
  *
  * @package MoPlugin
  * @since 1.0.0
  */
 
-if ( ! class_exists( 'MoPluginCustomPostTypes' ) ) {
+if ( ! class_exists( 'MoPluginCustomPostType' ) ) {
 	/**
-	 * The HTML components class.
+	 * The Custom Post Type class.
 	 *
 	 * @since 1.0.0
 	 */
-	class MoPluginCustomPostTypes extends MoPluginBase {
+	class MoPluginCustomPostType extends MoPluginBase {
 
 		/**
 		 * Class arguments.

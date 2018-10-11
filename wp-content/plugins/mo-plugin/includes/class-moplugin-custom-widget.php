@@ -51,9 +51,9 @@ if ( ! class_exists( 'MoPluginCustomWidget' ) ) {
 				'Mo Plugin Books',
 				array(
 					/* translators: The Book widget description on the admin screen */
-					'description'      => esc_html__( 'Display most popular books', 'mo-plugin' ),
+					'description'     => esc_html__( 'Display most popular books', 'mo-plugin' ),
 					/* translators: The Book widget `number of books to display` text on the admin screen */
-					'number_of_books'  => esc_html__( 'Number of books to display', 'mo-plugin' ),
+					'number_of_books' => esc_html__( 'Number of books to display', 'mo-plugin' ),
 				)
 			);
 		}
