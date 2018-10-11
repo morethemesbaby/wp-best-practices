@@ -3,6 +3,7 @@
 ## Decouple plugin and theme using add_theme_support
 
 > The implementation of a custom plugin should be decoupled from its use in a Theme. Disabling the plugin should not result in any errors in the Theme code. Similarly switching the Theme should not result in any errors in the Plugin code.
+
 > from 10up Engineering Best Practices
 
 In practice this works like:
