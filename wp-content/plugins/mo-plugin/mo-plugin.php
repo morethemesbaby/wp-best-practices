@@ -75,6 +75,10 @@ define( FEATURE_BOOK_CUSTOM_POST_TYPE, 'FEATURE_BOOK_CUSTOM_POST_TYPE' );
 function mo_plugin_check_theme_support() {
 	if ( current_theme_supports( FEATURE_BOOK_CUSTOM_POST_TYPE ) ) {
 		echo "plugin ::: supports;;";
+		$mo_cpt = new MoPluginCustomPostType();
+add_action( 'init', array( $mo_cpt, 'register' ) );
+register_activation_hook( __FILE__, array( $mo_plugin, 'activate_plugin' ) );
+
 	} else {
 		echo "plugin ::: No support;;";
 	}
@@ -88,10 +92,16 @@ add_action( 'after_setup_theme', 'mo_plugin_check_theme_support', 11, 0 );
  *
  * @link https://developer.wordpress.org/plugins/the-basics/activation-deactivation-hooks/
 */
-$mo_cpt = new MoPluginCustomPostType();
-add_action( 'init', array( $mo_cpt, 'register' ) );
+//$mo_cpt = new MoPluginCustomPostType();
+//add_action( 'init', array( $mo_cpt, 'register' ) );
 
-register_activation_hook( __FILE__, array( $mo_plugin, 'activate_plugin' ) );
+if ( current_theme_supports( FEATURE_BOOK_CUSTOM_POST_TYPE ) ) {
+	echo "plugin outside hook ::: supports;;";
+} else {
+	echo "plugin outside hook ::: No support;;";
+}
+
+//register_activation_hook( __FILE__, array( $mo_plugin, 'activate_plugin' ) );
 register_deactivation_hook( __FILE__, array( $mo_plugin, 'deactivate_plugin' ) );
 
 /**
