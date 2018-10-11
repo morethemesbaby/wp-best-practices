@@ -83,6 +83,18 @@ if ( ! class_exists( 'MoThemeBase' ) ) {
 		}
 
 		/**
+		 * Dynamically checks if a variable exists.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param string $variable The variable name.
+		 * @return bool
+		 */
+		public function __isset( $variable ) {
+			return array_key_exists( $variable, $this->data );
+		}
+
+		/**
 		 * Merges two arrays.
 		 *
 		 * The PHP `array_merge()` gives a warning when the second argument is not an array.
