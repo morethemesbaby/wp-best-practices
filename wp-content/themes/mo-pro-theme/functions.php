@@ -55,6 +55,18 @@ function mo_pro_theme_define_theme_support() {
 	define( FEATURE_BOOK_CUSTOM_POST_TYPE, 'FEATURE_BOOK_CUSTOM_POST_TYPE' );
 	add_theme_support( 'book' );
 }
-add_action( 'after_setup_theme', 'mo_pro_theme_define_theme_support' );
+add_action( 'after_setup_theme', 'mo_pro_theme_define_theme_support', 10, 0 );
+
+
+function mo_pro_theme_check_theme_support() {
+	if ( current_theme_supports( 'book' ) ) {
+		echo "theme ::: supports;;";
+	} else {
+		echo "theme ::: No support;;";
+	}
+}
+add_action( 'after_setup_theme', 'mo_pro_theme_check_theme_support', 11, 0 );
+
+
 
 

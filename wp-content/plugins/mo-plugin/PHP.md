@@ -9,3 +9,15 @@ In practice this works like:
 1. Every feature the theme needs from the plugin is requested via an `add_theme_support( 'custom-feature' );`. 
 2. The plugin checks for a feature via `if ( current_theme_supports( 'custom--feature' ) ) {}`.
 3. If the feature is requested the plugin implements it.
+
+The above checks must be wrapped into an `after_setup_theme` hook. Where the priority in theme is less than the priority in plugin:
+
+Theme:
+```
+add_action( 'after_setup_theme', 'define_theme_support', 10, 0 );
+```
+
+Plugin:
+```
+add_action( 'after_setup_theme', 'check_theme_support', 11, 0 );
+```

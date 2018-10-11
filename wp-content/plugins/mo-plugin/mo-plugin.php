@@ -70,11 +70,14 @@ $mo_plugin = new MoPluginSetup(
 	)
 );
 
-if ( current_theme_supports( 'book' ) ) {
-	echo "supports";
-} else {
-	echo "No support";
+function mo_plugin_check_theme_support() {
+	if ( current_theme_supports( 'book' ) ) {
+		echo "plugin ::: supports;;";
+	} else {
+		echo "plugin ::: No support;;";
+	}
 }
+add_action( 'after_setup_theme', 'mo_plugin_check_theme_support', 11, 0 );
 
 /**
  * Activate / deactivate the theme
