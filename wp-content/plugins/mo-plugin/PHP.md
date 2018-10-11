@@ -12,7 +12,7 @@ In practice this works like:
 2. The plugin checks for a feature via `if ( current_theme_supports( 'custom-feature' ) ) {}`.
 3. If the feature is requested the plugin enables it.
 
-The above checks must be wrapped into an `after_setup_theme` hook. Where the priority in theme is less than the priority in plugin:
+The above checks must be wrapped into an `after_setup_theme` hook where the priority in theme is less than the priority in plugin:
 
 Theme:
 ```php
@@ -36,14 +36,14 @@ function check_theme_support() {
 add_action( 'after_setup_theme', 'check_theme_support', 11, 0 );
 ```
 
-To `custom-feature` must be shared between the theme and the plugin. For that we have the default `global $_wp_theme_features` array. Add custom features into this array in the theme, query them in the plugin.
+The `custom-feature` variable / constant must be shared between the theme and the plugin. For that we have the default `global $_wp_theme_features` array. This makes it easy to add custom features into this array in the theme, query them in the plugin.
 
 To mimic the [WordPress default `post-formats` feature](https://developer.wordpress.org/themes/functionality/post-formats/) we pass the custom features as an array:
 
 Theme:
 ```php
 add_theme_support(
-	'theme-slug',
+	'theme-features',
 	array(
 		'feature-1',
 		'feature-2'
@@ -54,8 +54,8 @@ add_theme_support(
 
 Plugin:
 ```php
-if ( current_theme_supports( 'theme-slug' ) ) {
-	$features = get_theme_support( 'theme-slug' );
+if ( current_theme_supports( 'theme-features' ) ) {
+	$features = get_theme_support( 'theme-features' );
 	if ( $features['feature-1'] ) {
 		....
 	}
