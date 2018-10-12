@@ -36,7 +36,7 @@ if ( ! class_exists( 'MoPluginCustomPostType' ) ) {
 		}
 
 		/**
-		 * Registers custom post types.
+		 * Registers a custom post type.
 		 *
 		 * @since 1.0.0
 		 *
@@ -89,7 +89,7 @@ if ( ! class_exists( 'MoPluginCustomPostType' ) ) {
 		}
 
 		/**
-		 * Deregisters custom post types.
+		 * Deregisters a custom post type.
 		 *
 		 * @since 1.0.0
 		 *

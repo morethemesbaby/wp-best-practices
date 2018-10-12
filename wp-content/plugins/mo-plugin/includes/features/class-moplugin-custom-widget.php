@@ -15,7 +15,7 @@ if ( ! class_exists( 'MoPluginCustomWidget' ) ) {
 	class MoPluginCustomWidget extends WP_Widget {
 
 		/**
-		 * The arguments for wp_kses.
+		 * The arguments for wp_kses displaying the widget on backend.
 		 *
 		 * @since 1.0.0
 		 *
