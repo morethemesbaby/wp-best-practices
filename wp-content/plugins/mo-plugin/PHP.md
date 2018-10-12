@@ -12,20 +12,20 @@ Implementing [10up best practices](https://10up.github.io/Engineering-Best-Pract
 
 ## Return data instead of HTML
 
-Plugins specially created to support a theme should use the theme's infrastructure whenever possible.
+Plugins specially created to support a theme (like this) should use the theme's infrastructure whenever possible.
 
 ### The problem
 
-If we wan't to add a custom post type ― people ― we can't do it in a theme just in a plugin. We have to create a plugin just for this feature. 
+Adding a custom post type ― people ― can't be done in a theme just in a plugin. A plugin has to be created for this feature. 
 
-If we want to display a person in a post or a page we can use the `[person name="Bill"]` shortcode. To display the person as a card (avatar, role, email) we need to use HTML.
+To display a person in a post or a page the `[person name="Bill"]` shortcode can be used. To make the person look nice with avatar, role, email ... we need to use HTML.
 
-Our theme perhaps already has the template tags and parts displaying a person. Since plugins cannot use `get_template_part` we can't use the already written HTML code.
+The theme perhaps already has the template tags and parts displaying a person. Since plugins cannot use `get_template_part` they can't re-use the already written HTML code.
 
 ### The solution
 
-In the plugin we should return a `global $person` object and an action.
-Then in the theme display the person with the existing template parts.
+The plugin should return a `global $person` object and an action hook.
+The theme should use the global variable and the hook to display the person with the existing template parts.
 
 Plugin:
 ```php
@@ -41,8 +41,9 @@ add_shortcode( 'person', 'person_func' );
 Theme:
 ```php
 function display_person() {
-	global $books;
-	print_r($books);
+	global $person;
+
+	get_template_part( 'template-parts/person' );
 }
 add_action( 'display_person_in_theme', 'display_person' );
 ```
