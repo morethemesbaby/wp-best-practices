@@ -1,5 +1,42 @@
 # PHP Principles
 
+## Return data instead of HTML
+
+Plugins specially created to support a theme should use the theme's infrastructure whenever possible.
+
+### The problem
+
+If we wan't to add a custom post type ― people ― we can't do it in a theme just in a plugin. We have to create a plugin just for this feature. 
+
+If we want to display a person in a post or a page we can use the `[person name="Bill"]` shortcode. To display the person as a card (avatar, role, email) we need to use HTML.
+
+Our theme perhaps already has the template tags and parts displaying a person. Since plugins cannot use `get_template_part` we can't use the already written HTML code.
+
+### The solution
+
+In the plugin we should return a `global $person` object and an action.
+Then in the theme display the person with the existing template parts.
+
+Plugin:
+```php
+function person_func( $atts ){
+	global $person;
+	$person = get_person();
+
+	do_action( 'display_person_in_theme' );
+}
+add_shortcode( 'person', 'person_func' );
+```
+
+Theme:
+```php
+function display_person() {
+	global $books;
+	print_r($books);
+}
+add_action( 'display_person_in_theme', 'display_person' );
+```
+
 ## Decouple plugin and theme using add_theme_support
 
 > The implementation of a custom plugin should be decoupled from its use in a Theme. Disabling the plugin should not result in any errors in the Theme code. Similarly switching the Theme should not result in any errors in the Plugin code.
