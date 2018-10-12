@@ -1,5 +1,15 @@
 # PHP Principles
 
+## Optimized and cached queries
+
+Implementing [10up best practices](https://10up.github.io/Engineering-Best-Practices/php/) like:
+
+* Use `WP_Query` instead of `get_posts`.
+* Query only what is necessary. Like `'update_post_meta_cache' => false` when we don't need post meta data.
+* Don't do endless queries like `posts_per_page => -1`.
+* Always use the cache.
+
+
 ## Return data instead of HTML
 
 Plugins specially created to support a theme should use the theme's infrastructure whenever possible.
