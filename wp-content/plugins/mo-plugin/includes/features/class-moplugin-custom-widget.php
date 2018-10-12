@@ -68,7 +68,13 @@ if ( ! class_exists( 'MoPluginCustomWidget' ) ) {
 		 * @return void
 		 */
 		public function widget( $args, $instance ) {
-			echo wp_kses_post();
+			$cpt = new MoPluginCustomPostType();
+
+			$cpt->display_books(
+				array(
+					'number_of_books' => $instance['number_of_books'],
+				)
+			);
 		}
 
 		/**
@@ -87,15 +93,15 @@ if ( ! class_exists( 'MoPluginCustomWidget' ) ) {
 
 			$label = sprintf(
 				'<label for="%1$s">%2$s</label>',
-				$id,
-				$label
+				esc_attr( $id ),
+				esc_html( $label )
 			);
 
 			$input = sprintf(
 				'<input id="%1$s" name="%2$s" type="number" value="%3$s" min="-1">',
-				$id,
-				$name,
-				$value
+				esc_attr( $id ),
+				esc_attr( $name ),
+				esc_attr( $value )
 			);
 
 			$form = sprintf(

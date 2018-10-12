@@ -24,6 +24,17 @@ if ( ! class_exists( 'MoPluginCustomPostType' ) ) {
 		public $arguments = array();
 
 		/**
+		 * Arguments for diaplying books.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @var array
+		 */
+		public $display_books_arguments = array(
+			'number_of_books' => '0',
+		);
+
+		/**
 		 * Sets up the class.
 		 *
 		 * @since 1.0.0
@@ -33,6 +44,40 @@ if ( ! class_exists( 'MoPluginCustomPostType' ) ) {
 		 */
 		public function __construct( $arguments = array() ) {
 			$this->arguments = $this->array_merge( $this->arguments, $arguments );
+		}
+
+		/**
+		 * Displays books.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param array $arguments The arguments array.
+		 * @return string
+		 */
+		public function display_books( $arguments = array() ) {
+			$arguments = $this->array_merge( $this->display_books_arguments, $arguments );
+
+			$mo_db = new MoDB();
+			$books = $mo_db->get_posts(
+				array(
+					'post_type'      => 'book',
+					'posts_per_page' => $arguments['number_of_books'],
+					'cache_id'       => 'books',
+				)
+			);
+
+			$post_list_arguments = array(
+				'posts' => $books,
+			);
+
+			$display_arguments = array(
+				'query_var_name'     => 'post-list-query-vars',
+				'query_var_value'    => $post_list_arguments,
+				'template_part_slug' => 'template-parts/html-components/title/title',
+				'template_part_name' => '',
+			);
+
+			echo wp_kses_post( $this->get_template_part( $display_arguments ) );
 		}
 
 		/**

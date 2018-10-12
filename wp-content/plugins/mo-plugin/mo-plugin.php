@@ -69,6 +69,14 @@ $mo_plugin = new MoPluginSetup(
 	)
 );
 
+/**
+ * The plugin text domain.
+ *
+ * @since 1.0.0
+ * @var string
+ */
+define( 'PLUGIN_TEXT_DOMAIN', $mo_plugin->text_domain );
+
 
 /**
  * Registers the activation hook.
