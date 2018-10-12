@@ -9,7 +9,8 @@
   ],
   "autoload": {
     "classmap": [
-      "includes/"
+      "includes/",
+      "includes/features/"
     ]
   }
 }
