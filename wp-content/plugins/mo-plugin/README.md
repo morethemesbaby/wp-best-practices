@@ -6,8 +6,9 @@ It is taylor made to the `Mo Pro Theme` which means it's functionality is define
 
 ## Features
 
-* Decoupled plugin and theme
-
+* Optimized and cached queries
+* Functionality is defined by the theme
+* Presentation is done in the theme
 
 ## Principles
 
