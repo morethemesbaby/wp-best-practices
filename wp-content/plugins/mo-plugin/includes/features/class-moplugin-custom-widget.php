@@ -61,6 +61,10 @@ if ( ! class_exists( 'MoPluginCustomWidget' ) ) {
 		/**
 		 * Displays the widget on frontend.
 		 *
+		 * We avoid dispalying HTML in plugins when the plugin is specially created for a theme, like in this case.
+		 * We can instead display HTML in theme, using template parts.
+		 * To do that we return data as a global variable and an action hook.
+		 *
 		 * @since 1.0.0
 		 *
 		 * @param array $args     The widget arguments.
@@ -70,11 +74,14 @@ if ( ! class_exists( 'MoPluginCustomWidget' ) ) {
 		public function widget( $args, $instance ) {
 			$cpt = new MoPluginCustomPostType();
 
-			$cpt->display_books(
+			global $books;
+			$books = $cpt->get_books(
 				array(
 					'number_of_books' => $instance['number_of_books'],
 				)
 			);
+
+			do_action( PLUGIN_TEXT_DOMAIN . '_books_action_after', 10, 0 );
 		}
 
 		/**

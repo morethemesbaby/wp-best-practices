@@ -51,8 +51,8 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 		public function __construct( $arguments ) {
 			$this->arguments = $this->array_merge( $this->arguments, $arguments );
 
-			add_action( 'plugins_loaded', array( $this, 'setup_variables' ) );
-			add_action( 'plugins_loaded', array( $this, 'setup_assets' ) );
+			$this->setup_variables();
+			$this->setup_assets();
 
 			/**
 			 * `get_theme_features` must be called after `add_theme_support`.

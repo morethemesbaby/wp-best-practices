@@ -74,7 +74,7 @@ if ( ! class_exists( 'MoDB' ) ) {
 		 * @return array An array of posts.
 		 */
 		public function get_posts( $arguments = array() ) {
-			$arguments = $this->array_merge( $this->arguments_for_get_posts_cpt, $arguments );
+			$arguments = $this->array_merge( $this->arguments_for_get_posts, $arguments );
 			$arguments = $this->setup_arguments_for_get_posts( $arguments );
 
 			$results = wp_cache_get( $arguments['cache_id'] );

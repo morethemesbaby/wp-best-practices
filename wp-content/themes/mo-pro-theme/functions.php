@@ -64,4 +64,9 @@ function mo_pro_theme_define_theme_support() {
 add_action( 'after_setup_theme', 'mo_pro_theme_define_theme_support', 10, 0 );
 
 
-
+// Display a widget in the header
+function mo_pro_theme_display_book_widget() {
+	global $books;
+	print_r($books);
+}
+add_action( 'mo-plugin_books_action_after', 'mo_pro_theme_display_book_widget', 10, 0 );

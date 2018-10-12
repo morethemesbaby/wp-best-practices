@@ -47,14 +47,14 @@ if ( ! class_exists( 'MoPluginCustomPostType' ) ) {
 		}
 
 		/**
-		 * Displays books.
+		 * Returns books.
 		 *
 		 * @since 1.0.0
 		 *
 		 * @param array $arguments The arguments array.
-		 * @return string
+		 * @return array
 		 */
-		public function display_books( $arguments = array() ) {
+		public function get_books( $arguments = array() ) {
 			$arguments = $this->array_merge( $this->display_books_arguments, $arguments );
 
 			$mo_db = new MoDB();
@@ -66,18 +66,7 @@ if ( ! class_exists( 'MoPluginCustomPostType' ) ) {
 				)
 			);
 
-			$post_list_arguments = array(
-				'posts' => $books,
-			);
-
-			$display_arguments = array(
-				'query_var_name'     => 'post-list-query-vars',
-				'query_var_value'    => $post_list_arguments,
-				'template_part_slug' => 'template-parts/html-components/title/title',
-				'template_part_name' => '',
-			);
-
-			echo wp_kses_post( $this->get_template_part( $display_arguments ) );
+			return $books;
 		}
 
 		/**
