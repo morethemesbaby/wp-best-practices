@@ -20,7 +20,7 @@ Boilerplate code for WordPress plugins and themes based on best practices.
 * `Mo Pro Theme`: 
 	* Displays the posts from `Mo Theme`, 
 	* Displays the custom posts from `Mo Plugin`, 
-	* Displays the widget and the shortcode from `Mo Plugin`, 
+	* Displays a widget and a shortcode with the custom post type from `Mo Plugin`, 
 	* Overwrites the comments from `Mo Theme`.
 
 ## Inspiration
