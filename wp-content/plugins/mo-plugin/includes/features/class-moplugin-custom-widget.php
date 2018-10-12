@@ -80,9 +80,9 @@ if ( ! class_exists( 'MoPluginCustomWidget' ) ) {
 		 * @return void
 		 */
 		public function form( $instance ) {
-			$id    = esc_attr( $this->get_field_id( 'number_of_books' ) );
-			$label = esc_html( $this->widget_options['number_of_books'] );
-			$name  = esc_html( $this->get_field_name['number_of_books'] );
+			$id    = $this->get_field_id( 'number_of_books' );
+			$label = $this->widget_options['number_of_books'];
+			$name  = $this->get_field_name( 'number_of_books' );
 			$value = $instance['number_of_books'];
 
 			$label = sprintf(
