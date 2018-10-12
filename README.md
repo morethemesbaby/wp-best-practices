@@ -10,13 +10,13 @@ Boilerplate code for WordPress plugins and themes based on best practices.
 ## What's inside
 
 1. A WordPress.org compatible theme: [Mo Theme](wp-content/themes/mo-theme)
-2. A WordPress.org compatible plugin: [Mo Plugin](wp-content/plugins/mo-plugin) - work in progress.
+2. A WordPress.org compatible plugin: [Mo Plugin](wp-content/plugins/mo-plugin)
 3. A child theme using the plugin: [Mo Pro Theme](wp-content/themes/mo-pro-theme) - work in progress.
 
 ## How it works
 
 * `Mo Theme` simply displays posts and comments as required by the WordPress.org theme store.
-* `Mo Plugin` adds a custom post type together with a widget and shortcode.
+* `Mo Plugin` adds a custom post type together with a shortcode.
 * `Mo Pro Theme`: 
 	* Displays the posts from `Mo Theme`, 
 	* Displays the custom posts from `Mo Plugin`, 
