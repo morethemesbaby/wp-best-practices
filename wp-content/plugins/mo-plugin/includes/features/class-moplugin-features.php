@@ -61,10 +61,6 @@ if ( ! class_exists( 'MoPluginFeatures' ) ) {
 			if ( $this->features['shortcode'] ) {
 				$this->activate_shortcode();
 			}
-
-			if ( $this->features['widget'] ) {
-				$this->activate_widget();
-			}
 		}
 
 		/**
@@ -89,10 +85,6 @@ if ( ! class_exists( 'MoPluginFeatures' ) ) {
 
 			if ( $this->features['shortcode'] ) {
 				$this->deactivate_shortcode();
-			}
-
-			if ( $this->features['widget'] ) {
-				$this->deactivate_widget();
 			}
 		}
 
@@ -142,36 +134,6 @@ if ( ! class_exists( 'MoPluginFeatures' ) ) {
 		 */
 		public function deactivate_shortcode() {
 			remove_shortcode( 'books' );
-		}
-
-		/**
-		 * Activates the widget feature.
-		 *
-		 * @since 1.0.0
-		 * @return void
-		 */
-		public function activate_widget() {
-			add_action(
-				'widgets_init',
-				function() {
-					register_widget( 'MoPluginCustomWidget' );
-				}
-			);
-		}
-
-		/**
-		 * Dectivates the widget feature.
-		 *
-		 * @since 1.0.0
-		 * @return void
-		 */
-		public function deactivate_widget() {
-			add_action(
-				'widgets_init',
-				function() {
-					unregister_widget( 'MoPluginCustomWidget' );
-				}
-			);
 		}
 	}
 } // End if().

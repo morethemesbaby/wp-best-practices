@@ -10,7 +10,8 @@
   "autoload": {
 	  "classmap": [
       "includes/",
-      "../mo-theme/includes/"
+      "../mo-theme/includes/",
+      "../../plugins/mo-plugin/includes/"
 	  ]
   }
 }

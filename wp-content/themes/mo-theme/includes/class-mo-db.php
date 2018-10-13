@@ -12,7 +12,7 @@ if ( ! class_exists( 'MoDB' ) ) {
 	 *
 	 * @since 1.0.0
 	 */
-	class MoDB extends MoPluginBase {
+	class MoDB extends MoBase {
 
 		/**
 		 * Class arguments.

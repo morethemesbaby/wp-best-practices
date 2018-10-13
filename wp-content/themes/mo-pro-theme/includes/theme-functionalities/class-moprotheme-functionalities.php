@@ -47,6 +47,18 @@ if ( ! class_exists( 'MoProThemeFunctionalities' ) ) {
 			add_filter( 'mo_theme_home_title', array( $this, 'change_home_title' ) );
 			add_action( 'after_setup_theme', array( $this, 'define_theme_support', 10, 0 ) );
 			add_action( 'mo-plugin_books_action_after', array( $this, 'display_books_shortcode', 10, 0 ) );
+			add_action( 'widgets_init', array( $this, 'register_books_widget' ) );
+		}
+
+		/**
+		 * Enables the widget for books.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @return void
+		 */
+		public function register_books_widget() {
+			register_widget( 'MoProThemeCustomWidget' );
 		}
 
 		/**
