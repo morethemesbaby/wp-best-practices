@@ -190,16 +190,46 @@ if ( ! class_exists( 'MoAssets' ) ) {
 		public function setup_enqueue( $arguments ) {
 			$arguments = $this->array_merge( $this->enqueue_arguments, $arguments );
 
-			$folder    = $arguments['folder'];
-			$file_name = "{$this->text_domain}-{$folder}.{$arguments['extension']}";
+			$folder    = implode(
+				'/',
+				array(
+					$this->src_url,
+					$this->folder,
+					$arguments['subfolder'],
+				)
+			);
+
+			$file_name = implode(
+				'.',
+				array(
+					$this->setup_filename(),
+					$arguments['extension'],
+				)
+			);
 
 			return array(
 				'file_handle'  => "{$this->text_domain}-{$arguments['file_handle']}",
-				'src'          => "{$this->src_url}/{$folder}/{$arguments['subfolder']}/{$file_name}",
+				'src'          => "{$folder}/{$file_name}",
 				'dependencies' => $arguments['dependencies'],
 				'timestamp'    => $this->version,
 				'in_footer'    => $arguments['in_footer'],
 			);
+		}
+
+
+		/**
+		 * Sets up asset filename.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @return string
+		 */
+		public function setup_filename() {
+			if ( '' !== $this->file_name ) {
+				return $this->file_name;
+			}
+
+			return "{$this->text_domain}-{$this->folder}";
 		}
 
 		/**
