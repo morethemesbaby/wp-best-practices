@@ -190,7 +190,7 @@ if ( ! class_exists( 'MoAssets' ) ) {
 		public function setup_enqueue( $arguments ) {
 			$arguments = $this->array_merge( $this->enqueue_arguments, $arguments );
 
-			$folder = implode(
+			$folder = $this->implode(
 				'/',
 				array(
 					$this->src_url,
@@ -199,7 +199,7 @@ if ( ! class_exists( 'MoAssets' ) ) {
 				)
 			);
 
-			$file_name = implode(
+			$file_name = $this->implode(
 				'.',
 				array(
 					$this->setup_filename( $arguments ),
@@ -213,28 +213,6 @@ if ( ! class_exists( 'MoAssets' ) ) {
 				'dependencies' => $arguments['dependencies'],
 				'timestamp'    => $this->version,
 				'in_footer'    => $arguments['in_footer'],
-			);
-		}
-
-		/**
-		 * Sets up asset filename.
-		 *
-		 * @since 1.0.0
-		 *
-		 * @param array $arguments The arguments array.
-		 * @return string
-		 */
-		public function setup_filename( $arguments ) {
-			if ( '' !== $arguments['file_name'] ) {
-				return $arguments['file_name'];
-			}
-
-			return implode(
-				'-',
-				array(
-					$this->text_domain,
-					$this->folder,
-				)
 			);
 		}
 
@@ -282,6 +260,28 @@ if ( ! class_exists( 'MoAssets' ) ) {
 		}
 
 		/**
+		 * Sets up asset filename.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param array $arguments The arguments array.
+		 * @return string
+		 */
+		public function setup_filename( $arguments ) {
+			if ( '' !== $arguments['file_name'] ) {
+				return $arguments['file_name'];
+			}
+
+			return $this->implode(
+				'-',
+				array(
+					$this->text_domain,
+					$this->folder,
+				)
+			);
+		}
+
+		/**
 		 * Decides if a script can be / must be loaded in the footer.
 		 *
 		 * On the admin scripts cannot be loaded in the footer.
@@ -292,7 +292,7 @@ if ( ! class_exists( 'MoAssets' ) ) {
 		 * @return boolean
 		 */
 		public function javascript_in_footer() {
-			if ( $this->folder === $this->admin_folder ) {
+			if ( ( $this->folder === $this->admin_folder ) && ( '' !== $this->folder ) ) {
 				return false;
 			} else {
 				return $this->javascript_in_footer;

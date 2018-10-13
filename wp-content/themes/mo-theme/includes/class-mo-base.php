@@ -81,5 +81,9 @@ if ( ! class_exists( 'MoBase' ) ) {
 		public function array_merge( $array1 = array(), $array2 = array() ) {
 			return array_merge( (array) $array1, (array) $array2 );
 		}
+
+		public function implode( $glue, $pieces ) {
+			return implode( $glue, array_filter( $pieces ) );
+		}
 	}
 } // End if().
