@@ -33,8 +33,14 @@ $mo_theme = new MoThemeSetup(
 	apply_filters( 'mo_theme_setup_array',
 		array(
 			'include_folder'    => 'includes/',
-			'assets_folder'     => 'assets/',
 			'functionality_set' => FUNCTIONALITY_SET_WPORG,
+			'assets'            => array(
+				'src_url'           => get_template_directory_uri(),
+				'folder'            => '',
+				'javascript_folder' => 'assets/js',
+				'css_folder'        => '',
+				'css_file_name'     => 'style',
+			),
 		)
 	)
 );

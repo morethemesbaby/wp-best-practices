@@ -190,7 +190,7 @@ if ( ! class_exists( 'MoAssets' ) ) {
 		public function setup_enqueue( $arguments ) {
 			$arguments = $this->array_merge( $this->enqueue_arguments, $arguments );
 
-			$folder    = implode(
+			$folder = implode(
 				'/',
 				array(
 					$this->src_url,
@@ -202,7 +202,7 @@ if ( ! class_exists( 'MoAssets' ) ) {
 			$file_name = implode(
 				'.',
 				array(
-					$this->setup_filename(),
+					$this->setup_filename( $arguments ),
 					$arguments['extension'],
 				)
 			);
@@ -216,20 +216,26 @@ if ( ! class_exists( 'MoAssets' ) ) {
 			);
 		}
 
-
 		/**
 		 * Sets up asset filename.
 		 *
 		 * @since 1.0.0
 		 *
+		 * @param array $arguments The arguments array.
 		 * @return string
 		 */
-		public function setup_filename() {
-			if ( '' !== $this->file_name ) {
-				return $this->file_name;
+		public function setup_filename( $arguments ) {
+			if ( '' !== $arguments['file_name'] ) {
+				return $arguments['file_name'];
 			}
 
-			return "{$this->text_domain}-{$this->folder}";
+			return implode(
+				'-',
+				array(
+					$this->text_domain,
+					$this->folder,
+				)
+			);
 		}
 
 		/**

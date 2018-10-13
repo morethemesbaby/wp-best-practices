@@ -22,14 +22,9 @@ if ( ! class_exists( 'MoThemeSetup' ) ) {
 		 * @var array $arguments An Array of arguments.
 		 */
 		public $arguments = array(
-			'include_folder'         => 'includes/',
-			'assets_folder'          => 'assets/',
-			'javascript_folder'      => 'js/',
-			'functionality_set'      => '',
-			'javascript_extension'   => '.js',
-			'javascript_file_handle' => '-script',
-			'css_file_name'          => 'style.css',
-			'css_file_handle'        => '-style',
+			'include_folder'    => 'includes/',
+			'functionality_set' => '',
+			'assets'            => array(),
 		);
 
 		/**
@@ -62,8 +57,7 @@ if ( ! class_exists( 'MoThemeSetup' ) ) {
 			$this->version     = $theme->get( 'Version' );
 			$this->text_domain = $theme->get( 'TextDomain' );
 
-			$this->assets_folder = $this->arguments['assets_folder'];
-
+			$this->assets            = $this->arguments['assets'];
 			$this->functionality_set = $this->arguments['functionality_set'];
 		}
 
@@ -76,13 +70,10 @@ if ( ! class_exists( 'MoThemeSetup' ) ) {
 		 */
 		public function setup_assets() {
 			$arguments = $this->array_merge(
-				$this->arguments,
+				$this->assets,
 				array(
-					'folder'       => $this->assets_folder,
-					'admin_folder' => '',
-					'action'       => 'wp_enqueue_scripts',
-					'version'      => $this->version,
-					'text_domain'  => $this->text_domain,
+					'version'     => $this->version,
+					'text_domain' => $this->text_domain,
 				)
 			);
 
