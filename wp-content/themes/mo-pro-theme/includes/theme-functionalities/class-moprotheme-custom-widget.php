@@ -69,14 +69,28 @@ if ( ! class_exists( 'MoProThemeCustomWidget' ) ) {
 		 */
 		public function widget( $args, $instance ) {
 			$cpt = new MoPluginCustomPostType();
-
+			
 			$books = $cpt->get_books(
 				array(
 					'number_of_books' => $instance['number_of_books'],
 				)
 			);
 
-			print_r($books);
+			$query = array(
+				'title' => 'Book list',
+				'query' => $books,
+			);
+
+			$arguments = array(
+				'query_var_name'     => 'post-list-query-vars',
+				'query_var_value'    => $query,
+				'template_part_slug' => 'template-parts/post-list/post-list',
+				'template_part_name' => 'with-external-query',
+			);
+
+			$mo_theme_base = new MoThemeBase();
+
+			echo wp_kses_post( $mo_theme_base->get_template_part( $arguments ) );
 		}
 
 		/**
