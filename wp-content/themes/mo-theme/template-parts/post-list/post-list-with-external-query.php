@@ -2,7 +2,9 @@
 /**
  * Displays a list of posts.
  *
- * Displays the standard query from the loop.
+ * Uses a custom query.
+ * We couldn't merge this query with the standard query.
+ * Code here is almost the same as code in the standard query.
  *
  * @package MoTheme
  * @since 1.0.0
@@ -21,6 +23,12 @@ $query_vars = $mo->get_query_var(
 		),
 	)
 );
+
+$query = $query_vars['query'];
+
+if ( null === $query ) {
+	return;
+}
 
 $component = new MoThemeHTMLComponent();
 
@@ -47,9 +55,9 @@ $post_list_post_format = $query_vars['post-format'];
 
 	<div class="list-items">
 		<?php
-			if ( have_posts() ) {
-				while ( have_posts() ) {
-					the_post();
+			if ( $query->have_posts() ) {
+				while ( $query->have_posts() ) {
+					$query->the_post();
 
 					if ( empty( $post_list_post_format ) ) {
 						get_template_part( 'template-parts/post-format/post-format', get_post_format() );
@@ -60,6 +68,7 @@ $post_list_post_format = $query_vars['post-format'];
 
 				get_template_part( 'template-parts/navigation/navigation', 'for-posts' );
 
+				wp_reset_postdata();
 			} else {
 				get_template_part( 'template-parts/post/post', 'none' );
 			}

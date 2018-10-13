@@ -70,7 +70,20 @@ if ( ! class_exists( 'MoProThemeFunctionalities' ) ) {
 		 */
 		public function display_books_shortcode() {
 			global $books;
-			print_r($books);
+
+			$query = array(
+				'title' => 'Book list',
+				'query' => $books,
+			);
+
+			$arguments = array(
+				'query_var_name'     => 'post-list-query-vars',
+				'query_var_value'    => $query,
+				'template_part_slug' => 'template-parts/post-list/post-list',
+				'template_part_name' => 'with-external-query',
+			);
+
+			echo wp_kses_post( $this->get_template_part( $arguments ) );
 		}
 
 		/**
