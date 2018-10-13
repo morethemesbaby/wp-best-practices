@@ -39,6 +39,7 @@ if ( ! class_exists( 'MoProThemeSetup' ) ) {
 
 			add_action( 'after_setup_theme', array( $this, 'setup_variables' ) );
 			add_action( 'after_setup_theme', array( $this, 'setup_assets' ) );
+			add_action( 'after_setup_theme', array( $this, 'setup_functionalities' ) );
 		}
 
 		/**
@@ -76,6 +77,17 @@ if ( ! class_exists( 'MoProThemeSetup' ) ) {
 
 			$assets = new MoAssets( $arguments );
 			$assets->add();
+		}
+
+		/**
+		 * Sets up theme functionalities.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @return void
+		 */
+		public function setup_functionalities() {
+			$functionalities = new MoProThemeFunctionalities();
 		}
 	}
 } // End if().
