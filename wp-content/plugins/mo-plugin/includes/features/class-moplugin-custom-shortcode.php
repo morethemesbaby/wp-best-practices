@@ -24,6 +24,17 @@ if ( ! class_exists( 'MoPluginCustomShortcode' ) ) {
 		public $arguments = array();
 
 		/**
+		 * Books shortcode arguments.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @var array $arguments An Array of arguments.
+		 */
+		public $arguments_books = array(
+			'number_of_books' => 0,
+		);
+
+		/**
 		 * Sets up the class.
 		 *
 		 * @since 1.0.0
@@ -38,13 +49,33 @@ if ( ! class_exists( 'MoPluginCustomShortcode' ) ) {
 		/**
 		 * Returns content for the shortcode.
 		 *
+		 * Usage: `[books number_of_books="5"]
+		 * Will display 5 books.
+		 *
+		 * Only raw data will be returned as a global variable.
+		 * And an action hook which the theme can use to display the data.
+		 * This way the shortcode display will be wired into the HTML code structure of the theme.
+		 *
 		 * @since 1.0.0
 		 *
 		 * @link https://codex.wordpress.org/Function_Reference/add_shortcode
-		 * @return string.
+		 *
+		 * @param array $arguments The shortcode arguments array.
+		 * @return void.
 		 */
-		public static function motag() {
-			return '';
+		public function books( $arguments ) {
+			$arguments = shortcode_atts( $arguments_books, $arguments );
+
+			$cpt = new MoPluginCustomPostType();
+
+			global $books;
+			$books = $cpt->get_books(
+				array(
+					'number_of_books' => $arguments['number_of_books'],
+				)
+			);
+
+			do_action( PLUGIN_TEXT_DOMAIN . '_books_action_after', 10, 0 );
 		}
 	}
 } // End if().

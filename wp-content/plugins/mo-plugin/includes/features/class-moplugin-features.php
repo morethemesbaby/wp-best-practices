@@ -129,7 +129,9 @@ if ( ! class_exists( 'MoPluginFeatures' ) ) {
 		 * @return void
 		 */
 		public function activate_shortcode() {
-			add_shortcode( 'motag', array( 'MoPluginCustomShortcode', 'motag' ) );
+			$mo_sh = new MoPluginCustomShortcode();
+
+			add_shortcode( 'books', array( $mo_sh, 'books' ) );
 		}
 
 		/**
@@ -139,7 +141,7 @@ if ( ! class_exists( 'MoPluginFeatures' ) ) {
 		 * @return void
 		 */
 		public function deactivate_shortcode() {
-			remove_shortcode( 'motag' );
+			remove_shortcode( 'books' );
 		}
 
 		/**

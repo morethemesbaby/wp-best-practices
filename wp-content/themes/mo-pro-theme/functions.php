@@ -57,14 +57,13 @@ function mo_pro_theme_define_theme_support() {
 		array(
 			'custom-post-type' => true,
 			'shortcode'        => true,
-			'widget'           => true,
 		)
 	);
 }
 add_action( 'after_setup_theme', 'mo_pro_theme_define_theme_support', 10, 0 );
 
 
-// Display a widget in the header
+// Display a shortcode
 function mo_pro_theme_display_book_widget() {
 	global $books;
 	print_r($books);
