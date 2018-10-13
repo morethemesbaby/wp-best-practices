@@ -66,7 +66,7 @@ $mo_plugin = new MoPluginSetup(
 			'has_admin_interface'  => false,
 			'has_public_interface' => true,
 			'assets'               => array(
-				'src_url' => PLUGIN_DIR_URL,
+				'src_url' => rtrim( PLUGIN_DIR_URL, '/' ),
 			),
 		)
 	)
