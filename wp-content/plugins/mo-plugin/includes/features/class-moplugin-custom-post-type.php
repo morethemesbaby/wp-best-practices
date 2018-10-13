@@ -12,7 +12,7 @@ if ( ! class_exists( 'MoPluginCustomPostType' ) ) {
 	 *
 	 * @since 1.0.0
 	 */
-	class MoPluginCustomPostType extends MoPluginBase {
+	class MoPluginCustomPostType extends MoBase {
 
 		/**
 		 * Class arguments.

@@ -39,7 +39,8 @@ if ( ! class_exists( 'MoProThemeSetup' ) ) {
 
 			add_action( 'after_setup_theme', array( $this, 'setup_variables' ) );
 			add_action( 'after_setup_theme', array( $this, 'setup_assets' ) );
-			add_action( 'after_setup_theme', array( $this, 'setup_functionalities' ) );
+
+			$this->setup_functionalities();
 		}
 
 		/**

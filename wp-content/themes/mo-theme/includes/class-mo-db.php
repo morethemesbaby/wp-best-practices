@@ -2,7 +2,7 @@
 /**
  * The More Themes Baby database class
  *
- * @package MoDB
+ * @package MoTheme
  * @since 1.0.0
  */
 

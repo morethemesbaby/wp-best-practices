@@ -12,7 +12,7 @@ if ( ! class_exists( 'MoPluginCustomShortcode' ) ) {
 	 *
 	 * @since 1.0.0
 	 */
-	class MoPluginCustomShortcode extends MoPluginBase {
+	class MoPluginCustomShortcode extends MoBase {
 
 		/**
 		 * Class arguments.

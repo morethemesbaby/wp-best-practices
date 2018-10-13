@@ -12,7 +12,7 @@ if ( ! class_exists( 'MoPluginFeatures' ) ) {
 	 *
 	 * @since 1.0.0
 	 */
-	class MoPluginFeatures extends MoPluginBase {
+	class MoPluginFeatures extends MoBase {
 
 		/**
 		 * The class arguments.
