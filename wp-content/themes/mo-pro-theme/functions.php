@@ -23,6 +23,14 @@ if ( file_exists( get_template_directory() . '/vendor/autoload.php' ) ) {
  */
 $mo_pro_theme = new MoProThemeSetup(
 	apply_filters( 'mo_pro_theme_setup_array',
-		array()
+		array(
+			'assets'            => array(
+				'src_url'           => get_stylesheet_directory_uri(),
+				'folder'            => '',
+				'javascript_folder' => 'assets/js',
+				'css_folder'        => '',
+				'css_file_name'     => 'style',
+			),
+		)
 	)
 );

@@ -22,13 +22,8 @@ if ( ! class_exists( 'MoProThemeSetup' ) ) {
 		 * @var array $arguments An Array of arguments.
 		 */
 		public $arguments = array(
-			'include_folder'         => 'includes/',
-			'assets_folder'          => 'assets/',
-			'javascript_folder'      => 'js/',
-			'javascript_extension'   => '.js',
-			'javascript_file_handle' => '-script',
-			'css_file_name'          => 'style.css',
-			'css_file_handle'        => '-style',
+			'include_folder' => 'includes/',
+			'assets'         => array(),
 		);
 
 		/**
@@ -43,9 +38,7 @@ if ( ! class_exists( 'MoProThemeSetup' ) ) {
 			$this->arguments = $this->array_merge( $this->arguments, $arguments );
 
 			add_action( 'after_setup_theme', array( $this, 'setup_variables' ) );
-			add_action( 'after_setup_theme', array( $this, 'setup_functionalities' ) );
-			add_action( 'wp_enqueue_scripts', array( $this, 'add_styles' ) );
-			add_action( 'wp_enqueue_scripts', array( $this, 'add_scripts' ) );
+			add_action( 'after_setup_theme', array( $this, 'setup_assets' ) );
 		}
 
 		/**
@@ -62,67 +55,27 @@ if ( ! class_exists( 'MoProThemeSetup' ) ) {
 			$this->version     = $theme->get( 'Version' );
 			$this->text_domain = $theme->get( 'TextDomain' );
 
-			$this->assets_folder = $this->arguments['assets_folder'];
-			$this->theme_path    = get_template_directory() . '/';
-			$this->include_path  = $this->theme_path . $this->arguments['include_folder'];
-
-			$this->javascript_file_name     = $this->arguments['javascript_folder'] . $this->text_domain . $this->arguments['javascript_extension'];
-			$this->javascript_file_location = get_theme_file_uri( '/' . $this->assets_folder );
-			$this->javascript_file_handle   = $this->text_domain . $this->arguments['javascript_file_handle'];
-			$this->javascript_src           = $this->javascript_file_location . $this->javascript_file_name;
-			$this->javascript_deps          = array();
-			$this->javascript_in_footer     = true;
-			$this->javascript_timestamp     = $this->version;
-
-			$this->css_file_handle = $this->text_domain . $this->arguments['css_file_handle'];
-			$this->css_src         = get_stylesheet_uri();
-			$this->css_deps        = array();
-			$this->css_timestamp   = $this->version;
+			$this->assets = $this->arguments['assets'];
 		}
 
 		/**
-		 * Sets up theme functionalities.
+		 * Sets up theme assets.
 		 *
 		 * @since 1.0.0
 		 *
 		 * @return void
 		 */
-		public function setup_functionalities() {
-			//
-		}
-
-
-		/**
-		 * Includes theme scripts.
-		 *
-		 * @since 1.0.0
-		 *
-		 * @return void
-		 */
-		public function add_scripts() {
-			wp_enqueue_script(
-				$this->javascript_file_handle,
-				$this->javascript_src,
-				$this->javascript_deps,
-				$this->javascript_timestamp,
-				$this->javascript_in_footer
+		public function setup_assets() {
+			$arguments = $this->array_merge(
+				$this->assets,
+				array(
+					'version'     => $this->version,
+					'text_domain' => $this->text_domain,
+				)
 			);
-		}
 
-		/**
-		 * Includes theme styles.
-		 *
-		 * @since 1.0.0
-		 *
-		 * @return void
-		 */
-		public function add_styles() {
-			wp_enqueue_style(
-				$this->css_file_handle,
-				$this->css_src,
-				$this->css_deps,
-				$this->css_timestamp
-			);
+			$assets = new MoAssets( $arguments );
+			$assets->add();
 		}
 	}
 } // End if().
