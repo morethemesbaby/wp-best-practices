@@ -62,9 +62,12 @@ if ( file_exists( PLUGIN_DIR_PATH . '/vendor/autoload.php' ) ) {
 $mo_plugin = new MoPluginSetup(
 	apply_filters( 'mo_plugin_setup_array',
 		array(
+			'theme_feature_set'    => 'MO_PRO_THEME_FEATURE_SET',
 			'has_admin_interface'  => false,
 			'has_public_interface' => true,
-			'theme_feature_set'    => 'MO_PRO_THEME_FEATURE_SET',
+			'assets'               => array(
+				'src_url' => PLUGIN_DIR_URL,
+			),
 		)
 	)
 );

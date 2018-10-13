@@ -12,7 +12,7 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 	 *
 	 * @since 1.0.0
 	 */
-	class MoPluginSetup extends MoPluginBase {
+	class MoPluginSetup extends MoBase {
 
 		/**
 		 * Class arguments.
@@ -22,22 +22,25 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 		 * @var array $arguments An Array of arguments.
 		 */
 		public $arguments = array(
-			'has_admin_interface'     => false,
-			'has_public_interface'    => false,
-			'admin_assets_folder'     => 'admin',
-			'public_assets_folder'    => 'public',
-			'javascript_folder'       => 'js',
-			'css_folder'              => 'css',
-			'images_folder'           => 'images',
-			'javascript_file_handle'  => 'script',
-			'css_file_handle'         => 'style',
-			'javascript_extension'    => 'js',
-			'javascript_dependencies' => array(),
-			'javascript_in_footer'    => true,
-			'css_extension'           => 'css',
-			'css_dependencies'        => array(),
-			'theme_feature_set'       => '',
-			'theme_features'          => array(),
+			'theme_feature_set' => '',
+			'theme_features'    => array(),
+			'assets'            => array(),
+		);
+
+		/**
+		 * Arguments for assets.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @var array.
+		 */
+		public $arguments_assets = array(
+			'src_url'              => '',
+			'admin_assets_folder'  => 'admin',
+			'public_assets_folder' => 'public',
+			'javascript_folder'    => 'js',
+			'css_folder'           => 'css',
+			'images_folder'        => 'images',
 		);
 
 		/**
@@ -50,6 +53,7 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 		 */
 		public function __construct( $arguments ) {
 			$this->arguments = $this->array_merge( $this->arguments, $arguments );
+			$this->assets    = $this->array_merge( $this->arguments_assets, $arguments['assets'] );
 
 			$this->setup_variables();
 			$this->setup_assets();
@@ -192,13 +196,10 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 
 			$this->has_admin_interface  = $this->arguments['has_admin_interface'];
 			$this->has_public_interface = $this->arguments['has_public_interface'];
-			$this->admin_assets_folder  = $this->arguments['admin_assets_folder'];
-			$this->public_assets_folder = $this->arguments['public_assets_folder'];
 
 			$this->theme_feature_set = $this->arguments['theme_feature_set'];
 			$this->theme_features    = $this->arguments['theme_features'];
 		}
-
 
 		/**
 		 * Sets up plugin assets.
@@ -208,36 +209,37 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 		 * @return void
 		 */
 		public function setup_assets() {
+			$common_arguments = array(
+				'src_url'      => $this->assets['src_url'],
+				'admin_folder' => $this->assets['admin_assets_folder'],
+				'version'      => $this->version,
+				'text_domain'  => $this->text_domain,
+			);
+
 			if ( true === $this->has_admin_interface ) {
 				$arguments = $this->array_merge(
-					$this->arguments,
+					$common_arguments,
 					array(
-						'folder'       => $this->admin_assets_folder,
-						'admin_folder' => $this->admin_assets_folder,
+						'folder'       => $this->assets['admin_assets_folder'],
 						'action'       => 'admin_enqueue_scripts',
-						'version'      => $this->version,
-						'text_domain'  => $this->text_domain,
 					)
 				);
 
-				$assets = new MoPluginAssets( $arguments );
-				$assets->add();
+				$mo_assets = new MoAssets( $arguments );
+				$mo_assets->add();
 			}
 
 			if ( true === $this->has_public_interface ) {
 				$arguments = $this->array_merge(
-					$this->arguments,
+					$common_arguments,
 					array(
-						'folder'       => $this->public_assets_folder,
-						'admin_folder' => $this->admin_assets_folder,
+						'folder'       => $this->assets['public_assets_folder'],
 						'action'       => 'wp_enqueue_scripts',
-						'version'      => $this->version,
-						'text_domain'  => $this->text_domain,
 					)
 				);
 
-				$assets = new MoPluginAssets( $arguments );
-				$assets->add();
+				$mo_assets = new MoAssets( $arguments );
+				$mo_assets->add();
 			}
 		}
 	}
