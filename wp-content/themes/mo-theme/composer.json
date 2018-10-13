@@ -9,9 +9,10 @@
   ],
   "autoload": {
 	  "classmap": [
-		  "includes/",
-		  "includes/theme-functionalities/",
-		  "includes/theme-customizations/"
+      "includes/",
+      "includes/html-components/",
+      "includes/template-tags/",
+      "includes/theme-functionalities/"
 	  ]
   }
 }

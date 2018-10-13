@@ -25,8 +25,7 @@ if ( ! class_exists( 'MoThemeSetup' ) ) {
 			'include_folder'         => 'includes/',
 			'assets_folder'          => 'assets/',
 			'javascript_folder'      => 'js/',
-			'functionality_set'      => FUNCTIONALITY_SET_WPORG,
-			'customization_set'      => CUSTOMIZATION_SET_WPORG,
+			'functionality_set'      => '',
 			'javascript_extension'   => '.js',
 			'javascript_file_handle' => '-script',
 			'css_file_name'          => 'style.css',
@@ -99,7 +98,6 @@ if ( ! class_exists( 'MoThemeSetup' ) ) {
 				)
 			);
 		}
-
 
 		/**
 		 * Includes theme scripts.
