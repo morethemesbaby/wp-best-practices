@@ -1,6 +1,8 @@
 <?php
 /**
- * The More Themes Baby WordPress assets class
+ * The More Themes Baby WordPress assets class.
+ *
+ * Contains code to manage and include assets.
  *
  * @package MoTheme
  * @since 1.0.0
@@ -17,9 +19,12 @@ if ( ! class_exists( 'MoAssets' ) ) {
 		/**
 		 * Class arguments.
 		 *
+		 * They set up assets to be included both in themes and plugins.
+		 * In the case of plugins on both the front-end and the admin interface.
+		 *
 		 * @since 1.0.0
 		 *
-		 * @var array $arguments An Array of arguments.
+		 * @var array $arguments An array of arguments.
 		 */
 		public $arguments = array(
 			'src_url'                 => '',
@@ -59,7 +64,7 @@ if ( ! class_exists( 'MoAssets' ) ) {
 		);
 
 		/**
-		 * Arguments to enqueue a script.
+		 * Arguments to set up an enqueue of a script or style.
 		 *
 		 * @since 1.0.0
 		 *
@@ -116,6 +121,10 @@ if ( ! class_exists( 'MoAssets' ) ) {
 
 		/**
 		 * Adds assets.
+		 *
+		 * At this momement only scripts and styles are supported.
+		 *
+		 * @todo Add support for fonts, icons, svg and images.
 		 *
 		 * @since 1.0.0
 		 *
@@ -181,6 +190,8 @@ if ( ! class_exists( 'MoAssets' ) ) {
 
 		/**
 		 * Sets up arguments for enqueue.
+		 *
+		 * Mostly defines where an asset is located.
 		 *
 		 * @since 1.0.0
 		 *
@@ -261,6 +272,8 @@ if ( ! class_exists( 'MoAssets' ) ) {
 
 		/**
 		 * Sets up asset filename.
+		 *
+		 * If the asset filename is not specified it creates a unique filename.
 		 *
 		 * @since 1.0.0
 		 *

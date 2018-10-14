@@ -1,6 +1,8 @@
 <?php
 /**
- * The More Themes Baby database class
+ * The More Themes Baby database class.
+ *
+ * Contains code for working with the database.
  *
  * @package MoTheme
  * @since 1.0.0
