@@ -28,7 +28,7 @@ Boilerplate code for WordPress plugins and themes based on best practices.
 * Class based namespaces.
 * Optimized and cached queries.
 * Reusable and extendable components.
-* Decoupled yet interactive.
+* Decoupled yet interactive parts.
 * Documentation.
 
 ## Inspiration
