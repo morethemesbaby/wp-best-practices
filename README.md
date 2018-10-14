@@ -17,11 +17,19 @@ Boilerplate code for WordPress plugins and themes based on best practices.
 
 * `Mo Theme` simply displays posts and comments as required by the WordPress.org theme store.
 * `Mo Plugin` adds a custom post type together with a shortcode.
-* `Mo Pro Theme`: 
-	* Displays the shortcode added by the `Mo Plugin`,
-	* Displays a widget with custom post types added by the `Mo Plugin`.  
-	* Overwrites the homepage from `Mo Theme` by adding a sidebar with the widget.
-	* Extends the `Mo Theme` post list template part.
+* `Mo Pro Theme` extends the `Mo Theme` with: 
+	* Displaying the shortcode added by the `Mo Plugin`.
+	* Overwriting the homepage from `Mo Theme` by adding a sidebar.
+	* Displaying in the sidebar a widget with custom post types added by the `Mo Plugin`. 
+
+## Features
+
+* Default WordPress theme files organization.
+* Class based namespaces.
+* Optimized and cached queries.
+* Reusable and extendable components.
+* Decoupled yet interactive.
+* Documentation.
 
 ## Inspiration
 
