@@ -1,6 +1,8 @@
 <?php
 /**
- * The More Themes Baby WordPress base class
+ * The More Themes Baby WordPress base class.
+ *
+ * Contains code reused by both themes and plugins.
  *
  * @package MoTheme
  * @since 1.0.0
@@ -16,12 +18,15 @@ if ( ! class_exists( 'MoBase' ) ) {
 		/**
 		 * Class variables.
 		 *
-		 * They are dynamically set and get (overloaded).
+		 * They are dynamically set and get - overloaded - with magic methods.
+		 * This makes all the classes depending on this base class open for extension.
 		 *
 		 * @since 1.0.0
 		 *
-		 * @link http://codular.com/introducing-php-classes
-		 * @var array $data An array of variables.
+		 * @link http://codular.com/introducing-php-classes Magic Methods.
+		 * @link https://alistapart.com/article/coding-with-clarity-part-ii#section3 The open/closed principle.
+		 *
+		 * @var array An array of variables.
 		 */
 		protected $data = array();
 
@@ -41,6 +46,9 @@ if ( ! class_exists( 'MoBase' ) ) {
 		/**
 		 * Dynamically gets a variable.
 		 *
+		 * If a variable doesn't exists halts the code execution.
+		 * This risk might be mitigated better in future versions.
+		 *
 		 * @since 1.0.0
 		 *
 		 * @param string $variable The variable name.
@@ -50,7 +58,7 @@ if ( ! class_exists( 'MoBase' ) ) {
 			if ( isset( $this->data[ $variable ] ) ) {
 				return $this->data[ $variable ];
 			} else {
-				die( 'Unknown variable: ' . esc_attr( $variable ) );
+				wp_die( 'Unknown variable: ' . esc_attr( $variable ) );
 			}
 		}
 
@@ -70,6 +78,7 @@ if ( ! class_exists( 'MoBase' ) ) {
 		 * Merges two arrays.
 		 *
 		 * The PHP `array_merge()` gives a warning when the second argument is not an array.
+		 * This method eliminates the warning.
 		 *
 		 * @since 1.0.0
 		 *
@@ -82,6 +91,21 @@ if ( ! class_exists( 'MoBase' ) ) {
 			return array_merge( (array) $array1, (array) $array2 );
 		}
 
+		/**
+		 * The PHP `implode()` function glues together the pieces even if they are empty.
+		 * This method filters out empty pieces.
+		 *
+		 * Example:
+		 * - PHP's default `implode( '/', array( 'folder', '', '' ) )` will return `folder///`.
+		 * - This method returns just `folder/`.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param string $glue   The glue string.
+		 * @param array  $pieces The array of strings to be glued together.
+		 *
+		 * @return string
+		 */
 		public function implode( $glue, $pieces ) {
 			return implode( $glue, array_filter( $pieces ) );
 		}
