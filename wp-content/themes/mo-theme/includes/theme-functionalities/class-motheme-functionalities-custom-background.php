@@ -1,6 +1,10 @@
 <?php
 /**
- * The WordPress Custom Background functionality
+ * The WordPress.org Custom Background functionality.
+ *
+ * Adds theme background color and image support.
+ *
+ * @link https://developer.wordpress.org/reference/functions/add_theme_support/#custom-background
  *
  * @package MoTheme
  * @since 1.0.0
@@ -8,13 +12,9 @@
 
 if ( ! class_exists( 'MoThemeFunctionalitiesCustomBackground' ) ) {
 	/**
-	 * The WordPress Custom Background functionality class
-	 *
-	 * Adds theme background color and image support.
+	 * The main class.
 	 *
 	 * @since 1.0.0
-	 *
-	 * @link https://developer.wordpress.org/reference/functions/add_theme_support/#custom-background
 	 */
 	class MoThemeFunctionalitiesCustomBackground {
 		/**

@@ -1,6 +1,10 @@
 <?php
 /**
- * The WordPress post formats functionality
+ * The WordPress Post Formats functionality
+ *
+ * Adds various kinds of post formats like links, quotes, image galleries and so.
+ *
+ * @link https://developer.wordpress.org/themes/functionality/post-formats/
  *
  * @package MoTheme
  * @since 1.0.0
@@ -8,7 +12,7 @@
 
 if ( ! class_exists( 'MoThemeFunctionalitiesPostFormats' ) ) {
 	/**
-	 * The WordPress Post Format functionality class
+	 * The main class.
 	 */
 	class MoThemeFunctionalitiesPostFormats {
 		/**

@@ -1,6 +1,11 @@
 <?php
 /**
- * The WordPress Comment Scripts functionality
+ * The WordPress.org Comment Scripts functionality.
+ *
+ * Includes scripts to handle commenting on posts.
+ * Required by the Theme Check plugin.
+ *
+ * @link https://make.wordpress.org/themes/handbook/review/required/theme-check-plugin/
  *
  * @package MoTheme
  * @since 1.0.0
@@ -8,9 +13,7 @@
 
 if ( ! class_exists( 'MoThemeFunctionalitiesCommentScripts' ) ) {
 	/**
-	 * The WordPress Comment Scripts functionality class.
-	 *
-	 * Includes scripts to handle commenting on posts.
+	 * The main class.
 	 *
 	 * @since 1.0.0
 	 */

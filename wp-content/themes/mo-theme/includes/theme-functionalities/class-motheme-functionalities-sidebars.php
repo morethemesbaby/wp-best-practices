@@ -1,6 +1,6 @@
 <?php
 /**
- * The WordPress sidebars functionality.
+ * The WordPress.org Sidebars functionality.
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/
  *
