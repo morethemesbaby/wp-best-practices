@@ -47,7 +47,8 @@ if ( ! class_exists( 'MoBase' ) ) {
 		 * Dynamically gets a variable.
 		 *
 		 * If a variable doesn't exists halts the code execution.
-		 * This risk might be mitigated better in future versions.
+		 *
+		 * @todo This risk might be mitigated better in future versions.
 		 *
 		 * @since 1.0.0
 		 *

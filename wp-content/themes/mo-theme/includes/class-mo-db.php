@@ -17,20 +17,25 @@ if ( ! class_exists( 'MoDB' ) ) {
 		/**
 		 * Class arguments.
 		 *
+		 * Empty for now, kept for future compatibility.
+		 *
 		 * @since 1.0.0
 		 *
-		 * @var array $arguments An Array of arguments.
+		 * @var array $arguments An array of arguments.
 		 */
 		public $arguments = array();
 
 		/**
 		 * Arguments for get posts.
 		 *
+		 * Contains standard arguments for `WP_Query` together with optimization arguments.
+		 * The WordPress query can be heavily optimized with these additional arguments.
+		 *
 		 * @since 1.0.0
 		 *
-		 * @link https://10up.github.io/Engineering-Best-Practices/php/
+		 * @link https://10up.github.io/Engineering-Best-Practices/php/ Optimizing queries.
 		 *
-		 * @var array $arguments An Array of arguments.
+		 * @var array $arguments An array of arguments.
 		 */
 		public $arguments_for_get_posts = array(
 			'post_type'              => 'post',
@@ -42,9 +47,11 @@ if ( ! class_exists( 'MoDB' ) ) {
 		);
 
 		/**
-		 * Instead of `posts_per_page => -1` we use a max posts per page.
+		 * For query optimization instead of `posts_per_page => -1` we use a max posts per page.
 		 *
 		 * @since 1.0.0
+		 *
+		 * @link https://10up.github.io/Engineering-Best-Practices/php/ Optimizing queries.
 		 *
 		 * @var integer
 		 */
@@ -53,6 +60,8 @@ if ( ! class_exists( 'MoDB' ) ) {
 		/**
 		 * Sets up the class.
 		 *
+		 * Empty for now, kept for future compatibility.
+		 *
 		 * @since 1.0.0
 		 *
 		 * @param array $arguments An array of arguments.
@@ -60,15 +69,17 @@ if ( ! class_exists( 'MoDB' ) ) {
 		 */
 		public function __construct( $arguments = array() ) {
 			$this->arguments = $this->array_merge( $this->arguments, $arguments );
-			$this->setup_variables();
 		}
 
 		/**
 		 * Gets posts.
 		 *
+		 * Returns an optimized `WP_Query` or the results from the cache.
+		 * If the query is not cached it will cache it.
+		 *
 		 * @since 1.0.0
 		 *
-		 * @link https://10up.github.io/Engineering-Best-Practices/php/
+		 * @link https://10up.github.io/Engineering-Best-Practices/php/ Optimizing queries.
 		 *
 		 * @param array $arguments An array of arguments.
 		 * @return array An array of posts.
@@ -91,7 +102,9 @@ if ( ! class_exists( 'MoDB' ) ) {
 		}
 
 		/**
-		 * Sets up variables for get posts.
+		 * Sets up arguments for get posts.
+		 *
+		 * Arguments are filtered through a set of optimization methods.
 		 *
 		 * @since 1.0.0
 		 *
@@ -105,37 +118,15 @@ if ( ! class_exists( 'MoDB' ) ) {
 		}
 
 		/**
-		 * Sets up the cache id.
-		 *
-		 * @since 1.0.0
-		 *
-		 * @param array $arguments An array of arguments.
-		 * @return array
-		 */
-		public function setup_cache_id( $arguments = array() ) {
-			if ( ! isset( $arguments['cache_id'] ) ) {
-				return $arguments;
-			}
-
-			if ( '' === $arguments['cache_id'] ) {
-				return $arguments;
-			}
-
-			$arguments['cache_id'] = implode(
-				'-',
-				array(
-					PLUGIN_TEXT_DOMAIN,
-					$arguments['cache_id'],
-				)
-			);
-
-			return $arguments;
-		}
-
-		/**
 		 * Avoids unlimited posts per pages.
 		 *
+		 * If the query is set for unlimited posts per page it will be capped.
+		 *
+		 * @todo See how this works when more results has to be returned than the capped value.
+		 *
 		 * @since 1.0.0
+		 *
+		 * @link https://10up.github.io/Engineering-Best-Practices/php/ Optimizing queries.
 		 *
 		 * @param array $arguments An array of arguments.
 		 * @return array
@@ -155,14 +146,33 @@ if ( ! class_exists( 'MoDB' ) ) {
 		}
 
 		/**
-		 * Sets up variables.
+		 * Sets up the cache id.
+		 *
+		 * @todo Test the cache.
 		 *
 		 * @since 1.0.0
 		 *
-		 * @return void
+		 * @param array $arguments An array of arguments.
+		 * @return array
 		 */
-		public function setup_variables() {
-			//
+		public function setup_cache_id( $arguments = array() ) {
+			if ( ! isset( $arguments['cache_id'] ) ) {
+				return $arguments;
+			}
+
+			if ( '' === $arguments['cache_id'] ) {
+				return $arguments;
+			}
+
+			$arguments['cache_id'] = $this->implode(
+				'-',
+				array(
+					THEME_TEXT_DOMAIN,
+					$arguments['cache_id'],
+				)
+			);
+
+			return $arguments;
 		}
 	}
 } // End if().
