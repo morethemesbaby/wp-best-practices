@@ -1,21 +1,24 @@
 <?php
 /**
- * The MoTheme base class
+ * The theme base class.
+ *
+ * Contains code specific for WordPress themes.
  *
  * @package MoTheme
  * @since 1.0.0
+ * @see MoBase Based on the MoBase class.
  */
 
 if ( ! class_exists( 'MoThemeBase' ) ) {
 	/**
-	 * The base class.
+	 * The main class.
 	 *
 	 * @since 1.0.0
 	 */
 	class MoThemeBase extends MoBase {
 
 		/**
-		 * Arguments for the get_template_part method.
+		 * Arguments for the `get_template_part` method.
 		 *
 		 * @since 1.0.0
 		 *
@@ -29,7 +32,7 @@ if ( ! class_exists( 'MoThemeBase' ) ) {
 		);
 
 		/**
-		 * Arguments for the get_query_var method.
+		 * Arguments for the `get_query_var` method.
 		 *
 		 * @since 1.0.0
 		 *
@@ -43,7 +46,13 @@ if ( ! class_exists( 'MoThemeBase' ) ) {
 		/**
 		 * Gets a query var.
 		 *
+		 * Templates are communicating via query vars.
+		 * When a query var is missing a warning is thrown.
+		 * This method eliminates the warning by returning an empty query var when the var is missing.
+		 *
 		 * @since 1.0.0
+		 *
+		 * @link https://developer.wordpress.org/reference/functions/get_template_part/#comment-2349
 		 *
 		 * @param  array $arguments An array of arguments.
 		 * @return array
@@ -66,10 +75,16 @@ if ( ! class_exists( 'MoThemeBase' ) ) {
 		/**
 		 * Gets a template part.
 		 *
+		 * Returns the output of a template part.
 		 * Uses the `ob_start()` and `ob_get_clean()` output buffer method.
 		 *
+		 * By default `get_template_part` displays the template output.
+		 * This method saves it for later reuse.
+		 *
+		 * @link https://developer.wordpress.org/reference/functions/get_template_part/
+		 *
 		 * @param  array $arguments An array of arguments.
-		 * @return string            HTML
+		 * @return string           HTML
 		 */
 		public function get_template_part( $arguments ) {
 			$this->get_template_part_arguments = $this->array_merge(

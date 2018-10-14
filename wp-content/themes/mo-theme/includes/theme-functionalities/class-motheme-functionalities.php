@@ -1,9 +1,10 @@
 <?php
 /**
- * The WordPress standard functionalities setup class
+ * The functionalities setup class.
  *
  * @package MoTheme
  * @since 1.0.0
+ * @see MoThemeBase Based on the MoThemeBase class.
  */
 
 if ( ! class_exists( 'MoThemeFunctionalities' ) ) {

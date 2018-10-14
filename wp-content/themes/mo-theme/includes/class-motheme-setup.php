@@ -1,14 +1,17 @@
 <?php
 /**
- * The theme setup class
+ * The theme setup class.
+ *
+ * Sets up theme variables, assets and functionalities.
  *
  * @package MoTheme
  * @since 1.0.0
+ * @see MoThemeBase Based on the MoThemeBase class.
  */
 
 if ( ! class_exists( 'MoThemeSetup' ) ) {
 	/**
-	 * The main theme class.
+	 * The main class.
 	 *
 	 * @since 1.0.0
 	 */
@@ -64,6 +67,8 @@ if ( ! class_exists( 'MoThemeSetup' ) ) {
 		/**
 		 * Sets up theme assets.
 		 *
+		 * Uses the @see MoAssets class.
+		 *
 		 * @since 1.0.0
 		 *
 		 * @return void
@@ -83,6 +88,8 @@ if ( ! class_exists( 'MoThemeSetup' ) ) {
 
 		/**
 		 * Sets up theme functionalities.
+		 *
+		 * Uses the @see MoThemeFunctionalities class.
 		 *
 		 * @since 1.0.0
 		 *
