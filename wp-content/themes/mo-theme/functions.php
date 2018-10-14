@@ -1,6 +1,6 @@
 <?php
 /**
- * Sets up the global variables and the theme
+ * Sets up the global variables and the theme.
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
@@ -11,13 +11,22 @@
 /**
  * Defines the WordPress.org functionality set.
  *
+ * These functionalities will be implemented by the theme.
+ *
  * @since 1.0.0
- * @var string
+ *
+ * @link https://developer.wordpress.org/themes/functionality/
+ *
+ * @var string Identifies the WordPress.org functionality set.
  */
 define( 'FUNCTIONALITY_SET_WPORG', 'wporg' );
 
 /**
  * Use Composer's autoload.
+ *
+ * This makes sure all classes are loaded dynamically instead of being included manually.
+ *
+ * @link https://getcomposer.org/doc/01-basic-usage.md#autoloading
  */
 if ( file_exists( get_template_directory() . '/vendor/autoload.php' ) ) {
 	require_once 'vendor/autoload.php';
@@ -26,8 +35,12 @@ if ( file_exists( get_template_directory() . '/vendor/autoload.php' ) ) {
 /**
  * Sets up the theme.
  *
+ * Tells to the theme setup class:
+ * - Which functionalities to implement.
+ * - Where to find the assests which needs to be included.
+ *
  * @since 1.0.0
- * @var object $mo_theme The main theme object.
+ * @var object The main theme object.
  */
 $mo_theme = new MoThemeSetup(
 	apply_filters( 'mo_theme_setup_array',
