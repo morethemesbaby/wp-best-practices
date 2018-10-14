@@ -2,6 +2,10 @@
 /**
  * The functionalities setup class.
  *
+ * Implements the functionalities of the theme.
+ * This aims to be the most important class of the theme.
+ * The idea is to have a central place where all functionalities a theme implements can be quickly overviewed or managed.
+ *
  * @package MoTheme
  * @since 1.0.0
  * @see MoThemeBase Based on the MoThemeBase class.
@@ -9,7 +13,7 @@
 
 if ( ! class_exists( 'MoThemeFunctionalities' ) ) {
 	/**
-	 * The main functionalities class.
+	 * The main class.
 	 *
 	 * @since 1.0.0
 	 */

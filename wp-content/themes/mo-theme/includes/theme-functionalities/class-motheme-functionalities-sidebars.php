@@ -1,20 +1,25 @@
 <?php
 /**
- * The WordPress sidebars functionality
+ * The WordPress sidebars functionality.
+ *
+ * @link https://developer.wordpress.org/themes/functionality/sidebars/
  *
  * @package MoTheme
  * @since 1.0.0
+ * @see MoThemeBase Based on the MoThemeBase class.
  */
 
 if ( ! class_exists( 'MoThemeFunctionalitiesSidebars' ) ) {
 	/**
-	 * The WordPress sidebars functionality class
+	 * The main class.
 	 *
 	 * @since 1.0.0
 	 */
 	class MoThemeFunctionalitiesSidebars extends MoThemeBase {
 		/**
-		 * Sidebars
+		 * Defines the sidebars which will be added to the theme.
+		 *
+		 * @todo Maybe this can be enhanced to become a theme setup argument.
 		 *
 		 * @since 1.0.0
 		 *
@@ -33,6 +38,8 @@ if ( ! class_exists( 'MoThemeFunctionalitiesSidebars' ) ) {
 
 		/**
 		 * Sidebar arguments.
+		 *
+		 * @todo The HTML code below should be moved into a template part.
 		 *
 		 * @since 1.0.0
 		 *
@@ -78,16 +85,20 @@ if ( ! class_exists( 'MoThemeFunctionalitiesSidebars' ) ) {
 		 * @since 1.0.0
 		 *
 		 * @param array $arguments The sidebar arguments.
-		 *
 		 * @return void
 		 */
 		public function register_sidebar( $arguments ) {
 			$arguments = $this->array_merge( $this->sidebar_arguments, $arguments );
 
-			// This will yield a PHPCS error: `The $text arg must not contain interpolated variables. Found "$arguments".`
-			// This cannot be fixed (yet).
-			// You can move this `esc_html_x` declaration without interpolation into a class variable and will yield another error.
-			// The only thing you can do is to not embed in code, like here.
+			/**
+			 * Some PHPCS errors here:
+			 *
+			 * @todo Find a general solution for translation interpolation.
+			 * @todo Replace the hardwired theme slug in translation functions with `$this->text_domain`.
+			 *
+			 * This will yield a PHPCS error: `The $text arg must not contain interpolated variables. Found "$arguments".`
+			 * You can move this `esc_html_x` declaration without interpolation into a class variable and will yield another error.
+			 */
 			$arguments['name'] = esc_html_x(
 				"{$arguments['name']}",
 				"The name of the {$arguments['name']} widget area",
