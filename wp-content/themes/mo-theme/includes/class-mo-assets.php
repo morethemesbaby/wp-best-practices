@@ -122,7 +122,7 @@ if ( ! class_exists( 'MoAssets' ) ) {
 		/**
 		 * Adds assets.
 		 *
-		 * At this momement only scripts and styles are supported.
+		 * At this moment only scripts and styles are supported.
 		 *
 		 * @todo Add support for fonts, icons, svg and images.
 		 *
@@ -154,12 +154,7 @@ if ( ! class_exists( 'MoAssets' ) ) {
 				)
 			);
 
-			add_action(
-				$this->action,
-				function() use ( $script ) {
-					$this->enqueue_script( $script );
-				}
-			);
+			add_action( $this->action, $this->enqueue_script( $script ) );
 		}
 
 		/**
@@ -180,12 +175,7 @@ if ( ! class_exists( 'MoAssets' ) ) {
 				)
 			);
 
-			add_action(
-				$this->action,
-				function() use ( $style ) {
-					$this->enqueue_style( $style );
-				}
-			);
+			add_action( $this->action, $this->enqueue_style( $style ) );
 		}
 
 		/**
