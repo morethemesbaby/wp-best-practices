@@ -1,9 +1,6 @@
 <?php
 /**
- * The arrow HTML component class
- *
- * Adds one or more arrows to a HTML element.
- * Arrows are one of the design landmarks of the site.
+ * The Arrows HTML component
  *
  * @package MoTheme
  * @since 1.0.0
@@ -11,7 +8,10 @@
 
 if ( ! class_exists( 'MoThemeHTMLComponentArrows' ) ) {
 	/**
-	 * The HTML component arrow class.
+	 * The Arrows HTML component class.
+	 *
+	 * Adds one or more arrow to a HTML element.
+	 * Arrows are one of the design landmarks of the site.
 	 *
 	 * @since 1.0.0
 	 */

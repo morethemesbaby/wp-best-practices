@@ -1,13 +1,6 @@
 <?php
 /**
- * The HTML component attributes class
- *
- * Create attribute-value pairs for HTML elements.
- * Example: <element attribute="value">
- * Or more precisely:
- *  <element id="post-1" class="block-element--modifier customclass" data-parent="post" data-index-number="1">
- *
- * @link https://en.wikipedia.org/wiki/HTML_attribute
+ * The Attributes HTML component
  *
  * @package MoTheme
  * @since 1.0.0
@@ -15,7 +8,16 @@
 
 if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 	/**
-	 * The HTML component attributes class.
+	 * The Attributes HTML component class.
+	 *
+	 * Creates attribute-value pairs for HTML elements.
+	 *
+	 * Example: <element attribute="value">
+	 *
+	 * Or more precisely:
+	 *  <element id="post-1" class="block-element--modifier customclass" data-parent="post" data-index-number="1">
+	 *
+	 * @link https://en.wikipedia.org/wiki/HTML_attribute
 	 *
 	 * @since 1.0.0
 	 */
@@ -93,7 +95,7 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 		/**
 		 * Returns all the attribute-value pairs of an element.
 		 *
-		 * Usage: `sprintf( '<div %s>', $component->attributes->get( ... ) )`;
+		 * Usage: `printf( '<div %s>', $component->attributes->get( ... ) )`;
 		 *
 		 * @since 1.0.0
 		 *
@@ -104,13 +106,11 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 			$this->arguments            = $this->array_merge( $this->arguments, $arguments );
 			$this->arguments['display'] = false;
 
-			return implode(
+			return $this->implode(
 				' ',
-				array_filter(
-					array(
-						$this->display_or_get( $this->create_id() ),
-						$this->display_or_get( $this->create_class() ),
-					)
+				array(
+					$this->display_or_get( $this->create_id() ),
+					$this->display_or_get( $this->create_class() ),
 				)
 			);
 		}
@@ -220,9 +220,9 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 		 * Displays an attribute with values.
 		 *
 		 * This function is almost identic to @see MoThemeHTMLAttributes::get_attribute_with_values()
-		 * Because of `esc_attr()` we can't do `echo MoThemeHTMLAttributes::get_attribute_with_values()`
-		 * `esc_attr()` is needed for this usage scenario: `<div <?php $component->attributes->display( ... ) ?>>`
-		 * No `sprintf` or `wp_kses` can be used here instead of `esc_attr`
+		 * Because of output escaping we can't do `echo get_attribute_with_values()`.
+		 * We need to do `echo esc_attr( get_attribute_with_values() );` which breaks the correct output into something like `<div class="" attribute="" ...`
+		 * We have no other choice than displaying directly the escaped attributes here.
 		 *
 		 * @since 1.0.0
 		 *
