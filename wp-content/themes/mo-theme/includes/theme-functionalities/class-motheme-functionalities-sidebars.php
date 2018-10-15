@@ -116,5 +116,5 @@ if ( ! class_exists( 'MoThemeFunctionalitiesSidebars' ) ) {
 
 			register_sidebar( $arguments );
 		}
-	} // End if().
-}
+	}
+} // End if().
