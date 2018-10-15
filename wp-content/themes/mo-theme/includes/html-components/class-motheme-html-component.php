@@ -2,16 +2,16 @@
 /**
  * The main HTML components class
  *
- * Contains utilities to componentize the theme.
- * And some HTML components re-used accross the theme.
- *
  * @package MoTheme
  * @since 1.0.0
  */
 
 if ( ! class_exists( 'MoThemeHTMLComponent' ) ) {
 	/**
-	 * The main class.
+	 * The main HTML components class.
+	 *
+	 * Contains utilities to componentize the theme.
+	 * And some HTML components re-used across the theme.
 	 *
 	 * @since 1.0.0
 	 */

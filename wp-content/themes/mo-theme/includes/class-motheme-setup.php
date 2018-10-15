@@ -1,8 +1,6 @@
 <?php
 /**
- * The theme setup class.
- *
- * Sets up theme variables, assets and functionalities.
+ * The theme setup.
  *
  * @package MoTheme
  * @since 1.0.0
@@ -11,7 +9,9 @@
 
 if ( ! class_exists( 'MoThemeSetup' ) ) {
 	/**
-	 * The main class.
+	 * The theme setup class.
+	 *
+	 * Sets up theme variables, assets and functionalities.
 	 *
 	 * @since 1.0.0
 	 */
