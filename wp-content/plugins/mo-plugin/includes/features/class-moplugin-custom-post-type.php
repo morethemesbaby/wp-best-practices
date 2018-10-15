@@ -9,7 +9,7 @@
 if ( ! class_exists( 'MoPluginCustomPostType' ) ) {
 	/**
 	 * The Custom Post Type class.
-	 * 
+	 *
 	 * Sets up the `book` custom post type and returns books.
 	 *
 	 * @since 1.0.0

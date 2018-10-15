@@ -9,7 +9,7 @@
 if ( ! class_exists( 'MoPluginCustomShortcode' ) ) {
 	/**
 	 * The Custom Shortcode class.
-	 * 
+	 *
 	 * Returns content for the `books` shortcode.
 	 *
 	 * @since 1.0.0
