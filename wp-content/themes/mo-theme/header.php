@@ -1,6 +1,8 @@
 <?php
 /**
- * Displays the site's header
+ * Site header
+ *
+ * Displays the site's header.
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *

@@ -1,10 +1,9 @@
 <?php
 /**
- * Displays the home page.
+ * The home page.
  *
- * The home page is a list of posts.
+ * Displays a list of posts.
  *
- * @link https://morethemes.baby/blog/ Live example
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/ Wordpress documentation
  *
  * @package MoTheme

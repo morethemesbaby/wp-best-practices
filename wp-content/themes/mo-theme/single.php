@@ -1,5 +1,7 @@
 <?php
 /**
+ * The Single Post template
+ *
  * Displays a single post.
  *
  * The page contains:
@@ -8,7 +10,6 @@
  *  * The Comment list template part.
  *  * The Post navigation template part.
  *
- * @link https://morethemes.baby/blog/2018/05/21/tech-platforms-and-the-knowledge-problem/ Live example
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/ WordPress documentation
  *
  * @package MoTheme
@@ -44,7 +45,6 @@ $title = apply_filters(
 			get_template_part( 'template-parts/post/parts/post', 'footer' );
 
 			// This is required by WordPress.org theme compatibility.
-			// Alternatively you can use: get_template_part( 'template-parts/comment/comment', 'list' );.
 			if ( comments_open() || get_comments_number() ) :
 				comments_template();
 			endif;

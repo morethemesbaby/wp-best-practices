@@ -1,5 +1,7 @@
 <?php
 /**
+ * The Page template
+ *
  * Displays a page.
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/

@@ -2,7 +2,6 @@
 /**
  * Displays the title of a component.
  *
- * @link https://github.com/metamn/log-lolla/issues/2 The requirement.
  * @link https://validator.w3.org/nu/ The W3C validator / outliner.
  *
  * Notes:

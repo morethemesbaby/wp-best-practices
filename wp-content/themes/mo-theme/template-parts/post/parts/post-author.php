@@ -13,8 +13,8 @@ $component = new MoThemeHTMLComponent();
 $attributes = apply_filters(
 	'mo_theme_post_author_attributes',
 	array(
-		'block'    => 'post',
-		'element'  => 'author',
+		'block'   => 'post',
+		'element' => 'author',
 	)
 );
 
