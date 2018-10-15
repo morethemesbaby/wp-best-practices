@@ -1,6 +1,6 @@
 <?php
 /**
- * The plugin features setup class
+ * The plugin features setup
  *
  * @package MoPlugin
  * @since 1.0.0
@@ -8,7 +8,14 @@
 
 if ( ! class_exists( 'MoPluginFeatures' ) ) {
 	/**
-	 * The plugin features class.
+	 * The plugin features setup class.
+	 *
+	 * Implements the functionalities of the plugin.
+	 *
+	 * This aims to be the most important class of the plugin.
+	 * The idea is to have a central place where all functionalities the plugin implements can be quickly overviewed or managed.
+	 *
+	 * Looking into this file should reveal what the plugin does.
 	 *
 	 * @since 1.0.0
 	 */
@@ -19,7 +26,7 @@ if ( ! class_exists( 'MoPluginFeatures' ) ) {
 		 *
 		 * @since 1.0.0
 		 *
-		 * @var array $arguments An array of arguments
+		 * @var array An array of arguments
 		 */
 		public $arguments = array(
 			'features' => array(),
@@ -102,7 +109,7 @@ if ( ! class_exists( 'MoPluginFeatures' ) ) {
 		}
 
 		/**
-		 * Dectivates the custom post type feature.
+		 * Deactivates the custom post type feature.
 		 *
 		 * @since 1.0.0
 		 * @return void

@@ -1,6 +1,6 @@
 <?php
 /**
- * The Custom Post Type class
+ * The Custom Post Type
  *
  * @package MoPlugin
  * @since 1.0.0
@@ -9,6 +9,8 @@
 if ( ! class_exists( 'MoPluginCustomPostType' ) ) {
 	/**
 	 * The Custom Post Type class.
+	 * 
+	 * Sets up the `book` custom post type and returns books.
 	 *
 	 * @since 1.0.0
 	 */
@@ -24,7 +26,7 @@ if ( ! class_exists( 'MoPluginCustomPostType' ) ) {
 		public $arguments = array();
 
 		/**
-		 * Arguments for diaplying books.
+		 * Arguments for displaying books.
 		 *
 		 * @since 1.0.0
 		 *
@@ -123,7 +125,7 @@ if ( ! class_exists( 'MoPluginCustomPostType' ) ) {
 		}
 
 		/**
-		 * Deregisters a custom post type.
+		 * De-registers a custom post type.
 		 *
 		 * @since 1.0.0
 		 *

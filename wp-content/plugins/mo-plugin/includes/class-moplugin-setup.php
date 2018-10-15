@@ -1,6 +1,6 @@
 <?php
 /**
- * The plugin setup class
+ * The plugin setup
  *
  * @package MoPlugin
  * @since 1.0.0
@@ -8,7 +8,9 @@
 
 if ( ! class_exists( 'MoPluginSetup' ) ) {
 	/**
-	 * The main plugin class.
+	 * The plugin setup class.
+	 *
+	 * Sets up plugin variables, assets and activation / deactivation methods.
 	 *
 	 * @since 1.0.0
 	 */
@@ -61,7 +63,7 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 			/**
 			 * `get_theme_features` must be called after `add_theme_support`.
 			 * Which is wrapped into a call like: `add_action( 'after_setup_theme', 'mo_pro_theme_define_theme_support', 10, 0 );`.
-			 * We attach the `get_theme_features` call into the same hook but with a lowerpriority.
+			 * We attach the `get_theme_features` call into the same hook but with a lower priority.
 			 */
 			add_action( 'after_setup_theme', array( $this, 'get_theme_features' ), 11, 0 );
 
