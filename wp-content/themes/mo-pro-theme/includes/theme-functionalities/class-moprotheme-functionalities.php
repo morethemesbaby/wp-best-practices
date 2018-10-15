@@ -1,6 +1,6 @@
 <?php
 /**
- * The theme functionalities setup class
+ * The theme functionalities setup
  *
  * @package MoProTheme
  * @since 1.0.0
@@ -8,7 +8,14 @@
 
 if ( ! class_exists( 'MoProThemeFunctionalities' ) ) {
 	/**
-	 * The main functionalities class.
+	 * The theme functionalities setup class.
+	 *
+	 * Implements the functionalities of the theme.
+	 *
+	 * This aims to be the most important class of the theme.
+	 * The idea is to have a central place where all functionalities a theme implements can be quickly overviewed or managed.
+	 *
+	 * Looking into this file should reveal what the theme does.
 	 *
 	 * @since 1.0.0
 	 */
@@ -19,7 +26,7 @@ if ( ! class_exists( 'MoProThemeFunctionalities' ) ) {
 		 *
 		 * @since 1.0.0
 		 *
-		 * @var array $arguments An array of arguments
+		 * @var array An array of arguments
 		 */
 		public $arguments = array();
 

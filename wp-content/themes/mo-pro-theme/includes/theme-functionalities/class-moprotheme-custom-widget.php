@@ -1,6 +1,6 @@
 <?php
 /**
- * The Custom Widget class
+ * The Custom Widget
  *
  * @package MoPlugin
  * @since 1.0.0
@@ -9,6 +9,8 @@
 if ( ! class_exists( 'MoProThemeCustomWidget' ) ) {
 	/**
 	 * The Custom Widget class.
+	 *
+	 * Sets up and displays the `Books` custom widget.
 	 *
 	 * @since 1.0.0
 	 */
@@ -51,9 +53,9 @@ if ( ! class_exists( 'MoProThemeCustomWidget' ) ) {
 				'Mo Plugin Books',
 				array(
 					/* translators: The Book widget description on the admin screen */
-					'description'     => esc_html__( 'Display most popular books', 'mo-plugin' ),
+					'description'     => esc_html__( 'Display most popular books', 'mo-pro-theme' ),
 					/* translators: The Book widget `number of books to display` text on the admin screen */
-					'number_of_books' => esc_html__( 'Number of books to display', 'mo-plugin' ),
+					'number_of_books' => esc_html__( 'Number of books to display', 'mo-pro-theme' ),
 				)
 			);
 		}
@@ -69,7 +71,7 @@ if ( ! class_exists( 'MoProThemeCustomWidget' ) ) {
 		 */
 		public function widget( $args, $instance ) {
 			$cpt = new MoPluginCustomPostType();
-			
+
 			$books = $cpt->get_books(
 				array(
 					'number_of_books' => $instance['number_of_books'],
@@ -125,7 +127,7 @@ if ( ! class_exists( 'MoProThemeCustomWidget' ) ) {
 				$label,
 				$input,
 				/* translators: A widget's form helper text on the admin screen */
-				esc_html__( '(-1 displays all items)', 'mo-plugin' )
+				esc_html__( '(-1 displays all items)', 'mo-pro-theme' )
 			);
 
 			echo wp_kses( $form, $this->wp_kses );

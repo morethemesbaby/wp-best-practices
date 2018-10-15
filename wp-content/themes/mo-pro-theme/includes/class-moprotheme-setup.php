@@ -1,6 +1,6 @@
 <?php
 /**
- * The theme setup class
+ * The theme setup
  *
  * @package MoProTheme
  * @since 1.0.0
@@ -8,7 +8,9 @@
 
 if ( ! class_exists( 'MoProThemeSetup' ) ) {
 	/**
-	 * The main theme class.
+	 * The theme setup class.
+	 *
+	 * Sets up theme variables, assets and functionalities.
 	 *
 	 * @since 1.0.0
 	 */
@@ -19,7 +21,7 @@ if ( ! class_exists( 'MoProThemeSetup' ) ) {
 		 *
 		 * @since 1.0.0
 		 *
-		 * @var array $arguments An Array of arguments.
+		 * @var array An array of arguments.
 		 */
 		public $arguments = array(
 			'include_folder' => 'includes/',
