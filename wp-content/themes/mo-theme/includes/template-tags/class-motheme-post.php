@@ -1,6 +1,6 @@
 <?php
 /**
- * The Post class
+ * The Post Template tag
  *
  * @package MoTheme
  * @since 1.0.0
@@ -8,7 +8,9 @@
 
 if ( ! class_exists( 'MoThemePost' ) ) {
 	/**
-	 * The Post class.
+	 * The Post Template tag class.
+	 *
+	 * Contains code to help displaying posts.
 	 *
 	 * @since 1.0.0
 	 */
@@ -66,7 +68,7 @@ if ( ! class_exists( 'MoThemePost' ) ) {
 		}
 
 		/**
-		 * Checks if a link is external (outside of the current domain)
+		 * Checks if a post link is external (outside of the current domain)
 		 *
 		 * @since 1.0.0
 		 *
@@ -80,11 +82,13 @@ if ( ! class_exists( 'MoThemePost' ) ) {
 		}
 
 		/**
-		 * Returns link from post content.
+		 * Returns the first link from post content.
 		 *
 		 * If there is no link in the content returns the post permalink.
 		 *
 		 * @since 1.0.0
+		 *
+		 * @link https://developer.wordpress.org/reference/functions/get_url_in_content/
 		 *
 		 * @return string
 		 */
@@ -106,7 +110,8 @@ if ( ! class_exists( 'MoThemePost' ) ) {
 		 */
 		public function get_class() {
 			$orientation = '';
-			$klass       = get_post_class();
+
+			$klass = get_post_class();
 
 			if ( $this->has_content() ) {
 				$orientation = $this->get_class_orientation(
@@ -114,7 +119,8 @@ if ( ! class_exists( 'MoThemePost' ) ) {
 						'text' => get_the_content(),
 					)
 				);
-				$klass[]     = 'has-content';
+
+				$klass[] = 'has-content';
 			}
 
 			if ( has_excerpt() ) {
@@ -123,18 +129,28 @@ if ( ! class_exists( 'MoThemePost' ) ) {
 						'text' => get_the_excerpt(),
 					)
 				);
-				$klass[]     = 'has-excerpt';
+
+				$klass[] = 'has-excerpt';
 			}
 
 			if ( has_post_thumbnail() ) {
 				$klass[] = 'has-thumbnail';
 			}
 
-			return implode( ' ', $this->array_merge( $orientation, $klass ) );
+			return $this->implode(
+				' ',
+				$this->array_merge(
+					$orientation,
+					$klass
+				)
+			);
 		}
 
 		/**
 		 * Returns a classname describing the post orientation.
+		 *
+		 * Depends on the post content or excerpt length.
+		 * If they are lengthy the orientation will be vertical, otherwise horizontal.
 		 *
 		 * @since 1.0.0
 		 *
@@ -142,9 +158,10 @@ if ( ! class_exists( 'MoThemePost' ) ) {
 		 * @return string
 		 */
 		public function get_class_orientation( $arguments = array() ) {
-			$defaults   = array(
+			$defaults = array(
 				'text' => '',
 			);
+
 			$arguments  = $this->array_merge( $defaults, $arguments );
 			$word_count = str_word_count( wp_strip_all_tags( $arguments['text'] ) );
 
