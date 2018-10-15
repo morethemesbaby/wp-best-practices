@@ -99,6 +99,8 @@ if ( ! class_exists( 'MoThemeFunctionalitiesSidebars' ) ) {
 			 * This will yield a PHPCS error: `The $text arg must not contain interpolated variables. Found "$arguments".`
 			 * You can move this `esc_html_x` declaration without interpolation into a class variable and will yield another error.
 			 */
+
+			/*
 			$arguments['name'] = esc_html_x(
 				"{$arguments['name']}",
 				"The name of the {$arguments['name']} widget area",
@@ -110,6 +112,7 @@ if ( ! class_exists( 'MoThemeFunctionalitiesSidebars' ) ) {
 				"The description of the {$arguments['name']} widget area",
 				'mo-theme'
 			);
+			*/
 
 			register_sidebar( $arguments );
 		}
