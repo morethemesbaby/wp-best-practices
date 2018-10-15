@@ -58,6 +58,8 @@ $mo_theme = new MoThemeSetup(
 	)
 );
 
+$text_domain = ( isset( $mo_theme->text_domain ) ) ? $mo_theme->text_domain : 'text-domain';
+
 /**
  * Defines the theme text domain.
  *
@@ -67,6 +69,4 @@ $mo_theme = new MoThemeSetup(
  *
  * @var string
  */
-
-$text_domain = ( isset( $mo_theme->text_domain ) ) ? $mo_theme->text_domain : 'text-domain';
 define( 'THEME_TEXT_DOMAIN', $text_domain );
