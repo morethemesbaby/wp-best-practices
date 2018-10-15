@@ -1,6 +1,6 @@
 <?php
 /**
- * The Header class
+ * The Header Template tag
  *
  * @package MoTheme
  * @since 1.0.0
@@ -8,7 +8,9 @@
 
 if ( ! class_exists( 'MoThemeHeader' ) ) {
 	/**
-	 * The header class.
+	 * The Header Template tag class.
+	 *
+	 * Contains code used to display the site's header.
 	 *
 	 * @since 1.0.0
 	 */
@@ -16,6 +18,9 @@ if ( ! class_exists( 'MoThemeHeader' ) ) {
 
 		/**
 		 * Class arguments.
+		 *
+		 * The header menu displays a widget area.
+		 * Here we can define the ID of that widget area.
 		 *
 		 * @since 1.0.0
 		 *
@@ -41,6 +46,9 @@ if ( ! class_exists( 'MoThemeHeader' ) ) {
 		/**
 		 * Returns the class attribute for the header.
 		 *
+		 * The class attribute will describe which features are enabled in the header.
+		 * Later this information is used to style properly the header.
+		 *
 		 * @since 1.0.0
 		 *
 		 * @return string
@@ -56,6 +64,9 @@ if ( ! class_exists( 'MoThemeHeader' ) ) {
 
 		/**
 		 * Checks if a header menu is available.
+		 *
+		 * The header menu is preferably a widget area which can be customized in the admin.
+		 * With a filter this behavior can be overwritten.
 		 *
 		 * @since 1.0.0
 		 *
