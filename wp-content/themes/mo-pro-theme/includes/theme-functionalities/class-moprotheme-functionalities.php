@@ -118,7 +118,9 @@ if ( ! class_exists( 'MoProThemeFunctionalities' ) ) {
 		 * @return string
 		 */
 		public function change_home_title() {
-			return array( 'title' => 'Pro Home' );
+			return array(
+				'title' => 'Pro Home',
+			);
 		}
 	}
 } // End if().
