@@ -162,7 +162,7 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 		 * Creates the 'id' attribute-value pair of an element.
 		 *
 		 * There can be a single value for the id attribute.
-		 * `id="post-1"` is correct while `id="post-1 article-1"` is incorrrect
+		 * `id="post-1"` is correct while `id="post-1 article-1"` is incorrect
 		 *
 		 * If the `custom_id` argument is set it will be returned as the `id` value.
 		 * Otherwise an id value will be assembled based on the arguments given.
@@ -193,7 +193,7 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 		/**
 		 * Gets an attribute with values.
 		 *
-		 * This function is almost identic to @see MoThemeHTMLAttributes::display_attribute_with_values()
+		 * This function is almost the same like @see MoThemeHTMLAttributes::display_attribute_with_values()
 		 * See explanation there.
 		 *
 		 * @since 1.0.0
@@ -219,7 +219,7 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 		/**
 		 * Displays an attribute with values.
 		 *
-		 * This function is almost identic to @see MoThemeHTMLAttributes::get_attribute_with_values()
+		 * This function is almost the same like @see MoThemeHTMLAttributes::get_attribute_with_values()
 		 * Because of output escaping we can't do `echo get_attribute_with_values()`.
 		 * We need to do `echo esc_attr( get_attribute_with_values() );` which breaks the correct output into something like `<div class="" attribute="" ...`
 		 * We have no other choice than displaying directly the escaped attributes here.

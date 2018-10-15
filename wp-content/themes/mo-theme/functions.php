@@ -37,7 +37,7 @@ if ( file_exists( get_template_directory() . '/vendor/autoload.php' ) ) {
  *
  * Tells to the theme setup class:
  * - Which functionalities to implement.
- * - Where to find the assests which needs to be included.
+ * - Where to find the assets which needs to be included.
  *
  * @since 1.0.0
  * @var object The main theme object.
