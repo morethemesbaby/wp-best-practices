@@ -41,9 +41,9 @@ if ( ! class_exists( 'MoThemeSetup' ) ) {
 		public function __construct( $arguments ) {
 			$this->arguments = $this->array_merge( $this->arguments, $arguments );
 
-			add_action( 'after_setup_theme', array( $this, 'setup_variables' ) );
-			add_action( 'after_setup_theme', array( $this, 'setup_assets' ) );
-			add_action( 'after_setup_theme', array( $this, 'setup_functionalities' ) );
+			$this->setup_variables();
+			$this->setup_assets();
+			$this->setup_functionalities();
 		}
 
 		/**

@@ -63,16 +63,10 @@ $mo_theme = new MoThemeSetup(
  *
  * This will be used later for various tasks like creating a query cache id.
  *
- * Since the theme setup functions are wrapped into an `after_setup_theme` hook
- * also this definition is wrapped into the same hook.
- *
  * @since 1.0.0
  *
  * @var string
  */
-add_filter(
-	'after_setup_theme',
-	function() {
-		define( 'THEME_TEXT_DOMAIN', $mo_theme->text_domain );
-	}
-);
+
+$text_domain = ( isset( $mo_theme->text_domain ) ) ? $mo_theme->text_domain : 'text-domain';
+define( 'THEME_TEXT_DOMAIN', $text_domain );
