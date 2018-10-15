@@ -4,7 +4,7 @@
  *
  * Displays a page.
  *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/ WordPress documentation
  *
  * @package MoTheme
  * @since 1.0.0

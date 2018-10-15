@@ -2,7 +2,7 @@
 /**
  * Template part for displaying the header title
  *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ * @link https://developer.wordpress.org/themes/functionality/custom-headers/
  *
  * @package MoTheme
  * @since 1.0.0

@@ -1,8 +1,6 @@
 <?php
 /**
- * Displays the post date.
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ * Displays the post date
  *
  * @package MoTheme
  * @since 1.0.0
@@ -13,8 +11,8 @@ $component = new MoThemeHTMLComponent();
 $attributes = apply_filters(
 	'mo_theme_post_date_attributes',
 	array(
-		'block'    => 'post',
-		'element'  => 'date',
+		'block'   => 'post',
+		'element' => 'date',
 	)
 );
 

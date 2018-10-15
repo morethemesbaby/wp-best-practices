@@ -1,8 +1,6 @@
 <?php
 /**
- * Displays the post author linking to the post.
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ * Displays the post author linking to the post
  *
  * @package MoTheme
  * @since 1.0.0
@@ -13,8 +11,8 @@ $component = new MoThemeHTMLComponent();
 $attributes = apply_filters(
 	'mo_theme_post_author_linking_to_post_attributes',
 	array(
-		'block'    => 'post',
-		'element'  => 'excerpt',
+		'block'   => 'post',
+		'element' => 'excerpt',
 	)
 );
 

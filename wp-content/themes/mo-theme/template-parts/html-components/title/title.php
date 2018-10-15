@@ -2,12 +2,10 @@
 /**
  * Displays the title of a component.
  *
- * @link https://validator.w3.org/nu/ The W3C validator / outliner.
- *
  * Notes:
  * * `<h3 hidden>` is invalid. `<h3 class="hidden">` has to be used instead.
  *
- * @param array component_title Argument list.
+ * @link https://validator.w3.org/nu/ The W3C validator and outliner.
  *
  * @package MoTheme
  * @since 1.0.0

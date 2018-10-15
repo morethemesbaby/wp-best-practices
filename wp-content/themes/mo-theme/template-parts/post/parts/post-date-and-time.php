@@ -1,8 +1,6 @@
 <?php
 /**
- * Displays post date and time.
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ * Displays post date and time
  *
  * @package MoTheme
  * @since 1.0.0
@@ -13,8 +11,8 @@ $component = new MoThemeHTMLComponent();
 $attributes = apply_filters(
 	'mo_theme_post_date_and_time_attributes',
 	array(
-		'block'    => 'post',
-		'element'  => 'date-and-time',
+		'block'   => 'post',
+		'element' => 'date-and-time',
 	)
 );
 

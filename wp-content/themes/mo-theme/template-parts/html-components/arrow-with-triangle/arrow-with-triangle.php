@@ -5,8 +5,6 @@
  * It contains:
  * * A Triangle from the Framework decorations template part.
  *
- * @param string $arrow_direction The direction of the arrow.
- *
  * @package MoTheme
  * @since 1.0.0
  */

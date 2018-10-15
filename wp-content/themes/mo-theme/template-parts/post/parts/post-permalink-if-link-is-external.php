@@ -2,8 +2,6 @@
 /**
  * Displays post permalink if the link points to an external link
  *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
- *
  * @package MoTheme
  * @since 1.0.0
  */

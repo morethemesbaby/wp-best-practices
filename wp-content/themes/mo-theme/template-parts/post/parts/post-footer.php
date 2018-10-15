@@ -2,8 +2,6 @@
 /**
  * Displays the post date, author, categories and tags
  *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
- *
  * @package MoTheme
  * @since 1.0.0
  */
@@ -13,8 +11,8 @@ $component = new MoThemeHTMLComponent();
 $attributes = apply_filters(
 	'mo_theme_post_footer_attributes',
 	array(
-		'block'    => 'post',
-		'element'  => 'footer',
+		'block'   => 'post',
+		'element' => 'footer',
 	)
 );
 

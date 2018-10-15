@@ -1,8 +1,6 @@
 <?php
 /**
- * Displays the first image from the post content.
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ * Displays the first image from the post content
  *
  * @package MoTheme
  * @since 1.0.0
@@ -14,8 +12,8 @@ $mopost    = new MoThemePost();
 $attributes = apply_filters(
 	'mo_theme_post_first_image_attributes',
 	array(
-		'block'    => 'post',
-		'element'  => 'first-image',
+		'block'   => 'post',
+		'element' => 'first-image',
 	)
 );
 

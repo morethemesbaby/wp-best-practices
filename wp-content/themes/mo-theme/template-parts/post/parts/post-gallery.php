@@ -2,8 +2,6 @@
 /**
  * Displays a post gallery
  *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
- *
  * @package MoTheme
  * @since 1.0.0
  */

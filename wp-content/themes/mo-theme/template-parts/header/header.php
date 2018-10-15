@@ -9,8 +9,6 @@
  * * A Header subtitle template part.
  * * A Header hamburger menu template part.
  *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
- *
  * @package MoTheme
  * @since 1.0.0
  */

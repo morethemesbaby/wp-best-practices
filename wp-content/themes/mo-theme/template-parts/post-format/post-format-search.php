@@ -8,8 +8,6 @@
  * * A Post featured permalink template part.
  * * A Post date template part.
  *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
- *
  * @package MoTheme
  * @since 1.0.0
  */

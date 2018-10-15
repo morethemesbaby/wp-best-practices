@@ -2,10 +2,7 @@
 /**
  * Displays a Standard post
  *
- * We would like to display parts of a post in the same way like parts of a page
- * Therefore we add a new class `article` to both posts and pages and style them via this handle
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ * @link https://developer.wordpress.org/themes/functionality/post-formats/
  *
  * @package MoTheme
  * @since 1.0.0

@@ -1,8 +1,6 @@
 <?php
 /**
- * Displays the post permalink.
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ * Displays the post permalink
  *
  * @package MoTheme
  * @since 1.0.0

@@ -2,8 +2,6 @@
 /**
  * Displays the post permalink if there is no post title
  *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
- *
  * @package MoTheme
  * @since 1.0.0
  */

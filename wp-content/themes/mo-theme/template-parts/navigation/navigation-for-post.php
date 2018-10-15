@@ -2,7 +2,7 @@
 /**
  * Displays navigation links (next post, previous post) inside a post.
  *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ * @link https://developer.wordpress.org/themes/functionality/pagination/
  *
  * @package MoTheme
  * @since 1.0.0

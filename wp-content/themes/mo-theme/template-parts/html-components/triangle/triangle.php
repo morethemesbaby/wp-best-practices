@@ -2,9 +2,6 @@
 /**
  * Displays a triangle.
  *
- * @param string $triangle_direction The direction of the triangle.
- * @param string $triangle_klass The additional klass of this component.
- *
  * @package MoTheme
  * @since 1.0.0
  */

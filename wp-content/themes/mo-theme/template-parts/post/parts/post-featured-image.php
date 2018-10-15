@@ -1,8 +1,6 @@
 <?php
 /**
- * Displays the post featured image.
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ * Displays the post featured image
  *
  * @package MoTheme
  * @since 1.0.0
@@ -13,8 +11,8 @@ $component = new MoThemeHTMLComponent();
 $attributes = apply_filters(
 	'mo_theme_post_featured_image_attributes',
 	array(
-		'block'    => 'post',
-		'element'  => 'featured-image',
+		'block'   => 'post',
+		'element' => 'featured-image',
 	)
 );
 

@@ -1,8 +1,8 @@
 <?php
 /**
- * Displays the header subtitle.
+ * Displays the header subtitle
  *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ * @link https://developer.wordpress.org/themes/functionality/custom-headers/
  *
  * @package MoTheme
  * @since 1.0.0

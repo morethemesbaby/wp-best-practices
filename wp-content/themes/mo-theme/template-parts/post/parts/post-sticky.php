@@ -2,7 +2,7 @@
 /**
  * Displays a sticky post label
  *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ * @link https://developer.wordpress.org/themes/functionality/sticky-posts/
  *
  * @package MoTheme
  * @since 1.0.0
