@@ -1,24 +1,6 @@
 <?php
 /**
- * The HTML component text wrapper class
- *
- * When styling text sometimes the font size, the line height etc. is changed.
- * This breaks the vertical flow of the page.
- *
- * For example if we have `padding: 1em` and we increase `font-size: 200%`
- * that padding will be increased too.
- *
- * As a solution we wrap all text into a wrapper class and style the wrapper class text instead.
- *
- * This breaks the flow:
- * ```
- * <h3 style="font-size:200%;padding:1em">Text</h3>
- * ```
- *
- * This won't break the flow:
- * ```
- * <h3 style="padding:1em"><span class="text" style="font-size:200%">Text</span></h3>
- * ```
+ * The Text Wrapper HTML component
  *
  * @package MoTheme
  * @since 1.0.0
@@ -26,14 +8,37 @@
 
 if ( ! class_exists( 'MoThemeHTMLComponentTextWrapper' ) ) {
 	/**
-	 * The HTML component text wrapper class.
+	 * The Text Wrapper HTML component class.
+	 *
+	 * When styling text sometimes the font size, the line height etc. is changed.
+	 * This breaks the vertical flow of the page.
+	 *
+	 * For example if we have `padding: 1em` and we increase `font-size: 200%`
+	 * that padding will be increased too.
+	 *
+	 * As a solution we wrap all text into a wrapper class and style the wrapper class text instead.
+	 *
+	 * This breaks the vertical flow:
+	 * ```
+	 * <h3 style="font-size:200%;padding:1em">Text</h3>
+	 * ```
+	 *
+	 * This won't break the flow:
+	 * ```
+	 * <h3 style="padding:1em"><span class="text" style="font-size:200%">Text</span></h3>
+	 * ```
+	 *
+	 * This class creates such a text wrapper.
 	 *
 	 * @since 1.0.0
 	 */
 	class MoThemeHTMLComponentTextWrapper extends MoThemeBase {
 
 		/**
-		 * We need to use the parent inside this class.
+		 * We need to use the parent object inside this class.
+		 * In fact this class returns the parent object's `attributes` method with a predefined argument set.
+		 *
+		 * @uses MoThemeHTMLComponent::attributes
 		 *
 		 * @since 1.0.0
 		 *
@@ -45,13 +50,14 @@ if ( ! class_exists( 'MoThemeHTMLComponentTextWrapper' ) ) {
 		/**
 		 * Class arguments.
 		 *
+		 * To return something like `class="text"`.
+		 *
 		 * @since 1.0.0
 		 *
 		 * @var array $arguments An Array of arguments.
 		 */
 		public $arguments = array(
-			'attribute' => 'span',
-			'value'     => 'text',
+			'value' => 'text',
 		);
 
 		/**
@@ -75,7 +81,11 @@ if ( ! class_exists( 'MoThemeHTMLComponentTextWrapper' ) ) {
 		/**
 		 * Displays the text wrapper class.
 		 *
+		 * Usage: `<div <?php $component->text_wrapper->display(); ?>>`.
+		 *
 		 * @since 1.0.0
+		 *
+		 * @see MoThemeHTMLComponent::attributes
 		 *
 		 * @return void
 		 */
@@ -86,7 +96,11 @@ if ( ! class_exists( 'MoThemeHTMLComponentTextWrapper' ) ) {
 		/**
 		 * Returns the text wrapper class.
 		 *
+		 * Usage: `printf( '<div $s>', $component->text_wrapper->get() );`
+		 *
 		 * @since 1.0.0
+		 *
+		 * @uses MoThemeHTMLComponent::attributes
 		 *
 		 * @return string
 		 */
