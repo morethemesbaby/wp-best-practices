@@ -1,8 +1,6 @@
 <?php
 /**
- * The theme base class.
- *
- * Contains code specific for WordPress themes.
+ * The theme base
  *
  * @package MoTheme
  * @since 1.0.0
@@ -11,7 +9,9 @@
 
 if ( ! class_exists( 'MoThemeBase' ) ) {
 	/**
-	 * The main class.
+	 * The theme base class.
+	 *
+	 * Contains code specific for WordPress themes.
 	 *
 	 * @since 1.0.0
 	 */

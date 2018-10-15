@@ -1,8 +1,6 @@
 <?php
 /**
- * The More Themes Baby database class.
- *
- * Contains code for working with the database.
+ * The More Themes Baby database
  *
  * @package MoTheme
  * @since 1.0.0
@@ -10,7 +8,9 @@
 
 if ( ! class_exists( 'MoDB' ) ) {
 	/**
-	 * The main class.
+	 * The More Themes Baby database class.
+	 *
+	 * Contains code for working with the database.
 	 *
 	 * @since 1.0.0
 	 */

@@ -1,8 +1,6 @@
 <?php
 /**
- * The More Themes Baby WordPress base class.
- *
- * Contains code reused by both themes and plugins.
+ * The More Themes Baby WordPress base
  *
  * @package MoTheme
  * @since 1.0.0
@@ -10,7 +8,9 @@
 
 if ( ! class_exists( 'MoBase' ) ) {
 	/**
-	 * The base class.
+	 * The More Themes Baby WordPress base class.
+	 *
+	 * Contains code reused by both themes and plugins.
 	 *
 	 * @since 1.0.0
 	 */

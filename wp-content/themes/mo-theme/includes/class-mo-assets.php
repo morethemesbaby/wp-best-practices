@@ -1,8 +1,6 @@
 <?php
 /**
- * The More Themes Baby WordPress assets class.
- *
- * Contains code to manage and include assets.
+ * The More Themes Baby WordPress assets
  *
  * @package MoTheme
  * @since 1.0.0
@@ -10,7 +8,9 @@
 
 if ( ! class_exists( 'MoAssets' ) ) {
 	/**
-	 * The main class.
+	 * The More Themes Baby WordPress assets class.
+	 *
+	 * Contains code to manage and include assets.
 	 *
 	 * @since 1.0.0
 	 */
