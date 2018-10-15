@@ -1,7 +1,8 @@
 <?php
 /**
- * The HTML component arrows class
+ * The arrow HTML component class
  *
+ * Adds one or more arrows to a HTML element.
  * Arrows are one of the design landmarks of the site.
  *
  * @package MoTheme
@@ -60,7 +61,8 @@ if ( ! class_exists( 'MoThemeHTMLComponentArrows' ) ) {
 		 * @return void
 		 */
 		public function display( $arguments = array() ) {
-			$this->arguments            = $this->array_merge( $this->arguments, $arguments );
+			$this->arguments = $this->array_merge( $this->arguments, $arguments );
+
 			$this->arguments['display'] = true;
 
 			$this->display_or_get();
@@ -75,7 +77,8 @@ if ( ! class_exists( 'MoThemeHTMLComponentArrows' ) ) {
 		 * @return string
 		 */
 		public function get( $arguments = array() ) {
-			$this->arguments            = $this->array_merge( $this->arguments, $arguments );
+			$this->arguments = $this->array_merge( $this->arguments, $arguments );
+
 			$this->arguments['display'] = false;
 
 			return $this->display_or_get();

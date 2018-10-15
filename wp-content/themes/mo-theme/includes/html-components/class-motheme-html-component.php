@@ -1,6 +1,9 @@
 <?php
 /**
- * The HTML components class
+ * The main HTML components class
+ *
+ * Contains utilities to componentize the theme.
+ * And some HTML components re-used accross the theme.
  *
  * @package MoTheme
  * @since 1.0.0
@@ -8,7 +11,7 @@
 
 if ( ! class_exists( 'MoThemeHTMLComponent' ) ) {
 	/**
-	 * The HTML components class.
+	 * The main class.
 	 *
 	 * @since 1.0.0
 	 */
@@ -39,10 +42,13 @@ if ( ! class_exists( 'MoThemeHTMLComponent' ) ) {
 		public function __construct( $arguments = array() ) {
 			$this->arguments = $this->array_merge( $this->arguments, $arguments );
 
-			$this->attributes   = new MoThemeHTMLComponentAttributes( $this->arguments['attributes'] );
-			$this->title        = new MoThemeHTMLComponentTitle( $this->arguments['title'] );
+			$this->attributes = new MoThemeHTMLComponentAttributes( $this->arguments['attributes'] );
+
+			$this->title = new MoThemeHTMLComponentTitle( $this->arguments['title'] );
+
 			$this->text_wrapper = new MoThemeHTMLComponentTextWrapper( $this->arguments['text_wrapper'], $this );
-			$this->arrows       = new MoThemeHTMLComponentArrows( $this->arguments['arrows'] );
+
+			$this->arrows = new MoThemeHTMLComponentArrows( $this->arguments['arrows'] );
 		}
 	}
 } // End if().

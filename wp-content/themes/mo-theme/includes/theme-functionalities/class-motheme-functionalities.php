@@ -5,6 +5,7 @@
  * Implements the functionalities of the theme.
  * This aims to be the most important class of the theme.
  * The idea is to have a central place where all functionalities a theme implements can be quickly overviewed or managed.
+ * Looking into this file should reveal what the theme does.
  *
  * @package MoTheme
  * @since 1.0.0
