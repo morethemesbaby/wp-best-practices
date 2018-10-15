@@ -1,6 +1,6 @@
 <?php
 /**
- * The Post Format class
+ * The Post Format Template tag
  *
  * @package MoTheme
  * @since 1.0.0
@@ -8,7 +8,9 @@
 
 if ( ! class_exists( 'MoThemePostFormat' ) ) {
 	/**
-	 * The Post class.
+	 * The Post Format Template tag class.
+	 *
+	 * Contains code to help displaying Post Formats.
 	 *
 	 * @since 1.0.0
 	 */
@@ -89,6 +91,7 @@ if ( ! class_exists( 'MoThemePostFormat' ) ) {
 		 */
 		public function get_link_class( $link ) {
 			$mopost = new MoThemePost();
+
 			return $mopost->link_is_external( $link ) ? $this->arguments['local_link_class'] : $this->arguments['external_link_class'];
 		}
 
