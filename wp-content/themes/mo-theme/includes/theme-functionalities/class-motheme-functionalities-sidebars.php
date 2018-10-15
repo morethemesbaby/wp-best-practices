@@ -2,8 +2,6 @@
 /**
  * The WordPress.org Sidebars functionality.
  *
- * @link https://developer.wordpress.org/themes/functionality/sidebars/
- *
  * @package MoTheme
  * @since 1.0.0
  * @see MoThemeBase Based on the MoThemeBase class.
@@ -11,9 +9,13 @@
 
 if ( ! class_exists( 'MoThemeFunctionalitiesSidebars' ) ) {
 	/**
-	 * The main class.
+	 * The WordPress.org Sidebars functionality class.
+	 *
+	 * Displays sidebars (widget areas) in the theme.
 	 *
 	 * @since 1.0.0
+	 *
+	 * @link https://developer.wordpress.org/themes/functionality/sidebars/
 	 */
 	class MoThemeFunctionalitiesSidebars extends MoThemeBase {
 		/**
