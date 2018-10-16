@@ -1,4 +1,4 @@
-# PHP Principles
+# PHP Best Practices
 
 * [Class based namespacing](#class-based-namespacing)
 * [No HTML in PHP code](#no-html-in-php-code)
@@ -58,15 +58,15 @@ function theme_get_arrow_html( $query_vars ) {
 
 ## Loose coupling
 
-[Loose coupling](https://alistapart.com/article/coding-with-clarity#section3) makes sure components are open, easily modifiable without breaking the code. 
+[Loose coupling](https://alistapart.com/article/coding-with-clarity#section3) makes sure code is open, easily modifiable without breaking the site. 
 
-For different types of components different techniques are used.
+For different types of code different techniques are used.
 
 ### Class variables
 
 Class variables are [dynamically set and get](http://codular.com/introducing-php-classes) through overloading / magic methods.
 
-This is not recommended:
+This is not recommended.
 ```php
 /**
 * Class arguments.
@@ -80,8 +80,11 @@ public $block    = string;
 public $element  = string;
 public $modifier = string;
 ```
+If an argument is removed / renamed the old version of the code might broke.
+For example if `$modifier` is removed an `$object->modifier` call breaks the code.
 
 This is better:
+Arguments are a dynamic array with any number of items. They are get and set programmatically and managed when an argument item is not found .
 ```php
 /**
 * Class arguments.
@@ -98,21 +101,49 @@ public $arguments = array(
 	'modifier'                => '',
 	....
 );
+
+public function __set( $variable, $value ) {}
+...
+
+public function __get( $variable, $value ) {}
 ```
+
+If `$modifier` is removed the `_get` method can manage what happens on an '$object->modifier` call.
+
 
 ### Function arguments
 
-Function arguments are passed as arrays instead of lists of arguments. This way they can stay open and extendable without the modifications breaking the other functions depending on them.
+Function arguments are passed as arrays instead of lists of arguments.
 
 This is not recommended:
+When one argument is removed, the name or order is changed the old versions of the code might break.
 ```php
 function display( $title, $description, $author ) { ... }
 ```
 
 This is recommended:
+Arguments are a dynamic array with any number of items in any order. 
 ```php
-function display( $arguments = array() ) { ... }
+$default_arguments = array(
+	'title'      => '',
+	'description => '',
+	'author'     => '',
+);
+function display( $arguments = array() ) {
+	$arguments = array_merge( $default_arguments, $arguments );
+}
 ```
+
+Arguments now are easily replaceable and modifiable. If we need a new kind of author we can do something like:
+```php
+$default_arguments = array(
+	'title'      => '',
+	'description => '',
+	'author'     => '',
+	'author2'    => array(),
+);
+``` 
+
 
 ### Template variables
 
@@ -143,7 +174,7 @@ get_template_part( 'template-parts/post-list/post-list', '' );
 
 Every function [either](https://alistapart.com/article/coding-with-clarity#section2) executes a *command* or performs a *query*. No functions do both at the same time.
 
-The role of the function is described by a prefix. Either is a `get_` for a query or another verb for a command like `set_`, `add_`, `create_` and so on.
+The role of the function is described by a prefix. Either is a `get_` for a query, or, another verb for a command like `set_`, `add_`, `create_` and so on.
 
 There should be no functions which have no prefix, except when the function name is a verb, and the function is a member of a class.
 
