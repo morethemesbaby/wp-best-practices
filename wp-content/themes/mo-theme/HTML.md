@@ -1,4 +1,4 @@
-# HTML Principles
+# HTML Best Practices
 
 * [Default WordPress theme files organization](#default-wordpress-theme-files-organization)
 * [Components](#components)
@@ -17,7 +17,7 @@
 
 WordPress has [a clear indication](https://developer.wordpress.org/themes/basics/organizing-theme-files/) how to organize templates, template parts and template tags.
 
-To keep the theme developer friendly instead of reinventing the wheel.
+To keep the theme developer friendly stick to this standard instead of reinventing the wheel.
 
 ## Components
 
@@ -50,7 +50,6 @@ $attributes = array(
 <aside <?php $component->attributes->display( $attributes ); ?>>
 ```
 
-Classnames are defining other code structures (PHP, SCSS) which makes the use of automation important. 
 
 ### BEM naming conventions
 
@@ -135,8 +134,9 @@ function mo_theme_post_excerpt_attributes_filter() {
 
 ### Template parts
 
-TBD.
-It fails silently: If the theme contains no {slug}.php file then no template will be included.
+They are like mixins or partials in other coding framework. They do one small thing and they do it well. They are combined and reused freely to compose the user interface.
+
+Template parts can be easily overwritten in child themes. If you have a `header.php` in your child theme it will overwrite the same template from the main theme.
 
 ### Actions
 
@@ -145,6 +145,8 @@ Actions are [more abstract](https://blog.teamtreehouse.com/hooks-wordpress-actio
 The problem with actions is that you don't known apriori where others would like to insert their code. 
 
 You can add a `before` and `after` action for every element on your webpage (logo, header, content, footer, post list, article title, ...) and still you can't make everybody happy.
+
+In this theme actions are used only when there is a concrete need for them. We don't insert empty actions hoping they will be reused later.
 
 ## Don't replace HTML code with PHP code
 

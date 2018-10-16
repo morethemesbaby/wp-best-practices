@@ -2,7 +2,7 @@
 
 A WordPress.org boilerplate plugin based on [best practices](https://developer.wordpress.org/plugins/the-basics/best-practices/).
 
-It is taylor made to the `Mo Pro Theme` which means it's functionality is defined by the feature requests coming from the theme. On its own, without the theme eneabled, the plugin does nothing. 
+It is taylor made to the `Mo Pro Theme` which means it's functionality is defined by the feature requests coming from the theme. On its own, without the theme enabled, the plugin does nothing. 
 
 ## Features
 
