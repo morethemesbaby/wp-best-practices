@@ -4,17 +4,15 @@ A WordPress.org boilerplate plugin based on [best practices](https://developer.w
 
 It is taylor made to the `Mo Pro Theme` which means it's functionality is defined by the feature requests coming from the theme. On its own, without the theme enabled, the plugin does nothing. 
 
-## Features
+## Best practices
 
 * Optimized and cached queries
 * Functionality defined by the theme
 * Presentation done in the theme
 
-## Principles
+## Best practices details
 
 * [PHP](PHP.md)
-* [HTML](HTML.md)
-* [CSS](CSS.md)
 
 ## Inspiration
 

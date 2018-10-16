@@ -12,9 +12,14 @@ Implementing [10up best practices](https://10up.github.io/Engineering-Best-Pract
 
 ## Return data instead of HTML
 
-Plugins specially created to support a theme (like this) should use the theme's infrastructure whenever possible.
+There are two types of plugin functionality: do something on the admin interface, and/or, provide extra data and features to themes.
 
-### The problem
+When providing for themes - like in this case - always return data instead of displaying data.
+
+Themes have a proper built in displaying mechanism  - template parts - when plugins don't.
+It is more elegant and far easy to return raw data to theme which displays it within it's own style guide than reinventing the wheel in the plugin.
+
+### Example
 
 Adding a custom post type ― people ― can't be done in a theme just in a plugin. A plugin has to be created for this feature. 
 
@@ -22,7 +27,7 @@ To display a person in a post or a page the `[person name="Bill"]` shortcode can
 
 The theme perhaps already has the template tags and parts displaying a person. Since plugins cannot use `get_template_part` they can't re-use the already written HTML code.
 
-### The solution
+### Solution
 
 The plugin should return a `global $person` object and an action hook.
 The theme should use the global variable and the hook to display the person with the existing template parts.
@@ -103,6 +108,6 @@ if ( current_theme_supports( 'custom-features' ) ) {
 ### The activation hook workaround
 
 Every plugin has a `register_activation_hook` where the plugin features are set up.
-This hook is executed before any theme code is executed making the `custom-features` coming from the theme unavaialble at the moment of the plugin activation.
+This hook is executed before any theme code is executed making the `custom-features` coming from the theme unavailable at the moment of the plugin activation.
 
 A workaround is to re-call the plugin activation code after the theme sets up and pass the `custom-features` variable to the plugin.
