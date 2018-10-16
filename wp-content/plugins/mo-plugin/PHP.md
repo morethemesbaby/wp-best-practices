@@ -1,5 +1,17 @@
 # PHP Principles
 
+* [Optimized and cached queries](#optimized-and-cached-queries)
+* [Single responsibility principle](#single-responsibility-principle)
+	* [Return data instead of HTML](#return-data-instead-of-html)
+	* [Example](#example)
+	* [Solution](#solution)
+* [Loose coupling](#loose-coupling)
+	* [Decouple plugin and theme using add_theme_support](#decouple-plugin-and-theme-using-add_theme_support)
+	* [How it works?](#how-it-works)
+	* [The naming convention](#the-naming-convention)
+	* [The activation hook workaround](#the-activation-hook-workaround)
+
+
 ## Optimized and cached queries
 
 Implementing [10up best practices](https://10up.github.io/Engineering-Best-Practices/php/) like:
@@ -9,8 +21,9 @@ Implementing [10up best practices](https://10up.github.io/Engineering-Best-Pract
 * Don't do endless queries like `posts_per_page => -1`.
 * Always use the cache.
 
+## Single responsibility principle
 
-## Return data instead of HTML
+### Return data instead of HTML
 
 There are two types of plugin functionality: do something on the admin interface, and/or, provide extra data and features to themes.
 
@@ -19,7 +32,7 @@ When providing for themes - like in this case - always return data instead of di
 Themes have a proper built in displaying mechanism  - template parts - when plugins don't.
 It is more elegant and far easy to return raw data to theme which displays it within it's own style guide than reinventing the wheel in the plugin.
 
-### Example
+#### Example
 
 Adding a custom post type ― people ― can't be done in a theme just in a plugin. A plugin has to be created for this feature. 
 
@@ -27,7 +40,7 @@ To display a person in a post or a page the `[person name="Bill"]` shortcode can
 
 The theme perhaps already has the template tags and parts displaying a person. Since plugins cannot use `get_template_part` they can't re-use the already written HTML code.
 
-### Solution
+#### Solution
 
 The plugin should return a `global $person` object and an action hook.
 The theme should use the global variable and the hook to display the person with the existing template parts.
@@ -53,13 +66,15 @@ function display_person() {
 add_action( 'display_person_in_theme', 'display_person' );
 ```
 
-## Decouple plugin and theme using add_theme_support
+## Loose coupling
+
+### Decouple plugin and theme using add_theme_support
 
 > The implementation of a custom plugin should be decoupled from its use in a Theme. Disabling the plugin should not result in any errors in the Theme code. Similarly switching the Theme should not result in any errors in the Plugin code.
 
 > from 10up Engineering Best Practices
 
-### How it works?
+#### How it works?
 
 1. Features the theme needs from the plugin can be declared via an `add_theme_support( 'custom-features' );` call. 
 2. The plugin checks for these features via `if ( current_theme_supports( 'custom-features' ) ) {}`.
@@ -77,7 +92,7 @@ Plugin:
 add_action( 'after_setup_theme', 'check_theme_support', 11, 0 );
 ```
 
-### The naming convention
+#### The naming convention
 
 The `custom-features` variable must be shared between the theme and the plugin. For that we have the default `global $_wp_theme_features` array. This makes it easy to add custom features into this array in the theme, then query them in the plugin.
 
@@ -105,7 +120,7 @@ if ( current_theme_supports( 'custom-features' ) ) {
 }
 ```
 
-### The activation hook workaround
+#### The activation hook workaround
 
 Every plugin has a `register_activation_hook` where the plugin features are set up.
 This hook is executed before any theme code is executed making the `custom-features` coming from the theme unavailable at the moment of the plugin activation.

@@ -8,9 +8,11 @@
 	* [Filters](#filters)
 	* [Template parts](#template-parts)
 	* [Actions](#actions)
-* [Don't replace HTML code with PHP code](#dont-replace-html-code-with-php-code)
-* [Replace ugly HTML code with PHP code](#replace-ugly-html-code-with-php-code)
+* [Single responsibility principle](#single-responsibility-principle)
+	* [Don't replace HTML code with PHP code](#dont-replace-html-code-with-php-code)
+	* [Replace ugly HTML code with PHP code](#replace-ugly-html-code-with-php-code)
 * [Semantic and outlined](#semantic-and-outlined)
+
 
 
 ## Default WordPress theme files organization
@@ -148,7 +150,9 @@ You can add a `before` and `after` action for every element on your webpage (log
 
 In this theme actions are used only when there is a concrete need for them. We don't insert empty actions hoping they will be reused later.
 
-## Don't replace HTML code with PHP code
+## Single responsibility principle
+
+### Don't replace HTML code with PHP code
 
 There is a tendency to get rid of HTML code in template parts. And use more PHP code instead.
 
@@ -166,7 +170,7 @@ This is better:
 </section>
 ```
 
-## Replace ugly HTML code with PHP code
+### Replace ugly HTML code with PHP code
 
 This is ugly:
 ```html

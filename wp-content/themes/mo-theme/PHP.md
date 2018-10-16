@@ -1,15 +1,15 @@
 # PHP Best Practices
 
 * [Class based namespacing](#class-based-namespacing)
-* [No HTML in PHP code](#no-html-in-php-code)
 * [Loose coupling](#loose-coupling)
 	* [Class variables](#class-variables)
 	* [Function arguments](#function-arguments)
 	* [Template variables](#template-variables)
-* [Command-query separation](#command-query-separation)
 * [Single responsibility principle](#single-responsibility-principle)
 	* [Single source of truth](#single-source-of-truth)
 	* [No hardwired data inside functions](#no-hardwired-data-inside-functions)
+	* [No HTML in PHP code](#no-html-in-php-code)
+	* [Command-query separation](#command-query-separation)
 
 
 ## Class based namespacing
@@ -23,38 +23,6 @@ WordPress supports three techniques to avoid naming collisions:
 WordPress.org / PHP < 5.2 supports only the first two.
 
 According to [best practices](https://developer.wordpress.org/plugins/the-basics/best-practices/#oop) OOP classes are the easier way to tackle this problem.
-
-## No HTML in PHP code
-
-HTML code belongs to templates and template tags.
-
-When a PHP function needs to return a HTML chunk the [output buffering](https://secure.php.net/manual/en/function.ob-start.php) method with a `get_template_part` call is used. 
-
-This is wrong:
-```php
-function theme_get_arrow_html( $direction ) {
-	return 
-		'<span class="arrow-with-triangle arrow-with-triangle--' . $direction . '">
- 		<span class="arrow-with-triangle__line"></span>
- 		<span class="triangle triangle-- arrow-with-triangle__triangle"></span>
- 		</span>';
- }
-```
-
-This is better:
-```php
-function theme_get_arrow_html( $query_vars ) {
-	$arguments = array(
-		'query_var_name'     => 'arrow-with-triangle-query-vars',
-		'query_var_value'    => $query_vars,
-		'template_part_slug' => 'template-parts/html-component/arrow-with-triangle/arrow-with-triangle',
-		'template_part_name' => '',
-	);
-
-	return get_template_part( $arguments );
-}
-```
-
 
 ## Loose coupling
 
@@ -170,31 +138,6 @@ set_query_var( 'post-list-query-vars', $post_list_query_vars );
 get_template_part( 'template-parts/post-list/post-list', '' );
 ```
 
-## Command-query separation
-
-Every function [either](https://alistapart.com/article/coding-with-clarity#section2) executes a *command* or performs a *query*. No functions do both at the same time.
-
-The role of the function is described by a prefix. Either is a `get_` for a query, or, another verb for a command like `set_`, `add_`, `create_` and so on.
-
-There should be no functions which have no prefix, except when the function name is a verb, and the function is a member of a class.
-
-This is not recommended:
-```php
-function content_width() { ... }
-```
-
-This is better:
-```php
-function get_content_width() { ... }
-function set_content_width() { ... }
-```
-
-Or for classes:
-```php
-$content = new ThemeContent();
-$width   = $content->width->get();
-```
-
 ## Single responsibility principle
 
 Every folder, file, class, function, mixin - you name it - is meant to [do one thing and do it well](https://alistapart.com/article/coding-with-clarity#section1).
@@ -227,4 +170,60 @@ public $arguments = array(
 );
 
 $file_name = $arguments['javascript_folder'] . $text_domain . $arguments['javascript_extension']
+```
+
+### No HTML in PHP code
+
+HTML code belongs to templates and template tags.
+
+When a PHP function needs to return a HTML chunk the [output buffering](https://secure.php.net/manual/en/function.ob-start.php) method with a `get_template_part` call is used. 
+
+This is wrong:
+```php
+function theme_get_arrow_html( $direction ) {
+	return 
+		'<span class="arrow-with-triangle arrow-with-triangle--' . $direction . '">
+ 		<span class="arrow-with-triangle__line"></span>
+ 		<span class="triangle triangle-- arrow-with-triangle__triangle"></span>
+ 		</span>';
+ }
+```
+
+This is better:
+```php
+function theme_get_arrow_html( $query_vars ) {
+	$arguments = array(
+		'query_var_name'     => 'arrow-with-triangle-query-vars',
+		'query_var_value'    => $query_vars,
+		'template_part_slug' => 'template-parts/html-component/arrow-with-triangle/arrow-with-triangle',
+		'template_part_name' => '',
+	);
+
+	return get_template_part( $arguments );
+}
+```
+
+### Command-query separation
+
+Every function [either](https://alistapart.com/article/coding-with-clarity#section2) executes a *command* or performs a *query*. No functions do both at the same time.
+
+The role of the function is described by a prefix. Either is a `get_` for a query, or, another verb for a command like `set_`, `add_`, `create_` and so on.
+
+There should be no functions which have no prefix, except when the function name is a verb, and the function is a member of a class.
+
+This is not recommended:
+```php
+function content_width() { ... }
+```
+
+This is better:
+```php
+function get_content_width() { ... }
+function set_content_width() { ... }
+```
+
+Or for classes:
+```php
+$content = new ThemeContent();
+$width   = $content->width->get();
 ```

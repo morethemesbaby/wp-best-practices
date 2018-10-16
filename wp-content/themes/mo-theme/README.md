@@ -7,7 +7,6 @@ A [WordPress.org compatible](https://make.wordpress.org/themes/handbook/review/r
 * Default WordPress theme files organization.
 * Class based namespaces for WordPress.org / PHP version <5.3 compatibility.
 * Loose coupling.
-* Command-query separation.
 * Single responsibility principle.
 * Components.
 * Extendability.
