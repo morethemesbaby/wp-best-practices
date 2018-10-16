@@ -23,7 +23,7 @@ $attributes = apply_filters(
 	'mo_theme_post_format_attributes',
 	array(
 		'block'        => 'post',
-		'custom_class' => implode( ' ', $post_klass_array ),
+		'custom_class' => $mopost->implode( ' ', $post_klass_array ),
 		'custom_id'    => 'post-' . get_the_ID(),
 	)
 );

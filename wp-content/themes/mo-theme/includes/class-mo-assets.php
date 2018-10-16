@@ -154,7 +154,27 @@ if ( ! class_exists( 'MoAssets' ) ) {
 				)
 			);
 
+			/**
+			 * This code throws a warning in the log file:
+			 * ```
+			 * PHP Warning:  call_user_func_array() expects parameter 1 to be a valid callback, no array or string given in /home/cs/work/wp-best-practices/wp-includes/class-wp-hook.php on line 286
+			 * ```
+			 *
+			 * @todo Fix add_action / lambda function problem in PHP <5.3
+			 */
 			add_action( $this->action, $this->enqueue_script( $script ) );
+
+			/**
+			 * This code is not supported by WP.org / < PHP 5.3
+			 * ```
+			 * add_action(
+			 *		$this->action,
+			 *		function() use ( $script ) {
+			 *			$this->enqueue_script( $script );
+			 *		}
+			 *	);
+			 * ```
+			 */
 		}
 
 		/**

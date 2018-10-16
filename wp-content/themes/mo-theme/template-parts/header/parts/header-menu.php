@@ -27,7 +27,13 @@ $title = apply_filters(
 	)
 );
 
-$header_menu_contents = apply_filters( 'mo_theme_header_display_menu_contents', $header->display_header_menu_contents() );
+$header_menu_contents = apply_filters(
+	'mo_theme_header_display_menu_contents',
+	array(
+		$header,
+		'display_header_menu_contents',
+	)
+);
 
 if ( $header->has_header_menu() ) {
 	?>
