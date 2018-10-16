@@ -6,10 +6,15 @@ A [WordPress.org compatible](https://make.wordpress.org/themes/handbook/review/r
 
 * Default WordPress theme files organization.
 * Class based namespaces for WordPress.org / PHP version <5.3 compatibility.
-* Reusable and extendable PHP/HTML/SCSS components.
+* Loose coupling.
+* Command-query separation.
+* Single responsibility principle.
+* Components.
+* Extendability.
+* Semantic and outlined HTML structure.
 * Documentation for the PHP API, the templates and template parts, and for SCSS.
 
-## Best practices details
+### Details
 
 * [PHP](PHP.md)
 * [HTML](HTML.md)

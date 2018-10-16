@@ -10,7 +10,7 @@ It is taylor made to the `Mo Pro Theme` which means it's functionality is define
 * Functionality defined by the theme
 * Presentation done in the theme
 
-## Best practices details
+### Details
 
 * [PHP](PHP.md)
 

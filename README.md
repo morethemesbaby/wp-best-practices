@@ -24,12 +24,13 @@ Boilerplate code for WordPress plugins and themes based on best practices.
 
 ## Best practices
 
-* Default WordPress files organization.
-* Class based namespaces.
-* Optimized and cached queries.
-* Reusable and extendable components.
-* Decoupled yet interactive parts.
-* Documentation.
+* Default WordPress files organization
+* Class based namespaces
+* Components
+* Loose coupling
+* Single responsibility principle
+* Optimized database operations
+* Documentation
 
 For details please check each theme's and the plugin's `README.md`.
 
