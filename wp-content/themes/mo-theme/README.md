@@ -13,7 +13,7 @@ A [WordPress.org compatible](https://make.wordpress.org/themes/handbook/review/r
 * Semantic and outlined HTML structure.
 * Documentation for the PHP API, the templates and template parts, and for SCSS.
 
-### Details
+Details:
 
 * [PHP](PHP.md)
 * [HTML](HTML.md)
