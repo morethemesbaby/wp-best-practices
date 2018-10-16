@@ -66,7 +66,7 @@ if ( ! class_exists( 'MoPluginCustomShortcode' ) ) {
 		 * @return void.
 		 */
 		public function books( $arguments ) {
-			$arguments = shortcode_atts( $arguments_books, $arguments );
+			$arguments = shortcode_atts( $this->arguments_books, $arguments );
 
 			$cpt = new MoPluginCustomPostType();
 
