@@ -20,7 +20,7 @@ WordPress supports three techniques to avoid naming collisions:
 * OOP classes
 * PHP namespaces
 
-WordPress.org / PHP < 5.2 supports only the first two.
+WordPress.org / PHP < 5.3 supports only the first two.
 
 According to [best practices](https://developer.wordpress.org/plugins/the-basics/best-practices/#oop) OOP classes are the easier way to tackle this problem.
 
@@ -52,7 +52,6 @@ If an argument is removed / renamed the old version of the code might broke.
 For example if `$modifier` is removed an `$object->modifier` call breaks the code.
 
 This is better:
-Arguments are a dynamic array with any number of items. They are get and set programmatically and managed when an argument item is not found .
 ```php
 /**
 * Class arguments.
@@ -75,6 +74,7 @@ public function __set( $variable, $value ) {}
 
 public function __get( $variable, $value ) {}
 ```
+Arguments are a dynamic array with any number of items. They are get and set programmatically and managed when an argument item is not found .
 
 If `$modifier` is removed the `_get` method can manage what happens on an '$object->modifier` call.
 
@@ -84,13 +84,12 @@ If `$modifier` is removed the `_get` method can manage what happens on an '$obje
 Function arguments are passed as arrays instead of lists of arguments.
 
 This is not recommended:
-When one argument is removed, the name or order is changed the old versions of the code might break.
 ```php
 function display( $title, $description, $author ) { ... }
 ```
+When one argument is removed, the name or order is changed the old versions of the code might break.
 
 This is recommended:
-Arguments are a dynamic array with any number of items in any order. 
 ```php
 $default_arguments = array(
 	'title'      => '',
@@ -101,8 +100,9 @@ function display( $arguments = array() ) {
 	$arguments = array_merge( $default_arguments, $arguments );
 }
 ```
+Arguments are a dynamic array with any number of items in any order. They are easily replaceable and modifiable.
 
-Arguments now are easily replaceable and modifiable. If we need a new kind of author we can do something like:
+If we need a new kind of author we can do something like:
 ```php
 $default_arguments = array(
 	'title'      => '',
@@ -138,6 +138,8 @@ set_query_var( 'post-list-query-vars', $post_list_query_vars );
 get_template_part( 'template-parts/post-list/post-list', '' );
 ```
 
+The logic is the same: pass an array of arguments which can be handled dynamic instead of a list of arguments which is static.
+
 ## Single responsibility principle
 
 Every folder, file, class, function, mixin - you name it - is meant to [do one thing and do it well](https://alistapart.com/article/coding-with-clarity#section1).
@@ -150,7 +152,7 @@ For example `wp_get_theme()` gives us the theme version number. Instead of `defi
 
 ### No hardwired data inside functions
 
-This is incorrect:
+This is not recommended:
 ```php
 $file_name = 'js/' . $text_domain . '.js';
 ```
@@ -176,9 +178,9 @@ $file_name = $arguments['javascript_folder'] . $text_domain . $arguments['javasc
 
 HTML code belongs to templates and template tags.
 
-When a PHP function needs to return a HTML chunk the [output buffering](https://secure.php.net/manual/en/function.ob-start.php) method with a `get_template_part` call is used. 
+When a PHP function needs to return HTML the [output buffering](https://secure.php.net/manual/en/function.ob-start.php) method with a `get_template_part` call should be used. 
 
-This is wrong:
+This is not recommended:
 ```php
 function theme_get_arrow_html( $direction ) {
 	return 

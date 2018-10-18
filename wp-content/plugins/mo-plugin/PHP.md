@@ -25,20 +25,21 @@ Implementing [10up best practices](https://10up.github.io/Engineering-Best-Pract
 
 ### Return data instead of HTML
 
-There are two types of plugin functionality: do something on the admin interface, and/or, provide extra data and features to themes.
+There are two types of plugin functionalities: do something on the admin interface, and/or, provide extra data and features to themes.
 
-When providing for themes - like in this case - always return data instead of displaying data.
+When providing for themes — like in this case — always return data instead of displaying data.
 
-Themes have a proper built in displaying mechanism  - template parts - when plugins don't.
-It is more elegant and far easy to return raw data to theme which displays it within it's own style guide than reinventing the wheel in the plugin.
+Themes have a proper built in mechanism to display data — template parts — when plugins have nothing like this.
+
+It is elegant and easy to return raw data to theme which displays it within it's own style guide than reinventing the template parts mechanism in the plugin.
 
 #### Example
 
-Adding a custom post type ― people ― can't be done in a theme just in a plugin. A plugin has to be created for this feature. 
+Adding a custom post type ― people ― cannot be done in a theme just in a plugin. A plugin has to be created for this feature. 
 
 To display a person in a post or a page the `[person name="Bill"]` shortcode can be used. To make the person look nice with avatar, role, email ... we need to use HTML.
 
-The theme perhaps already has the template tags and parts displaying a person. Since plugins cannot use `get_template_part` they can't re-use the already written HTML code.
+The theme perhaps already has the template tags and parts displaying a person. Since plugins cannot use `get_template_part` they can't re-use that already written HTML code.
 
 #### Solution
 

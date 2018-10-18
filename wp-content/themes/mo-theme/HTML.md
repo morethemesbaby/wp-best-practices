@@ -23,15 +23,19 @@ To keep the theme developer friendly stick to this standard instead of reinventi
 
 ## Components
 
-HTML defines the structure of the page. It should define also the structure of the code. 
+Components are a way to organize code in such way developers can realize immediately where to look for a specific code part.
 
-For example if a page has a `<header class="site-header>` structural element (component) developers should be able to easily realize where the PHP, HTML, and CSS code responsible for this element is located.
+For example if a page has a `<header class="site-header>` structural element (a.k.a component) developers should be able to easily realize where the PHP, HTML, and CSS and other code responsible for this element is located.
 
 There should be a:
 
 * `template-parts/site-header/site-header.php` template part for HTML code
 * `includes/template-tags/class-site-header.php` template tag for PHP code, and
 * `assets/scss/parts/site-header.scss` for (S)CSS code.
+* `assets/js/site-header.js` for JS code.
+
+It all starts with HTML which defines the structure of the page with class names:  `class="site-header"`. If class names are cleverly and intuitively set they can enable this kind of component architecture.  
+
 
 ### Auto-generated classnames
 
@@ -55,7 +59,9 @@ $attributes = array(
 
 ### BEM naming conventions
 
-Follow the [BEM standard](http://getbem.com/introduction/) with a small modification: instead of `block__element--modifier` use `block-element--modifier`.
+[BEM](http://getbem.com/introduction/) is a naming convention for components. 
+
+We use it with a small modification: instead of `block__element--modifier` we use `block-element--modifier`.
 
 For usual WorPress projects this change enhances readability. There will be less nesting, more folders and better transparency.
 
@@ -75,7 +81,7 @@ block-element
 |. --modifier-for-element
 ```
 
-If this is not working the original BEM method can be switched on:
+If this is not the preferred way to work the original BEM naming syntax can be easily restored:
 ```php
 class MoThemeHTMLComponentAttributes extends MoThemeHTMLComponent {
 /**
@@ -89,8 +95,8 @@ class MoThemeHTMLComponentAttributes extends MoThemeHTMLComponent {
 */
 public $arguments = array(
 	...
-	'element_prefix'          => '-',
-	'modifier_prefix'         => '--',
+	'element_prefix'  => '-',
+	'modifier_prefix' => '--',
 	...
 );
 ```
@@ -136,9 +142,39 @@ function mo_theme_post_excerpt_attributes_filter() {
 
 ### Template parts
 
-They are like mixins or partials in other coding framework. They do one small thing and they do it well. They are combined and reused freely to compose the user interface.
+They are like mixins or partials in other coding frameworks. They do one small thing and they do it well. They are combined and reused freely to compose the user interface.
 
-Template parts can be easily overwritten in child themes. If you have a `header.php` in your child theme it will overwrite the same template from the main theme.
+Template parts can be easily overwritten in child themes. If you have a `home.php` in your child theme it will overwrite the same template from the main theme.
+
+`home.php` in the parent theme:
+```php
+<section <?php $component->attributes->display( $attributes ); ?>>
+	<?php
+		$component->title->display( $title );
+		get_template_part( 'template-parts/post-list/post-list', '' );
+	?>
+</section>
+
+<?php
+get_footer();
+```
+
+`home.php` in the child theme:
+```php
+<section <?php $component->attributes->display( $attributes ); ?>>
+	<?php
+		$component->title->display( $title );
+		get_template_part( 'template-parts/post-list/post-list', '' );
+	?>
+</section>
+
+<?php
+get_sidebar( 'sidebar-1' );
+get_footer();
+```
+
+In the child theme we've just simply added a sidebar which was not present in the parent theme.
+
 
 ### Actions
 
@@ -160,6 +196,7 @@ This is wrong:
 ```php
 Hybrid\View\display( 'index' );
 ```
+We don't have a clue what that `index` template is: a `<section>`, a list (`<ul>`) or something else maybe? What is its class name or element id? How I can locate in the browser's web inspector? And how I can locate the style (css) or functionality (js) associated?
 
 This is better:
 ```html
@@ -169,6 +206,7 @@ This is better:
 	<?php get_template_part( 'template-parts/post-list/post-list', 'with-comments' ); ?>
 </section>
 ```
+Here we've replaced only the HTML which is not significant for the component.
 
 ### Replace ugly HTML code with PHP code
 
@@ -191,8 +229,11 @@ echo wp_kses_post(
 	)
 );
 ```
+We haven't hide any attribute of the link but made it better understandable and modifiable. 
 
 ## Semantic and outlined
 
 The HTML source and outline is validated with the [W3C validator](https://validator.w3.org/nu/)
+
+Outlining is very important since it makes the code accessible. If your site outlines well in the W3C validator it will get a 100% accessibility score in Google Lighthouse: https://imgur.com/a/MYSgMKH
 
