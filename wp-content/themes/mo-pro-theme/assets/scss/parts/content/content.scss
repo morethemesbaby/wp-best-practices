@@ -1,0 +1,26 @@
+@mixin content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	a,
+	.link {
+		@include link;
+	}
+
+	.home {
+		@include home;
+	}
+
+	#sidebar {
+		@include sidebar;
+	}
+
+	.single {
+		@include single;
+	}
+
+	.page {
+		@include page;
+	}
+}

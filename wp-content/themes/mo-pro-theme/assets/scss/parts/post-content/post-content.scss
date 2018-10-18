@@ -1,0 +1,7 @@
+@mixin post-content {
+	.post-list {
+		@include margin(half, no, half, half);
+		@include padding(half, no, half, half);
+		@include border(normal, left);
+	}
+}
