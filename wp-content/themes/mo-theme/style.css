@@ -840,6 +840,30 @@ html {
         -webkit-box-align: center;
             -ms-flex-align: center;
                 align-items: center; }
+        @media only screen and (max-width: 767.9px) {
+          html body .content .home .post-list .post + .post {
+            margin-top: 2.5em; } }
+        @media only screen and (min-width: 768px) {
+          html body .content .home .post-list .post + .post {
+            margin-top: 2.5em; } }
+        @media only screen and (max-width: 767.9px) {
+          html body .content .home .post-list .post + .post {
+            margin-bottom: 0; } }
+        @media only screen and (min-width: 768px) {
+          html body .content .home .post-list .post + .post {
+            margin-bottom: 0; } }
+        @media only screen and (max-width: 767.9px) {
+          html body .content .home .post-list .post + .post {
+            margin-left: 0; } }
+        @media only screen and (min-width: 768px) {
+          html body .content .home .post-list .post + .post {
+            margin-left: 0; } }
+        @media only screen and (max-width: 767.9px) {
+          html body .content .home .post-list .post + .post {
+            margin-right: 0; } }
+        @media only screen and (min-width: 768px) {
+          html body .content .home .post-list .post + .post {
+            margin-right: 0; } }
       html body .content .single {
         -webkit-box-align: center;
             -ms-flex-align: center;
@@ -915,50 +939,6 @@ html {
               padding-right: 2.5em; } }
         html body .content .page .post-single .post-content {
           border-top: 0; }
-    html body .sidebar {
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-pack: center;
-          -ms-flex-pack: center;
-              justify-content: center;
-      width: 100%; }
-      @media only screen and (max-width: 767.9px) {
-        html body .sidebar {
-          padding-top: 2.5em; } }
-      @media only screen and (min-width: 768px) {
-        html body .sidebar {
-          padding-top: 2.5em; } }
-      @media only screen and (max-width: 767.9px) {
-        html body .sidebar {
-          padding-bottom: 2.5em; } }
-      @media only screen and (min-width: 768px) {
-        html body .sidebar {
-          padding-bottom: 2.5em; } }
-      @media only screen and (max-width: 767.9px) {
-        html body .sidebar {
-          margin-top: 2.5em; } }
-      @media only screen and (min-width: 768px) {
-        html body .sidebar {
-          margin-top: 2.5em; } }
-      @media only screen and (max-width: 767.9px) {
-        html body .sidebar {
-          margin-bottom: 0; } }
-      @media only screen and (min-width: 768px) {
-        html body .sidebar {
-          margin-bottom: 0; } }
-      @media only screen and (max-width: 767.9px) {
-        html body .sidebar {
-          margin-left: 0; } }
-      @media only screen and (min-width: 768px) {
-        html body .sidebar {
-          margin-left: 0; } }
-      @media only screen and (max-width: 767.9px) {
-        html body .sidebar {
-          margin-right: 0; } }
-      @media only screen and (min-width: 768px) {
-        html body .sidebar {
-          margin-right: 0; } }
     html body .hidden {
       display: none; }
     html body .screen-reader-text {

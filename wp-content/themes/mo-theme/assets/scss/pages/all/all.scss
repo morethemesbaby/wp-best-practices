@@ -39,10 +39,6 @@ html {
 			@include content;
 		}
 
-		.sidebar {
-			@include sidebar;
-		}
-
 		// Common classes
 		.hidden {
 			display: none;

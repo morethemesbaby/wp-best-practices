@@ -1,0 +1,9 @@
+@mixin post-list {
+	.post {
+		@include post;
+
+		+ .post {
+			@include margin(yes, no, no, no);
+		}
+	}
+}
