@@ -1,0 +1,9 @@
+@mixin header-title {
+	.link {
+		@include link;
+
+		.text {
+			@include text-style(site-title);
+		}
+	}
+}

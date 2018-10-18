@@ -1,0 +1,11 @@
+@mixin header-menu-hamburger {
+	cursor: pointer;
+
+	.header-menu-hamburger-icon {
+		@include header-menu-hamburger-icon;
+	}
+
+	&--closed {
+		@include header-menu-hamburger--closed;
+	}
+}

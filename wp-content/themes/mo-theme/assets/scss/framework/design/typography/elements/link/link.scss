@@ -1,0 +1,32 @@
+// Link
+//
+// Simple link styling. By default no underline just differentiation by style.
+// Links inside a long text are decorated with an underline, inactive menu items are marked with a line-through.
+//
+// Styleguide link
+@mixin link($color-scheme: default, $type: underlined, $hover: linethrough) {
+
+	@if ($color-scheme != none) {
+		@include colors($color-scheme);
+	}
+
+	@if ($type == underlined) {
+		@include link--underlined;
+	}
+
+	@if ($type == not-underlined) {
+		@include link--not-underlined;
+	}
+
+	@if ($type == linethrough) {
+		@include link--linethrough;
+	}
+
+	@if ($hover == underlined) {
+		@include link--hover--underlined;
+	}
+
+	@if ($hover == linethrough) {
+		@include link--hover--linethrough;
+	}
+}

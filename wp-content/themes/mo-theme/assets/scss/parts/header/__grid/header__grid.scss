@@ -1,0 +1,31 @@
+@mixin header__grid {
+
+	@include padding(yes, no, yes, no);
+	display: flex;
+
+	&.without-header-menu {
+		flex-direction: column;
+	}
+
+	&.with-header-menu {
+		align-items: center; // to align hamburger icon
+		flex-wrap: wrap;
+		justify-content: space-between;
+
+		.header-title,
+		.header-subtitle,
+		.header-logo {
+			width: 90%;
+		}
+
+		.header-menu-hamburger {
+			display: flex;
+			justify-content: flex-end;
+			width: 10%;
+		}
+
+		&.without-logo.without-header-text {
+			justify-content: flex-end;
+		}
+	}
+}

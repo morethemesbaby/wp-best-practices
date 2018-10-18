@@ -1,0 +1,8 @@
+/* - fixing big child elements breaking smaller parent's width and height in Firefox
+- http://stackoverflow.com/questions/26895349/how-can-i-get-ff-33-x-flexbox-behavior-in-ff-34-x
+*/
+
+@mixin flexbox-bugfix {
+	* { min-height: 0; }
+	* { min-width: 0; }
+}

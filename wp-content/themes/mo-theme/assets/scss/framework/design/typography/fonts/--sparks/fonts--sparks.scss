@@ -1,0 +1,38 @@
+// Sparks
+//
+// Sparks font, by After The Flood
+// License: SIL Open Font License
+// Source: https://github.com/aftertheflood/sparks
+//
+// Example: https://raw.githubusercontent.com/aftertheflood/sparks/master/tests/dummy-site/css/tests.css
+//
+//
+// This font will be loaded via classes and not SCSS mixins
+//
+// 
+@mixin fonts--sparks {
+	@font-face {
+		font-family: 'Sparks-Dotline-Medium';
+		font-style: normal;
+		font-weight: normal;
+		src: url('assets/fonts/Sparks-Dotline-Medium.eot');
+		src: url('assets/fonts/Sparks-Dotline-Medium.eot?#iefix') format('embedded-opentype'),
+			url('assets/fonts/Sparks-Dotline-Medium.woff2') format('woff2'),
+			url('assets/fonts/Sparks-Dotline-Medium.woff') format('woff'),
+			url('assets/fonts/Sparks-Dotline-Medium.ttf') format('truetype'),
+			url('assets/fonts/Sparks-Dotline-Medium.svg#Sparks-Dotline-Medium') format('svg');
+	}
+
+	.sparks-font {
+		-webkit-font-feature-settings: 'calt', 'kern';
+		-moz-font-feature-settings: 'calt=1', 'kern=1';
+		font-feature-settings: 'calt' 1, 'kern' 1;
+		font-kerning: normal;
+		font-variant-ligatures: contextual;
+		text-rendering: optimizeLegibility;
+	}
+
+	.sparks-font-dotline-medium {
+		font-family: Sparks-Dotline-Medium;
+	}
+}

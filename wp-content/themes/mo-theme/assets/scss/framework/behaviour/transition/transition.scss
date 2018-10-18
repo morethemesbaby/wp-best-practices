@@ -1,0 +1,11 @@
+// Transition
+//
+// Smooth animation transition using a cubic-bezier function following the recommendations from [Google Web Fundamentals](https://developers.google.com/web/fundamentals/look-and-feel/animations/animating-between-views).
+// Used for all animations across the site.
+//
+//
+// Styleguide transition
+@mixin transition($change) {
+	transition: $change 0.3s cubic-bezier(0.465, 0.183, 0.153, 0.946);
+	will-change: $change;
+}

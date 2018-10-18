@@ -1,0 +1,11 @@
+@mixin header-image--half-sized {
+	height: $top;
+
+	figure {
+		height: $top;
+
+		img {
+			height: $top;
+		}
+	}
+}

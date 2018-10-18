@@ -1,0 +1,11 @@
+@mixin header-menu-hamburger--closed {
+	.header-menu-hamburger-icon {
+		&--closed {
+			display: flex;
+		}
+
+		&--opened {
+			display: none;
+		}
+	}
+}

@@ -1,0 +1,132 @@
+@mixin margin($t: yes, $r: yes, $b: yes, $l: yes) {
+	@if ($t == 'half') {
+		@include mobile {
+			margin-top: $top-mobile / 2;
+		}
+
+		@include mobile-and-up {
+			margin-top: $top / 2;
+		}
+	}
+
+
+	@if ($b == 'half') {
+		@include mobile {
+			margin-bottom: $top-mobile / 2;
+		}
+
+		@include mobile-and-up {
+			margin-bottom: $top / 2;
+		}
+	}
+
+
+	@if ($l == 'half') {
+		@include mobile {
+			margin-left: $left-mobile / 2;
+		}
+
+		@include mobile-and-up {
+			margin-left: $left / 2;
+		}
+	}
+
+
+	@if ($r == 'half') {
+		@include mobile {
+			margin-right: $left-mobile / 2;
+		}
+
+		@include mobile-and-up {
+			margin-right: $left / 2;
+		}
+	}
+
+
+	@if ($t == 'yes') {
+		@include mobile {
+			margin-top: $top-mobile;
+		}
+
+		@include mobile-and-up {
+			margin-top: $top;
+		}
+	}
+
+
+	@if ($b == 'yes') {
+		@include mobile {
+			margin-bottom: $top-mobile;
+		}
+
+		@include mobile-and-up {
+			margin-bottom: $top;
+		}
+	}
+
+
+	@if ($l == 'yes') {
+		@include mobile {
+			margin-left: $left-mobile;
+		}
+
+		@include mobile-and-up {
+			margin-left: $left;
+		}
+	}
+
+
+	@if ($r == 'yes') {
+		@include mobile {
+			margin-right: $left-mobile;
+		}
+
+		@include mobile-and-up {
+			margin-right: $left;
+		}
+	}
+
+
+	@if ($t == 'no') {
+		@include mobile {
+			margin-top: 0;
+		}
+
+		@include mobile-and-up {
+			margin-top: 0;
+		}
+	}
+
+
+	@if ($b == 'no') {
+		@include mobile {
+			margin-bottom: 0;
+		}
+
+		@include mobile-and-up {
+			margin-bottom: 0;
+		}
+	}
+
+
+	@if ($l == 'no') {
+		@include mobile {
+			margin-left: 0;
+		}
+
+		@include mobile-and-up {
+			margin-left: 0;
+		}
+	}
+
+
+	@if ($r == 'no') {
+		@include mobile {
+			margin-right: 0;
+		}
+
+		@include mobile-and-up {
+			margin-right: 0;
+		}
+	}
+}

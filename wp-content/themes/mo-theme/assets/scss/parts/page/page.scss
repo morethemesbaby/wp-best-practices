@@ -1,0 +1,21 @@
+@mixin page {
+	width: 100%;
+
+	.post-single {
+		@include margin(no, no, yes, no);
+
+		.post-title,
+		.post-content {
+			@include border(normal, all);
+			@include padding;
+		}
+
+		.post-content {
+			border-top: 0;
+
+			.text {
+				@include text-style(body-text-post);
+			}
+		}
+	}
+}

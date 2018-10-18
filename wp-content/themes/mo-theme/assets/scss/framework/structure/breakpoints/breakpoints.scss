@@ -1,0 +1,73 @@
+// Breakpoints
+//
+// Used to adapt content and design to devices.
+//
+// Styleguide breakpoints
+
+
+// Screens smaller than 768px
+$breakpoint-mobile: 768px;
+
+// Screens bigger than 600px and smaller than 1024px
+$breakpoint-tablet: 1024px;
+
+// Screens larger than 1600px
+$breakpoint-desktop: 1600px;
+
+
+
+
+@mixin portrait {
+	@media only screen and (orientation: portrait) {
+		@content;
+	}
+}
+
+@mixin landscape {
+	@media only screen and (orientation: landscape) {
+		@content;
+	}
+}
+
+@mixin mobile {
+	@media only screen and (max-width: $breakpoint-mobile - 0.1) {
+		@content;
+	}
+}
+
+@mixin mobile-and-up {
+	@media only screen and (min-width: $breakpoint-mobile) {
+		@content;
+	}
+}
+
+@mixin tablet {
+	@media only screen and (min-width: $breakpoint-mobile) and (max-width: $breakpoint-tablet) {
+		@content;
+	}
+}
+
+@mixin tablet-landscape {
+	@media only screen and (min-width: $breakpoint-mobile) and (max-width: $breakpoint-tablet)  and (orientation: landscape) {
+		@content;
+	}
+}
+
+@mixin laptop {
+	@media only screen and (min-width: $breakpoint-tablet + 1) and (max-width: $breakpoint-desktop) {
+		@content;
+	}
+}
+
+@mixin laptop-and-up {
+	@media only screen and (min-width: $breakpoint-tablet + 1) {
+		@content;
+	}
+}
+
+
+@mixin desktop {
+	@media only screen and (min-width: $breakpoint-desktop + 0.1) {
+		@content;
+	}
+}

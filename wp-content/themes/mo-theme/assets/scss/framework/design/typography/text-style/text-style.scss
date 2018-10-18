@@ -1,0 +1,34 @@
+// Text style
+//
+// Typographic settings for different text types.
+// Each text type has set a `font`, a `scale`, a `color` and parameters like letter-spacing, max-width or else.
+// Everything text uses this `text-style` mixin. We don't set `color` or `font` directly for a text.
+//
+// Styleguide text-style
+
+
+// The text mixin
+@mixin text-style($variant) {
+
+	// Default
+	// - The basic settings for the site
+	@if ($variant == 'default') {
+		@include scale(default);
+		@include font(default);
+		@include colors(default);
+
+		letter-spacing: $letter-spacing;
+
+		@include tablet {
+			@include scale(large-1);
+		}
+
+		@include laptop {
+			@include scale(large-1);
+		}
+
+		@include desktop {
+			@include scale(large-2);
+		}
+	}
+}

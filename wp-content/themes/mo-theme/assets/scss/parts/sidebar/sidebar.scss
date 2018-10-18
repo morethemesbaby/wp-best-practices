@@ -1,0 +1,8 @@
+@mixin sidebar {
+	@include padding(yes, no, yes, no);
+	@include margin(yes, no, no, no);
+
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}

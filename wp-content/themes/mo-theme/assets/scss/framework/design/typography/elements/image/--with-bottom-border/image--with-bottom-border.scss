@@ -1,0 +1,3 @@
+@mixin image--with-bottom-border {
+	@include border(normal, bottom);
+}

@@ -1,0 +1,47 @@
+// Triangle
+//
+// A pure CSS triangle drew with `border`.
+// An idea from [Lab21](http://www.lab21.gr/)
+// The corresponding HTML code can be found in `template-parts/framework/design/decorations`
+//
+// $size - starting from $lem / 4
+//
+// Styleguide triangle
+@mixin triangle($direction: right, $size: $lem / 2, $color: $text-color) {
+	border-style: solid;
+	height: 0;
+	width: 0;
+
+	@if ($direction == right) {
+		@include triangle--right($size, $color);
+	}
+
+	@if ($direction == left) {
+		@include triangle--left($size, $color);
+	}
+
+	@if ($direction == top) {
+		@include triangle--top($size, $color);
+	}
+
+	@if ($direction == bottom) {
+		@include triangle--bottom($size, $color);
+	}
+
+
+	&--right {
+		@include triangle--right($size, $color);
+	}
+
+	&--left {
+		@include triangle--left($size, $color);
+	}
+
+	&--top {
+		@include triangle--top($size, $color);
+	}
+
+	&--bottom {
+		@include triangle--bottom($size, $color);
+	}
+}

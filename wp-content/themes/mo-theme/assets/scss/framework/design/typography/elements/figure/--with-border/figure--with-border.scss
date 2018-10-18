@@ -1,0 +1,4 @@
+@mixin figure--with-border($padding: $lem) {
+	@include border(normal, all);
+	padding: $padding;
+}

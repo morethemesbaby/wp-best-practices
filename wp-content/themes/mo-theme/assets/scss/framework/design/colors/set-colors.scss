@@ -1,0 +1,15 @@
+// Set colors
+//
+// Sometimes it needs to be set the colors explicitely ...
+// ... not just by using the `colors()` mixin with arguments like `default` or `inverted`
+// 
+@mixin set-colors($background-color, $text-color) {
+	background-color: $background-color;
+	color: $text-color;
+
+	a,
+	.link {
+		background-color: $background-color !important;
+		color: $text-color !important;
+	}
+}

@@ -1,0 +1,46 @@
+// Typography reset
+//
+// Reset typographic elements. Sits on the top of Normalize.css
+//
+// No Styleguide entry
+@mixin typography-reset {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-size: 1em;
+		font-weight: normal;
+		margin: 0;
+		padding: 0;
+	}
+
+	p,
+	figure,
+	blockquote,
+	ul,
+	ol,
+	li {
+		margin: 0;
+		padding: 0;
+	}
+
+	// Remove the extra bottom spacing for <img> inside <a>
+	// unfortunatelly in WP it breaks the figcaption ...
+	figure a {
+		// line-height: 0;
+		// display: inline-block;
+	}
+
+	a {
+		word-wrap: break-word;
+	}
+
+	// https://stackoverflow.com/questions/17838607/making-an-iframe-responsive
+	iframe,
+	object,
+	embed {
+		max-width: 100%;
+	}
+}

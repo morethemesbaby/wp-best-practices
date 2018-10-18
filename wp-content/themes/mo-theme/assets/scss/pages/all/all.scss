@@ -1,0 +1,56 @@
+// Common settings for all pages
+//
+// This is where we set up all basic styles and parts of the site
+//
+//
+@include html-css-reset;
+
+html {
+	@include grid-reset;
+
+	body {
+		@include typography-reset;
+		@include text-style(default);
+
+		align-items: center;
+		display: flex;
+		flex-direction: column;
+
+		// Making blockquotes do not overflow
+		overflow-x: hidden;
+		width: 100%;
+
+		.header,
+		.header-menu,
+		.content,
+		.footer {
+			@include width;
+		}
+
+		.header {
+			@include header;
+		}
+
+		.header-menu {
+			@include header-menu;
+		}
+
+		.content {
+			@include content;
+		}
+
+		.sidebar {
+			@include sidebar;
+		}
+
+		// Common classes
+		.hidden {
+			display: none;
+		}
+
+		// Wordpress specific
+		.screen-reader-text {
+			display: none;
+		}
+	}
+}

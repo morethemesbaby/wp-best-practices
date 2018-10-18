@@ -1,0 +1,6 @@
+@mixin figure--with-figcaption {
+	.figcaption,
+	figcaption {
+		display: inline-block;
+	}
+}

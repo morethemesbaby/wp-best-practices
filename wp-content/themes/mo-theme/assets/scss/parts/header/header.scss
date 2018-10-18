@@ -1,0 +1,25 @@
+@mixin header {
+
+	@include header__grid;
+
+	.header-logo {
+		@include header-logo;
+	}
+
+	.header-image {
+		@include header-image;
+		@include header-image--half-sized;
+	}
+
+	.header-title {
+		@include header-title;
+	}
+
+	.header-subtitle {
+		@include header-subtitle;
+	}
+
+	.header-menu-hamburger {
+		@include header-menu-hamburger;
+	}
+}

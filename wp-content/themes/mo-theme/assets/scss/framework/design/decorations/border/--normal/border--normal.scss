@@ -1,0 +1,21 @@
+@mixin border--normal($position: bottom) {
+	@if ($position == top) {
+		border-top: $border-normal;
+	}
+
+	@if ($position == bottom) {
+		border-bottom: $border-normal;
+	}
+
+	@if ($position == left) {
+		border-left: $border-normal;
+	}
+
+	@if ($position == right) {
+		border-right: $border-normal;
+	}
+
+	@if ($position == all) {
+		border: $border-normal;
+	}
+}

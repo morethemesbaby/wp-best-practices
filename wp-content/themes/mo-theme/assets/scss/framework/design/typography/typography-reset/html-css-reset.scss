@@ -1,0 +1,9 @@
+// HTML and CSS reset
+//
+// This mixin should include all reset stylesheets like Normalize.css and Flexbox bugfixes
+//
+// Styleguide html-css-reset
+@mixin html-css-reset {
+	@include normalize;
+	@include flexbox-bugfix;
+}

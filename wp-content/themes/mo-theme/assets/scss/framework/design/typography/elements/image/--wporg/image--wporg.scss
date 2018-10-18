@@ -1,0 +1,28 @@
+@mixin image--wporg {
+	img,
+	.img {
+		height: auto;
+		// Do not overflow
+		max-width: 100%;
+
+		&.alignright {
+			float: right;
+			margin: 0 0 $lem $lem;
+		}
+
+		&.alignleft {
+			float: left;
+			margin: 0 $lem $lem 0;
+		}
+
+		&.aligncenter {
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		&.alignnone {
+			text-align: unset;
+		}
+	}
+}

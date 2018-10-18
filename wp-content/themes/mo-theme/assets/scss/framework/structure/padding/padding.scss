@@ -1,0 +1,87 @@
+@mixin padding($t: yes, $r: yes, $b: yes, $l: yes) {
+	@if ($t == 'half') {
+		@include mobile {
+			padding-top: $top-mobile / 2;
+		}
+
+		@include mobile-and-up {
+			padding-top: $top / 2;
+		}
+	}
+
+
+	@if ($b == 'half') {
+		@include mobile {
+			padding-bottom: $top-mobile / 2;
+		}
+
+		@include mobile-and-up {
+			padding-bottom: $top / 2;
+		}
+	}
+
+
+	@if ($l == 'half') {
+		@include mobile {
+			padding-left: $left-mobile / 2;
+		}
+
+		@include mobile-and-up {
+			padding-left: $left / 2;
+		}
+	}
+
+
+	@if ($r == 'half') {
+		@include mobile {
+			padding-right: $left-mobile / 2;
+		}
+
+		@include mobile-and-up {
+			padding-right: $left / 2;
+		}
+	}
+
+	@if ($t == 'yes') {
+		@include mobile {
+			padding-top: $top-mobile;
+		}
+
+		@include mobile-and-up {
+			padding-top: $top;
+		}
+	}
+
+
+	@if ($b == 'yes') {
+		@include mobile {
+			padding-bottom: $top-mobile;
+		}
+
+		@include mobile-and-up {
+			padding-bottom: $top;
+		}
+	}
+
+
+	@if ($l == 'yes') {
+		@include mobile {
+			padding-left: $left-mobile;
+		}
+
+		@include mobile-and-up {
+			padding-left: $left;
+		}
+	}
+
+
+	@if ($r == 'yes') {
+		@include mobile {
+			padding-right: $left-mobile;
+		}
+
+		@include mobile-and-up {
+			padding-right: $left;
+		}
+	}
+}

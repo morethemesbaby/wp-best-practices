@@ -1,0 +1,51 @@
+@mixin figure--wporg {
+	.figure,
+	figure,
+	.wp-caption {
+		display: block;
+		max-width: 100% !important;
+
+		a,
+		.link {
+			@include link(text-color-on-transparent);
+		}
+
+		figcaption,
+		.figcaption,
+		.wp-caption-text,
+		.gallery-caption {
+			@include text-style(figcaption);
+			display: inline-block; // do not overflow the image on large screens
+			// display: block; // otherwise it breaks the wp test data
+
+			.link,
+			a {
+				@include link;
+			}
+		}
+
+		&.alignright {
+			float: right;
+			margin: $lem 0 $lem $lem;
+		}
+
+		&.alignleft {
+			float: left;
+			margin: $lem $lem $lem 0;
+		}
+
+		&.aligncenter {
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		&.alignnone {
+			text-align: unset;
+		}
+
+		+ p {
+			margin-top: $lem;
+		}
+	}
+}

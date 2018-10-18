@@ -1,0 +1,22 @@
+@mixin content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	a,
+	.link {
+		@include link;
+	}
+
+	.home {
+		@include home;
+	}
+
+	.single {
+		@include single;
+	}
+
+	.page {
+		@include page;
+	}
+}

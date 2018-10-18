@@ -1,0 +1,14 @@
+@mixin header-menu-hamburger-icon {
+	@include colors(text-color-on-transparent);
+
+	&--closed {
+		display: none;
+	}
+
+	&--opened {
+		display: flex;
+
+		// enlarge it
+		transform: scale(1.5) translateX(-2px) translateY(-3px);
+	}
+}

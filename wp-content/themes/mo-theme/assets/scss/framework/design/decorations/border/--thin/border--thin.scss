@@ -1,0 +1,21 @@
+@mixin border--thin($position: bottom) {
+	@if ($position == top) {
+		border-top: $border-thin;
+	}
+
+	@if ($position == bottom) {
+		border-bottom: $border-thin;
+	}
+
+	@if ($position == left) {
+		border-left: $border-thin;
+	}
+
+	@if ($position == right) {
+		border-right: $border-thin;
+	}
+
+	@if ($position == all) {
+		border: $border-thin;
+	}
+}

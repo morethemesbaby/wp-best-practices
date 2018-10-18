@@ -1,0 +1,20 @@
+// Visited link
+//
+// Only those properties can be changed which were set originally. New ones cannot be added.
+//
+// Styleguide link-visited
+@mixin link--visited($color-scheme: none, $color-scheme-hover: none) {
+	@if ($color-scheme != none) {
+		&:visited {
+			@include colors($color-scheme);
+		}
+	}
+
+	@if ($color-scheme-hover != none) {
+		&:visited {
+			&:hover {
+				@include colors($color-scheme-hover);
+			}
+		}
+	}
+}

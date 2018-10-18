@@ -1,0 +1,11 @@
+@mixin figure--with-background($background-pattern, $pattern-color, $padding: 0) {
+	@if ($background-pattern != '') {
+		@if ($pattern-color != '') {
+			@include background-pattern($background-pattern, $pattern-color);
+
+			a {
+				@include background-pattern($background-pattern, $pattern-color);
+			}
+		}
+	}
+}

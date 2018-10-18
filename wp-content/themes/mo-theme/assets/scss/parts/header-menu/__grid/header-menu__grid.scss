@@ -1,0 +1,14 @@
+@mixin header-menu__grid {
+	@include padding;
+	@include margin(no, no, yes, no);
+
+	@include mobile {
+		flex-direction: column;
+	}
+
+	@include mobile-and-up {
+		align-items: baseline;
+		flex-wrap: wrap;
+		justify-content: space-between;
+	}
+}

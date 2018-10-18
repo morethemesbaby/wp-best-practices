@@ -11,5 +11,11 @@
  Text Domain:  mo-theme
 */
 
+@import 'assets/scss/framework/wporg/wporg-required.scss';
 
-@import 'assets/scss/wporg-required.scss';
+@import 'assets/scss/themes/white.scss';
+@import 'assets/scss/framework/behaviour/**/*.scss';
+@import 'assets/scss/framework/design/**/*.scss';
+@import 'assets/scss/framework/structure/**/*.scss';
+@import 'assets/scss/parts/**/*.scss';
+@import 'assets/scss/pages/**/*.scss';

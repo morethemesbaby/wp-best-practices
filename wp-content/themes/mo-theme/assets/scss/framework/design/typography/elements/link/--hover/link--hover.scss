@@ -1,0 +1,16 @@
+// Link hover
+//
+// The order of the pseudo elements is important
+//
+// Styleguide link-hover
+@mixin link--hover($color-scheme: none) {
+	@if ($color-scheme != none) {
+		@include transition(color);
+
+		&:hover,
+		&:focus,
+		&:active {
+			@include colors($color-scheme);
+		}
+	}
+}

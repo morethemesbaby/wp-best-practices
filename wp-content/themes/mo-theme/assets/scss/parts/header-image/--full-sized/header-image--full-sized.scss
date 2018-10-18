@@ -1,0 +1,11 @@
+@mixin header-image--full-sized {
+	height: auto;
+
+	figure {
+		height: auto;
+
+		img {
+			height: auto;
+		}
+	}
+}

@@ -1,0 +1,22 @@
+// Nimbus mono
+//
+// Nimbus Mono font, Copyright URW++
+// License: GPL
+// Source: https://www.fontsquirrel.com/fonts/nimbus-mono
+//
+
+
+$font-family-nimbus-mono: (
+	regular: ('nimbus_monoregular','Courier New',Courier,'Lucida Sans Typewriter','Lucida Typewriter',monospace)
+);
+
+
+@mixin fonts--nimbus-mono {
+	@font-face {
+		font-family: 'nimbus_monoregular';
+		font-style: normal;
+		font-weight: normal;
+		src: url('assets/fonts/nimbusmono-regular-webfont.woff2') format('woff2'),
+			url('assets/fonts/nimbusmono-regular-webfont.woff') format('woff');
+	}
+}

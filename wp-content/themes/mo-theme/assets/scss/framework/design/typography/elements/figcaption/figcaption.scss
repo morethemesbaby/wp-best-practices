@@ -1,0 +1,4 @@
+@mixin figcaption {
+	@include text-style(figcaption);
+	display: inline-block;
+}
