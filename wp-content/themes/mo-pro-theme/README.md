@@ -9,5 +9,5 @@ A child theme of the `Mo Theme` using the `Mo Plugin` functionalities.
 
 Details:
 
-*[PHP / HTML](PHP-HTML.md)
-*[CSS](CSS.md)
+* [PHP / HTML](PHP-HTML.md)
+* [CSS](CSS.md)
