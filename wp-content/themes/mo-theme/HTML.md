@@ -25,7 +25,7 @@ To keep the theme developer friendly stick to this standard instead of reinventi
 
 Components are a way to organize code in such way developers can realize immediately where to look for a specific code part.
 
-For example if a page has a `<header class="site-header>` structural element (a.k.a component) developers should be able to easily realize where the PHP, HTML, and CSS and other code responsible for this element is located.
+For example if a page has a `<header class="site-header">` structural element (a.k.a component) developers should be able to easily realize where the PHP, HTML, and CSS and other code responsible for this element is located.
 
 There should be a:
 
@@ -100,6 +100,8 @@ public $arguments = array(
 	...
 );
 ```
+
+More examples can be found in [CSS.md](CSS.md)
 
 ## Extendable
 
