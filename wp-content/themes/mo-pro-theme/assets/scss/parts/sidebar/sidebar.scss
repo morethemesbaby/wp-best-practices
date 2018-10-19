@@ -1,7 +1,7 @@
 @mixin sidebar {
-	@include width;
-	
 	@include margin(yes, no, no, no);
 	@include padding(yes, no, no, no);
 	@include border(normal, top);
+
+	width: 100%;
 }

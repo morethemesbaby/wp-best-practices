@@ -1,4 +1,6 @@
 @mixin post {
+	@include width;
+	
 	.post-title {
 		@include post-title;
 	}

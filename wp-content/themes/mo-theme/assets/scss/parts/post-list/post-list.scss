@@ -1,4 +1,6 @@
 @mixin post-list {
+	width: 100%;
+	
 	.post {
 		@include post;
 
