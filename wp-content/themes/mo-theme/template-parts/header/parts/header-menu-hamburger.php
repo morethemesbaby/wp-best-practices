@@ -22,6 +22,28 @@ $attributes = apply_filters(
 	)
 );
 
+$icon_closed_attributes = apply_filters(
+	'mo_theme_header_menu_hamburger_icon_closed_attributes',
+	array(
+		'block'         => 'header-menu-hamburger-icon',
+		'element'       => '',
+		'modifier'      => 'closed',
+		'display_class' => true,
+		'display_id'    => false,
+	)
+);
+
+$icon_opened_attributes = apply_filters(
+	'mo_theme_header_menu_hamburger_icon_opened_attributes',
+	array(
+		'block'         => 'header-menu-hamburger-icon',
+		'element'       => '',
+		'modifier'      => 'opened',
+		'display_class' => true,
+		'display_id'    => false,
+	)
+);
+
 $title = apply_filters(
 	'mo_theme_header_menu_hamburger_nav_title',
 	array(
@@ -34,11 +56,11 @@ if ( $header->has_header_menu() ) {
 	<nav <?php $component->attributes->display( $attributes ); ?>>
 		<?php $component->title->display( $title ); ?>
 
-		<div class="icon--closed">
+		<div <?php $component->attributes->display( $icon_closed_attributes ); ?>>
 			<span class="icon">&#x2630;</span>
 		</div>
 
-		<div class="icon--opened">
+		<div <?php $component->attributes->display( $icon_opened_attributes ); ?>>
 			<span class="icon">&times;</span>
 		</div>
 	</nav>
