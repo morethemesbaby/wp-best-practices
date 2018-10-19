@@ -31,9 +31,10 @@ wp-content/plugins/mo-plugin/*.map
 # WordPress core
 # - from https://brudtkuhl.com/wordpress-gitignore/
 
-# Ignore everything in the root except the "wp-content" directory.
+# Ignore everything in the root except ...
 /*
 !.gitignore
+!.github/
 !README.md
 !wp-content/
 
