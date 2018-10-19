@@ -27,20 +27,19 @@ $title = apply_filters(
 	)
 );
 
-$header_menu_contents = apply_filters(
-	'mo_theme_header_display_menu_contents',
-	array(
-		$header,
-		'display_header_menu_contents',
-	)
-);
-
 if ( $header->has_header_menu() ) {
 	?>
 	<nav <?php $component->attributes->display( $attributes ); ?>>
 		<?php $component->title->display( $title ); ?>
 
-		<?php $header_menu_contents; ?>
+		<?php
+			echo wp_kses_post(
+				apply_filters(
+					'mo_theme_header_display_menu_contents',
+					$header->display_header_menu_contents()
+				)
+			);
+		?>
 	</nav>
 	<?php
 }
