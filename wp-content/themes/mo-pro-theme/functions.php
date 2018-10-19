@@ -34,3 +34,27 @@ $mo_pro_theme = new MoProThemeSetup(
 		)
 	)
 );
+
+
+add_action( 'wp_enqueue_scripts', 'mo_pro_theme_enqueue_scripts', 100 );
+/**
+ * Add parent theme scripts.
+ *
+ * And / or remove child theme scripts.
+ *
+ * @since 1.0.0
+ * @return void
+ */
+function mo_pro_theme_enqueue_scripts() {
+	wp_dequeue_script( 'mo-pro-theme' );
+
+	$mo_assets = new MoAssets(
+		array(
+			'src_url'              => get_template_directory_uri(),
+			'javascript_file_name' => 'mo-theme',
+			'text-domain'          => 'mo-theme',
+		)
+	);
+
+	$mo_assets->add_script();
+}
