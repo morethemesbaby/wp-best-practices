@@ -15,7 +15,7 @@ Moreover the SCSS folder structure follows an old BEM recommendation:
 
 ## Coupling
 
-All these *practices* are meant to help developers easily locate and modify code. If there is a HTML class then it should be a same name SCSS mixin.
+All these *practices* above are meant to help developers easily locate and modify code. If there is a HTML class then it should be a same name SCSS mixin.
 
 For example, if in the browser's web inspector we have a `<body class="home">` then we should have an `scss/pages/home.scss` mixin. For a `<header class="header">` we should have a `scss/parts/header.scss` mixin.
 
