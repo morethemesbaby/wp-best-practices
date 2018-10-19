@@ -17,7 +17,7 @@ $attributes = apply_filters(
 		'block'         => 'header-menu-hamburger',
 		'element'       => '',
 		'modifier'      => 'closed',
-		'display_class' => false,
+		'display_class' => true,
 		'display_id'    => true,
 	)
 );

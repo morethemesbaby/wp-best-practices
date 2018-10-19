@@ -77,8 +77,6 @@ if ( ! class_exists( 'MoProThemeSetup' ) ) {
 				)
 			);
 
-			error_log('ass');
-
 			$assets = new MoAssets( $arguments );
 			$assets->add();
 		}
