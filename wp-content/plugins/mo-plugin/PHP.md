@@ -14,30 +14,32 @@
 
 ## Optimized and cached queries
 
-Implementing [10up best practices](https://10up.github.io/Engineering-Best-Practices/php/) like:
+A few of [10up best practices](https://10up.github.io/Engineering-Best-Practices/php/) are implemented, like:
 
-* Use `WP_Query` instead of `get_posts`.
-* Query only what is necessary. Like `'update_post_meta_cache' => false` when we don't need post meta data.
-* Don't do endless queries like `posts_per_page => -1`.
-* Always use the cache.
+* Using `WP_Query` instead of `get_posts`.
+* Querying only what is necessary. Like setting `'update_post_meta_cache' => false` when we don't need post meta data.
+* No endless queries with `posts_per_page => -1`.
+* The cache is always used.
 
 ## Single responsibility principle
 
-### Return data instead of HTML
+### Presentation done in theme
 
-There are two types of plugin functionalities: do something on the admin interface, and/or, provide extra data and features to themes.
+There are two types of plugins functionalities: extending the admin interface, and / or, provide extra data and features to themes.
 
 When providing for themes — like in this case — always return data instead of displaying data.
 
 Themes have a proper built in mechanism to display data — template parts — when plugins have nothing like this.
 
-It is elegant and easy to return raw data to theme which displays it within it's own style guide than reinventing the template parts mechanism in the plugin.
+It is elegant and easy to return raw data to theme which displays it within it's own style guide.
+
+Don't reinvent the template parts mechanism in the plugin.
 
 #### Example
 
-Adding a custom post type ― people ― cannot be done in a theme just in a plugin. A plugin has to be created for this feature. 
+Adding a custom post type ― people ― cannot be done in a theme just in a plugin. A plugin has to be created for this feature.
 
-To display a person in a post or a page the `[person name="Bill"]` shortcode can be used. To make the person look nice with avatar, role, email ... we need to use HTML.
+To display a person in a post or a page the `[person name="Bill"]` shortcode can be used. To make the person look nice with avatar, role, email ... HTML code is needed.
 
 The theme perhaps already has the template tags and parts displaying a person. Since plugins cannot use `get_template_part` they can't re-use that already written HTML code.
 
@@ -69,7 +71,7 @@ add_action( 'display_person_in_theme', 'display_person' );
 
 ## Loose coupling
 
-### Decouple plugin and theme using add_theme_support
+### Functionality defined by theme
 
 > The implementation of a custom plugin should be decoupled from its use in a Theme. Disabling the plugin should not result in any errors in the Theme code. Similarly switching the Theme should not result in any errors in the Plugin code.
 
@@ -77,11 +79,11 @@ add_action( 'display_person_in_theme', 'display_person' );
 
 #### How it works?
 
-1. Features the theme needs from the plugin can be declared via an `add_theme_support( 'custom-features' );` call. 
+1. Features the theme needs from the plugin can be declared via an `add_theme_support( 'custom-features' );` call.
 2. The plugin checks for these features via `if ( current_theme_supports( 'custom-features' ) ) {}`.
 3. If features are requested the plugin enables and implements it.
 
-The above checks must be wrapped into an `after_setup_theme` hook where the execution priority in the plugin must be higher than in the theme. 
+The above checks must be wrapped into an `after_setup_theme` hook where the execution priority in the plugin must be higher than in the theme.
 
 Theme:
 ```php
@@ -95,9 +97,9 @@ add_action( 'after_setup_theme', 'check_theme_support', 11, 0 );
 
 #### The naming convention
 
-The `custom-features` variable must be shared between the theme and the plugin. For that we have the default `global $_wp_theme_features` array. This makes it easy to add custom features into this array in the theme, then query them in the plugin.
+The `custom-features` variable must be shared between the theme and the plugin. For that the `global $_wp_theme_features` array can be used. Add `custom-features` into this array in the theme then query in the plugin.
 
-To mimic the [WordPress default `post-formats` feature](https://developer.wordpress.org/themes/functionality/post-formats/) we pass the custom features as an array:
+To mimic the [WordPress default `post-formats` feature](https://developer.wordpress.org/themes/functionality/post-formats/)  and to follow the loose coupling principle the `custom-features` variable is passed as an array:
 
 Theme:
 ```php

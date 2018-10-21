@@ -1,8 +1,10 @@
-# Mo Plugin 
+# Mo Plugin
 
 A WordPress.org boilerplate plugin based on [best practices](https://developer.wordpress.org/plugins/the-basics/best-practices/).
 
-It is taylor made to the `Mo Pro Theme` which means it's functionality is defined by the feature requests coming from the theme. On its own, without the theme enabled, the plugin does nothing. 
+Best practices are more vague here since there is no such thing like Theme Check for plugins.
+
+`Mo Plugin` is tailor made to `Mo Pro Theme` which means it's functionality is defined by the feature requests coming from the theme. On its own, without the theme enabled, the plugin does nothing.
 
 ## Best practices
 
@@ -19,4 +21,3 @@ Details:
 * [The Plugin Handbook](https://developer.wordpress.org/plugins/)
 * [The WordPress Plugin Boilerplate](http://wppb.io/)
 * [10up Engineering Best Practices](https://10up.github.io/Engineering-Best-Practices/)
-
