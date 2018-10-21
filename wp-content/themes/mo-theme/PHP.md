@@ -26,7 +26,7 @@ According to [best practices](https://developer.wordpress.org/plugins/the-basics
 
 ## Loose coupling
 
-[Loose coupling](https://alistapart.com/article/coding-with-clarity#section3) makes sure code is open, easily modifiable without breaking the site. 
+[Loose coupling](https://alistapart.com/article/coding-with-clarity#section3) makes sure code is open, easily modifiable without breaking the site.
 
 For different types of code different techniques are used.
 
@@ -74,7 +74,7 @@ public function __set( $variable, $value ) {}
 
 public function __get( $variable, $value ) {}
 ```
-Arguments are a dynamic array with any number of items. They are get and set programmatically and managed when an argument item is not found .
+Arguments are a dynamic array with any number of items. They are get and set with software and managed when an argument item is not found .
 
 If `$modifier` is removed the `_get` method can manage what happens on an '$object->modifier` call.
 
@@ -87,7 +87,7 @@ This is not recommended:
 ```php
 function display( $title, $description, $author ) { ... }
 ```
-When one argument is removed, the name or order is changed the old versions of the code might break.
+When one argument is removed, argument name or order is changed the old versions of the code might break.
 
 This is recommended:
 ```php
@@ -102,7 +102,7 @@ function display( $arguments = array() ) {
 ```
 Arguments are a dynamic array with any number of items in any order. They are easily replaceable and modifiable.
 
-If we need a new kind of author we can do something like:
+When a new kind of author is needed it can be simply added:
 ```php
 $default_arguments = array(
 	'title'      => '',
@@ -110,16 +110,15 @@ $default_arguments = array(
 	'author'     => '',
 	'author2'    => array(),
 );
-``` 
-
+```
 
 ### Template variables
 
-Templates are communicating with each other through the `get_template_part` and `set_query_var` / `get_query_var`.
+Templates are [communicating](https://developer.wordpress.org/reference/functions/get_template_part/#comment-2349) with each other through the `get_template_part` and `set_query_var` / `get_query_var`.
 
 Passing arguments between template parts is done with an array instead of a list of arguments.
 
-This is wrong:
+This is not recommended:
 ```php
 set_query_var( 'post-list-title', theme_get_archive_label( 'Posts' ) );
 set_query_var( 'post-list-klass', 'for-archive' );
@@ -138,17 +137,19 @@ set_query_var( 'post-list-query-vars', $post_list_query_vars );
 get_template_part( 'template-parts/post-list/post-list', '' );
 ```
 
-The logic is the same: pass an array of arguments which can be handled dynamic instead of a list of arguments which is static.
+The logic is the same: pass an array of arguments which can be handled dynamic instead of a list of arguments which are handled static.
 
 ## Single responsibility principle
 
-Every folder, file, class, function, mixin - you name it - is meant to [do one thing and do it well](https://alistapart.com/article/coding-with-clarity#section1).
+Every folder, file, class, function, mixin is meant to [do one thing and do it well](https://alistapart.com/article/coding-with-clarity#section1).
 
 ### Single source of truth
 
 Make sure everything has a single origin.
 
-For example `wp_get_theme()` gives us the theme version number. Instead of `define( 'THEME_VERSION', '0.1.0' );` use `wp_get_theme()->get('version')`.
+For example `wp_get_theme()`returns the theme version number which must be set in `style.css`.
+
+Instead of a later `define( 'THEME_VERSION', '0.1.0' );` in `functions.php` the `wp_get_theme()->get('version')` can be used.
 
 ### No hardwired data inside functions
 
@@ -157,7 +158,7 @@ This is not recommended:
 $file_name = 'js/' . $text_domain . '.js';
 ```
 
-Instead `js/`, `.js` should be moved into variables.
+Instead `js/`, `.js` should be moved into class arguments.
 ```php
 /**
 * Theme arguments.
@@ -178,12 +179,12 @@ $file_name = $arguments['javascript_folder'] . $text_domain . $arguments['javasc
 
 HTML code belongs to templates and template tags.
 
-When a PHP function needs to return HTML the [output buffering](https://secure.php.net/manual/en/function.ob-start.php) method with a `get_template_part` call should be used. 
+When a PHP function needs to return HTML the [output buffering](https://secure.php.net/manual/en/function.ob-start.php) method with a `get_template_part` call should be used.
 
 This is not recommended:
 ```php
 function theme_get_arrow_html( $direction ) {
-	return 
+	return
 		'<span class="arrow-with-triangle arrow-with-triangle--' . $direction . '">
  		<span class="arrow-with-triangle__line"></span>
  		<span class="triangle triangle-- arrow-with-triangle__triangle"></span>

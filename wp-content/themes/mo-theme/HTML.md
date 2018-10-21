@@ -23,25 +23,25 @@ To keep the theme developer friendly stick to this standard instead of reinventi
 
 ## Components
 
-Components are a way to organize code in such way developers can realize immediately where to look for a specific code part.
+Components are a way to organize code in such way developers can immediately realize where to look for a specific code part.
 
-For example if a page has a `<header class="site-header">` structural element (a.k.a component) developers should be able to easily realize where the PHP, HTML, and CSS and other code responsible for this element is located.
+For example if a page has a `<header class="site-header">` structural element (a.k.a component) developers should be able to easily realize where the PHP, HTML, and CSS code responsible for this element is located.
 
 There should be a:
 
 * `template-parts/site-header/site-header.php` template part for HTML code
 * `includes/template-tags/class-site-header.php` template tag for PHP code, and
 * `assets/scss/parts/site-header.scss` for (S)CSS code.
-* `assets/js/site-header.js` for JS code.
 
-It all starts with HTML which defines the structure of the page with class names:  `class="site-header"`. If class names are cleverly and intuitively set they can enable this kind of component architecture.  
+When using components everything starts with HTML. Without HTML there is no need for PHP and CSS code.
 
+HTML defines the structure of the page and the components building it. Uses class names to accomplish that. If class names are cleverly and intuitively set they can enable a component architecture.  
 
 ### Auto-generated classnames
 
-To achieve this consistency component class names and element identifiers are generated instead of being added manually. [Manual work is a bug. Always be automating](https://morethemes.baby/2018/04/05/manual-work-is-a-bug-always-be-automating-a-b-a/).
+To achieve consistency component class names and element identifiers are generated instead of being added manually. [Manual work is a bug. Always be automating](https://morethemes.baby/2018/04/05/manual-work-is-a-bug-always-be-automating-a-b-a/).
 
-Manually we can make mistakes:
+Manually one can make mistakes:
 ```html
 <aside class="non-consistent-naming">
 ```
@@ -56,14 +56,13 @@ $attributes = array(
 <aside <?php $component->attributes->display( $attributes ); ?>>
 ```
 
-
 ### BEM naming conventions
 
-[BEM](http://getbem.com/introduction/) is a naming convention for components. 
+[BEM](http://getbem.com/introduction/) is a naming convention for components.
 
-We use it with a small modification: instead of `block__element--modifier` we use `block-element--modifier`.
+Here it is used with a small modification: instead of `block__element--modifier` there is `block-element--modifier`.
 
-For usual WorPress projects this change enhances readability. There will be less nesting, more folders and better transparency.
+For usual WorPress projects this change enhances readability. There will be less folder nesting. More main folders provide better visibility.
 
 Instead of:
 ```shell
@@ -73,7 +72,7 @@ block
 |. --modifier-for-block
 ```
 
-We have:
+There is:
 ```shell
 block
 |. --modifier-for-block
@@ -113,7 +112,7 @@ Filters receive data, modify data, and return data. They must be used when a pie
 
 Since it is easy to add a filter it is recommended to be used as often as possible.
 
-Example: (in theme)
+In parent theme:
 ```html
 $attributes = apply_filters(
 	'mo_theme_post_excerpt_attributes',
@@ -146,7 +145,7 @@ function mo_theme_post_excerpt_attributes_filter() {
 
 They are like mixins or partials in other coding frameworks. They do one small thing and they do it well. They are combined and reused freely to compose the user interface.
 
-Template parts can be easily overwritten in child themes. If you have a `home.php` in your child theme it will overwrite the same template from the main theme.
+Template parts can be easily overwritten in child themes. A `home.php` in child theme will overwrite the same name template from the main theme.
 
 `home.php` in the parent theme:
 ```php
@@ -175,18 +174,18 @@ get_sidebar( 'sidebar-1' );
 get_footer();
 ```
 
-In the child theme we've just simply added a sidebar which was not present in the parent theme.
+In the child theme a sidebar is added which is not present in the parent theme.
 
 
 ### Actions
 
 Actions are [more abstract](https://blog.teamtreehouse.com/hooks-wordpress-actions-filters-examples). They deal with *code* instead of data. They are used to let others insert code into an existing codebase.
 
-The problem with actions is that you don't known apriori where others would like to insert their code. 
+The problem with actions is that no one knows a priori where others would like to insert their code.
 
-You can add a `before` and `after` action for every element on your webpage (logo, header, content, footer, post list, article title, ...) and still you can't make everybody happy.
+A `before` and `after` action can be added for every element (logo, header, content, footer, post list, article title, ...) and still not everybody will be happy.
 
-In this theme actions are used only when there is a concrete need for them. We don't insert empty actions hoping they will be reused later.
+In this theme actions are used only when there is a concrete need for them. Empty actions are not inserted hoping they will be reused later.
 
 ## Single responsibility principle
 
@@ -198,7 +197,8 @@ This is wrong:
 ```php
 Hybrid\View\display( 'index' );
 ```
-We don't have a clue what that `index` template is: a `<section>`, a list (`<ul>`) or something else maybe? What is its class name or element id? How I can locate in the browser's web inspector? And how I can locate the style (css) or functionality (js) associated?
+* It doesn't give a clue what that `index` template is: a `<section>`, a list (`<ul>`) or something else maybe?
+* What is its class name or element id? How it can be located in the browser's web inspector? And how the associated style (CSS) or functionality (PHP) can be located?
 
 This is better:
 ```html
@@ -208,7 +208,7 @@ This is better:
 	<?php get_template_part( 'template-parts/post-list/post-list', 'with-comments' ); ?>
 </section>
 ```
-Here we've replaced only the HTML which is not significant for the component.
+Only those HTML parts are replaced with PHP which are not significant regarding the global component architecture.
 
 ### Replace ugly HTML code with PHP code
 
@@ -231,11 +231,12 @@ echo wp_kses_post(
 	)
 );
 ```
-We haven't hide any attribute of the link but made it better understandable and modifiable. 
+No attributes of the link are hidden but made it better understandable and modifiable.
 
 ## Semantic and outlined
 
 The HTML source and outline is validated with the [W3C validator](https://validator.w3.org/nu/)
 
-Outlining is very important since it makes the code accessible. If your site outlines well in the W3C validator it will get a 100% accessibility score in Google Lighthouse: https://imgur.com/a/MYSgMKH
+Outlining is very important since it makes the code accessible.
 
+If a site outlines well in the W3C validator it will get a 100% accessibility score in Google Lighthouse: https://imgur.com/a/MYSgMKH

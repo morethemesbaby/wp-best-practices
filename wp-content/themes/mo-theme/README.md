@@ -5,13 +5,13 @@ A [WordPress.org compatible](https://make.wordpress.org/themes/handbook/review/r
 ## Best practices
 
 * Default WordPress theme files organization
-* Class based namespaces for WordPress.org / PHP version <5.3 compatibility
+* Class based namespaces
+* Components
 * Loose coupling
 * Single responsibility principle
-* Components
-* Extendability
+* Extendable
 * Semantic and outlined HTML structure
-* Documentation for the PHP API, the templates and template parts, and for SCSS
+* Documentation for the PHP API, the templates and template parts
 
 Details:
 
@@ -30,7 +30,7 @@ Details:
 * [PHPDoc](https://phpdoc.org/) - Used to generate documentation for the PHP code.
 * [WPCS](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards) - Used to make sure the code quality is up to WordPress standards
 * [Theme Sniffer](https://github.com/WPTRT/theme-sniffer) - Used to run tests to verify WordPress coding standards
-* [Theme Check](https://github.com/Otto42/theme-check) - Used to run tests to verify all requirements are satisfied to make the theme to be accepted in the WordPress.org theme store. 
+* [Theme Check](https://github.com/Otto42/theme-check) - Used to run tests to verify all requirements are satisfied to make the theme to be accepted in the WordPress.org theme store.
 
 ## Tests
 
