@@ -14,5 +14,8 @@
       "includes/template-tags/",
       "includes/theme-functionalities/"
 	  ]
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^7"
   }
 }

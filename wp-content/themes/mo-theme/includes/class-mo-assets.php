@@ -325,11 +325,11 @@ if ( ! class_exists( 'MoAssets' ) ) {
 		 * @return boolean
 		 */
 		public function javascript_in_footer() {
-			if ( ( $this->folder === $this->admin_folder ) && ( '' !== $this->folder ) ) {
+			if ( '' !== $this->admin_folder ) {
 				return false;
-			} else {
-				return $this->javascript_in_footer;
 			}
+
+			return $this->javascript_in_footer;
 		}
 	}
 } // End if().
