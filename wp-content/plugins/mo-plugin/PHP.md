@@ -2,14 +2,14 @@
 
 * [Optimized and cached queries](#optimized-and-cached-queries)
 * [Single responsibility principle](#single-responsibility-principle)
-	* [Return data instead of HTML](#return-data-instead-of-html)
-		* [Example](#example)
-		* [Solution](#solution)
+ * [Presentation done in theme](#presentation-done-in-theme)
+    * [Example](#example)
+    * [Solution](#solution)
 * [Loose coupling](#loose-coupling)
-	* [Decouple plugin and theme using add_theme_support](#decouple-plugin-and-theme-using-add_theme_support)
-		* [How it works?](#how-it-works)
-		* [The naming convention](#the-naming-convention)
-		* [The activation hook workaround](#the-activation-hook-workaround)
+ * [Functionality defined by theme](#functionality-defined-by-theme)
+    * [How it works?](#how-it-works)
+    * [The naming convention](#the-naming-convention)
+    * [The activation hook workaround](#the-activation-hook-workaround)
 
 
 ## Optimized and cached queries
