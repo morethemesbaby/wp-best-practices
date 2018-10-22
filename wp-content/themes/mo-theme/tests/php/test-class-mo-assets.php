@@ -11,13 +11,13 @@
 declare( strict_types = 1 );
 use PHPUnit\Framework\TestCase;
 
-if ( ! class_exists( 'TestClassMoAssets' ) ) {
+if ( ! class_exists( 'MoAssetsTest' ) ) {
 	/**
 	 * The main test class.
 	 *
 	 * @since 1.0.0
 	 */
-	final class TestClassMoAssets extends TestCase {
+	final class MoAssetsTest extends TestCase {
 		/**
 		 * Tests if Javascript can be added in the footer on Admin.
 		 *
@@ -25,7 +25,7 @@ if ( ! class_exists( 'TestClassMoAssets' ) ) {
 		 *
 		 * @since 1.0.0
 		 */
-		public function testCanJavascriptBeAddedInTheFooterOnAdminWhenAdminFolderIsNotEmpty() : void {
+		public function testJavascriptCannotBeAddedInTheFooterOnAdminWhenAdminFolderIsNotEmpty() : void {
 			$mo_assets = new MoAssets(
 				array(
 					'admin_folder' => 'notempty',
@@ -45,7 +45,7 @@ if ( ! class_exists( 'TestClassMoAssets' ) ) {
 		 *
 		 * @since 1.0.0
 		 */
-		public function testCanJavascriptBeAddedInTheFooterOnAdminWhenAdminFolderIsEmpty() : void {
+		public function testJavascriptCanBeAddedInTheFooterOnAdminWhenAdminFolderIsEmpty() : void {
 			$mo_assets = new MoAssets(
 				array(
 					'admin_folder' => '',
