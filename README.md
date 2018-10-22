@@ -32,7 +32,7 @@ WordPress has no such thing like this. They provide boilerplate themes but no pl
 
 Others perhaps have such a combo or maybe not. One of the best WordPress agencies 10up has nothing like this in their public Github repository.
 
-Even if other shops have &mdash; finding it, learning it, mixing it from best practices from another shop might be more time consuming than this *learning by doing* approach.
+Even if other shops have &mdash; finding it, learning it, mixing it with best practices from another shop might be more time consuming than this *learning by doing* approach.
 
 ### Components
 
