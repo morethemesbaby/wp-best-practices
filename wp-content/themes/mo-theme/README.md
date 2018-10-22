@@ -12,18 +12,21 @@ A [WordPress.org compatible](https://make.wordpress.org/themes/handbook/review/r
 * Extendable
 * Semantic and outlined HTML structure
 * Documentation for the PHP API, the templates and template parts
+* Testing (Work in progress)
 
 Details:
 
 * [PHP](PHP.md)
 * [HTML](HTML.md)
 * [CSS](CSS.md)
+* [Testing](TESTING.md)
 
 ## Dependencies
 
 * [Node & NPM](https://www.npmjs.com/get-npm) - Used as the framework to build the theme style.
 * [Gulp](https://gulpjs.com/) - Used as the task runner, to build CSS from SCSS.
 * [Composer](https://getcomposer.org/) - Used to autoload PHP classes.
+* [PHPUnit](https://phpunit.de/) - Used to test code.
 
 ## Tools
 
@@ -33,6 +36,12 @@ Details:
 * [Theme Check](https://github.com/Otto42/theme-check) - Used to run tests to verify all requirements are satisfied to make the theme to be accepted in the WordPress.org theme store.
 
 ## Tests
+
+### Automated
+
+A set of PHP unit tests are in place however they are incomplete. See [Testing](TESTING.md) for details.
+
+### Manual
 
 The following tests were all completed manually:
 
@@ -90,6 +99,12 @@ s-Extra <filename or foldername>
 
 * Run the NS Theme Checker (Theme Sniffer) plugin against all tests except `WordPress VIP`.
 * Run the Theme Check plugin. All `REQUIRED` and `RECOMMENDED` errors must be fixed.
+
+### Running tests
+
+```
+./vendor/phpunit/phpunit/phpunit --testdox --coverage-text tests
+```
 
 ## Inspiration
 

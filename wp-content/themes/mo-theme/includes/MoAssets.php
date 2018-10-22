@@ -315,7 +315,7 @@ if ( ! class_exists( 'MoAssets' ) ) {
 		}
 
 		/**
-		 * Decides if a script can be / must be loaded in the footer.
+		 * Decides if a script can be loaded in the footer.
 		 *
 		 * On the admin scripts cannot be loaded in the footer.
 		 * On public they can be loaded anywhere.
