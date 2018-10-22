@@ -180,6 +180,16 @@ if ( ! class_exists( 'MoThemeHTMLComponentAttributes' ) ) {
 			} else {
 				if ( true === $this->arguments['display_id'] ) {
 					$value = $this->create_bem_selector();
+
+					/**
+					 * Return only single value for id.
+					 *
+					 * Example:
+					 * for "header-menu-hamburger header-menu-hamburger--closed"
+					 * return "header-menu-hamburger"
+					 */
+					$parts = explode( ' ', $value );
+					$value = ( isset( $parts[0] ) ) ? $parts[0] : $value;
 				}
 			}
 
