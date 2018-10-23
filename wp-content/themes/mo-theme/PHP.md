@@ -37,21 +37,15 @@ According to the [WordPress.org source code](https://core.trac.wordpress.org/bro
 In some parts of the WordPress.org source code one can find a consistent naming convention: https://core.trac.wordpress.org/browser/trunk/src/wp-includes/Requests/Auth/Basic.php
 ```php
 /**
-10	 * Basic Authentication provider
-11	 *
-12	 * Provides a handler for Basic HTTP authentication via the Authorization
-13	 * header.
-14	 *
-15	 * @package Requests
-16	 * @subpackage Authentication
-17	 */
-18	class Requests_Auth_Basic implements Requests_Auth {
-19	        /**
-20	         * Username
-21	         *
-22	         * @var string
-23	         */
-24	        public $user;
+ * Basic Authentication provider
+ *
+ * Provides a handler for Basic HTTP authentication via the Authorization
+ * header.
+ *
+ * @package Requests
+ * @subpackage Authentication
+ */
+class Requests_Auth_Basic implements Requests_Auth {
 ```
 
 The rules are:
@@ -61,7 +55,7 @@ The rules are:
 
 The [upcoming PSR-5 documentation standard](https://make.wordpress.org/core/handbook/best-practices/inline-documentation-standards/php/#deprecated-tags) will get rid of `@subpackage` in favor of a unified package tag: `@package Package\Subpackage`.
 
-The updated rules are:
+Therefore the updated rules are:
 
 1. Organize classes in folders and subfolders
 2. Reflect folder structure in the class name: `Parent_Subfolder_Classname`
