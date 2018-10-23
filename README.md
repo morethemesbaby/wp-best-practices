@@ -30,7 +30,7 @@ The answer is two fold.
 
 WordPress has no such thing like this. They provide boilerplate for themes only. There is no boilerplate for plugins, child themes, and how to integrate them. 
 
-And, the WordPress boilerplate theme is not class based, as they suggest as a best practice in their Theme Developer Handbook.
+And, the WordPress boilerplate theme is not class based, in contrast with their recommendation in the Theme Developer Handbook.
 
 Others perhaps have such a combo or maybe not. One of the best WordPress agencies 10up has nothing like this in their public Github repository.
 
