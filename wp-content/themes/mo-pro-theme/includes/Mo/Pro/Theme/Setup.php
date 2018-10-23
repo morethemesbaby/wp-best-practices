@@ -2,11 +2,11 @@
 /**
  * The theme setup
  *
- * @package MoProTheme
+ * @package Mo\Pro\Theme
  * @since 1.0.0
  */
 
-if ( ! class_exists( 'MoProThemeSetup' ) ) {
+if ( ! class_exists( 'Mo_Pro_Theme_Setup' ) ) {
 	/**
 	 * The theme setup class.
 	 *
@@ -14,7 +14,7 @@ if ( ! class_exists( 'MoProThemeSetup' ) ) {
 	 *
 	 * @since 1.0.0
 	 */
-	class MoProThemeSetup extends MoThemeBase {
+	class Mo_Pro_Theme_Setup extends Mo_Theme_Base {
 
 		/**
 		 * Theme arguments.
@@ -77,7 +77,7 @@ if ( ! class_exists( 'MoProThemeSetup' ) ) {
 				)
 			);
 
-			$assets = new MoAssets( $arguments );
+			$assets = new Mo_Assets( $arguments );
 			$assets->add();
 		}
 
@@ -89,7 +89,7 @@ if ( ! class_exists( 'MoProThemeSetup' ) ) {
 		 * @return void
 		 */
 		public function setup_functionalities() {
-			$functionalities = new MoProThemeFunctionalities();
+			$functionalities = new Mo_Pro_Theme_Functionalities_Base();
 		}
 	}
 } // End if().

@@ -2,11 +2,11 @@
 /**
  * The Custom Shortcode
  *
- * @package MoPlugin
+ * @package Mo\Plugin\Features
  * @since 1.0.0
  */
 
-if ( ! class_exists( 'MoPluginCustomShortcode' ) ) {
+if ( ! class_exists( 'Mo_Plugin_Features_CustomShortcode' ) ) {
 	/**
 	 * The Custom Shortcode class.
 	 *
@@ -14,7 +14,7 @@ if ( ! class_exists( 'MoPluginCustomShortcode' ) ) {
 	 *
 	 * @since 1.0.0
 	 */
-	class MoPluginCustomShortcode extends MoBase {
+	class Mo_Plugin_Features_CustomShortcode extends Mo_Base {
 
 		/**
 		 * Class arguments.
@@ -68,7 +68,7 @@ if ( ! class_exists( 'MoPluginCustomShortcode' ) ) {
 		public function books( $arguments ) {
 			$arguments = shortcode_atts( $this->arguments_books, $arguments );
 
-			$cpt = new MoPluginCustomPostType();
+			$cpt = new Mo_Plugin_Features_CustomPostType();
 
 			global $books;
 			$books = $cpt->get_books(

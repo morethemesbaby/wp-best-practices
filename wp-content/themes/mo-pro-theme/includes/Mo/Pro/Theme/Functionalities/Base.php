@@ -2,11 +2,11 @@
 /**
  * The theme functionalities setup
  *
- * @package MoProTheme
+ * @package Mo\Pro\Theme\Functionalities
  * @since 1.0.0
  */
 
-if ( ! class_exists( 'MoProThemeFunctionalities' ) ) {
+if ( ! class_exists( 'Mo_Pro_Theme_Functionalities_Base' ) ) {
 	/**
 	 * The theme functionalities setup class.
 	 *
@@ -19,7 +19,7 @@ if ( ! class_exists( 'MoProThemeFunctionalities' ) ) {
 	 *
 	 * @since 1.0.0
 	 */
-	class MoProThemeFunctionalities extends MoThemeBase {
+	class Mo_Pro_Theme_Functionalities_Base extends Mo_Theme_Base {
 
 		/**
 		 * The class arguments.
@@ -65,7 +65,7 @@ if ( ! class_exists( 'MoProThemeFunctionalities' ) ) {
 		 * @return void
 		 */
 		public function register_books_widget() {
-			register_widget( 'MoProThemeCustomWidget' );
+			register_widget( 'Mo_Pro_Theme_Functionalities_CustomWidget' );
 		}
 
 		/**

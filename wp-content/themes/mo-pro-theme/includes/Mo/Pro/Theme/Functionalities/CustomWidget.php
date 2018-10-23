@@ -2,11 +2,11 @@
 /**
  * The Custom Widget
  *
- * @package MoPlugin
+ * @package Mo\Pro\Theme\Functionalities
  * @since 1.0.0
  */
 
-if ( ! class_exists( 'MoProThemeCustomWidget' ) ) {
+if ( ! class_exists( 'Mo_Pro_Theme_Functionalities_CustomWidget' ) ) {
 	/**
 	 * The Custom Widget class.
 	 *
@@ -14,7 +14,7 @@ if ( ! class_exists( 'MoProThemeCustomWidget' ) ) {
 	 *
 	 * @since 1.0.0
 	 */
-	class MoProThemeCustomWidget extends WP_Widget {
+	class Mo_Pro_Theme_Functionalities_CustomWidget extends WP_Widget {
 
 		/**
 		 * The arguments for wp_kses displaying the widget on backend.
@@ -70,7 +70,7 @@ if ( ! class_exists( 'MoProThemeCustomWidget' ) ) {
 		 * @return void
 		 */
 		public function widget( $args, $instance ) {
-			$cpt = new MoPluginCustomPostType();
+			$cpt = new Mo_Plugin_Features_CustomPostType();
 
 			$books = $cpt->get_books(
 				array(
@@ -90,7 +90,7 @@ if ( ! class_exists( 'MoProThemeCustomWidget' ) ) {
 				'template_part_name' => 'with-external-query',
 			);
 
-			$mo_theme_base = new MoThemeBase();
+			$mo_theme_base = new Mo_Theme_Base();
 
 			echo wp_kses_post( $mo_theme_base->get_template_part( $arguments ) );
 		}

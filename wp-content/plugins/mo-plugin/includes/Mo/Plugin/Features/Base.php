@@ -2,11 +2,11 @@
 /**
  * The plugin features setup
  *
- * @package MoPlugin
+ * @package Mo\Plugin\Features
  * @since 1.0.0
  */
 
-if ( ! class_exists( 'MoPluginFeatures' ) ) {
+if ( ! class_exists( 'Mo_Plugin_Features_Base' ) ) {
 	/**
 	 * The plugin features setup class.
 	 *
@@ -19,7 +19,7 @@ if ( ! class_exists( 'MoPluginFeatures' ) ) {
 	 *
 	 * @since 1.0.0
 	 */
-	class MoPluginFeatures extends MoBase {
+	class Mo_Plugin_Features_Base extends Mo_Base {
 
 		/**
 		 * The class arguments.
@@ -102,7 +102,7 @@ if ( ! class_exists( 'MoPluginFeatures' ) ) {
 		 * @return void
 		 */
 		public function activate_custom_post_type() {
-			$mo_cpt = new MoPluginCustomPostType();
+			$mo_cpt = new Mo_Plugin_Features_CustomPostType();
 			$mo_cpt->register();
 
 			flush_rewrite_rules();
@@ -115,7 +115,7 @@ if ( ! class_exists( 'MoPluginFeatures' ) ) {
 		 * @return void
 		 */
 		public function deactivate_custom_post_type() {
-			$mo_cpt = new MoPluginCustomPostType();
+			$mo_cpt = new Mo_Plugin_Features_CustomPostType();
 			$mo_cpt->deregister();
 
 			flush_rewrite_rules();
@@ -128,7 +128,7 @@ if ( ! class_exists( 'MoPluginFeatures' ) ) {
 		 * @return void
 		 */
 		public function activate_shortcode() {
-			$mo_sh = new MoPluginCustomShortcode();
+			$mo_sh = new Mo_Plugin_Features_CustomShortcode();
 
 			add_shortcode( 'books', array( $mo_sh, 'books' ) );
 		}

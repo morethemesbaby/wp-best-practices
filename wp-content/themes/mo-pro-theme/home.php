@@ -6,13 +6,13 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/ Wordpress documentation
  *
- * @package MoTheme
+ * @package Mo\Pro|Theme
  * @since 1.0.0
  */
 
 get_header();
 
-$component = new MoThemeHTMLComponent();
+$component = new Mo_Theme_Components();
 
 $attributes = apply_filters(
 	'mo_theme_home_attributes',

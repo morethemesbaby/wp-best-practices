@@ -59,7 +59,7 @@ if ( file_exists( PLUGIN_DIR_PATH . '/vendor/autoload.php' ) ) {
  * @since 1.0.0
  * @var object
  */
-$mo_plugin = new MoPluginSetup(
+$mo_plugin = new Mo_Plugin_Setup(
 	apply_filters( 'mo_plugin_setup_array',
 		array(
 			'theme_feature_set'    => 'MO_PRO_THEME_FEATURE_SET',

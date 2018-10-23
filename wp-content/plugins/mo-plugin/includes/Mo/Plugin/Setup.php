@@ -2,11 +2,11 @@
 /**
  * The plugin setup
  *
- * @package MoPlugin
+ * @package Mo\Plugin
  * @since 1.0.0
  */
 
-if ( ! class_exists( 'MoPluginSetup' ) ) {
+if ( ! class_exists( 'Mo_Plugin_Setup' ) ) {
 	/**
 	 * The plugin setup class.
 	 *
@@ -14,7 +14,7 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 	 *
 	 * @since 1.0.0
 	 */
-	class MoPluginSetup extends MoBase {
+	class Mo_Plugin_Setup extends Mo_Base {
 
 		/**
 		 * Class arguments.
@@ -121,7 +121,7 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 				return;
 			}
 
-			$features = new MoPluginFeatures(
+			$features = new Mo_Plugin_Features_Base(
 				array(
 					'features' => $this->theme_features,
 				)
@@ -150,7 +150,7 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 				return;
 			}
 
-			$features = new MoPluginFeatures(
+			$features = new Mo_Plugin_Features_Base(
 				array(
 					'features' => $this->theme_features,
 				)
@@ -227,7 +227,7 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 					)
 				);
 
-				$mo_assets = new MoAssets( $arguments );
+				$mo_assets = new Mo_Assets( $arguments );
 				$mo_assets->add();
 			}
 
@@ -240,7 +240,7 @@ if ( ! class_exists( 'MoPluginSetup' ) ) {
 					)
 				);
 
-				$mo_assets = new MoAssets( $arguments );
+				$mo_assets = new Mo_Assets( $arguments );
 				$mo_assets->add();
 			}
 		}

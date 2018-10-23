@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
- * @package MoProTheme
+ * @package Mo\Pro\Theme
  * @since 1.0.0
  */
 
@@ -21,7 +21,7 @@ if ( file_exists( get_template_directory() . '/vendor/autoload.php' ) ) {
  * @since 1.0.0
  * @var object
  */
-$mo_pro_theme = new MoProThemeSetup(
+$mo_pro_theme = new Mo_Pro_Theme_Setup(
 	apply_filters( 'mo_pro_theme_setup_array',
 		array(
 			'assets'            => array(
@@ -48,7 +48,7 @@ add_action( 'wp_enqueue_scripts', 'mo_pro_theme_enqueue_scripts', 100 );
 function mo_pro_theme_enqueue_scripts() {
 	wp_dequeue_script( 'mo-pro-theme' );
 
-	$mo_assets = new MoAssets(
+	$mo_assets = new Mo_Assets(
 		array(
 			'src_url'              => get_template_directory_uri(),
 			'javascript_file_name' => 'mo-theme',

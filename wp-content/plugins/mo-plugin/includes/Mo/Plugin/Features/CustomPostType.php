@@ -2,11 +2,11 @@
 /**
  * The Custom Post Type
  *
- * @package MoPlugin
+ * @package Mo\Plugin\Features
  * @since 1.0.0
  */
 
-if ( ! class_exists( 'MoPluginCustomPostType' ) ) {
+if ( ! class_exists( 'Mo_Plugin_Features_CustomPostType' ) ) {
 	/**
 	 * The Custom Post Type class.
 	 *
@@ -14,7 +14,7 @@ if ( ! class_exists( 'MoPluginCustomPostType' ) ) {
 	 *
 	 * @since 1.0.0
 	 */
-	class MoPluginCustomPostType extends MoBase {
+	class Mo_Plugin_Features_CustomPostType extends Mo_Base {
 
 		/**
 		 * Class arguments.
@@ -59,7 +59,7 @@ if ( ! class_exists( 'MoPluginCustomPostType' ) ) {
 		public function get_books( $arguments = array() ) {
 			$arguments = $this->array_merge( $this->display_books_arguments, $arguments );
 
-			$mo_db = new MoDB();
+			$mo_db = new Mo_DB();
 			$books = $mo_db->get_posts(
 				array(
 					'post_type'      => 'book',
