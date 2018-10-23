@@ -24,6 +24,42 @@ WordPress.org / PHP < 5.3 supports only the first two.
 
 According to [best practices](https://developer.wordpress.org/plugins/the-basics/best-practices/#oop) OOP classes are the easier way to tackle this problem.
 
+### How to name and organize classes
+
+According to the [WordPress.org source code](https://core.trac.wordpress.org/browser/trunk/src/wp-includes?order=name) and a [Stack Overflow thread](https://softwareengineering.stackexchange.com/questions/149303/naming-classes-methods-functions-and-variables#149321) WordPress has no clear rules how to name classes, methods, attributes and variables. It's quite unique in this comparing to peers.
+
+[PHPCS](https://github.com/squizlabs/PHP_CodeSniffer) offers a highly unusable naming convention set:
+
+> Filenames should be all lowercase with hyphens as word separators. Expected moassetstest.php, but found MoAssetsTest.php.
+
+> Class file names should be based on the class name with "class-" prepended. Expected class-moassetstest.php, but found MoAssetsTest.php.
+
+In some parts of the WordPress.org source code one can find a consistent naming convention: https://core.trac.wordpress.org/browser/trunk/src/wp-includes/Requests/Auth/Basic.php
+```php
+/**
+10	 * Basic Authentication provider
+11	 *
+12	 * Provides a handler for Basic HTTP authentication via the Authorization
+13	 * header.
+14	 *
+15	 * @package Requests
+16	 * @subpackage Authentication
+17	 */
+18	class Requests_Auth_Basic implements Requests_Auth {
+19	        /**
+20	         * Username
+21	         *
+22	         * @var string
+23	         */
+24	        public $user;
+```
+
+The rules are:
+
+1. Organize classes in folders and subfolders following their `@package` and `@subpackage` structure 
+2. Reflect folder structure in the class name: `Package_Subpackage_Classname`
+
+
 ## Loose coupling
 
 [Loose coupling](https://alistapart.com/article/coding-with-clarity#section3) makes sure code is open, easily modifiable without breaking the site.
