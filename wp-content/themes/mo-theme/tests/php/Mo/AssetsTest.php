@@ -1,12 +1,12 @@
 <?php
 /**
- * Tests for the Mo Assets class
+ * Tests for the Mo\Assets class
  *
  * @since 1.0.0
  *
  * @link https://phpunit.de/getting-started/phpunit-7.html
  *
- * @package Mo
+ * @package Mo\Test
  */
 
 declare( strict_types = 1 );

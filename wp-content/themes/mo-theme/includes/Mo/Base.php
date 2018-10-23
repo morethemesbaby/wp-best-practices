@@ -110,5 +110,19 @@ if ( ! class_exists( 'Mo_Base' ) ) {
 		public function implode( $glue, $pieces ) {
 			return implode( $glue, array_filter( $pieces ) );
 		}
+
+		/**
+		 * Returns the first word in a sentence.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param string $sentence The sentence.
+		 *
+		 * @return string The first word, or the entire sentence.
+		 */
+		public function get_first_word_from_sentence( $sentence ) {
+			$parts = explode( ' ', $sentence );
+			return ( isset( $parts[0] ) ) ? $parts[0] : $sentence;
+		}
 	}
 } // End if().

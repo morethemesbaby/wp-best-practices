@@ -188,8 +188,7 @@ if ( ! class_exists( 'Mo_Theme_Components_Attributes' ) ) {
 					 * for "header-menu-hamburger header-menu-hamburger--closed"
 					 * return "header-menu-hamburger"
 					 */
-					$parts = explode( ' ', $value );
-					$value = ( isset( $parts[0] ) ) ? $parts[0] : $value;
+					$value = $this->get_first_word_from_sentence( $value );
 				}
 			}
 
