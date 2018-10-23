@@ -1,8 +1,7 @@
 <?php
 
 
-class WPFirstCest
-{
+class WPFirstCest {
     public function _before(AcceptanceTester $I)
     {
     }
@@ -14,5 +13,9 @@ class WPFirstCest
     // tests
     public function tryToTest(AcceptanceTester $I)
     {
+        $I->amOnPage('/');
+        $I->seeInCurrentUrl('/');
+        $I->seeElement('#header-menu-hamburger');
+        $I->dontSee('This is the header menu.');
     }
 }

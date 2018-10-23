@@ -1,3 +1,9 @@
+# Codeception
+
+wp-content/themes/mo-theme/tests/_output/
+wp-content/themes/mo-pro-theme/tests/_output/
+wp-content/themes/mo-plugin/tests/_output/
+
 # PHPDoc
 
 wp-content/themes/mo-theme/doc
