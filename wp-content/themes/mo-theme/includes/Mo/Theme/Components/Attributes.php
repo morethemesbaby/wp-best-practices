@@ -184,9 +184,7 @@ if ( ! class_exists( 'Mo_Theme_Components_Attributes' ) ) {
 					/**
 					 * Return only single value for id.
 					 *
-					 * Example:
-					 * for "header-menu-hamburger header-menu-hamburger--closed"
-					 * return "header-menu-hamburger"
+					 * @link https://github.com/morethemesbaby/wp-best-practices/issues/1
 					 */
 					$value = $this->get_first_word_from_sentence( $value );
 				}
