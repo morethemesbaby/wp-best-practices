@@ -6,8 +6,8 @@
  * @since 1.0.0
  */
 
-$component = new MoThemeHTMLComponent();
-$mopost    = new MoThemePost();
+$component = new Mo_Theme_Components();
+$mopost    = new Mo_Theme_TemplateTags_Post();
 
 $attributes = apply_filters(
 	'mo_theme_post_first_image_attributes',

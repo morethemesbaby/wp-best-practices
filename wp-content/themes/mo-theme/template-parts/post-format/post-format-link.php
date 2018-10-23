@@ -15,9 +15,9 @@
  * @since 1.0.0
  */
 
-$component    = new MoThemeHTMLComponent();
-$mopost       = new MoThemePost();
-$mopostformat = new MoThemePostFormat();
+$component    = new Mo_Theme_Components();
+$mopost       = new Mo_Theme_TemplateTags_Post();
+$mopostformat = new Mo_Theme_TemplateTags_PostFormat();
 
 $url   = $mopost->get_link_from_content();
 $klass = $mopostformat->get_link_class( $url );

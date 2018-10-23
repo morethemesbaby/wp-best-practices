@@ -13,8 +13,8 @@
  * @since 1.0.0
  */
 
-$component = new MoThemeHTMLComponent();
-$header    = new MoThemeHeader();
+$component = new Mo_Theme_Components();
+$header    = new Mo_Theme_TemplateTags_Header();
 $klass     = apply_filters(
 	'mo_theme_header_attributes',
 	array(

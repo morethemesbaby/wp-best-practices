@@ -18,7 +18,7 @@
 
 get_header();
 
-$component = new MoThemeHTMLComponent();
+$component = new Mo_Theme_Components();
 
 $attributes = apply_filters(
 	'mo_theme_single_attributes',

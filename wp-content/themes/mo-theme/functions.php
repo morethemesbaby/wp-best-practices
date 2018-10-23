@@ -42,7 +42,7 @@ if ( file_exists( get_template_directory() . '/vendor/autoload.php' ) ) {
  * @since 1.0.0
  * @var object The main theme object.
  */
-$mo_theme = new MoThemeSetup(
+$mo_theme = new Mo_Theme_Setup(
 	apply_filters( 'mo_theme_setup_array',
 		array(
 			'include_folder'    => 'includes/',

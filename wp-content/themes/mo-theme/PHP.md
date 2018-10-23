@@ -59,6 +59,14 @@ The rules are:
 1. Organize classes in folders and subfolders following their `@package` and `@subpackage` structure 
 2. Reflect folder structure in the class name: `Package_Subpackage_Classname`
 
+The [upcoming PSR-5 documentation standard](https://make.wordpress.org/core/handbook/best-practices/inline-documentation-standards/php/#deprecated-tags) will get rid of `@subpackage` in favor of a unified package tag: `@package Package\Subpackage`.
+
+The updated rules are:
+
+1. Organize classes in folders and subfolders
+2. Reflect folder structure in the class name: `Parent_Subfolder_Classname`
+3. Tag it with `@package Parent\Subfolder`
+
 
 ## Loose coupling
 

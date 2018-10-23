@@ -10,7 +10,7 @@
  * @since 1.0.0
  */
 
-$component = new MoThemeHTMLComponent();
+$component = new Mo_Theme_Components();
 
 $attributes = apply_filters(
 	'mo_theme_post_format_status_attributes',

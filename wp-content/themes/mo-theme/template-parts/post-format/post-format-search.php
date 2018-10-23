@@ -12,8 +12,8 @@
  * @since 1.0.0
  */
 
-$mopost    = new MoThemePost();
-$component = new MoThemeHTMLComponent();
+$mopost    = new Mo_Theme_TemplateTags_Post();
+$component = new Mo_Theme_Components();
 
 $attributes = apply_filters(
 	'mo_theme_post_format_search_attributes',

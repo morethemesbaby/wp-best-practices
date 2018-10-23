@@ -6,8 +6,8 @@
  * @since 1.0.0
  */
 
-$mo        = new MoThemeBase();
-$component = new MoThemeHTMLComponent();
+$mo        = new Mo_Theme_Base();
+$component = new Mo_Theme_Components();
 
 $triangle_query_vars = $mo->get_query_var(
 	array(

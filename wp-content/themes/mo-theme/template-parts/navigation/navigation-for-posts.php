@@ -8,7 +8,7 @@
  * @since 1.0.0
  */
 
-$component = new MoThemeHTMLComponent();
+$component = new Mo_Theme_Components();
 
 $arrow_left_attributes = apply_filters(
 	'mo_theme_navigation_for_posts_arrow_left_attributes',

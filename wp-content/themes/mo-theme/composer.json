@@ -1,6 +1,6 @@
 {
   "name": "morethemesbaby/wp-best-practices",
-  "type": "wordpress-theme",
+  "type": "wordpress-boilerplate",
   "authors": [
     {
       "name": "More Themes Baby",
@@ -10,9 +10,7 @@
   "autoload": {
 	  "classmap": [
       "includes/",
-      "includes/html-components/",
-      "includes/template-tags/",
-      "includes/theme-functionalities/"
+      "includes/Mo/"
 	  ]
   },
   "require-dev": {

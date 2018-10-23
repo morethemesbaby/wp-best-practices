@@ -8,7 +8,7 @@
  * @since 1.0.0
  */
 
-$mo = new MoThemeBase();
+$mo = new Mo_Theme_Base();
 
 $query_vars = $mo->get_query_var(
 	array(
@@ -22,7 +22,7 @@ $query_vars = $mo->get_query_var(
 	)
 );
 
-$component = new MoThemeHTMLComponent();
+$component = new Mo_Theme_Components();
 
 $attributes = apply_filters(
 	'mo_theme_post_list_attributes',
