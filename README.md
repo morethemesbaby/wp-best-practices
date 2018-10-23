@@ -38,7 +38,7 @@ Even if other shops have &mdash; finding it, learning it, mixing it with best pr
 
 Components are a web development best practice (see Google Material Design) not yet adapted by WordPress.
 
-I have an [award winning](http://brutalistwebsites.com/metamn.io_gust/) component set from another framework which I would like to port to WordPress.
+More Theme Baby has an [award winning](http://brutalistwebsites.com/metamn.io_gust/) component set from another framework which I would like to port to WordPress.
 
 ## Best practices
 
