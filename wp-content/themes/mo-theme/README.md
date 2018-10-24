@@ -26,7 +26,7 @@ Details:
 * [Node & NPM](https://www.npmjs.com/get-npm) - Used as the framework to build the theme style.
 * [Gulp](https://gulpjs.com/) - Used as the task runner, to build CSS from SCSS.
 * [Composer](https://getcomposer.org/) - Used to autoload PHP classes.
-* [PHPUnit](https://phpunit.de/) - Used to test code.
+* [Codeception](https://codeception.com/) or [PHPUnit](http://phpunit.de) - Used to test code.
 
 ## Tools
 
@@ -101,7 +101,11 @@ s-Extra <filename or foldername>
 * Run the Theme Check plugin. All `REQUIRED` and `RECOMMENDED` errors must be fixed.
 
 ### Running tests
+```
+./vendor/codeception/codeception/codecept run
+```
 
+Or if just PHPUnit is used instead of Codeception:
 ```
 ./vendor/phpunit/phpunit/phpunit --testdox --coverage-text tests
 ```

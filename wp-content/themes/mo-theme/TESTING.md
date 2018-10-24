@@ -1,4 +1,4 @@
-# Testing best practices
+# Testing best practices (Work in progress)
 
 WordPress plugins and themes can be tested all the way around. From bottom up:
 
