@@ -16,6 +16,6 @@ class WPFirstCest {
         $I->amOnPage('/');
         $I->seeInCurrentUrl('/');
         $I->seeElement('#header-menu-hamburger');
-        $I->dontSee('This is the header menu.');
+        $I->dSee('This is the header menu.');
     }
 }
