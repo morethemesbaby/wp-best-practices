@@ -61,3 +61,7 @@ For details please check each theme's and the plugin's `README.md`.
 * 10up Engineering Best Practices: https://10up.github.io/Engineering-Best-Practices/
 * A List Apart's Coding With Clarity: https://alistapart.com/article/coding-with-clarity
 * Codular on PHP Classes: http://codular.com/introducing-php-classes
+
+## Change log
+
+See [CHANGELOG.md](CHANGELOG.md).
