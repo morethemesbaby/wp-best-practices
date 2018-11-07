@@ -23,7 +23,11 @@ if ( ! class_exists( 'Mo_Plugin_Features_AdminMenu' ) ) {
 		 *
 		 * @var array $arguments An Array of arguments.
 		 */
-		public $arguments = array();
+		public $arguments = array(
+			'admin_menu_page_title' => 'Mo Theme Settings',
+			'admin_menu_menu_title' => 'Mo Theme Settings',
+			'admin_menu_id'         => 'mo-plugin-admin-menu',
+		);
 
 		/**
 		 * Sets up the class.
@@ -35,6 +39,17 @@ if ( ! class_exists( 'Mo_Plugin_Features_AdminMenu' ) ) {
 		 */
 		public function __construct( $arguments = array() ) {
 			$this->arguments = $this->array_merge( $this->arguments, $arguments );
+			$this->setup_arguments();
+		}
+
+		/**
+		 * Displays the admin menu content
+		 *
+		 * @since 1.1.0
+		 * @return void
+		 */
+		public function display_admin_menu() {
+			echo '<h2>' . $this->admin_menu_page_title . '</h2>';
 		}
 
 		/**
@@ -45,10 +60,10 @@ if ( ! class_exists( 'Mo_Plugin_Features_AdminMenu' ) ) {
 		 */
 		public function add_admin_menu() {
 			add_menu_page(
-				__( 'Mo Theme Settings', 'mo-plugin' ),
-				__( 'Mo Theme Settings', 'mo-plugin' ),
+				$this->admin_menu_page_title,
+				$this->admin_menu_menu_title,
 				'manage_options',
-				'mo-plugin-admin-menu',
+				$this->admin_menu_id,
 				array( $this, 'display_admin_menu' )
 			);
 		}
@@ -60,7 +75,7 @@ if ( ! class_exists( 'Mo_Plugin_Features_AdminMenu' ) ) {
 		 * @return void
 		 */
 		public function remove_admin_menu() {
-			remove_menu_page( 'mo-plugin-admin-menu' );
+			remove_menu_page( $this->admin_menu_id );
 		}
 
 		/**
@@ -81,6 +96,15 @@ if ( ! class_exists( 'Mo_Plugin_Features_AdminMenu' ) ) {
 		 */
 		public function deactivate() {
 			$this->remove_admin_menu();
+		}
+
+		/**
+		 * Set up arguments
+		 */
+		public function setup_arguments() {
+			$this->admin_menu_page_title = __( $this->arguments['admin_menu_page_title'], 'mo-plugin' );
+			$this->admin_menu_menu_title = __( $this->arguments['admin_menu_menu_title'], 'mo-plugin' );
+			$this->admin_menu_id         = $this->arguments['admin_menu_id'];
 		}
 	}
 } // End if().
