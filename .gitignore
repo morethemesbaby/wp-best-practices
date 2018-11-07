@@ -42,6 +42,7 @@ wp-content/plugins/mo-plugin/*.map
 !.gitignore
 !.github/
 !README.md
+!CHANGELOG.md
 !wp-content/
 
 # Ignore everything in the "wp-content" directory, except the "plugins"
