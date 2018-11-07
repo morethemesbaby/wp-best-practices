@@ -58,6 +58,24 @@ if ( ! class_exists( 'Mo_Pro_Theme_Functionalities_Base' ) ) {
 		}
 
 		/**
+		 * Defines what features to be implemented by the plugin.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @return void
+		 */
+		public function define_theme_support() {
+			add_theme_support(
+				'MO_PRO_THEME_FEATURE_SET',
+				array(
+					'custom-post-type' => true,
+					'shortcode'        => true,
+					'admin_menu'       => true,
+				)
+			);
+		}
+
+		/**
 		 * Enables the widget for books.
 		 *
 		 * @since 1.0.0
@@ -91,23 +109,6 @@ if ( ! class_exists( 'Mo_Pro_Theme_Functionalities_Base' ) ) {
 			);
 
 			echo wp_kses_post( $this->get_template_part( $arguments ) );
-		}
-
-		/**
-		 * Defines what features to be implemented by the plugin.
-		 *
-		 * @since 1.0.0
-		 *
-		 * @return void
-		 */
-		public function define_theme_support() {
-			add_theme_support(
-				'MO_PRO_THEME_FEATURE_SET',
-				array(
-					'custom-post-type' => true,
-					'shortcode'        => true,
-				)
-			);
 		}
 
 		/**

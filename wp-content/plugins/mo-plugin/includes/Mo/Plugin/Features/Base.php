@@ -68,6 +68,10 @@ if ( ! class_exists( 'Mo_Plugin_Features_Base' ) ) {
 			if ( $this->features['shortcode'] ) {
 				$this->activate_shortcode();
 			}
+
+			if ( $this->features['admin_menu'] ) {
+				$this->activate_admin_menu();
+			}
 		}
 
 		/**
@@ -93,6 +97,32 @@ if ( ! class_exists( 'Mo_Plugin_Features_Base' ) ) {
 			if ( $this->features['shortcode'] ) {
 				$this->deactivate_shortcode();
 			}
+
+			if ( $this->features['admin_menu'] ) {
+				$this->deactivate_admin_menu();
+			}
+		}
+
+		/**
+		 * Activates the admin menu feature.
+		 *
+		 * @since 1.0.0
+		 * @return void
+		 */
+		public function activate_admin_menu() {
+			$mo_admin_menu = new Mo_Plugin_Features_AdminMenu();
+			$mo_admin_menu->activate();
+		}
+
+		/**
+		 * Deactivates the admin menu feature.
+		 *
+		 * @since 1.0.0
+		 * @return void
+		 */
+		public function deactivate_admin_menu() {
+			$mo_admin_menu = new Mo_Plugin_Features_AdminMenu();
+			$mo_admin_menu->deactivate();
 		}
 
 		/**

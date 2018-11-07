@@ -78,7 +78,11 @@ if ( ! class_exists( 'Mo_Plugin_Setup' ) ) {
 		/**
 		 * Gets theme features.
 		 *
-		 * And saves into `this->theme_features`.
+		 * Features are set up in the theme's Features class. @see Mo_Pro_Theme_Functionalities_Base::define_theme_support()
+		 *
+		 * Features from theme can be retrieved with the help of an ID: `$this->theme_feature_set`.
+		 *
+		 * Features are saved into `this->theme_features`.
 		 *
 		 * @since 1.0.0
 		 *
@@ -89,6 +93,10 @@ if ( ! class_exists( 'Mo_Plugin_Setup' ) ) {
 				return;
 			}
 
+			/**
+			 * `get_theme_support` returns a multi dimensional array.
+			 * We need just the first array.
+			 */
 			$features = get_theme_support( $this->theme_feature_set );
 
 			if ( empty( $features ) || empty( $features[0] ) ) {
