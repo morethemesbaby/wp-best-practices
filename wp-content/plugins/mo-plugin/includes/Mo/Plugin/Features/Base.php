@@ -72,6 +72,10 @@ if ( ! class_exists( 'Mo_Plugin_Features_Base' ) ) {
 			if ( $this->features['admin_menu'] ) {
 				$this->activate_admin_menu();
 			}
+
+			if ( $this->features['admin_menu_features_submenu'] ) {
+				$this->activate_admin_menu_features_submenu();
+			}
 		}
 
 		/**
@@ -101,12 +105,39 @@ if ( ! class_exists( 'Mo_Plugin_Features_Base' ) ) {
 			if ( $this->features['admin_menu'] ) {
 				$this->deactivate_admin_menu();
 			}
+
+			if ( $this->features['admin_menu_features_submenu'] ) {
+				$this->activate_admin_menu_features_submenu();
+			}
 		}
+
+		/**
+		 * Activates the Features admin submenu.
+		 *
+		 * @since 1.1.0
+		 * @return void
+		 */
+		public function activate_admin_features_submenu() {
+			$mo_admin_features_submenu = new Mo_Plugin_Features_AdminFeaturesSubmenu();
+			$mo_admin_features_submenu->activate();
+		}
+
+		/**
+		 * Deactivates the Features admin submenu.
+		 *
+		 * @since 1.1.0
+		 * @return void
+		 */
+		public function deactivate_admin_features_submenu() {
+			$mo_admin_features_submenu = new Mo_Plugin_Features_AdminFeaturesSubmenu();
+			$mo_admin_features_submenu->deactivate();
+		}
+
 
 		/**
 		 * Activates the admin menu feature.
 		 *
-		 * @since 1.0.0
+		 * @since 1.1.0
 		 * @return void
 		 */
 		public function activate_admin_menu() {
@@ -117,7 +148,7 @@ if ( ! class_exists( 'Mo_Plugin_Features_Base' ) ) {
 		/**
 		 * Deactivates the admin menu feature.
 		 *
-		 * @since 1.0.0
+		 * @since 1.1.0
 		 * @return void
 		 */
 		public function deactivate_admin_menu() {

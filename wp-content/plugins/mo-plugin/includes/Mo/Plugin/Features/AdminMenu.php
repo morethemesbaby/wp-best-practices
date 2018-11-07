@@ -49,7 +49,10 @@ if ( ! class_exists( 'Mo_Plugin_Features_AdminMenu' ) ) {
 		 * @return void
 		 */
 		public function display_admin_menu() {
-			echo '<h2>' . $this->admin_menu_page_title . '</h2>';
+			printf(
+				'<h2>%s</h2>',
+				esc_html( $this->admin_menu_page_title )
+			);
 		}
 
 		/**

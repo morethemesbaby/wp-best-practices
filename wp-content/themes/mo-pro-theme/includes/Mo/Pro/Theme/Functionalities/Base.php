@@ -68,9 +68,10 @@ if ( ! class_exists( 'Mo_Pro_Theme_Functionalities_Base' ) ) {
 			add_theme_support(
 				'MO_PRO_THEME_FEATURE_SET',
 				array(
-					'custom-post-type' => true,
-					'shortcode'        => true,
-					'admin_menu'       => true,
+					'custom-post-type'            => true,
+					'shortcode'                   => true,
+					'admin_menu'                  => true,
+					'admin_menu_features_submenu' => true,
 				)
 			);
 		}
