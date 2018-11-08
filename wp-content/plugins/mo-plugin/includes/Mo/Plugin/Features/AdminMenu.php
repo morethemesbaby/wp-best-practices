@@ -43,6 +43,9 @@ if ( ! class_exists( 'Mo_Plugin_Features_AdminMenu' ) ) {
 		public function __construct( $arguments = array() ) {
 			$this->arguments = $this->array_merge( $this->arguments, $arguments );
 			$this->setup_arguments();
+
+			add_action( 'admin_menu', array( $this, 'add_admin_menu' ) );
+			add_action( 'admin_init', array( $this, 'init_settings' ) );
 		}
 
 		/**
@@ -66,7 +69,7 @@ if ( ! class_exists( 'Mo_Plugin_Features_AdminMenu' ) ) {
 		 * @return void
 		 */
 		public function settings_features_callback() {
-			// Do nothing for now.
+			echo 'Section description';
 		}
 
 		/**
@@ -126,7 +129,7 @@ if ( ! class_exists( 'Mo_Plugin_Features_AdminMenu' ) ) {
 			// Display the form.
 			echo '<div class="wrap"><h1 class="wp-heading-inline">';
 			echo esc_html( get_admin_page_title() ) . '</h1>';
-			echo '<form action="" method="post">';
+			echo '<form action="options.php" method="post">';
 
 			// Display security fields.
 			settings_fields( $this->id );
@@ -165,8 +168,7 @@ if ( ! class_exists( 'Mo_Plugin_Features_AdminMenu' ) ) {
 		 * @return void
 		 */
 		public function activate() {
-			add_action( 'admin_menu', array( $this, 'add_admin_menu' ) );
-			add_action( 'admin_init', array( $this, 'init_settings' ) );
+			//
 		}
 
 		/**
