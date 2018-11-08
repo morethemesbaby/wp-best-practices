@@ -24,9 +24,12 @@ if ( ! class_exists( 'Mo_Plugin_Features_AdminMenu' ) ) {
 		 * @var array $arguments An Array of arguments.
 		 */
 		public $arguments = array(
-			'admin_menu_page_title' => 'Mo Theme Settings',
-			'admin_menu_menu_title' => 'Mo Theme Settings',
-			'admin_menu_id'         => 'mo-plugin-admin-menu',
+			'page_title'              => 'Mo Theme Settings',
+			'menu_title'              => 'Mo Theme Settings',
+			'id'                      => 'mo-plugin-admin-menu',
+			'settings_id'             => 'mo-plugin-settings',
+			'settings_features'       => 'mo-plugin-settings-features',
+			'settings_features_title' => 'Theme Features',
 		);
 
 		/**
@@ -40,6 +43,99 @@ if ( ! class_exists( 'Mo_Plugin_Features_AdminMenu' ) ) {
 		public function __construct( $arguments = array() ) {
 			$this->arguments = $this->array_merge( $this->arguments, $arguments );
 			$this->setup_arguments();
+
+			add_action( 'admin_init', array( $this, 'init_settings' ) );
+		}
+
+		/**
+		 * Displays the `Test` field for the 'Features` settings
+		 *
+		 * @since 1.1.0
+		 * @return void
+		 */
+		public function settings_features_test_field_callback() {
+			echo 'test field';
+		}
+
+		/**
+		 * Displays the `Features` settings header
+		 *
+		 * @since 1.1.0
+		 * @return void
+		 */
+		public function settings_features_callback() {
+			echo 'Features';
+		}
+
+		/**
+		 * Sets up custom options and settings
+		 *
+		 * @since 1.1.0
+		 *
+		 * @link https://developer.wordpress.org/plugins/settings/custom-settings-page/
+		 *
+		 * @return void
+		 */
+		public function init_settings() {
+			register_setting( $this->id, $this->settings_id );
+
+			add_settings_section(
+				$this->settings_features,
+				$this->settings_features_title,
+				$this->settings_features_callback(),
+				$this->id
+			);
+
+			add_settings_field(
+				$this->settings_features . '-test',
+				'Test field',
+				$this->settings_features_test_field_callback(),
+				$this->id,
+				$this->settings_features
+			);
+		}
+
+		/**
+		 * Displays the settings for the admin menu
+		 *
+		 * @since 1.1.0
+		 * @return void
+		 */
+		public function display_settings() {
+			if ( ! current_user_can( 'manage_options' ) ) {
+				return;
+			}
+
+			// Check if the user have submitted the settings.
+			// WordPress will add the "settings-updated" $_GET parameter to the url.
+			if ( isset( $_GET['settings-updated'] ) ) {
+				// Add settings saved message with the class of "updated".
+				add_settings_error(
+					'mo-plugin-settings_messages',
+					'mo-plugin-settings_message',
+					__( 'Settings Saved', 'mo-plugin' ),
+					'updated'
+				);
+			}
+
+			// Show error/update messages.
+			settings_errors( 'mo-plugin-settings_messages' );
+
+			// Display the form.
+			echo '<div class="wrap"><h1 class="wp-heading-inline">';
+			echo esc_html( get_admin_page_title() ) . '</h1>';
+			echo '<form action="" method="post">';
+
+			// Display security fields.
+			settings_fields( $this->id );
+
+			// Display the settings fields.
+			do_settings_sections( $this->id );
+
+			// Display the submit button.
+			submit_button( 'Save Settings' );
+
+			echo '</form></div>';
 		}
 
 		/**
@@ -49,10 +145,7 @@ if ( ! class_exists( 'Mo_Plugin_Features_AdminMenu' ) ) {
 		 * @return void
 		 */
 		public function display_admin_menu() {
-			printf(
-				'<h2>%s</h2>',
-				esc_html( $this->admin_menu_page_title )
-			);
+			$this->display_settings();
 		}
 
 		/**
@@ -63,11 +156,13 @@ if ( ! class_exists( 'Mo_Plugin_Features_AdminMenu' ) ) {
 		 */
 		public function add_admin_menu() {
 			add_menu_page(
-				$this->admin_menu_page_title,
-				$this->admin_menu_menu_title,
+				$this->page_title,
+				$this->menu_title,
 				'manage_options',
-				$this->admin_menu_id,
-				array( $this, 'display_admin_menu' )
+				$this->id,
+				array( $this, 'display_admin_menu' ),
+				'',
+				100
 			);
 		}
 
@@ -78,7 +173,7 @@ if ( ! class_exists( 'Mo_Plugin_Features_AdminMenu' ) ) {
 		 * @return void
 		 */
 		public function remove_admin_menu() {
-			remove_menu_page( $this->admin_menu_id );
+			remove_menu_page( $this->id );
 		}
 
 		/**
@@ -105,9 +200,12 @@ if ( ! class_exists( 'Mo_Plugin_Features_AdminMenu' ) ) {
 		 * Set up arguments
 		 */
 		public function setup_arguments() {
-			$this->admin_menu_page_title = __( $this->arguments['admin_menu_page_title'], 'mo-plugin' );
-			$this->admin_menu_menu_title = __( $this->arguments['admin_menu_menu_title'], 'mo-plugin' );
-			$this->admin_menu_id         = $this->arguments['admin_menu_id'];
+			$this->page_title              = __( $this->arguments['page_title'], 'mo-plugin' );
+			$this->menu_title              = __( $this->arguments['menu_title'], 'mo-plugin' );
+			$this->id                      = $this->arguments['id'];
+			$this->settings_id             = $this->arguments['settings_id'];
+			$this->settings_features       = $this->arguments['settings_features'];
+			$this->settings_features_title = __( $this->arguments['settings_features_title'], 'mo-plugin' );
 		}
 	}
 } // End if().
