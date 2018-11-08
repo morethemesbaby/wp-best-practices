@@ -43,8 +43,6 @@ if ( ! class_exists( 'Mo_Plugin_Features_AdminMenu' ) ) {
 		public function __construct( $arguments = array() ) {
 			$this->arguments = $this->array_merge( $this->arguments, $arguments );
 			$this->setup_arguments();
-
-			add_action( 'admin_init', array( $this, 'init_settings' ) );
 		}
 
 		/**
@@ -54,7 +52,11 @@ if ( ! class_exists( 'Mo_Plugin_Features_AdminMenu' ) ) {
 		 * @return void
 		 */
 		public function settings_features_test_field_callback() {
-			echo 'test field';
+			$setting_name = $this->settings_features . '-test';
+			$setting = get_option( $setting_name );
+			?>
+			<input type="text" name="<?php echo $setting_name; ?>" value="<?php echo isset( $setting ) ? esc_attr( $setting ) : ''; ?>">
+			<?php
 		}
 
 		/**
@@ -64,7 +66,7 @@ if ( ! class_exists( 'Mo_Plugin_Features_AdminMenu' ) ) {
 		 * @return void
 		 */
 		public function settings_features_callback() {
-			echo 'Features';
+			// Do nothing for now.
 		}
 
 		/**
@@ -139,16 +141,6 @@ if ( ! class_exists( 'Mo_Plugin_Features_AdminMenu' ) ) {
 		}
 
 		/**
-		 * Displays the admin menu content
-		 *
-		 * @since 1.1.0
-		 * @return void
-		 */
-		public function display_admin_menu() {
-			$this->display_settings();
-		}
-
-		/**
 		 * Adds the admin menu.
 		 *
 		 * @since 1.1.0
@@ -160,20 +152,10 @@ if ( ! class_exists( 'Mo_Plugin_Features_AdminMenu' ) ) {
 				$this->menu_title,
 				'manage_options',
 				$this->id,
-				array( $this, 'display_admin_menu' ),
+				array( $this, 'display_settings' ),
 				'',
 				100
 			);
-		}
-
-		/**
-		 * Removes the admin menu.
-		 *
-		 * @since 1.1.0
-		 * @return void
-		 */
-		public function remove_admin_menu() {
-			remove_menu_page( $this->id );
 		}
 
 		/**
@@ -183,7 +165,8 @@ if ( ! class_exists( 'Mo_Plugin_Features_AdminMenu' ) ) {
 		 * @return void
 		 */
 		public function activate() {
-			$this->add_admin_menu();
+			add_action( 'admin_menu', array( $this, 'add_admin_menu' ) );
+			add_action( 'admin_init', array( $this, 'init_settings' ) );
 		}
 
 		/**
@@ -193,7 +176,7 @@ if ( ! class_exists( 'Mo_Plugin_Features_AdminMenu' ) ) {
 		 * @return void
 		 */
 		public function deactivate() {
-			$this->remove_admin_menu();
+			remove_menu_page( $this->id );
 		}
 
 		/**
