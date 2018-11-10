@@ -19,7 +19,7 @@ if ( ! class_exists( 'Mo_Plugin_Features_AdminMenu' ) ) {
 		/**
 		 * Class arguments.
 		 *
-		 * Important note: `menu_id` must be the same as `options_id`!!!
+		 * Important note: `options_id` must be the same as `menu_id`!!!
 		 *
 		 * @since 1.1.0
 		 *
@@ -125,10 +125,11 @@ if ( ! class_exists( 'Mo_Plugin_Features_AdminMenu' ) ) {
 				add_settings_field(
 					$name,
 					$key,
-					array( $this->mo_settings, 'display_input_field' ),
+					array( $this->mo_settings, 'display_field' ),
 					$this->menu_id,
 					$this->options_section_features,
 					array(
+						'type'  => 'checkbox',
 						'name'  => $name,
 						'value' => $value,
 					)

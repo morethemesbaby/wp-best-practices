@@ -85,14 +85,14 @@ if ( ! class_exists( 'Mo_Plugin_Admin_Settings' ) ) {
 		}
 
 		/**
-		 * Displays an input field.
+		 * Displays a settings field.
 		 *
 		 * @since 1.1.0
 		 *
 		 * @param array $args Defined at the `add_settings_field()` function.
 		 * @return void;
 		 */
-		public function display_input_field( $args ) {
+		public function display_field( $args ) {
 			if ( empty( $args ) ) {
 				return;
 			}
@@ -109,11 +109,19 @@ if ( ! class_exists( 'Mo_Plugin_Admin_Settings' ) ) {
 			$name  = $this->get_input_field_name( $arguments );
 			$value = $this->get_field_value( $arguments );
 
-			printf(
-				'<input type="text" name="%1$s" value="%2$s">',
-				esc_attr( $name ),
-				esc_attr( $value )
+			$arguments = array(
+				'name'  => $name,
+				'value' => $value,
+				'args'  => $args,
 			);
+
+			switch ( $args['type'] ) {
+				case 'checkbox': 
+					$this->display_checkbox_field( $arguments );
+					break;
+				default:
+					$this->display_input_field( $arguments );
+			}
 		}
 
 		/**
@@ -200,6 +208,48 @@ if ( ! class_exists( 'Mo_Plugin_Admin_Settings' ) ) {
 			 * Show error / update messages.
 			 */
 			settings_errors( $this->settings_errors );
+		}
+
+		/**
+		 * Displays a checkbox field.
+		 *
+		 * @since 1.1.0
+		 *
+		 * @param array $args An array of arguments.
+		 * @return void;
+		 */
+		public function display_checkbox_field( $arguments = array() ) {
+			if ( ! isset( $arguments['name'] ) ) {
+				return;
+			}
+
+			$checked = '';
+
+			if ( isset( $arguments['value'] ) && ( $arguments['value'] ) ) {
+				$checked = 'checked';
+			}
+
+			printf(
+				'<input type="checkbox" name="%1$s" %2$s>',
+				esc_attr( $arguments['name'] ),
+				$checked
+			);
+		}
+
+		/**
+		 * Displays an input field.
+		 *
+		 * @since 1.1.0
+		 *
+		 * @param array $args An array of arguments.
+		 * @return void;
+		 */
+		public function display_input_field( $args ) {
+			printf(
+				'<input type="text" name="%1$s" value="%2$s">',
+				esc_attr( $arguments['name'] ),
+				esc_attr( $arguments['value'] )
+			);
 		}
 
 		/**
