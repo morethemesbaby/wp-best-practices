@@ -215,7 +215,7 @@ if ( ! class_exists( 'Mo_Plugin_Admin_Settings' ) ) {
 		 *
 		 * @since 1.1.0
 		 *
-		 * @param array $args An array of arguments.
+		 * @param array $arguments An array of arguments.
 		 * @return void;
 		 */
 		public function display_checkbox_field( $arguments = array() ) {
@@ -241,10 +241,14 @@ if ( ! class_exists( 'Mo_Plugin_Admin_Settings' ) ) {
 		 *
 		 * @since 1.1.0
 		 *
-		 * @param array $args An array of arguments.
+		 * @param array $arguments An array of arguments.
 		 * @return void;
 		 */
-		public function display_input_field( $args ) {
+		public function display_input_field( $arguments = array() ) {
+			if ( ! isset( $arguments['name'] ) ) {
+				return;
+			}
+
 			printf(
 				'<input type="text" name="%1$s" value="%2$s">',
 				esc_attr( $arguments['name'] ),

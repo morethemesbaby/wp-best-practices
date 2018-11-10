@@ -80,7 +80,9 @@ if ( ! class_exists( 'Mo_Plugin_Features_AdminMenu' ) ) {
 		 * @return void
 		 */
 		public function options_section_features_callback() {
-			// Empty since we have just a single section. no need for description.
+			printf(
+				'<p>Enable or disable theme features.</p>'
+			);
 		}
 
 		/**
@@ -124,7 +126,7 @@ if ( ! class_exists( 'Mo_Plugin_Features_AdminMenu' ) ) {
 
 				add_settings_field(
 					$name,
-					$key,
+					$this->humanize_string( $key ),
 					array( $this->mo_settings, 'display_field' ),
 					$this->menu_id,
 					$this->options_section_features,

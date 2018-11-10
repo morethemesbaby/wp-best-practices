@@ -76,6 +76,22 @@ if ( ! class_exists( 'Mo_Base' ) ) {
 		}
 
 		/**
+		 * Removes non standard characters from string.
+		 *
+		 * @since 1.1.0
+		 *
+		 * @param string $string The string to humanize.
+		 * @return string
+		 */
+		public function humanize_string( $string ) {
+			$str = str_replace( '_', ' ', $string );
+			$str = str_replace( '-', ' ', $string );
+			$str = ucfirst( $str );
+
+			return $str;
+		}
+
+		/**
 		 * Merges two arrays.
 		 *
 		 * The PHP `array_merge()` gives a warning when the second argument is not an array.
