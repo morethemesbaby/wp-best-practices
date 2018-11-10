@@ -84,14 +84,14 @@ if ( ! class_exists( 'Mo_Plugin_Features_AdminMenu' ) ) {
 			add_settings_section(
 				$this->settings_features,
 				$this->settings_features_title,
-				$this->settings_features_callback(),
+				array( $this, 'settings_features_callback' ),
 				$this->id
 			);
 
 			add_settings_field(
 				$this->settings_features . '-test',
 				'Test field',
-				$this->settings_features_test_field_callback(),
+				array( $this, 'settings_features_test_field_callback' ),
 				$this->id,
 				$this->settings_features
 			);
