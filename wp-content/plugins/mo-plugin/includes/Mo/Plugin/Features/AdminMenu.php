@@ -30,6 +30,7 @@ if ( ! class_exists( 'Mo_Plugin_Features_AdminMenu' ) ) {
 			'settings_id'             => 'mo-theme-settings',
 			'settings_features'       => 'mo-theme-settings-features',
 			'settings_features_title' => 'Theme Features',
+			'theme_features'          => array(),
 		);
 
 		/**
@@ -46,17 +47,19 @@ if ( ! class_exists( 'Mo_Plugin_Features_AdminMenu' ) ) {
 		}
 
 		/**
-		 * Displays the `Test` field for the 'Features` settings
+		 * Sets up arguments.
 		 *
 		 * @since 1.1.0
 		 * @return void
 		 */
-		public function settings_features_test_field_callback() {
-			$setting_name = $this->settings_features . '-test';
-			$setting = get_option( $setting_name );
-			?>
-			<input type="text" name="<?php echo $setting_name; ?>" value="<?php echo isset( $setting ) ? esc_attr( $setting ) : ''; ?>">
-			<?php
+		public function setup_arguments() {
+			$this->page_title              = __( $this->arguments['page_title'], 'mo-plugin' );
+			$this->menu_title              = __( $this->arguments['menu_title'], 'mo-plugin' );
+			$this->menu_id                 = $this->arguments['menu_id'];
+			$this->settings_id             = $this->arguments['settings_id'];
+			$this->settings_features       = $this->arguments['settings_features'];
+			$this->settings_features_title = __( $this->arguments['settings_features_title'], 'mo-plugin' );
+			$this->theme_features          = $this->arguments['theme_features'];
 		}
 
 		/**
@@ -66,7 +69,7 @@ if ( ! class_exists( 'Mo_Plugin_Features_AdminMenu' ) ) {
 		 * @return void
 		 */
 		public function settings_features_callback() {
-			echo 'Section description';
+			// Empty since we have just a single section. no need for description.
 		}
 
 		/**
@@ -79,8 +82,18 @@ if ( ! class_exists( 'Mo_Plugin_Features_AdminMenu' ) ) {
 		 * @return void
 		 */
 		public function init_settings() {
+			if ( empty( $this->theme_features ) ) {
+				return;
+			}
+
+			/**
+			 * Registers a new settings entry.
+			 */
 			register_setting( $this->menu_id, $this->settings_id );
 
+			/**
+			 * Adds a new section inside the settings.
+			 */
 			add_settings_section(
 				$this->settings_features,
 				$this->settings_features_title,
@@ -88,13 +101,29 @@ if ( ! class_exists( 'Mo_Plugin_Features_AdminMenu' ) ) {
 				$this->menu_id
 			);
 
-			add_settings_field(
-				$this->settings_features . '-test',
-				'Test field',
-				array( $this, 'settings_features_test_field_callback' ),
-				$this->menu_id,
-				$this->settings_features
+			/**
+			 * Adds new fields inside the section.
+			 */
+			$mo_settings = new Mo_Plugin_Admin_Settings(
+				array(
+					'settings_option_group' => $this->settings_id,
+					'settings_section'      => $this->settings_features,
+				)
 			);
+
+			foreach ( $this->theme_features as $key => $value ) {
+				add_settings_field(
+					$this->settings_features . '-' . $key,
+					$key,
+					array( $mo_settings, 'display_input_field' ),
+					$this->menu_id,
+					$this->settings_features,
+					array(
+						'key'   => $key,
+						'value' => $value,
+					)
+				);
+			}
 		}
 
 		/**
@@ -150,18 +179,6 @@ if ( ! class_exists( 'Mo_Plugin_Features_AdminMenu' ) ) {
 		 */
 		public function deactivate() {
 			remove_menu_page( $this->menu_id );
-		}
-
-		/**
-		 * Set up arguments
-		 */
-		public function setup_arguments() {
-			$this->page_title              = __( $this->arguments['page_title'], 'mo-plugin' );
-			$this->menu_title              = __( $this->arguments['menu_title'], 'mo-plugin' );
-			$this->menu_id                 = $this->arguments['menu_id'];
-			$this->settings_id             = $this->arguments['settings_id'];
-			$this->settings_features       = $this->arguments['settings_features'];
-			$this->settings_features_title = __( $this->arguments['settings_features_title'], 'mo-plugin' );
 		}
 	}
 } // End if().

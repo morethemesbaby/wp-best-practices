@@ -110,7 +110,11 @@ if ( ! class_exists( 'Mo_Plugin_Features_Base' ) ) {
 		 * @return void
 		 */
 		public function activate_admin_menu() {
-			$mo_admin_menu = new Mo_Plugin_Features_AdminMenu();
+			$mo_admin_menu = new Mo_Plugin_Features_AdminMenu(
+				array(
+					'theme_features' => $this->features,
+				)
+			);
 			$mo_admin_menu->activate();
 		}
 

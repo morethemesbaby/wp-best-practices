@@ -27,6 +27,7 @@ if ( ! class_exists( 'Mo_Plugin_Admin_Settings' ) ) {
 		 */
 		public $arguments = array(
 			'settings_option_group' => 'general',
+			'settings_section'      => '',
 			'button_text'           => 'Save Settings',
 			'confirmation_message'  => 'Settings saved',
 		);
@@ -57,6 +58,11 @@ if ( ! class_exists( 'Mo_Plugin_Admin_Settings' ) ) {
 			$this->settings_group_id = $this->arguments['settings_option_group'];
 
 			/**
+			 * The section id 
+			 */
+			$this->settings_section = $this->arguments['settings_section'];
+
+			/**
 			 * The form error messages unique id for https://developer.wordpress.org/reference/functions/add_settings_error/
 			 */
 			$this->settings_errors = $this->settings_group_id . '-error-messages';
@@ -64,6 +70,33 @@ if ( ! class_exists( 'Mo_Plugin_Admin_Settings' ) ) {
 			$this->button_text = __( $this->arguments[ 'button_text' ], 'mo-plugin' );
 
 			$this->confirmation_message = __( $this->arguments[ 'confirmation_message' ], 'mo-plugin' );
+		}
+
+		/**
+		 * Displays an input field.
+		 *
+		 * @since 1.1.0
+		 *
+		 * @param array $args Defined at the `add_settings_field()` function.
+		 * @return void;
+		 */
+		public function display_input_field( $args ) {
+			if ( empty( $args ) ) {
+				return;
+			}
+
+			if ( ! isset( $args['key'] ) ) {
+				return;
+			}
+
+			$setting_name  = $this->settings_section . '-' . $args['key'];
+			$setting_value = ( null !== get_option( $setting_name ) ) ? get_option( $setting_name ) : '';
+
+			printf(
+				'<input type="text" name="%1$s" value="%2$s">',
+				esc_attr( $setting_name ),
+				esc_attr( $setting_value )
+			);
 		}
 
 		/**
