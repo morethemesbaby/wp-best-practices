@@ -19,18 +19,20 @@ if ( ! class_exists( 'Mo_Plugin_Features_AdminMenu' ) ) {
 		/**
 		 * Class arguments.
 		 *
+		 * Important note: `menu_id` must be the same as `options_id`!!!
+		 *
 		 * @since 1.1.0
 		 *
 		 * @var array $arguments An Array of arguments.
 		 */
 		public $arguments = array(
-			'page_title'              => 'Mo Theme Settings',
-			'menu_title'              => 'Mo Theme Settings',
-			'menu_id'                 => 'mo-theme-settings',
-			'settings_id'             => 'mo-theme-settings',
-			'settings_features'       => 'mo-theme-settings-features',
-			'settings_features_title' => 'Theme Features',
-			'theme_features'          => array(),
+			'page_title'                     => 'Mo Theme Settings',
+			'menu_title'                     => 'Mo Theme Settings',
+			'menu_id'                        => 'mo_theme_settings',
+			'options_id'                     => 'mo_theme_settings',
+			'options_section_features'       => 'mo_theme_settings_section_features',
+			'options_section_features_title' => 'Theme Features',
+			'theme_features'                 => array(),
 		);
 
 		/**
@@ -53,13 +55,22 @@ if ( ! class_exists( 'Mo_Plugin_Features_AdminMenu' ) ) {
 		 * @return void
 		 */
 		public function setup_arguments() {
-			$this->page_title              = __( $this->arguments['page_title'], 'mo-plugin' );
-			$this->menu_title              = __( $this->arguments['menu_title'], 'mo-plugin' );
-			$this->menu_id                 = $this->arguments['menu_id'];
-			$this->settings_id             = $this->arguments['settings_id'];
-			$this->settings_features       = $this->arguments['settings_features'];
-			$this->settings_features_title = __( $this->arguments['settings_features_title'], 'mo-plugin' );
-			$this->theme_features          = $this->arguments['theme_features'];
+			$this->page_title = __( $this->arguments['page_title'], 'mo-plugin' );
+			$this->menu_title = __( $this->arguments['menu_title'], 'mo-plugin' );
+			$this->menu_id    = $this->arguments['menu_id'];
+
+			$this->options_id                     = $this->arguments['options_id'];
+			$this->options_section_features       = $this->arguments['options_section_features'];
+			$this->options_section_features_title = __( $this->arguments['options_section_features_title'], 'mo-plugin' );
+
+			$this->theme_features = $this->arguments['theme_features'];
+
+			$this->mo_settings = new Mo_Plugin_Admin_Settings(
+				array(
+					'options_id'               => $this->options_id,
+					'options_section_features' => $this->options_section_features,
+				)
+			);
 		}
 
 		/**
@@ -68,7 +79,7 @@ if ( ! class_exists( 'Mo_Plugin_Features_AdminMenu' ) ) {
 		 * @since 1.1.0
 		 * @return void
 		 */
-		public function settings_features_callback() {
+		public function options_section_features_callback() {
 			// Empty since we have just a single section. no need for description.
 		}
 
@@ -89,57 +100,40 @@ if ( ! class_exists( 'Mo_Plugin_Features_AdminMenu' ) ) {
 			/**
 			 * Registers a new settings entry.
 			 */
-			register_setting( $this->menu_id, $this->settings_id );
+			register_setting( $this->menu_id, $this->options_id );
 
 			/**
 			 * Adds a new section inside the settings.
 			 */
 			add_settings_section(
-				$this->settings_features,
-				$this->settings_features_title,
-				array( $this, 'settings_features_callback' ),
+				$this->options_section_features,
+				$this->options_section_features_title,
+				array( $this, 'options_section_features_callback' ),
 				$this->menu_id
 			);
 
 			/**
 			 * Adds new fields inside the section.
 			 */
-			$mo_settings = new Mo_Plugin_Admin_Settings(
-				array(
-					'settings_option_group' => $this->settings_id,
-					'settings_section'      => $this->settings_features,
-				)
-			);
-
 			foreach ( $this->theme_features as $key => $value ) {
-				add_settings_field(
-					$this->settings_features . '-' . $key,
-					$key,
-					array( $mo_settings, 'display_input_field' ),
-					$this->menu_id,
-					$this->settings_features,
+				$name = $this->mo_settings->get_field_name(
 					array(
-						'key'   => $key,
+						'key' => $key,
+					)
+				);
+
+				add_settings_field(
+					$name,
+					$key,
+					array( $this->mo_settings, 'display_input_field' ),
+					$this->menu_id,
+					$this->options_section_features,
+					array(
+						'name'  => $name,
 						'value' => $value,
 					)
 				);
 			}
-		}
-
-		/**
-		 * Displays the settings for the admin menu
-		 *
-		 * @since 1.1.0
-		 * @return void
-		 */
-		public function display_settings() {
-			$mo_settings = new Mo_Plugin_Admin_Settings(
-				array(
-					'settings_option_group' => $this->settings_id,
-				)
-			);
-
-			$mo_settings->display();
 		}
 
 		/**
@@ -154,7 +148,7 @@ if ( ! class_exists( 'Mo_Plugin_Features_AdminMenu' ) ) {
 				$this->menu_title,
 				'manage_options',
 				$this->menu_id,
-				array( $this, 'display_settings' ),
+				array( $this->mo_settings, 'display' ),
 				'',
 				100
 			);

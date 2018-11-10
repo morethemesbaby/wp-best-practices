@@ -26,10 +26,22 @@ if ( ! class_exists( 'Mo_Plugin_Admin_Settings' ) ) {
 		 * @var array $arguments An Array of arguments.
 		 */
 		public $arguments = array(
-			'settings_option_group' => 'general',
-			'settings_section'      => '',
-			'button_text'           => 'Save Settings',
-			'confirmation_message'  => 'Settings saved',
+			'options_id'               => 'general',
+			'options_section_features' => '',
+			'button_text'              => 'Save Settings',
+			'confirmation_message'     => 'Settings saved',
+		);
+
+		/**
+		 * Arguments to create a field name.
+		 *
+		 * @since 1.1.0
+		 *
+		 * @var array
+		 */
+		public $field_name_arguments = array(
+			'key'       => '',
+			'separator' => '_',
 		);
 
 		/**
@@ -52,20 +64,13 @@ if ( ! class_exists( 'Mo_Plugin_Admin_Settings' ) ) {
 		 * @return void
 		 */
 		public function setup_arguments() {
-			/**
-			 * The option group from https://developer.wordpress.org/reference/functions/register_setting/
-			 */
-			$this->settings_group_id = $this->arguments['settings_option_group'];
-
-			/**
-			 * The section id 
-			 */
-			$this->settings_section = $this->arguments['settings_section'];
+			$this->options_id               = $this->arguments['options_id'];
+			$this->options_section_features = $this->arguments['options_section_features'];
 
 			/**
 			 * The form error messages unique id for https://developer.wordpress.org/reference/functions/add_settings_error/
 			 */
-			$this->settings_errors = $this->settings_group_id . '-error-messages';
+			$this->settings_errors = $this->options_id . '-error-messages';
 
 			$this->button_text = __( $this->arguments[ 'button_text' ], 'mo-plugin' );
 
@@ -85,17 +90,23 @@ if ( ! class_exists( 'Mo_Plugin_Admin_Settings' ) ) {
 				return;
 			}
 
-			if ( ! isset( $args['key'] ) ) {
+			if ( ! isset( $args['name'] ) ) {
 				return;
 			}
 
-			$setting_name  = $this->settings_section . '-' . $args['key'];
-			$setting_value = ( null !== get_option( $setting_name ) ) ? get_option( $setting_name ) : '';
+			$name = "{$this->options_id}[{$args['name']}]";
+
+			$value   = '';
+			$options = get_option( $this->options_id );
+
+			if ( ( ! empty( $options ) ) && ( array_key_exists( $args['name'], $options ) ) ) {
+				$value = $options[ $args['name'] ];
+			}
 
 			printf(
 				'<input type="text" name="%1$s" value="%2$s">',
-				esc_attr( $setting_name ),
-				esc_attr( $setting_value )
+				esc_attr( $name ),
+				esc_attr( $value )
 			);
 		}
 
@@ -137,8 +148,8 @@ if ( ! class_exists( 'Mo_Plugin_Admin_Settings' ) ) {
 			/**
 			 * Displays security fields, the sections and it's fields, and a submit button
 			 */
-			settings_fields( $this->settings_group_id );
-			do_settings_sections( $this->settings_group_id );
+			settings_fields( $this->options_id );
+			do_settings_sections( $this->options_id );
 			submit_button( $this->button_text );
 
 			echo '</form>';
@@ -183,6 +194,28 @@ if ( ! class_exists( 'Mo_Plugin_Admin_Settings' ) ) {
 			 * Show error / update messages.
 			 */
 			settings_errors( $this->settings_errors );
+		}
+
+		/**
+		 * Generates a field name.
+		 *
+		 * @since 1.1.0
+		 *
+		 * @param array $arguments An array of arguments.
+		 * @return string
+		 */
+		public function get_field_name( $arguments = array() ) {
+			$this->field_name_arguments = $this->array_merge( $this->field_name_arguments, $arguments );
+
+			$ret = $this->implode(
+				$this->field_name_arguments['separator'],
+				array(
+					$this->options_section_features,
+					$this->field_name_arguments['key'],
+				)
+			);
+
+			return $ret;
 		}
 	}
 } // End if().
