@@ -26,9 +26,9 @@ if ( ! class_exists( 'Mo_Plugin_Features_AdminMenu' ) ) {
 		public $arguments = array(
 			'page_title'              => 'Mo Theme Settings',
 			'menu_title'              => 'Mo Theme Settings',
-			'id'                      => 'mo-plugin-admin-menu',
-			'settings_id'             => 'mo-plugin-settings',
-			'settings_features'       => 'mo-plugin-settings-features',
+			'menu_id'                 => 'mo-theme-settings',
+			'settings_id'             => 'mo-theme-settings',
+			'settings_features'       => 'mo-theme-settings-features',
 			'settings_features_title' => 'Theme Features',
 		);
 
@@ -79,20 +79,20 @@ if ( ! class_exists( 'Mo_Plugin_Features_AdminMenu' ) ) {
 		 * @return void
 		 */
 		public function init_settings() {
-			register_setting( $this->id, $this->settings_id );
+			register_setting( $this->menu_id, $this->settings_id );
 
 			add_settings_section(
 				$this->settings_features,
 				$this->settings_features_title,
 				array( $this, 'settings_features_callback' ),
-				$this->id
+				$this->menu_id
 			);
 
 			add_settings_field(
 				$this->settings_features . '-test',
 				'Test field',
 				array( $this, 'settings_features_test_field_callback' ),
-				$this->id,
+				$this->menu_id,
 				$this->settings_features
 			);
 		}
@@ -104,40 +104,13 @@ if ( ! class_exists( 'Mo_Plugin_Features_AdminMenu' ) ) {
 		 * @return void
 		 */
 		public function display_settings() {
-			if ( ! current_user_can( 'manage_options' ) ) {
-				return;
-			}
+			$mo_settings = new Mo_Plugin_Admin_Settings(
+				array(
+					'settings_option_group' => $this->settings_id,
+				)
+			);
 
-			// Check if the user have submitted the settings.
-			// WordPress will add the "settings-updated" $_GET parameter to the url.
-			if ( isset( $_GET['settings-updated'] ) ) {
-				// Add settings saved message with the class of "updated".
-				add_settings_error(
-					'mo-plugin-settings_messages',
-					'mo-plugin-settings_message',
-					__( 'Settings Saved', 'mo-plugin' ),
-					'updated'
-				);
-			}
-
-			// Show error/update messages.
-			settings_errors( 'mo-plugin-settings_messages' );
-
-			// Display the form.
-			echo '<div class="wrap"><h1 class="wp-heading-inline">';
-			echo esc_html( get_admin_page_title() ) . '</h1>';
-			echo '<form action="options.php" method="post">';
-
-			// Display security fields.
-			settings_fields( $this->id );
-
-			// Display the settings fields.
-			do_settings_sections( $this->id );
-
-			// Display the submit button.
-			submit_button( 'Save Settings' );
-
-			echo '</form></div>';
+			$mo_settings->display();
 		}
 
 		/**
@@ -151,7 +124,7 @@ if ( ! class_exists( 'Mo_Plugin_Features_AdminMenu' ) ) {
 				$this->page_title,
 				$this->menu_title,
 				'manage_options',
-				$this->id,
+				$this->menu_id,
 				array( $this, 'display_settings' ),
 				'',
 				100
@@ -176,7 +149,7 @@ if ( ! class_exists( 'Mo_Plugin_Features_AdminMenu' ) ) {
 		 * @return void
 		 */
 		public function deactivate() {
-			remove_menu_page( $this->id );
+			remove_menu_page( $this->menu_id );
 		}
 
 		/**
@@ -185,7 +158,7 @@ if ( ! class_exists( 'Mo_Plugin_Features_AdminMenu' ) ) {
 		public function setup_arguments() {
 			$this->page_title              = __( $this->arguments['page_title'], 'mo-plugin' );
 			$this->menu_title              = __( $this->arguments['menu_title'], 'mo-plugin' );
-			$this->id                      = $this->arguments['id'];
+			$this->menu_id                 = $this->arguments['menu_id'];
 			$this->settings_id             = $this->arguments['settings_id'];
 			$this->settings_features       = $this->arguments['settings_features'];
 			$this->settings_features_title = __( $this->arguments['settings_features_title'], 'mo-plugin' );
