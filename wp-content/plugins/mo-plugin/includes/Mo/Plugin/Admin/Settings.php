@@ -45,6 +45,18 @@ if ( ! class_exists( 'Mo_Plugin_Admin_Settings' ) ) {
 		);
 
 		/**
+		 * Arguments of an input field.
+		 *
+		 * @since 1.1.0
+		 *
+		 * @var array
+		 */
+		public $input_field_arguments = array(
+			'options' => '',
+			'key'     => '',
+		);
+
+		/**
 		 * Sets up the class.
 		 *
 		 * @since 1.1.0
@@ -66,14 +78,9 @@ if ( ! class_exists( 'Mo_Plugin_Admin_Settings' ) ) {
 		public function setup_arguments() {
 			$this->options_id               = $this->arguments['options_id'];
 			$this->options_section_features = $this->arguments['options_section_features'];
+			$this->settings_errors          = $this->options_id . '-error-messages';
 
-			/**
-			 * The form error messages unique id for https://developer.wordpress.org/reference/functions/add_settings_error/
-			 */
-			$this->settings_errors = $this->options_id . '-error-messages';
-
-			$this->button_text = __( $this->arguments[ 'button_text' ], 'mo-plugin' );
-
+			$this->button_text          = __( $this->arguments[ 'button_text' ], 'mo-plugin' );
 			$this->confirmation_message = __( $this->arguments[ 'confirmation_message' ], 'mo-plugin' );
 		}
 
@@ -94,14 +101,13 @@ if ( ! class_exists( 'Mo_Plugin_Admin_Settings' ) ) {
 				return;
 			}
 
-			$name = "{$this->options_id}[{$args['name']}]";
+			$arguments = array(
+				'options' => $this->options_id,
+				'key'     => $args['name'],
+			);
 
-			$value   = '';
-			$options = get_option( $this->options_id );
-
-			if ( ( ! empty( $options ) ) && ( array_key_exists( $args['name'], $options ) ) ) {
-				$value = $options[ $args['name'] ];
-			}
+			$name  = $this->get_input_field_name( $arguments );
+			$value = $this->get_field_value( $arguments );
 
 			printf(
 				'<input type="text" name="%1$s" value="%2$s">',
@@ -197,7 +203,53 @@ if ( ! class_exists( 'Mo_Plugin_Admin_Settings' ) ) {
 		}
 
 		/**
+		 * Returns a field value from the options database.
+		 *
+		 * @since 1.1.0
+		 *
+		 * @param array $arguments An array of arguments.
+		 * @return string
+		 */
+		public function get_field_value( $arguments = array() ) {
+			$this->input_field_arguments = $this->array_merge( $this->input_field_arguments, $arguments );
+
+			$value = '';
+
+			$options = get_option( $this->input_field_arguments['options'] );
+			$key     = $this->input_field_arguments['key'];
+
+			if ( ( ! empty( $options ) ) && ( array_key_exists( $key, $options ) ) ) {
+				$value = $options[ $key ];
+			}
+
+			return $value;
+		}
+
+		/**
+		 * Generates an input name for a field.
+		 *
+		 * The name must be part of a set of options.
+		 * Example: options[field].
+		 *
+		 * Example: 'mo_theme_settings[custom-post-type]'
+		 *
+		 * @since 1.1.0
+		 *
+		 * @param array $arguments An array of arguments.
+		 * @return string
+		 */
+		public function get_input_field_name( $arguments = array() ) {
+			$this->input_field_arguments = $this->array_merge( $this->input_field_arguments, $arguments );
+
+			$ret = "{$this->input_field_arguments['options']}[{$this->input_field_arguments['key']}]";
+
+			return $ret;
+		}
+
+		/**
 		 * Generates a field name.
+		 *
+		 * Example: 'mo_theme_settings_custom-post-type'
 		 *
 		 * @since 1.1.0
 		 *
