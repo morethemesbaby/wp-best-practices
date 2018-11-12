@@ -21,6 +21,7 @@ Boilerplate code for WordPress plugins and themes based on best practices.
 	* Displays the shortcode added by the `Mo Plugin`.
 	* Extends the homepage from `Mo Theme` by adding a sidebar.
 	* Displays a widget in the sidebar with custom post types added by the `Mo Plugin`.
+	* Displays a settings menu in the admin dashboard where all the above features can be disabled or enabled.
 
 ## Why another boilerplate?
 
