@@ -23,9 +23,36 @@ if ( ! class_exists( 'Mo_Plugin_Admin_SettingsSection' ) ) {
 		 *
 		 * @since 1.1.0
 		 *
-		 * @var array $arguments An Array of arguments.
+		 * @var array
 		 */
 		public $arguments = array(
+			'menu_id' => '',
+		);
+
+		/**
+		 * Arguments of a section
+		 *
+		 * @since 1.1.0
+		 *
+		 * @var array
+		 */
+		public $section_arguments = array(
+			'section_id'          => '',
+			'section_title'       => '',
+			'section_description' => '',
+			'fields'              => array(),
+		);
+
+		/**
+		 * Arguments of a field
+		 *
+		 * @since 1.1.0
+		 *
+		 * @var array
+		 */
+		public $field_arguments = array(
+			'field_id'   => '',
+			'field_type' => '',
 		);
 
 		/**
@@ -72,6 +99,86 @@ if ( ! class_exists( 'Mo_Plugin_Admin_SettingsSection' ) ) {
 		 * @return void
 		 */
 		public function setup_arguments() {
+			$this->menu_id = $this->arguments['menu_id'];
+		}
+
+		/**
+		 * Adds a section.
+		 *
+		 * @since 1.1.0
+		 *
+		 * @param array $arguments The arguments array.
+		 * @return void
+		 */
+		public function add( $arguments = array() ) {
+			$this->section_arguments = $this->array_merge( $this->section_arguments, $arguments );
+
+			add_settings_section(
+				$this->section_arguments['section_id'],
+				$this->section_arguments['section_title'],
+				array( $this, 'display_description' ),
+				$this->menu_id
+			);
+
+			$this->add_fields();
+		}
+
+		/**
+		 * Adds section fields.
+		 *
+		 * @since 1.1.0
+		 * @return void
+		 */
+		public function add_fields() {
+			$fields = $this->section_arguments['fields'];
+
+			if ( empty( $fields ) ) {
+				return;
+			}
+
+			foreach ( $fields as $field ) {
+				$this->add_field( $field );
+			}
+		}
+
+		/**
+		 * Adds section field.
+		 *
+		 * @since 1.1.0
+		 *
+		 * @param array $arguments The arguments array.
+		 * @return void
+		 */
+		public function add_field( $arguments = array() ) {
+			$this->field_arguments = $this->array_merge( $this->field_arguments, $arguments );
+
+			$id = $this->field_arguments['field_id'];
+
+			add_settings_field(
+				$id,
+				$this->humanize_string( $id ),
+				array( $this, 'display_field' ),
+				$this->menu_id,
+				$this->section_arguments['section_id'],
+				array(
+					'type'  => $this->field_arguments['field_type'],
+					'name'  => $id,
+					'value' => '',
+				)
+			);
+		}
+
+		/**
+		 * Displays a section description.
+		 *
+		 * @since 1.1.0
+		 * @return void
+		 */
+		public function display_description() {
+			printf(
+				'<p>%s</p>',
+				esc_html( $this->section_arguments['section_description'] )
+			);
 		}
 
 		/**
@@ -92,7 +199,7 @@ if ( ! class_exists( 'Mo_Plugin_Admin_SettingsSection' ) ) {
 			}
 
 			$arguments = array(
-				'options' => $this->options_id,
+				'options' => $this->menu_id,
 				'key'     => $args['name'],
 			);
 
@@ -113,8 +220,6 @@ if ( ! class_exists( 'Mo_Plugin_Admin_SettingsSection' ) ) {
 					$this->display_input_field( $arguments );
 			}
 		}
-
-		
 
 		/**
 		 * Displays a checkbox field.

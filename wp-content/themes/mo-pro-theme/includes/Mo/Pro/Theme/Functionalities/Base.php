@@ -47,8 +47,14 @@ if ( ! class_exists( 'Mo_Pro_Theme_Functionalities_Base' ) ) {
 						'section_title' => 'Theme features',
 						'section_description' => 'Enable or disable theme features',
 						'fields' => array(
-							'custom-post-type',
-							'shortcode',
+							array(
+								'field_id'   => 'custom-post-type',
+								'field_type' => 'checkbox',
+							),
+							array(
+								'field_id'   => 'shortcode',
+								'field_type' => 'checkbox',
+							),
 						),
 					),
 				),

@@ -58,6 +58,12 @@ if ( ! class_exists( 'Mo_Plugin_Admin_Settings' ) ) {
 
 			$this->button_text          = __( $this->arguments[ 'button_text' ], 'mo-plugin' );
 			$this->confirmation_message = __( $this->arguments[ 'confirmation_message' ], 'mo-plugin' );
+
+			$this->mo_settings_section = new Mo_Plugin_Admin_SettingsSection(
+				array(
+					'menu_id' => $this->menu_id,
+				)
+			);
 		}
 
 		/**
@@ -74,8 +80,16 @@ if ( ! class_exists( 'Mo_Plugin_Admin_Settings' ) ) {
 				return;
 			}
 
+			/**
+			 * Registers a new settings entry.
+			 */
+			register_setting( $this->menu_id, $this->menu_id );
+
+			/**
+			 * Adds sections inside the settings entry.
+			 */
 			foreach ( $this->sections as $section ) {
-				new Mo_Plugin_Admin_SettingsSection( $section );
+				$this->mo_settings_section->add( $section );
 			}
 		}
 
@@ -117,8 +131,8 @@ if ( ! class_exists( 'Mo_Plugin_Admin_Settings' ) ) {
 			/**
 			 * Displays security fields, the sections and it's fields, and a submit button
 			 */
-			settings_fields( $this->options_id );
-			do_settings_sections( $this->options_id );
+			settings_fields( $this->menu_id );
+			do_settings_sections( $this->menu_id );
 			submit_button( $this->button_text );
 
 			echo '</form>';
