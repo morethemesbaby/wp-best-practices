@@ -69,8 +69,8 @@ if ( ! class_exists( 'Mo_Plugin_Features_Base' ) ) {
 				$this->activate_shortcode();
 			}
 
-			if ( $this->features['admin_menu'] ) {
-				$this->activate_admin_menu();
+			if ( $this->features['settings-menu'] ) {
+				$this->activate_settings_menu();
 			}
 		}
 
@@ -98,35 +98,31 @@ if ( ! class_exists( 'Mo_Plugin_Features_Base' ) ) {
 				$this->deactivate_shortcode();
 			}
 
-			if ( $this->features['admin_menu'] ) {
-				$this->deactivate_admin_menu();
+			if ( $this->features['settings-menu'] ) {
+				$this->deactivate_settings_menu();
 			}
 		}
 
 		/**
-		 * Activates the admin menu feature.
+		 * Activates the settings menu feature.
 		 *
 		 * @since 1.1.0
 		 * @return void
 		 */
-		public function activate_admin_menu() {
-			$mo_admin_menu = new Mo_Plugin_Features_AdminMenu(
-				array(
-					'theme_features' => $this->features,
-				)
-			);
-			$mo_admin_menu->activate();
+		public function activate_settings_menu() {
+			$mo_settings_menu = new Mo_Plugin_Features_SettingsMenu( $this->features['settings-menu'] );
+			$mo_settings_menu->activate();
 		}
 
 		/**
-		 * Deactivates the admin menu feature.
+		 * Deactivates the settings menu feature.
 		 *
 		 * @since 1.1.0
 		 * @return void
 		 */
-		public function deactivate_admin_menu() {
-			$mo_admin_menu = new Mo_Plugin_Features_AdminMenu();
-			$mo_admin_menu->deactivate();
+		public function deactivate_settings_menu() {
+			$mo_settings_menu = new Mo_Plugin_Features_SettingsMenu();
+			$mo_settings_menu->deactivate();
 		}
 
 		/**

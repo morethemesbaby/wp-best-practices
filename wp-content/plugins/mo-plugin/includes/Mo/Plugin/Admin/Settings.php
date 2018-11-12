@@ -14,7 +14,7 @@ if ( ! class_exists( 'Mo_Plugin_Admin_Settings' ) ) {
 	 *
 	 * Displays and manages settings in the admin area.
 	 *
-	 * @since 1.0.0
+	 * @since 1.1.0
 	 */
 	class Mo_Plugin_Admin_Settings extends Mo_Base {
 
@@ -26,34 +26,10 @@ if ( ! class_exists( 'Mo_Plugin_Admin_Settings' ) ) {
 		 * @var array $arguments An Array of arguments.
 		 */
 		public $arguments = array(
-			'options_id'               => 'general',
-			'options_section_features' => '',
-			'button_text'              => 'Save Settings',
-			'confirmation_message'     => 'Settings saved',
-		);
-
-		/**
-		 * Arguments to create a field name.
-		 *
-		 * @since 1.1.0
-		 *
-		 * @var array
-		 */
-		public $field_name_arguments = array(
-			'key'       => '',
-			'separator' => '_',
-		);
-
-		/**
-		 * Arguments of an input field.
-		 *
-		 * @since 1.1.0
-		 *
-		 * @var array
-		 */
-		public $input_field_arguments = array(
-			'options' => '',
-			'key'     => '',
+			'menu_id'              => 'mo_theme_settings',
+			'sections'             => array(),
+			'button_text'          => 'Save Settings',
+			'confirmation_message' => 'Settings saved',
 		);
 
 		/**
@@ -76,51 +52,30 @@ if ( ! class_exists( 'Mo_Plugin_Admin_Settings' ) ) {
 		 * @return void
 		 */
 		public function setup_arguments() {
-			$this->options_id               = $this->arguments['options_id'];
-			$this->options_section_features = $this->arguments['options_section_features'];
-			$this->settings_errors          = $this->options_id . '-error-messages';
+			$this->menu_id         = $this->arguments['menu_id'];
+			$this->sections        = $this->arguments['sections'];
+			$this->settings_errors = $this->menu_id . '-error-messages';
 
 			$this->button_text          = __( $this->arguments[ 'button_text' ], 'mo-plugin' );
 			$this->confirmation_message = __( $this->arguments[ 'confirmation_message' ], 'mo-plugin' );
 		}
 
 		/**
-		 * Displays a settings field.
+		 * Sets up settings.
 		 *
 		 * @since 1.1.0
 		 *
-		 * @param array $args Defined at the `add_settings_field()` function.
-		 * @return void;
+		 * @link https://developer.wordpress.org/plugins/settings/custom-settings-page/
+		 *
+		 * @return void
 		 */
-		public function display_field( $args ) {
-			if ( empty( $args ) ) {
+		public function init_settings() {
+			if ( empty( $this->sections ) ) {
 				return;
 			}
 
-			if ( ! isset( $args['name'] ) ) {
-				return;
-			}
-
-			$arguments = array(
-				'options' => $this->options_id,
-				'key'     => $args['name'],
-			);
-
-			$name  = $this->get_input_field_name( $arguments );
-			$value = $this->get_field_value( $arguments );
-
-			$arguments = array(
-				'name'  => $name,
-				'value' => $value,
-				'args'  => $args,
-			);
-
-			switch ( $args['type'] ) {
-				case 'checkbox': 
-					$this->display_checkbox_field( $arguments );
-					break;
-				default:
-					$this->display_input_field( $arguments );
+			foreach ( $this->sections as $section ) {
+				new Mo_Plugin_Admin_SettingsSection( $section );
 			}
 		}
 
@@ -208,120 +163,6 @@ if ( ! class_exists( 'Mo_Plugin_Admin_Settings' ) ) {
 			 * Show error / update messages.
 			 */
 			settings_errors( $this->settings_errors );
-		}
-
-		/**
-		 * Displays a checkbox field.
-		 *
-		 * @since 1.1.0
-		 *
-		 * @param array $arguments An array of arguments.
-		 * @return void;
-		 */
-		public function display_checkbox_field( $arguments = array() ) {
-			if ( ! isset( $arguments['name'] ) ) {
-				return;
-			}
-
-			$checked = '';
-
-			if ( isset( $arguments['value'] ) && ( $arguments['value'] ) ) {
-				$checked = 'checked';
-			}
-
-			printf(
-				'<input type="checkbox" name="%1$s" %2$s>',
-				esc_attr( $arguments['name'] ),
-				$checked
-			);
-		}
-
-		/**
-		 * Displays an input field.
-		 *
-		 * @since 1.1.0
-		 *
-		 * @param array $arguments An array of arguments.
-		 * @return void;
-		 */
-		public function display_input_field( $arguments = array() ) {
-			if ( ! isset( $arguments['name'] ) ) {
-				return;
-			}
-
-			printf(
-				'<input type="text" name="%1$s" value="%2$s">',
-				esc_attr( $arguments['name'] ),
-				esc_attr( $arguments['value'] )
-			);
-		}
-
-		/**
-		 * Returns a field value from the options database.
-		 *
-		 * @since 1.1.0
-		 *
-		 * @param array $arguments An array of arguments.
-		 * @return string
-		 */
-		public function get_field_value( $arguments = array() ) {
-			$this->input_field_arguments = $this->array_merge( $this->input_field_arguments, $arguments );
-
-			$value = '';
-
-			$options = get_option( $this->input_field_arguments['options'] );
-			$key     = $this->input_field_arguments['key'];
-
-			if ( ( ! empty( $options ) ) && ( array_key_exists( $key, $options ) ) ) {
-				$value = $options[ $key ];
-			}
-
-			return $value;
-		}
-
-		/**
-		 * Generates an input name for a field.
-		 *
-		 * The name must be part of a set of options.
-		 * Example: options[field].
-		 *
-		 * Example: 'mo_theme_settings[custom-post-type]'
-		 *
-		 * @since 1.1.0
-		 *
-		 * @param array $arguments An array of arguments.
-		 * @return string
-		 */
-		public function get_input_field_name( $arguments = array() ) {
-			$this->input_field_arguments = $this->array_merge( $this->input_field_arguments, $arguments );
-
-			$ret = "{$this->input_field_arguments['options']}[{$this->input_field_arguments['key']}]";
-
-			return $ret;
-		}
-
-		/**
-		 * Generates a field name.
-		 *
-		 * Example: 'mo_theme_settings_custom-post-type'
-		 *
-		 * @since 1.1.0
-		 *
-		 * @param array $arguments An array of arguments.
-		 * @return string
-		 */
-		public function get_field_name( $arguments = array() ) {
-			$this->field_name_arguments = $this->array_merge( $this->field_name_arguments, $arguments );
-
-			$ret = $this->implode(
-				$this->field_name_arguments['separator'],
-				array(
-					$this->options_section_features,
-					$this->field_name_arguments['key'],
-				)
-			);
-
-			return $ret;
 		}
 	}
 } // End if().

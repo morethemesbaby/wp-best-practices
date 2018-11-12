@@ -26,9 +26,34 @@ if ( ! class_exists( 'Mo_Pro_Theme_Functionalities_Base' ) ) {
 		 *
 		 * @since 1.0.0
 		 *
-		 * @var array An array of arguments
+		 * @var array An array of arguments.
 		 */
 		public $arguments = array();
+
+		/**
+		 * The features the associated plugin has to implement.
+		 *
+		 * @since 1.1.0
+		 * @var array An array of arguments.
+		 */
+		public $features = array(
+			'custom-post-type' => true,
+			'shortcode'        => true,
+			'settings-menu'    => array(
+				'menu_id'  => 'mo_theme_settings',
+				'sections' => array(
+					array(
+						'section_id' => 'features',
+						'section_title' => 'Theme features',
+						'section_description' => 'Enable or disable theme features',
+						'fields' => array(
+							'custom-post-type',
+							'shortcode',
+						),
+					),
+				),
+			),
+		);
 
 		/**
 		 * Sets up the class.
@@ -67,11 +92,7 @@ if ( ! class_exists( 'Mo_Pro_Theme_Functionalities_Base' ) ) {
 		public function define_theme_support() {
 			add_theme_support(
 				'MO_PRO_THEME_FEATURE_SET',
-				array(
-					'custom-post-type' => true,
-					'shortcode'        => true,
-					'admin_menu'       => true,
-				)
+				$this->features
 			);
 		}
 
